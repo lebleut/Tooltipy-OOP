@@ -131,7 +131,7 @@ class Tooltipy_Oop_Public {
 			'filter_items_list'     => __( 'Filter Tooltips list', 'tooltipy-oop' ),
 		);
 
-		$capabilities = array(
+		/*$capabilities = array(
 			'edit_post'             => 'manage_options',
 			'read_post'             => 'manage_options',
 			'delete_post'           => 'manage_options',
@@ -139,7 +139,7 @@ class Tooltipy_Oop_Public {
 			'edit_others_posts'     => 'manage_options',
 			'publish_posts'         => 'manage_options',
 			'read_private_posts'    => 'manage_options',
-		);
+		);*/
 
 		$args = array(
 			'label'                 => __( 'Tooltip', 'tooltipy-oop' ),
@@ -159,10 +159,26 @@ class Tooltipy_Oop_Public {
 			'has_archive'           => true,		
 			'exclude_from_search'   => false,
 			'publicly_queryable'    => true,
-			'capabilities'          => $capabilities,
+			//'capabilities'          => $capabilities,
 			'show_in_rest'          => true,
 		);
 
 		register_post_type( 'tooltipy', $args );
+
+		// Tooltips category taxonomy
+		$cat_args = array(
+			'labels' => array(
+				'name' => __('Categories','tooltipy-oop')
+			),
+			'hierarchical' => true,			
+    		'show_ui' => 'radio',
+			'show_admin_column' => true,
+		);
+
+		register_taxonomy(
+			'tooltip_cat',
+			'tooltipy',
+			$cat_args
+		);
 	}
 }

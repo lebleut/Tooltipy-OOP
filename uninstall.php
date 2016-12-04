@@ -20,7 +20,7 @@
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
  * @link       https://www.linkedin.com/in/jamel-eddine-zarga-56336485
- * @since      1.0.0
+ * @since      4.0.0
  *
  * @package    Tooltipy_Oop
  */

@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              https://www.linkedin.com/in/jamel-eddine-zarga-56336485
- * @since             1.0.0
+ * @since             4.0.0
  * @package           Tooltipy_Oop
  *
  * @wordpress-plugin
  * Plugin Name:       Tooltipy
  * Plugin URI:        www.tooltipy.com
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
+ * Version:           4.0.0
  * Author:            Jamel Eddine Zarga
  * Author URI:        https://www.linkedin.com/in/jamel-eddine-zarga-56336485
  * License:           GPL-2.0+
@@ -64,7 +64,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-tooltipy-oop.php';
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.0.0
+ * @since    4.0.0
  */
 function run_tooltipy_oop() {
 

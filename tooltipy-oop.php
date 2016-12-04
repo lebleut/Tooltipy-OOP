@@ -13,7 +13,7 @@
  * @package           Tooltipy_Oop
  *
  * @wordpress-plugin
- * Plugin Name:       Tooltipy
+ * Plugin Name:       Tooltipy OOP
  * Plugin URI:        www.tooltipy.com
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           4.0.0
@@ -29,6 +29,19 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+// Define constants
+if ( ! defined( 'TOOLTIPY_BASE_FILE' ) )
+    define( 'TOOLTIPY_BASE_FILE', __FILE__ );
+
+if ( ! defined( 'TOOLTIPY_BASE_DIR' ) )
+    define( 'TOOLTIPY_BASE_DIR', dirname( TOOLTIPY_BASE_FILE ) );
+
+if ( ! defined( 'TOOLTIPY_PLUGIN_URL' ) )
+    define( 'TOOLTIPY_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+
+if ( ! defined( 'TOOLTIPY_PLUGIN_DIR' ) )
+    define( 'TOOLTIPY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
 /**
  * The code that runs during plugin activation.
@@ -72,4 +85,5 @@ function run_tooltipy_oop() {
 	$plugin->run();
 
 }
+
 run_tooltipy_oop();

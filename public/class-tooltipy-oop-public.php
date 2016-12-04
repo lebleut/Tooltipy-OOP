@@ -100,4 +100,69 @@ class Tooltipy_Oop_Public {
 
 	}
 
+	// Register Tooltipy Post Type
+	function tooltipy_post_type() {
+
+		$labels = array(
+			'name'                  => _x( 'Tooltips', 'Post Type General Name', 'tooltipy-oop' ),
+			'singular_name'         => _x( 'Tooltip', 'Post Type Singular Name', 'tooltipy-oop' ),
+			'menu_name'             => __( 'Tooltipy OOP', 'tooltipy-oop' ),
+			'name_admin_bar'        => __( 'Tooltip', 'tooltipy-oop' ),
+			'archives'              => __( 'Tooltips archive', 'tooltipy-oop' ),
+			'parent_item_colon'     => __( 'Parent tooltip:', 'tooltipy-oop' ),
+			'all_items'             => __( 'All Tooltips', 'tooltipy-oop' ),
+			'add_new_item'          => __( 'Add New Tooltip', 'tooltipy-oop' ),
+			'add_new'               => __( 'Add New', 'tooltipy-oop' ),
+			'new_item'              => __( 'New Tooltip', 'tooltipy-oop' ),
+			'edit_item'             => __( 'Edit Tooltip', 'tooltipy-oop' ),
+			'update_item'           => __( 'Update Tooltip', 'tooltipy-oop' ),
+			'view_item'             => __( 'View Tooltip', 'tooltipy-oop' ),
+			'search_items'          => __( 'Search Tooltip', 'tooltipy-oop' ),
+			'not_found'             => __( 'No Tooltips found', 'tooltipy-oop' ),
+			'not_found_in_trash'    => __( 'No Tooltips found in Trash', 'tooltipy-oop' ),
+			'featured_image'        => __( 'Featured Image', 'tooltipy-oop' ),
+			'set_featured_image'    => __( 'Set featured image', 'tooltipy-oop' ),
+			'remove_featured_image' => __( 'Remove featured image', 'tooltipy-oop' ),
+			'use_featured_image'    => __( 'Use as featured image', 'tooltipy-oop' ),
+			'insert_into_item'      => __( 'Insert into Tooltip', 'tooltipy-oop' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this Tooltip', 'tooltipy-oop' ),
+			'items_list'            => __( 'Tooltips list', 'tooltipy-oop' ),
+			'items_list_navigation' => __( 'Tooltips list navigation', 'tooltipy-oop' ),
+			'filter_items_list'     => __( 'Filter Tooltips list', 'tooltipy-oop' ),
+		);
+
+		$capabilities = array(
+			'edit_post'             => 'manage_options',
+			'read_post'             => 'manage_options',
+			'delete_post'           => 'manage_options',
+			'edit_posts'            => 'manage_options',
+			'edit_others_posts'     => 'manage_options',
+			'publish_posts'         => 'manage_options',
+			'read_private_posts'    => 'manage_options',
+		);
+
+		$args = array(
+			'label'                 => __( 'Tooltip', 'tooltipy-oop' ),
+			'description'           => __( 'Post type to create keywords to generate tooltips in the frontend.', 'tooltipy-oop' ),
+			'labels'                => $labels,
+			'supports'              => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields', 'page-attributes', ),
+			'taxonomies'            => array( 'tooltip_cat' ),
+			'hierarchical'          => false,
+			'public'                => true,
+			'show_ui'               => true,
+			'show_in_menu'          => true,
+			'menu_position'         => 5,
+			'menu_icon'             => TOOLTIPY_PLUGIN_URL.'/admin/css/menu_icon.png',
+			'show_in_admin_bar'     => true,
+			'show_in_nav_menus'     => true,
+			'can_export'            => true,
+			'has_archive'           => true,		
+			'exclude_from_search'   => false,
+			'publicly_queryable'    => true,
+			'capabilities'          => $capabilities,
+			'show_in_rest'          => true,
+		);
+
+		register_post_type( 'tooltipy', $args );
+	}
 }

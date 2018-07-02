@@ -1,0 +1,5 @@
+package.json
+node_modules
+npm_scripts
+node_modules/**/*
+npm_scripts/**/*

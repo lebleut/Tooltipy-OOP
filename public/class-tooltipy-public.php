@@ -102,6 +102,7 @@ class Tooltipy_Public {
 
 	// Register Tooltipy Post Type
 	function tooltipy_post_type() {
+		global $tooltipy_obj;
 
 		$labels = array(
 			'name'                  => _x( 'Tooltips', 'Post Type General Name', 'tooltipy' ),
@@ -163,7 +164,7 @@ class Tooltipy_Public {
 			'show_in_rest'          => true,
 		);
 
-		register_post_type( 'tooltipy', $args );
+		register_post_type( $tooltipy_obj->get_plugin_name(), $args );
 
 		// Tooltips category taxonomy
 		$cat_args = array(
@@ -177,7 +178,7 @@ class Tooltipy_Public {
 
 		register_taxonomy(
 			'tooltip_cat',
-			'tooltipy',
+			$tooltipy_obj->get_plugin_name(),
 			$cat_args
 		);
 		

@@ -79,10 +79,13 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-tooltipy.php';
  *
  * @since    4.0.0
  */
-function run_tooltipy() {
+$tooltipy_obj = false;
 
-	$plugin = new Tooltipy();
-	$plugin->run();
+function run_tooltipy() {
+	global $tooltipy_obj;
+
+	$tooltipy_obj = new Tooltipy();
+	$tooltipy_obj->run();
 
 }
 

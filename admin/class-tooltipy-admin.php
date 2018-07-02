@@ -6,8 +6,8 @@
  * @link       https://www.linkedin.com/in/jamel-eddine-zarga-56336485
  * @since      4.0.0
  *
- * @package    Tooltipy_Oop
- * @subpackage Tooltipy_Oop/admin
+ * @package    Tooltipy
+ * @subpackage Tooltipy/admin
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Tooltipy_Oop
- * @subpackage Tooltipy_Oop/admin
+ * @package    Tooltipy
+ * @subpackage Tooltipy/admin
  * @author     Jamel Eddine Zarga <jamel.zarga@gmail.com>
  */
-class Tooltipy_Oop_Admin {
+class Tooltipy_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -65,15 +65,15 @@ class Tooltipy_Oop_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Tooltipy_Oop_Loader as all of the hooks are defined
+		 * defined in Tooltipy_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Tooltipy_Oop_Loader will then create the relationship
+		 * The Tooltipy_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/tooltipy-oop-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/tooltipy-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -88,15 +88,15 @@ class Tooltipy_Oop_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Tooltipy_Oop_Loader as all of the hooks are defined
+		 * defined in Tooltipy_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Tooltipy_Oop_Loader will then create the relationship
+		 * The Tooltipy_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tooltipy-oop-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tooltipy-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 

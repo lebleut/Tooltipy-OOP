@@ -9,8 +9,8 @@
  * @link       https://www.linkedin.com/in/jamel-eddine-zarga-56336485
  * @since      4.0.0
  *
- * @package    Tooltipy_Oop
- * @subpackage Tooltipy_Oop/includes
+ * @package    Tooltipy
+ * @subpackage Tooltipy/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      4.0.0
- * @package    Tooltipy_Oop
- * @subpackage Tooltipy_Oop/includes
+ * @package    Tooltipy
+ * @subpackage Tooltipy/includes
  * @author     Jamel Eddine Zarga <jamel.zarga@gmail.com>
  */
-class Tooltipy_Oop {
+class Tooltipy {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Tooltipy_Oop {
 	 *
 	 * @since    4.0.0
 	 * @access   protected
-	 * @var      Tooltipy_Oop_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Tooltipy_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -68,7 +68,7 @@ class Tooltipy_Oop {
 	 */
 	public function __construct() {
 
-		$this->plugin_name = 'tooltipy-oop';
+		$this->plugin_name = 'tooltipy';
 		$this->version = '4.0.0';
 
 		$this->load_dependencies();
@@ -84,10 +84,10 @@ class Tooltipy_Oop {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Tooltipy_Oop_Loader. Orchestrates the hooks of the plugin.
-	 * - Tooltipy_Oop_i18n. Defines internationalization functionality.
-	 * - Tooltipy_Oop_Admin. Defines all hooks for the admin area.
-	 * - Tooltipy_Oop_Public. Defines all hooks for the public side of the site.
+	 * - Tooltipy_Loader. Orchestrates the hooks of the plugin.
+	 * - Tooltipy_i18n. Defines internationalization functionality.
+	 * - Tooltipy_Admin. Defines all hooks for the admin area.
+	 * - Tooltipy_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -101,33 +101,33 @@ class Tooltipy_Oop {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-tooltipy-oop-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-tooltipy-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-tooltipy-oop-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-tooltipy-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-tooltipy-oop-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-tooltipy-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-tooltipy-oop-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-tooltipy-public.php';
 
-		$this->loader = new Tooltipy_Oop_Loader();
+		$this->loader = new Tooltipy_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Tooltipy_Oop_i18n class in order to set the domain and to register the hook
+	 * Uses the Tooltipy_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    4.0.0
@@ -135,7 +135,7 @@ class Tooltipy_Oop {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Tooltipy_Oop_i18n();
+		$plugin_i18n = new Tooltipy_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -150,7 +150,7 @@ class Tooltipy_Oop {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Tooltipy_Oop_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Tooltipy_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -166,7 +166,7 @@ class Tooltipy_Oop {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Tooltipy_Oop_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Tooltipy_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'init',  $plugin_public, 'tooltipy_post_type' );	
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
@@ -198,7 +198,7 @@ class Tooltipy_Oop {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     4.0.0
-	 * @return    Tooltipy_Oop_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Tooltipy_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

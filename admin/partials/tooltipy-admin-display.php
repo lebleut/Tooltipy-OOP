@@ -8,8 +8,8 @@
  * @link       https://www.linkedin.com/in/jamel-eddine-zarga-56336485
  * @since      4.0.0
  *
- * @package    Tooltipy_Oop
- * @subpackage Tooltipy_Oop/admin/partials
+ * @package    Tooltipy
+ * @subpackage Tooltipy/admin/partials
  */
 ?>
 

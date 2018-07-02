@@ -6,8 +6,8 @@
  * @link       https://www.linkedin.com/in/jamel-eddine-zarga-56336485
  * @since      4.0.0
  *
- * @package    Tooltipy_Oop
- * @subpackage Tooltipy_Oop/public
+ * @package    Tooltipy
+ * @subpackage Tooltipy/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Tooltipy_Oop
- * @subpackage Tooltipy_Oop/public
+ * @package    Tooltipy
+ * @subpackage Tooltipy/public
  * @author     Jamel Eddine Zarga <jamel.zarga@gmail.com>
  */
-class Tooltipy_Oop_Public {
+class Tooltipy_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -65,15 +65,15 @@ class Tooltipy_Oop_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Tooltipy_Oop_Loader as all of the hooks are defined
+		 * defined in Tooltipy_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Tooltipy_Oop_Loader will then create the relationship
+		 * The Tooltipy_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/tooltipy-oop-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/tooltipy-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -88,15 +88,15 @@ class Tooltipy_Oop_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Tooltipy_Oop_Loader as all of the hooks are defined
+		 * defined in Tooltipy_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Tooltipy_Oop_Loader will then create the relationship
+		 * The Tooltipy_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tooltipy-oop-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tooltipy-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -104,31 +104,31 @@ class Tooltipy_Oop_Public {
 	function tooltipy_post_type() {
 
 		$labels = array(
-			'name'                  => _x( 'Tooltips', 'Post Type General Name', 'tooltipy-oop' ),
-			'singular_name'         => _x( 'Tooltip', 'Post Type Singular Name', 'tooltipy-oop' ),
-			'menu_name'             => __( 'Tooltipy OOP', 'tooltipy-oop' ),
-			'name_admin_bar'        => __( 'Tooltip', 'tooltipy-oop' ),
-			'archives'              => __( 'Tooltips archive', 'tooltipy-oop' ),
-			'parent_item_colon'     => __( 'Parent tooltip:', 'tooltipy-oop' ),
-			'all_items'             => __( 'All Tooltips', 'tooltipy-oop' ),
-			'add_new_item'          => __( 'Add New Tooltip', 'tooltipy-oop' ),
-			'add_new'               => __( 'Add New', 'tooltipy-oop' ),
-			'new_item'              => __( 'New Tooltip', 'tooltipy-oop' ),
-			'edit_item'             => __( 'Edit Tooltip', 'tooltipy-oop' ),
-			'update_item'           => __( 'Update Tooltip', 'tooltipy-oop' ),
-			'view_item'             => __( 'View Tooltip', 'tooltipy-oop' ),
-			'search_items'          => __( 'Search Tooltip', 'tooltipy-oop' ),
-			'not_found'             => __( 'No Tooltips found', 'tooltipy-oop' ),
-			'not_found_in_trash'    => __( 'No Tooltips found in Trash', 'tooltipy-oop' ),
-			'featured_image'        => __( 'Featured Image', 'tooltipy-oop' ),
-			'set_featured_image'    => __( 'Set featured image', 'tooltipy-oop' ),
-			'remove_featured_image' => __( 'Remove featured image', 'tooltipy-oop' ),
-			'use_featured_image'    => __( 'Use as featured image', 'tooltipy-oop' ),
-			'insert_into_item'      => __( 'Insert into Tooltip', 'tooltipy-oop' ),
-			'uploaded_to_this_item' => __( 'Uploaded to this Tooltip', 'tooltipy-oop' ),
-			'items_list'            => __( 'Tooltips list', 'tooltipy-oop' ),
-			'items_list_navigation' => __( 'Tooltips list navigation', 'tooltipy-oop' ),
-			'filter_items_list'     => __( 'Filter Tooltips list', 'tooltipy-oop' ),
+			'name'                  => _x( 'Tooltips', 'Post Type General Name', 'tooltipy' ),
+			'singular_name'         => _x( 'Tooltip', 'Post Type Singular Name', 'tooltipy' ),
+			'menu_name'             => __( 'Tooltipy OOP', 'tooltipy' ),
+			'name_admin_bar'        => __( 'Tooltip', 'tooltipy' ),
+			'archives'              => __( 'Tooltips archive', 'tooltipy' ),
+			'parent_item_colon'     => __( 'Parent tooltip:', 'tooltipy' ),
+			'all_items'             => __( 'All Tooltips', 'tooltipy' ),
+			'add_new_item'          => __( 'Add New Tooltip', 'tooltipy' ),
+			'add_new'               => __( 'Add New', 'tooltipy' ),
+			'new_item'              => __( 'New Tooltip', 'tooltipy' ),
+			'edit_item'             => __( 'Edit Tooltip', 'tooltipy' ),
+			'update_item'           => __( 'Update Tooltip', 'tooltipy' ),
+			'view_item'             => __( 'View Tooltip', 'tooltipy' ),
+			'search_items'          => __( 'Search Tooltip', 'tooltipy' ),
+			'not_found'             => __( 'No Tooltips found', 'tooltipy' ),
+			'not_found_in_trash'    => __( 'No Tooltips found in Trash', 'tooltipy' ),
+			'featured_image'        => __( 'Featured Image', 'tooltipy' ),
+			'set_featured_image'    => __( 'Set featured image', 'tooltipy' ),
+			'remove_featured_image' => __( 'Remove featured image', 'tooltipy' ),
+			'use_featured_image'    => __( 'Use as featured image', 'tooltipy' ),
+			'insert_into_item'      => __( 'Insert into Tooltip', 'tooltipy' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this Tooltip', 'tooltipy' ),
+			'items_list'            => __( 'Tooltips list', 'tooltipy' ),
+			'items_list_navigation' => __( 'Tooltips list navigation', 'tooltipy' ),
+			'filter_items_list'     => __( 'Filter Tooltips list', 'tooltipy' ),
 		);
 
 		/*$capabilities = array(
@@ -142,8 +142,8 @@ class Tooltipy_Oop_Public {
 		);*/
 
 		$args = array(
-			'label'                 => __( 'Tooltip', 'tooltipy-oop' ),
-			'description'           => __( 'Post type to create keywords to generate tooltips in the frontend.', 'tooltipy-oop' ),
+			'label'                 => __( 'Tooltip', 'tooltipy' ),
+			'description'           => __( 'Post type to create keywords to generate tooltips in the frontend.', 'tooltipy' ),
 			'labels'                => $labels,
 			'supports'              => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields', 'page-attributes', ),
 			'taxonomies'            => array( 'tooltip_cat' ),
@@ -168,7 +168,7 @@ class Tooltipy_Oop_Public {
 		// Tooltips category taxonomy
 		$cat_args = array(
 			'labels' => array(
-				'name' => __('Categories','tooltipy-oop')
+				'name' => __('Categories','tooltipy')
 			),
 			'hierarchical' => true,			
     		'show_ui' => 'radio',

@@ -22,7 +22,7 @@
  * @link       https://www.linkedin.com/in/jamel-eddine-zarga-56336485
  * @since      4.0.0
  *
- * @package    Tooltipy_Oop
+ * @package    Tooltipy
  */
 
 // If uninstall not called from WordPress, then exit.

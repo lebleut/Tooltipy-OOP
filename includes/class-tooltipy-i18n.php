@@ -9,8 +9,8 @@
  * @link       https://www.linkedin.com/in/jamel-eddine-zarga-56336485
  * @since      4.0.0
  *
- * @package    Tooltipy_Oop
- * @subpackage Tooltipy_Oop/includes
+ * @package    Tooltipy
+ * @subpackage Tooltipy/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      4.0.0
- * @package    Tooltipy_Oop
- * @subpackage Tooltipy_Oop/includes
+ * @package    Tooltipy
+ * @subpackage Tooltipy/includes
  * @author     Jamel Eddine Zarga <jamel.zarga@gmail.com>
  */
-class Tooltipy_Oop_i18n {
+class Tooltipy_i18n {
 
 
 	/**
@@ -35,7 +35,7 @@ class Tooltipy_Oop_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'tooltipy-oop',
+			'tooltipy',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

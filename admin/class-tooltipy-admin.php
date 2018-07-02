@@ -99,5 +99,23 @@ class Tooltipy_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tooltipy-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+	
+	public function add_settings_page() {
+		global $tooltipy_obj;
 
+		// Add the menu item and page
+		$page_title = __('Tooltipy Settings Page', 'tooltipy');
+		$menu_title = __('Settings', 'tooltipy');
+		$capability = 'manage_options';
+		$slug = 'tooltipy_settings';
+		$callback = array( $this, 'settings_page_content' );
+		$post_type = $tooltipy_obj->get_plugin_name();
+
+		add_submenu_page( 'edit.php?post_type='.$post_type, $page_title, $menu_title, $capability, $slug, $callback );
+	}
+	public function settings_page_content(){
+		?>
+		<h1>Tooltipy settings here</h1>
+		<?php
+	}
 }

@@ -31,6 +31,12 @@ class Tooltipy_Activator {
 	 */
 	public static function activate() {
 
+		// Make Tooltipy aware of activation (use it after registering the new post type)
+		if( !get_option( 'tooltipy_activated_just_now',false ) ){
+			add_option('tooltipy_activated_just_now',true);
+		}else{
+			update_option('tooltipy_activated_just_now',true);
+		}
 	}
 
 }

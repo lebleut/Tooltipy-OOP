@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Tooltipy_Settings : this class handles the Tooltipy settings page
+ */
 class Tooltipy_Settings {
     public function __construct() {
     	// Hook into the admin menu
@@ -23,17 +25,90 @@ class Tooltipy_Settings {
     }
     public function plugin_settings_page_content() {?>
     	<div class="wrap">
-    		<h2>My Awesome Settings Page</h2><?php
+    		<h2>Tooltipy Settings</h2>
+			<?php
             if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] ){
                   $this->admin_notice();
-            } ?>
-    		<form method="POST" action="options.php">
-                <?php
-                    settings_fields( 'tooltipy_fields' );
-                    do_settings_sections( 'tooltipy_fields' );
-                    submit_button();
-                ?>
-    		</form>
+			}
+
+			$tabs = $this->get_tabs();
+			// tabs buttons here
+			?>
+			<h2 class="nav-tab-wrapper">
+				<?php
+					$current_tab_id = !empty($_GET['tab']) ? $_GET['tab'] : 'general';
+					$current_section_id = !empty($_GET['section']) ? $_GET['section'] : 'general';
+
+					$section_id = $current_tab_id . '__' . $current_section_id;
+
+					foreach ($tabs as $tab) {
+						
+						$tab_link = esc_url(
+							add_query_arg(
+								array(
+									'post_type' => 'tooltipy',
+									'page' => 'tooltipy_settings',
+									'tab' => $tab['id'],
+								),
+								admin_url( 'edit.php') 
+							)
+						);
+
+						$tab_name = ucfirst($tab['id']);
+						$is_current_tab = $current_tab_id == $tab['id'] ? 'nav-tab-active' : '';
+						?>
+							<a class="nav-tab <?php echo $is_current_tab; ?>" href="<?php echo $tab_link; ?>" ><?php echo $tab_name; ?></a>
+						<?php
+					}
+				?>
+			</h2>
+			<?php
+				// tabs buttons here
+				foreach ($tabs as $tab) {
+					if( $tab['id'] == $current_tab_id ){
+						if( !empty($tab['sections']) && count($tab['sections']) > 1 ){
+							?>
+							<div>
+								<ul class="subsubsub">
+									<?php
+									foreach ($tab['sections'] as $key => $section) {
+										$section_link = esc_url(
+											add_query_arg(
+												array(
+													'post_type' => 'tooltipy',
+													'page' => 'tooltipy_settings',
+													'tab' => $tab['id'],
+													'section' => $section['id'],
+												),
+												admin_url( 'edit.php') 
+											)
+										);
+										$section_name = ucfirst($section['id']);
+										$is_current_section = $current_section_id == $section['id'] ? 'current' : '';
+										$sections_separator = ($key + 1 < count($tab['sections']) ) ? " | " : "";
+										?>
+										<li><a class="<?php echo $is_current_section; ?>" href="<?php echo $section_link; ?>"><?php echo $section_name; ?></a><?php echo $sections_separator; ?></li>
+										<?php
+									}
+									?>
+								</ul>
+							</div>
+							<hr style="clear: both;">
+							<?php
+						}
+					}
+				}
+			?>
+			<div id="tab_container" style="clear: both;">
+				<form method="POST" action="options.php">
+					<?php
+						// Fields
+						settings_fields( 'tooltipy_' . $section_id );
+						do_settings_sections( 'tooltipy_' . $section_id );
+						submit_button();
+					?>
+				</form>
+			</div>
     	</div> <?php
     }
     
@@ -41,31 +116,85 @@ class Tooltipy_Settings {
         <div class="notice notice-success is-dismissible">
             <p>Your settings have been updated!</p>
         </div><?php
-    }
+	}
+
+	public function get_tabs(){
+		return array(
+			array(
+				'id' => 'general',
+				'sections' => array(
+					array(
+						'id' => 'general',
+						'title' => 'General options',
+						'description' => 'This is the general section in options tab',
+					),
+					array(
+						'id' => 'advanced',
+						'title' => 'Advanced options',
+						'description' => 'This is the advanced section in options tab',
+					),
+				)
+			),
+			array(
+				'id' => 'style',
+				'sections' => array(
+					array(
+						'id' => 'general',
+						'title' => 'The style',
+						'description' => 'This is the style section in options tab',
+					),
+				)
+			),
+			array(
+				'id' => 'glossary',
+				'sections' => array(
+					array(
+						'id' => 'general',
+						'title' => 'Glossary options',
+						'description' => 'This is the general section in glossary tab',
+					),
+				)
+			),
+		);
+	}
     public function setup_sections() {
-        add_settings_section( 'our_first_section', 'My First Section Title', array( $this, 'section_callback' ), 'tooltipy_fields' );
-        add_settings_section( 'our_second_section', 'My Second Section Title', array( $this, 'section_callback' ), 'tooltipy_fields' );
-        add_settings_section( 'our_third_section', 'My Third Section Title', array( $this, 'section_callback' ), 'tooltipy_fields' );
+		$tabs = $this->get_tabs();
+		
+		foreach ($tabs as $tab) {
+			foreach ($tab['sections'] as $section) {
+				$section_id = $tab['id'] . '__' . $section['id'];
+				add_settings_section(
+					$section_id,
+					$section['title'],
+					array(
+						$this,
+						'section_header_callback'
+					),
+					'tooltipy_' . $section_id
+				);
+			}
+		}
     }
-    public function section_callback( $arguments ) {
-    	switch( $arguments['id'] ){
-    		case 'our_first_section':
-    			echo 'This is the first description here!';
-    			break;
-    		case 'our_second_section':
-    			echo 'This one is number two';
-    			break;
-    		case 'our_third_section':
-    			echo 'Third time is the charm!';
-    			break;
-    	}
+    public function section_header_callback( $arguments ) {
+		$tabs = $this->get_tabs();
+		foreach ($tabs as $tab) {
+			foreach ($tab['sections'] as $section) {
+				$section_id = $tab['id'] . '__' . $section['id'];
+				if( $arguments['id'] == $section_id ){
+					?>
+					<i><?php echo $section['description']; ?></i>
+					<?php
+				}
+			}
+		}
     }
     public function setup_fields() {
         $fields = array(
         	array(
-        		'uid' => 'awesome_text_field',
-        		'label' => 'Sample Text Field',
-        		'section' => 'our_first_section',
+				'uid' => 'awesome_text_field',
+				'label' => 'Sample Text Field',
+				'tab' => 'general',
+        		'section' => 'general',
         		'type' => 'text',
         		'placeholder' => 'Some text',
         		'helper' => 'Does this help?',
@@ -75,28 +204,30 @@ class Tooltipy_Settings {
         	array(
         		'uid' => 'awesome_password_field',
         		'label' => 'Sample Password Field',
-        		'section' => 'our_first_section',
+				'tab' => 'style',
         		'type' => 'password',
                 'default' => '',
         	),
         	array(
         		'uid' => 'awesome_number_field',
-        		'label' => 'Sample Number Field',
-        		'section' => 'our_first_section',
+				'label' => 'Sample Number Field',
+				'tab' => 'style',
+        		'section' => 'advanced',
         		'type' => 'number',
                 'default' => '',
         	),
         	array(
         		'uid' => 'awesome_textarea',
         		'label' => 'Sample Text Area',
-        		'section' => 'our_first_section',
+        		'tab' => 'glossary',
         		'type' => 'textarea',
                 'default' => '',
         	),
         	array(
         		'uid' => 'awesome_select',
         		'label' => 'Sample Select Dropdown',
-        		'section' => 'our_first_section',
+        		'tab' => 'general',
+        		'section' => 'advanced',
         		'type' => 'select',
         		'options' => array(
         			'option1' => 'Option 1',
@@ -110,7 +241,7 @@ class Tooltipy_Settings {
         	array(
         		'uid' => 'awesome_multiselect',
         		'label' => 'Sample Multi Select',
-        		'section' => 'our_second_section',
+        		'tab' => 'glossary',
         		'type' => 'multiselect',
         		'options' => array(
         			'option1' => 'Option 1',
@@ -124,7 +255,7 @@ class Tooltipy_Settings {
         	array(
         		'uid' => 'awesome_radio',
         		'label' => 'Sample Radio Buttons',
-        		'section' => 'our_second_section',
+        		'tab' => 'glossary',
         		'type' => 'radio',
         		'options' => array(
         			'option1' => 'Option 1',
@@ -138,7 +269,8 @@ class Tooltipy_Settings {
         	array(
         		'uid' => 'awesome_checkboxes',
         		'label' => 'Sample Checkboxes',
-        		'section' => 'our_third_section',
+				'tab' => 'glossary',
+        		'section' => 'advanced',
         		'type' => 'checkbox',
         		'options' => array(
         			'option1' => 'Option 1',
@@ -151,15 +283,18 @@ class Tooltipy_Settings {
         	)
         );
     	foreach( $fields as $field ){
-        	add_settings_field(
+			$tab = !empty($field['tab']) ? $field['tab'] : 'general';
+			$section_id = !empty($field['section']) ? $tab .'__'. $field['section'] : $tab .'__general';
+
+			add_settings_field(
 				$field['uid'],
 				$field['label'],
 				array( $this, 'field_callback' ),
-				'tooltipy_fields',
-				$field['section'],
+				'tooltipy_' . $section_id,
+				$section_id,
 				$field
 			);
-            register_setting( 'tooltipy_fields', $field['uid'] );
+            register_setting( 'tooltipy_' . $section_id, $field['uid'] );
     	}
     }
     public function field_callback( $arguments ) {

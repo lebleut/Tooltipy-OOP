@@ -119,7 +119,7 @@ class Tooltipy_Settings {
 	}
 
 	public function get_tabs(){
-		return array(
+		$setting_tabs = array(
 			array(
 				'id' => 'general',
 				'sections' => array(
@@ -156,6 +156,11 @@ class Tooltipy_Settings {
 				)
 			),
 		);
+
+		// settings tabs filter hook
+		$setting_tabs = apply_filters( 'tltpy_setting_tabs', $setting_tabs);
+
+		return $setting_tabs;
 	}
     public function setup_sections() {
 		$tabs = $this->get_tabs();
@@ -281,8 +286,14 @@ class Tooltipy_Settings {
         		),
                 'default' => array()
         	)
-        );
+		);
+		
+		// settings fields filter hook
+		$fields = apply_filters( 'tltpy_setting_fields', $fields);
+
     	foreach( $fields as $field ){
+			$field['uid'] = 'tltpy_' . $field['uid'];
+
 			$tab = !empty($field['tab']) ? $field['tab'] : 'general';
 			$section_id = !empty($field['section']) ? $tab .'__'. $field['section'] : $tab .'__general';
 
@@ -299,7 +310,6 @@ class Tooltipy_Settings {
     }
     public function field_callback( $arguments ) {
         $value = get_option( $arguments['uid'], false );
-	
 		$uid = !empty($arguments['uid']) ? $arguments['uid'] : '' ;
 		$default = !empty($arguments['default']) || is_array($arguments['default'])  ? $arguments['default'] : '' ;
 		$type = !empty($arguments['type']) ? $arguments['type'] : '' ;
@@ -314,7 +324,7 @@ class Tooltipy_Settings {
             case 'password':
             case 'number':
                 printf(
-					'<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />',
+					'<input name="%1$s" id="%1$s__id" type="%2$s" placeholder="%3$s" value="%4$s" />',
 					$uid,
 					$type,
 					$placeholder,
@@ -323,7 +333,7 @@ class Tooltipy_Settings {
                 break;
             case 'textarea':
 				printf(
-					'<textarea name="%1$s" id="%1$s" placeholder="%2$s" rows="5" cols="50">%3$s</textarea>',
+					'<textarea name="%1$s" id="%1$s__id" placeholder="%2$s" rows="5" cols="50">%3$s</textarea>',
 					$uid,
 					$placeholder,
 					$value
@@ -348,7 +358,7 @@ class Tooltipy_Settings {
                         $attributes = ' multiple="multiple" ';
                     }
                     printf(
-						'<select name="%1$s[]" id="%1$s" %2$s>%3$s</select>',
+						'<select name="%1$s[]" id="%1$s__id" %2$s>%3$s</select>',
 						$uid,
 						$attributes,
 						$options_markup
@@ -365,7 +375,7 @@ class Tooltipy_Settings {
 						$is_checked = !empty($value) ? checked( $value[ array_search( $key, $value, true ) ], $key, false ) : '';
 
                         $options_markup .= sprintf(
-											'<label for="%1$s_%6$s"><input id="%1$s_%6$s" name="%1$s[]" type="%2$s" value="%3$s" %4$s /> %5$s</label><br/>',
+											'<label for="%1$s_%6$s"><input id="%1$s__id_%6$s" name="%1$s[]" type="%2$s" value="%3$s" %4$s /> %5$s</label><br/>',
 											$uid,
 											$type,
 											$key,

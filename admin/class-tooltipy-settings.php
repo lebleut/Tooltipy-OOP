@@ -375,7 +375,7 @@ class Tooltipy_Settings {
 						$is_checked = !empty($value) ? checked( $value[ array_search( $key, $value, true ) ], $key, false ) : '';
 
                         $options_markup .= sprintf(
-											'<label for="%1$s_%6$s"><input id="%1$s__id_%6$s" name="%1$s[]" type="%2$s" value="%3$s" %4$s /> %5$s</label><br/>',
+											'<label><input id="%1$s__id_%6$s" name="%1$s[]" type="%2$s" value="%3$s" %4$s /> %5$s</label><br/>',
 											$uid,
 											$type,
 											$key,

@@ -1,0 +1,625 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: translate Bluet KW\n"
+"POT-Creation-Date: 2015-07-25 11:07+0100\n"
+"PO-Revision-Date: 2015-07-25 11:17+0100\n"
+"Last-Translator: Jamel Zarga <jamel.zarga@gmail.com>\n"
+"Language-Team: leBleut\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;gettext;gettext_noop;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPath-1: ..\\..\\tltpy_pro_addon\n"
+
+#: ../glossary-shortcode.php:29 ../settings-glossary.php:43
+#: ../settings-glossary.php:47
+msgid "ALL"
+msgstr "TOUT"
+
+#: ../glossary-shortcode.php:40
+msgid "Select a family"
+msgstr ""
+
+#: ../glossary-shortcode.php:41
+msgid "All families"
+msgstr ""
+
+#: ../glossary-shortcode.php:200 ../settings-glossary.php:51
+msgid "Next"
+msgstr "Suivant"
+
+#: ../glossary-shortcode.php:206 ../settings-glossary.php:49
+msgid "Previous"
+msgstr "Précédent"
+
+#: ../glossary-shortcode.php:217
+msgid "Sorry, no posts matched your criteria."
+msgstr "Prdon, pas de mots-clés trouvés"
+
+#: ../importer.php:6
+msgid "KeyWords Tooltip Generator Converter"
+msgstr "KeyWords Tooltip Generator (Convertisseur)"
+
+#: ../importer.php:7
+msgid "KTTG Converter"
+msgstr "KTTG Convertisseur"
+
+#: ../importer.php:17
+msgid "Begin converting my keywords"
+msgstr "Commancer la conversion de mes mots-clés"
+
+#: ../importer.php:31
+msgid "Convert from"
+msgstr "Convertir de"
+
+#: ../importer.php:84
+msgid "keywords converted"
+msgstr "Mots clés convertis"
+
+#: ../importer.php:88
+msgid "These posts were not converted (Duplicated)"
+msgstr "Les articles suivants n'ont pas été convertis (existent déjà)"
+
+#: ../importer.php:94
+msgid ""
+"if you want to re-convert them, you have to delete them from My Keywords."
+msgstr ""
+"Si vous voulez les reconvertir, vous devez les supprimer à partir de Mes "
+"Mots Clés"
+
+#: ../importer.php:104
+msgid "No posts found"
+msgstr "Mots Clés introuvable"
+
+#: ../keyword-posttype.php:17
+msgid "KeyWords"
+msgstr "Mots Clés"
+
+#: ../keyword-posttype.php:18 ../keyword-posttype.php:23
+#: ../keyword-posttype.php:24 ../keyword-posttype.php:25
+#: ../keyword-posttype.php:26
+msgid "KeyWord"
+msgstr "Mot clé"
+
+#: ../keyword-posttype.php:19 ../keyword-posttype.php:20
+msgid "My KeyWords"
+msgstr "Mes Mots clés"
+
+#: ../keyword-posttype.php:21
+msgid "All my KeyWords"
+msgstr "Tous mes Mots Clés"
+
+#: ../keyword-posttype.php:22 ../meta-boxes.php:156
+#: ../advanced/settings-page.php:249
+#: ../advanced/settings-page.php:289
+msgid "Add"
+msgstr ""
+
+#: ../keyword-posttype.php:23 ../keyword-posttype.php:25
+msgid "New"
+msgstr ""
+
+#: ../keyword-posttype.php:24
+msgid "Edit"
+msgstr ""
+
+#: ../keyword-posttype.php:26
+msgid "View"
+msgstr ""
+
+#: ../keyword-posttype.php:27
+msgid "Search for KeyWords"
+msgstr "Chercher des Mots Clés"
+
+#: ../keyword-posttype.php:28
+msgid "KeyWords not found"
+msgstr "Mots Clés introuvable"
+
+#: ../keyword-posttype.php:29
+msgid "KeyWords not found in trash"
+msgstr "Mots Clés introuvable dans la corbeille"
+
+#: ../keyword-posttype.php:30
+msgid "Parent KeyWords colon"
+msgstr ""
+
+#: ../keyword-posttype.php:55
+msgid "Families"
+msgstr "Familles"
+
+#: ../keyword-posttype.php:72
+msgid "Picture"
+msgstr "Image"
+
+#: ../keyword-posttype.php:73
+msgid "Is Prefix ?"
+msgstr "Préfixe ?"
+
+#: ../keyword-posttype.php:74
+msgid "Video tooltip"
+msgstr "Infobulle Vidéo"
+
+#: ../meta-boxes.php:18
+msgid "Keyword Settings"
+msgstr "Réglages des Mots Clés"
+
+#: ../meta-boxes.php:32 ../meta-boxes.php:126 ../advanced/index.php:40
+msgid "Keywords related"
+msgstr "Mots clés en relation"
+
+#: ../meta-boxes.php:45
+msgid "Synonyms"
+msgstr "Synonymes"
+
+#: ../meta-boxes.php:50
+msgid "Type here the keyword's Synonyms separated with '|'"
+msgstr "Tapez ici les synonymes en les séparant par des '|'"
+
+#: ../meta-boxes.php:56
+msgid "Make this keyword <b>Case Sensitive</b>"
+msgstr "<b>Respecter la casse</b> pour ce mot-clés "
+
+#: ../meta-boxes.php:98
+msgid "Exclude this post from being matched"
+msgstr "Exclure cet article d'etre traité par les mots clés"
+
+#: ../meta-boxes.php:104
+msgid "Exclude this post"
+msgstr "Exclure cet article"
+
+#: ../meta-boxes.php:141
+msgid "No KeyWords found for this post"
+msgstr "Mots Clés introuvable pour cet article"
+
+#: ../meta-boxes.php:145
+msgid "Keywords to exclude"
+msgstr "Mots Clés à exclure"
+
+#: ../meta-boxes.php:152
+msgid "keyword..."
+msgstr ""
+
+#: ../meta-boxes.php:170
+msgid "Manage KeyWords"
+msgstr "Gérer les Mots clés"
+
+#: ../settings-glossary.php:9
+msgid "Glossary settings :"
+msgstr "Parametres du glossaire :"
+
+#: ../settings-glossary.php:17
+msgid "Keywords per page"
+msgstr "Mots clés par page"
+
+#: ../settings-glossary.php:25
+msgid "Glossary page labels"
+msgstr "Label du lien de glossaire"
+
+#: ../settings-glossary.php:47
+msgid "<b>ALL</b> label"
+msgstr "<b>Tout</b> label"
+
+#: ../settings-glossary.php:49
+msgid "<b>Previous</b> label"
+msgstr "<b>Précédent</b> label"
+
+#: ../settings-glossary.php:51
+msgid "<b>Next</b> label"
+msgstr "<b>Suivant</b> label"
+
+#: ../settings-glossary.php:57
+msgid "Choose settings for your glossary."
+msgstr "Choisissez les parametres pour votre glossaire"
+
+#: ../settings-page.php:66
+msgid "Tooltips settings :"
+msgstr "Parametres des tooltips"
+
+#: ../settings-page.php:74
+msgid "Customise the tooltip style :"
+msgstr "Personnaliser le style de l'infobulle"
+
+#: ../settings-page.php:82
+msgid "Highlight fetch mode :"
+msgstr ""
+
+#: ../settings-page.php:102
+msgid "Match once or all occurrences"
+msgstr "Appliquer sur un/tous les mots clés dans l'article"
+
+#: ../settings-page.php:111
+msgid "Tooltip title"
+msgstr "Titre du tooltip"
+
+#: ../settings-page.php:120
+msgid "Tooltip position"
+msgstr "Position du tooltip"
+
+#: ../settings-page.php:128
+msgid "Animation"
+msgstr ""
+
+#: ../settings-page.php:137
+msgid "Fetch mode"
+msgstr "Mode de balayage"
+
+#: ../settings-page.php:145
+msgid "Keyword style"
+msgstr "Style du Mot Clé"
+
+#: ../settings-page.php:153
+msgid "Description tooltip style"
+msgstr "Style de la description de l'infobulle"
+
+#: ../settings-page.php:161
+msgid "Tooltip width"
+msgstr "Largeur des tooltips"
+
+#: ../settings-page.php:169
+msgid "Description tooltip Font size"
+msgstr "Taille de police de l'infobulle"
+
+#: ../settings-page.php:177
+msgid "Activate tooltips for images ?"
+msgstr "Activer les tooltips pour les images ?"
+
+#: ../settings-page.php:203 ../settings-page.php:398
+msgid "KeyWords Settings"
+msgstr "Réglages des Mots Clés"
+
+#: ../settings-page.php:204
+msgid "Settings"
+msgstr "Réglages"
+
+#: ../settings-page.php:230
+msgid "alt property of the images will be displayed as a tooltip"
+msgstr "La propriété 'alt' des images sera affiché comme tooltip"
+
+#: ../settings-page.php:243
+msgid "Description Background Colour"
+msgstr "Couleur de l'arrière-plan de l'infobulle"
+
+#: ../settings-page.php:245
+msgid "Description font Colour"
+msgstr "Couleur du texte de l'infobulle"
+
+#: ../settings-page.php:256
+msgid "Highlight Mode"
+msgstr ""
+
+#: ../settings-page.php:261
+msgid "Icon Mode"
+msgstr ""
+
+#: ../settings-page.php:270
+msgid "Background Colour"
+msgstr "Couleur de l'arrière-plan"
+
+#: ../settings-page.php:270
+msgid "No background (Dotted style)"
+msgstr "Pas de surbrillance (style pointillé)"
+
+#: ../settings-page.php:271
+msgid "Font Colour"
+msgstr "Couleur du texte"
+
+#: ../settings-page.php:277
+msgid "General tooltips settings"
+msgstr "Garametres générales des tooltips"
+
+#: ../settings-page.php:280
+msgid "Make your own style."
+msgstr "Faites votre propre style."
+
+#: ../settings-page.php:283
+msgid "Style for the highlight fetch mode."
+msgstr ""
+
+#: ../settings-page.php:301
+msgid "Match all occurrences"
+msgstr "Appliquer sur toutes les occurrences"
+
+#: ../settings-page.php:310
+msgid "Hide the tooltips title"
+msgstr "Cacher le titre de l'infobulle"
+
+#: ../settings-page.php:338
+msgid "None"
+msgstr "Aucun"
+
+#: ../settings-page.php:349
+msgid "Fast"
+msgstr "Rapide"
+
+#: ../settings-page.php:351
+msgid "Normal"
+msgstr ""
+
+#: ../settings-page.php:353
+msgid "Slow"
+msgstr "Lent"
+
+#: ../settings-page.php:358
+msgid "click to see a DEMO"
+msgstr "Cliquez pour voir le DEMO"
+
+#: ../settings-page.php:381
+msgid "Top"
+msgstr "Haut"
+
+#: ../settings-page.php:382
+msgid "Bottom"
+msgstr "Bas"
+
+#: ../settings-page.php:383
+msgid "Right"
+msgstr "Droite"
+
+#: ../settings-page.php:384
+msgid "Left"
+msgstr "Gauche"
+
+#: ../settings-page.php:402
+msgid "Style"
+msgstr ""
+
+#: ../settings-page.php:403
+msgid "Options"
+msgstr ""
+
+#: ../settings-page.php:404
+msgid "Glossary"
+msgstr "Glossaire"
+
+#: ../settings-page.php:406
+msgid "Advanced"
+msgstr "Avancé"
+
+#: ../settings-page.php:408 ../templates/admin/exclude.php:5
+msgid "Excluded posts"
+msgstr "Articles exclues"
+
+#: ../settings-page.php:409
+msgid "Help ?"
+msgstr "Aide ?"
+
+#: ../settings-page.php:410
+msgid "Donate"
+msgstr "Faire un don"
+
+#: ../settings-page.php:446
+msgid "Save Settings"
+msgstr "Sauvegarder les réglages"
+
+#: ../widget.php:102
+msgid "no terms found for this post"
+msgstr "Pas de mot clés trouvé pour cet article"
+
+#: ../advanced/functions.php:192
+msgid "Youtube video ID"
+msgstr "ID de la video Youtube"
+
+#: ../advanced/functions.php:209
+msgid "Video :"
+msgstr ""
+
+#: ../advanced/functions.php:212
+msgid "-"
+msgstr ""
+
+#: ../advanced/functions.php:241
+msgid "This Keyword is a <b>Prefix</b>"
+msgstr "Ce Mot-clés est un <b>préfixe</b>"
+
+#: ../advanced/functions.php:255
+msgid "Prefix"
+msgstr "Préfixe"
+
+#: ../advanced/functions.php:258
+msgid "No"
+msgstr "Non"
+
+#: ../advanced/settings-page.php:30
+msgid "Advance settings for KTTG :"
+msgstr "Parametres avancés pour KTTG"
+
+#: ../advanced/settings-page.php:39
+msgid "Cover areas"
+msgstr "Zones à couvrir"
+
+#: ../advanced/settings-page.php:47
+msgid "Exclude areas"
+msgstr "Zones à exclure"
+
+#: ../advanced/settings-page.php:56
+msgid "Exclude links"
+msgstr "Exclure les liens"
+
+#: ../advanced/settings-page.php:65
+msgid "Exclude Headings"
+msgstr "Exclure les titres"
+
+#: ../advanced/settings-page.php:93
+msgid "Advanced Style"
+msgstr "Style avancé"
+
+#: ../advanced/settings-page.php:102
+msgid "Load all keywords"
+msgstr "Charger tout les mots-clés"
+
+#: ../advanced/settings-page.php:151
+msgid "Advanced space"
+msgstr "Espace avancé"
+
+#: ../advanced/settings-page.php:177
+msgid "Apply custom style sheet"
+msgstr "Appliquer un style personnalisé"
+
+#: ../advanced/settings-page.php:194
+msgid "Links"
+msgstr "Liens"
+
+#: ../advanced/settings-page.php:229
+msgid "use only if needed to load all keywords per page"
+msgstr "à utiliser seulement au cas de besoin pour charger tout les mots-clés"
+
+#: ../advanced/settings-page.php:246
+#: ../advanced/settings-page.php:286
+msgid "class ..."
+msgstr ""
+
+#: ../advanced/settings-page.php:252
+msgid "Choose CSS classes to cover with tooltips"
+msgstr "Choisissez les classes CSS à couvrir"
+
+#: ../advanced/settings-page.php:266
+msgid "Please avoid overlapped classes !"
+msgstr "Merci d'éviter le chévauchement"
+
+#: ../advanced/settings-page.php:267
+msgid "If you leave it blank the whole page will be affected"
+msgstr "Si vous la laissez vide vide toute la page sera couverte"
+
+#: ../advanced/settings-page.php:292
+msgid "Choose CSS classes to exclude"
+msgstr "Choisissez les classes CSS à éviter"
+
+#: ../templates/admin/exclude.php:6
+msgid "Posts which are excluded from being matched"
+msgstr "Articles ou pages exclues d'être traités"
+
+#: ../templates/admin/exclude.php:12
+msgid "No posts or pages are excluded"
+msgstr "Aucun article ou page sont exclues"
+
+#: ../templates/admin/style.php:5
+msgid ""
+"this plugin allows you easely create tooltips for your technical keywords."
+msgstr ""
+"ce plugin vous permet très simplement de créer des infobulles pour vos Mots "
+"Clés techniques."
+
+#: ../templates/admin/style.php:7
+msgid "Click"
+msgstr "Cliquez"
+
+#: ../templates/admin/style.php:9
+msgid "Here"
+msgstr "-- ICI --"
+
+#: ../templates/admin/style.php:11
+msgid "to rate our plugin if you appreciate it"
+msgstr "pour donner une note à notre plugin si vous l'appreciez"
+
+#: ../templates/admin/style.php:34
+msgid "Preview"
+msgstr "Aperçu"
+
+#: ../templates/admin/style.php:35
+msgid "Pass your mouse over the word"
+msgstr "Faite passer le pointeur sur le mot"
+
+#: ../templates/admin/style.php:36
+msgid "to test the tooltip layout."
+msgstr "pour tester l'apparence de l'infobulle"
+
+#~ msgid "View glossary"
+#~ msgstr "Voir le glossaire"
+
+#~ msgid "Add new one"
+#~ msgstr "Ajouter un autre"
+
+#~ msgid "New KeyWord"
+#~ msgstr "Nouveau Mot clé"
+
+#~ msgid "Edit KeyWord"
+#~ msgstr "Modifier Mot Clé"
+
+#~ msgid "View KeyWord"
+#~ msgstr "Afficher le Mot Clé"
+
+#~ msgid "Glossary link page"
+#~ msgstr "Lien de la page de glossaire"
+
+#~ msgid "Add glossary link page in the tooltips footer"
+#~ msgstr "Ajouter un lien vers la page de glossaire dans le tooltip"
+
+#~ msgid "Glossary link label"
+#~ msgstr "Label du lien de glossaire"
+
+#~ msgid "Posts / Pages"
+#~ msgstr "Articles / Pages"
+
+#~ msgid "Trigger method"
+#~ msgstr "Methode de déclanchement"
+
+#~ msgid "Posts"
+#~ msgstr "Articles"
+
+#~ msgid "Get the Pro AddOn"
+#~ msgstr "Acheter la version Pro"
+
+#~ msgid "KTTG Advanced"
+#~ msgstr "KTTG Avancé"
+
+#~ msgid "Supported Plugins"
+#~ msgstr "les plugins supportés"
+
+#~ msgid "Match custom-fields"
+#~ msgstr "Traiter les champ personnalisé :"
+
+#~ msgid "KeyWords Avanced"
+#~ msgstr "Mots clés Avancés"
+
+#~ msgid "Post Types in concern :"
+#~ msgstr "Types d'articles en sujet"
+
+#~ msgid "Choose either Posts or/and Pages in concern"
+#~ msgstr "Choisir Articles et/ou Pages en sujet"
+
+#~ msgid "Posts related"
+#~ msgstr "Articles liés"
+
+#~ msgid "Posts in concern"
+#~ msgstr "Articles en sujet"
+
+#~ msgid "Specify keywords to match"
+#~ msgstr "Specifie les mots clés à traiter"
+
+#~ msgid "Notice : if you leave them all unchecked they will be ALL matched"
+#~ msgstr "NB : si vous ne cochez aucune case ils serons tous traités"
+
+#~ msgid "This checkbox will be active after creating a glossary page."
+#~ msgstr ""
+#~ "Cette case à cocher sera active après avoir créer une page de glossaire."
+
+#~ msgid "Custom posts types to match"
+#~ msgstr "Les articles personalisés à traiter"
+
+#~ msgid "Write the name of the hooks in concern separated by \"|\"."
+#~ msgstr "Saisir les noms des Hooks à traiter séparés par '|'"
+
+#~ msgid ""
+#~ "Choose <b>custom post types</b> to match from this list (hold <b>CTRL</b> "
+#~ "for a multi choice)."
+#~ msgstr ""
+#~ "Choisir <b>les articles personnalisés</b> à traiter à partir de cette "
+#~ "liste (maintenir enfoncée la touche <b>CTRL</b> pour un choix multiple)."
+
+#~ msgid "Match the custom-fields :"
+#~ msgstr "Traiter les champ personnalisé :"
+
+#~ msgid "Match custom-posts"
+#~ msgstr "Traiter les articles personnalisés :"
+
+#~ msgid "Write the name of Post types in concern separated by \"|\"."
+#~ msgstr "Saisir les noms articles personnalisés à traiter séparés par '|'"
+
+#~ msgid "Match excerpts"
+#~ msgstr "Appliquer sur les extraits"
+
+#~ msgid "Keywords Related"
+#~ msgstr "Mots clés en relation"

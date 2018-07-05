@@ -1,0 +1,636 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: translate Bluet KW\n"
+"POT-Creation-Date: 2015-08-17 11:39+0100\n"
+"PO-Revision-Date: 2017-12-07 16:40+0800\n"
+"Language-Team: leBleut\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.5\n"
+"X-Poedit-KeywordsList: __;gettext;gettext_noop;_e\n"
+"X-Poedit-Basepath: ..\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_CN\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: glossary-shortcode.php:30 settings-glossary.php:43 settings-glossary.php:47
+msgid "ALL"
+msgstr "所有"
+
+#: glossary-shortcode.php:41
+msgid "Select a family"
+msgstr "选择一个家族"
+
+#: glossary-shortcode.php:42
+msgid "All families"
+msgstr "所有家族"
+
+#: glossary-shortcode.php:201 settings-glossary.php:51
+msgid "Next"
+msgstr "较新"
+
+#: glossary-shortcode.php:207 settings-glossary.php:49
+msgid "Previous"
+msgstr "较旧"
+
+#: glossary-shortcode.php:218
+msgid "Sorry, no posts matched your criteria."
+msgstr "抱歉，未找到符合要求的日志。"
+
+#: importer.php:6
+msgid "KeyWords Tooltip Generator Converter"
+msgstr "关键词提示框生成转换器"
+
+#: importer.php:7
+msgid "KTTG Converter"
+msgstr "KTTG转换器"
+
+#: importer.php:18
+msgid "Begin converting my keywords"
+msgstr "开始转换我的关键词"
+
+#: importer.php:32
+msgid "Convert from"
+msgstr "转换于"
+
+#: importer.php:85
+msgid "keywords converted"
+msgstr "关键词已转换"
+
+#: importer.php:89
+msgid "These posts were not converted (Duplicated)"
+msgstr "这些日志没有被转换（重复的）"
+
+#: importer.php:95
+msgid ""
+"if you want to re-convert them, you have to delete them from My Keywords."
+msgstr "如果你想要重新转换它们，你必须把它们从“我的关键词”中删除。"
+
+#: importer.php:105
+msgid "No posts found"
+msgstr "未找到日志"
+
+#: keyword-posttype.php:17
+msgid "KeyWords"
+msgstr "关键词"
+
+#: keyword-posttype.php:18 keyword-posttype.php:23 keyword-posttype.php:24
+#: keyword-posttype.php:25 keyword-posttype.php:26
+msgid "KeyWord"
+msgstr "关键词"
+
+#: keyword-posttype.php:19 keyword-posttype.php:20
+msgid "My KeyWords"
+msgstr "我的关键词"
+
+#: keyword-posttype.php:21
+msgid "All my KeyWords"
+msgstr "我的所有关键词"
+
+#: keyword-posttype.php:22 meta-boxes.php:163
+#: advanced/settings-page.php:249 advanced/settings-page.php:289
+msgid "Add"
+msgstr "添加"
+
+#: keyword-posttype.php:23 keyword-posttype.php:25
+msgid "New"
+msgstr "新增"
+
+#: keyword-posttype.php:24
+msgid "Edit"
+msgstr "编辑"
+
+#: keyword-posttype.php:26
+msgid "View"
+msgstr "查看"
+
+#: keyword-posttype.php:27
+msgid "Search for KeyWords"
+msgstr "所有关键词"
+
+#: keyword-posttype.php:28
+msgid "KeyWords not found"
+msgstr "未找到关键词"
+
+#: keyword-posttype.php:29
+msgid "KeyWords not found in trash"
+msgstr "在回收站里未找到关键词"
+
+#: keyword-posttype.php:30
+msgid "Parent KeyWords colon"
+msgstr "父关键词"
+
+#: keyword-posttype.php:55
+msgid "Families"
+msgstr "关键词家族"
+
+#: keyword-posttype.php:72
+msgid "Picture"
+msgstr "图片"
+
+#: keyword-posttype.php:73
+msgid "Is Prefix ?"
+msgstr "是前缀？"
+
+#: keyword-posttype.php:74
+msgid "Video tooltip"
+msgstr "视频提示框"
+
+#: meta-boxes.php:18
+msgid "Keyword Settings"
+msgstr "关键词设置"
+
+#: meta-boxes.php:38 meta-boxes.php:133 advanced/index.php:40
+msgid "Keywords related"
+msgstr "关键词相关"
+
+#: meta-boxes.php:51
+msgid "Synonyms"
+msgstr "同义词"
+
+#: meta-boxes.php:56
+msgid "Type here the keyword's Synonyms separated with '|'"
+msgstr "输入此关键词的同义词，以’|’分隔"
+
+#: meta-boxes.php:62
+msgid "Make this keyword <b>Case Sensitive</b>"
+msgstr "标记此关键词<b>大小写敏感</b>"
+
+#: meta-boxes.php:104
+msgid "Exclude this post from being matched"
+msgstr "从匹配中排除此日志"
+
+#: meta-boxes.php:110
+msgid "Exclude this post"
+msgstr "排除此日志"
+
+#: meta-boxes.php:148
+msgid "No KeyWords found for this post"
+msgstr "未找到此日志的关键词"
+
+#: meta-boxes.php:152
+msgid "Keywords to exclude"
+msgstr "需排除的关键词"
+
+#: meta-boxes.php:159
+msgid "keyword..."
+msgstr "关键词…"
+
+#: meta-boxes.php:177
+msgid "Manage KeyWords"
+msgstr "管理关键词"
+
+#: advanced/functions.php:192
+msgid "Youtube video ID"
+msgstr "Youtube视频ID"
+
+#: advanced/functions.php:209
+msgid "Video :"
+msgstr "视频："
+
+#: advanced/functions.php:212
+msgid "-"
+msgstr "-"
+
+#: advanced/functions.php:241
+msgid "This Keyword is a <b>Prefix</b>"
+msgstr "这是一个<b>前缀</b>关键词"
+
+#: advanced/functions.php:255
+msgid "Prefix"
+msgstr "前缀"
+
+#: advanced/functions.php:258
+msgid "No"
+msgstr "否"
+
+#: advanced/settings-page.php:30
+msgid "Advance settings for KTTG :"
+msgstr "KTTG高级设置："
+
+#: advanced/settings-page.php:39
+msgid "Cover areas"
+msgstr "涵盖区域"
+
+#: advanced/settings-page.php:47
+msgid "Exclude areas"
+msgstr "排除区域"
+
+#: advanced/settings-page.php:56
+msgid "Exclude links"
+msgstr "排除链接"
+
+#: advanced/settings-page.php:65
+msgid "Exclude Headings"
+msgstr "排除标题"
+
+#: advanced/settings-page.php:93
+msgid "Advanced Style"
+msgstr "高级样式"
+
+#: advanced/settings-page.php:102
+msgid "Load all keywords"
+msgstr "加载全部关键词"
+
+#: advanced/settings-page.php:151
+msgid "Advanced space"
+msgstr "高级设置"
+
+#: advanced/settings-page.php:177
+msgid "Apply custom style sheet"
+msgstr "应用自定义样式表"
+
+#: advanced/settings-page.php:194
+msgid "Links"
+msgstr "链接"
+
+#: advanced/settings-page.php:229
+msgid "use only if needed to load all keywords per page"
+msgstr "只有在需要每页加载全部关键词时使用"
+
+#: advanced/settings-page.php:246 advanced/settings-page.php:286
+msgid "class ..."
+msgstr "类 …"
+
+#: advanced/settings-page.php:252
+msgid "Choose CSS classes to cover with tooltips"
+msgstr "选择提示框涵盖的CSS类"
+
+#: advanced/settings-page.php:266
+msgid "Please avoid overlapped classes !"
+msgstr "请避免重叠的类名！"
+
+#: advanced/settings-page.php:267
+msgid "If you leave it blank the whole page will be affected"
+msgstr "留空的话会作用于整个页面"
+
+#: advanced/settings-page.php:292
+msgid "Choose CSS classes to exclude"
+msgstr "选择排除的CSS类"
+
+#: settings-glossary.php:9
+msgid "Glossary settings :"
+msgstr "术语表设置："
+
+#: settings-glossary.php:17
+msgid "Keywords per page"
+msgstr "每页关键词"
+
+#: settings-glossary.php:25
+msgid "Glossary page labels"
+msgstr "术语表页面标签"
+
+#: settings-glossary.php:47
+msgid "<b>ALL</b> label"
+msgstr "<b>所有</b>标签"
+
+#: settings-glossary.php:49
+msgid "<b>Previous</b> label"
+msgstr "<b>较旧</b>标签"
+
+#: settings-glossary.php:51
+msgid "<b>Next</b> label"
+msgstr "<b>较新</b>标签"
+
+#: settings-glossary.php:57
+msgid "Choose settings for your glossary."
+msgstr "选择词汇表的设置。"
+
+#: settings-page.php:66
+msgid "Tooltips settings :"
+msgstr "提示框设置："
+
+#: settings-page.php:74
+msgid "Customise the tooltip style :"
+msgstr "自定义提示框样式："
+
+#: settings-page.php:82
+msgid "Highlight fetch mode :"
+msgstr "高亮显示模式："
+
+#: settings-page.php:93
+msgid "Get tooltips from"
+msgstr "提示框来自于"
+
+#: settings-page.php:102
+msgid "Match once or all occurrences"
+msgstr "匹配一次还是全部"
+
+#: settings-page.php:111
+msgid "Tooltip title"
+msgstr "提示框标题"
+
+#: settings-page.php:120
+msgid "Tooltip position"
+msgstr "提示框位置"
+
+#: settings-page.php:128
+msgid "Animation"
+msgstr "动画"
+
+#: settings-page.php:137
+msgid "Fetch mode"
+msgstr "显示模式"
+
+#: settings-page.php:145
+msgid "Keyword style"
+msgstr "关键词样式"
+
+#: settings-page.php:153
+msgid "Description tooltip style"
+msgstr "提示框详情样式"
+
+#: settings-page.php:161
+msgid "Tooltip width"
+msgstr "提示框宽度"
+
+#: settings-page.php:169
+msgid "Description tooltip Font size"
+msgstr "提示框详情字体大小"
+
+#: settings-page.php:177
+msgid "Activate tooltips for images ?"
+msgstr "激活图片的提示框？"
+
+#: settings-page.php:203 settings-page.php:423
+msgid "KeyWords Settings"
+msgstr "关键词设置"
+
+#: settings-page.php:204
+msgid "Settings"
+msgstr "设置"
+
+#: settings-page.php:230
+msgid "alt property of the images will be displayed as a tooltip"
+msgstr "图像的alt属性会以提示框形式显示"
+
+#: settings-page.php:243
+msgid "Description Background Colour"
+msgstr "提示框详情背景颜色"
+
+#: settings-page.php:245
+msgid "Description font Colour"
+msgstr "提示框详情字体颜色"
+
+#: settings-page.php:256
+msgid "Highlight Mode"
+msgstr "高亮模式"
+
+#: settings-page.php:261
+msgid "Icon Mode"
+msgstr "图标模式"
+
+#: settings-page.php:270
+msgid "Background Colour"
+msgstr "背景颜色"
+
+#: settings-page.php:270
+msgid "No background (Dotted style)"
+msgstr "无背景（虚线样式）"
+
+#: settings-page.php:271
+msgid "Font Colour"
+msgstr "字体颜色"
+
+#: settings-page.php:277
+msgid "General tooltips settings"
+msgstr "常规提示框设置"
+
+#: settings-page.php:280
+msgid "Make your own style."
+msgstr "设置你自己的样式。"
+
+#: settings-page.php:283
+msgid "Style for the highlight fetch mode."
+msgstr "高亮显示模式的样式。"
+
+#: settings-page.php:304
+msgid ""
+"Select post types from which you wnat to get tooltips (default post type : "
+"my_keywords)"
+msgstr "选择你希望启用提示框的日志类型（默认日志类型：my_keywords）"
+
+#: settings-page.php:311
+msgid "Worning"
+msgstr "警告"
+
+#: settings-page.php:315
+msgid ""
+" is not selected as a tooltip. (only selected post types will be considered "
+"as tooltips)"
+msgstr "未被选择为提示框。（只有在选择的日志类型中才会启用提示框）"
+
+#: settings-page.php:326
+msgid "Match all occurrences"
+msgstr "匹配全部"
+
+#: settings-page.php:335
+msgid "Hide the tooltips title"
+msgstr "隐藏提示框标题"
+
+#: settings-page.php:363
+msgid "None"
+msgstr "无"
+
+#: settings-page.php:374
+msgid "Fast"
+msgstr "快速"
+
+#: settings-page.php:376
+msgid "Normal"
+msgstr "正常"
+
+#: settings-page.php:378
+msgid "Slow"
+msgstr "慢速"
+
+#: settings-page.php:383
+msgid "click to see a DEMO"
+msgstr "点击查看演示"
+
+#: settings-page.php:406
+msgid "Top"
+msgstr "顶部"
+
+#: settings-page.php:407
+msgid "Bottom"
+msgstr "底部"
+
+#: settings-page.php:408
+msgid "Right"
+msgstr "右侧"
+
+#: settings-page.php:409
+msgid "Left"
+msgstr "左侧"
+
+#: settings-page.php:427
+msgid "Style"
+msgstr "样式"
+
+#: settings-page.php:428
+msgid "Options"
+msgstr "选项"
+
+#: settings-page.php:429
+msgid "Glossary"
+msgstr "术语表"
+
+#: settings-page.php:431
+msgid "Advanced"
+msgstr "高级"
+
+#: settings-page.php:433 templates/admin/exclude.php:5
+msgid "Excluded posts"
+msgstr "排除的日志"
+
+#: settings-page.php:434
+msgid "Help ?"
+msgstr "帮助 ？"
+
+#: settings-page.php:435
+msgid "Donate"
+msgstr "捐赠"
+
+#: settings-page.php:471
+msgid "Save Settings"
+msgstr "保存设置"
+
+#: templates/admin/exclude.php:6
+msgid "Posts which are excluded from being matched"
+msgstr "在匹配中被排除的日志"
+
+#: templates/admin/exclude.php:12
+msgid "No posts or pages are excluded"
+msgstr "没有日志或页面被排除"
+
+#: templates/admin/style.php:5
+msgid ""
+"this plugin allows you easely create tooltips for your technical keywords."
+msgstr "你可以利用本插件为你的专业词汇轻松创建提示框。"
+
+#: templates/admin/style.php:7
+msgid "Click"
+msgstr "点击"
+
+#: templates/admin/style.php:9
+msgid "Here"
+msgstr "这里"
+
+#: templates/admin/style.php:11
+msgid "to rate our plugin if you appreciate it"
+msgstr "给我们的插件评分"
+
+#: templates/admin/style.php:34
+msgid "Preview"
+msgstr "预览"
+
+#: templates/admin/style.php:35
+msgid "Pass your mouse over the word"
+msgstr "在单词上移动你的鼠标"
+
+#: templates/admin/style.php:36
+msgid "to test the tooltip layout."
+msgstr "来测试提示框的布局。"
+
+#: widget.php:104
+msgid "no terms found for this post"
+msgstr "未找到此日志的术语"
+
+msgid "View glossary"
+msgstr "查看术语表"
+
+msgid "Add new one"
+msgstr "添加新的"
+
+msgid "New KeyWord"
+msgstr "新增关键词"
+
+msgid "Edit KeyWord"
+msgstr "编辑关键词"
+
+msgid "View KeyWord"
+msgstr "查看关键词"
+
+msgid "Glossary link page"
+msgstr "术语表链接页面"
+
+msgid "Add glossary link page in the tooltips footer"
+msgstr "在提示框底部添加术语表链接页面"
+
+msgid "Glossary link label"
+msgstr "术语表链接标签"
+
+msgid "Posts / Pages"
+msgstr "日志 / 页面"
+
+msgid "Trigger method"
+msgstr "触发方法"
+
+msgid "Posts"
+msgstr "日志"
+
+msgid "Get the Pro AddOn"
+msgstr "获取高级插件"
+
+msgid "KTTG Advanced"
+msgstr "KTTG高级"
+
+msgid "Supported Plugins"
+msgstr "支持的插件"
+
+msgid "Match custom-fields"
+msgstr "匹配自定义栏目"
+
+msgid "KeyWords Avanced"
+msgstr "关键词高级"
+
+msgid "Post Types in concern :"
+msgstr "涉及的日志类型："
+
+msgid "Choose either Posts or/and Pages in concern"
+msgstr "选择涉及的日志或者页面"
+
+msgid "Posts related"
+msgstr "相关日志"
+
+msgid "Posts in concern"
+msgstr "涉及的日志"
+
+msgid "Specify keywords to match"
+msgstr "指定匹配的关键词"
+
+msgid "Notice : if you leave them all unchecked they will be ALL matched"
+msgstr "注意：如果全部未选中，则它们都会被匹配"
+
+msgid "This checkbox will be active after creating a glossary page."
+msgstr "创建一个术语表页面后此复选框会被激活。"
+
+msgid "Custom posts types to match"
+msgstr "匹配自定义日志类型"
+
+msgid "Write the name of the hooks in concern separated by \"|\"."
+msgstr "输入涉及的钩子名称（已”|”分隔）。"
+
+msgid ""
+"Choose <b>custom post types</b> to match from this list (hold <b>CTRL</b> "
+"for a multi choice)."
+msgstr ""
+"从列表中选择匹配的<b>自定义日志类型</b>（按住 <b>CTRL</b> 进行多选）。"
+
+msgid "Match the custom-fields :"
+msgstr "匹配自定义栏目："
+
+msgid "Match custom-posts"
+msgstr "匹配自定义日志"
+
+msgid "Write the name of Post types in concern separated by \"|\"."
+msgstr "输入涉及的日志类型名称（以”|”分隔）。"
+
+msgid "Match excerpts"
+msgstr "匹配摘要"
+
+msgid "Keywords Related"
+msgstr "关键词相关"

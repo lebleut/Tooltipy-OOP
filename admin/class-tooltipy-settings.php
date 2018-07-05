@@ -14,8 +14,8 @@ class Tooltipy_Settings {
 		global $tooltipy_obj;
 
 		// Add the menu item and page
-		$page_title = __('Tooltipy Settings Page', 'tooltipy');
-		$menu_title = __('Settings', 'tooltipy');
+		$page_title = __( 'Tooltipy Settings Page', 'tooltipy-lang' );
+		$menu_title = __( 'Settings', 'tooltipy-lang' );
 		$capability = 'manage_options';
 		$slug = 'tooltipy_settings';
 		$callback = array( $this, 'plugin_settings_page_content' );

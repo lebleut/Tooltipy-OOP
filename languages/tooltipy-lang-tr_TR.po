@@ -1,0 +1,323 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: translate Bluet KW\n"
+"POT-Creation-Date: 2015-02-22 13:56+0100\n"
+"PO-Revision-Date: 2015-02-22 13:56+0100\n"
+"Last-Translator: Jamel Zarga <jamel.zarga@gmail.com>\n"
+"Language-Team: leBleut\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;gettext;gettext_noop;_e\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../importer.php:6
+#, fuzzy
+msgid "KeyWords Tooltip Generator Converter"
+msgstr "KeyWords Tooltip Generator Importer"
+
+#: ../importer.php:7
+#, fuzzy
+msgid "KTTG Converter"
+msgstr "İçe Aktar"
+
+#: ../importer.php:17
+#, fuzzy
+msgid "Begin converting my keywords"
+msgstr "Anahtar Kelimeleri İçe Aktarmaya Başla "
+
+#: ../importer.php:31
+#, fuzzy
+msgid "Convert from"
+msgstr "Şurdan İçe Aktar"
+
+#: ../importer.php:84
+#, fuzzy
+msgid "keywords converted"
+msgstr "İçe Aktarılan Anahtar Kelimeler"
+
+#: ../importer.php:88
+#, fuzzy
+msgid "These posts were not converted (Duplicated)"
+msgstr "Bu yazılar içe aktarılamadı (Çakışma var)"
+
+#: ../importer.php:94
+#, fuzzy
+msgid ""
+"if you want to re-convert them, you have to delete them from My Keywords."
+msgstr ""
+"Yeniden içe aktarmak istiyorsanız, çakışan Anahtar Kelimeleri silmeniz "
+"gerekli"
+
+#: ../importer.php:104
+msgid "No posts found"
+msgstr "Yazı bulunamadı"
+
+#: ../keyword-posttype.php:24
+msgid "KeyWords"
+msgstr "Anahtar Kelimeler"
+
+#: ../keyword-posttype.php:25
+msgid "KeyWord"
+msgstr "Anahtar Kelime"
+
+#: ../keyword-posttype.php:26 ../keyword-posttype.php:27
+msgid "My KeyWords"
+msgstr "Anahtar Kelimelerim"
+
+#: ../keyword-posttype.php:28
+msgid "All my KeyWords"
+msgstr "Tüm Anahtar Kelimelerim"
+
+#: ../keyword-posttype.php:29
+msgid "Add new one"
+msgstr "Yeni ekle"
+
+#: ../keyword-posttype.php:30 ../keyword-posttype.php:32
+msgid "New KeyWord"
+msgstr "Yeni Anahtar Kelime"
+
+#: ../keyword-posttype.php:31
+msgid "Edit KeyWord"
+msgstr "Düzenle"
+
+#: ../keyword-posttype.php:33
+msgid "View KeyWord"
+msgstr "Anahtar Kelimeyi incele"
+
+#: ../keyword-posttype.php:34
+msgid "Search for KeyWords"
+msgstr "Anahtar Kelime ara"
+
+#: ../keyword-posttype.php:35
+msgid "KeyWords not found"
+msgstr "Anahtar Kelimeler bulunamadı"
+
+#: ../keyword-posttype.php:36
+msgid "KeyWords not found in trash"
+msgstr "Anahtar Kelime çöpte bulunamadı"
+
+#: ../keyword-posttype.php:37
+msgid "Parent KeyWords colon"
+msgstr "Üst Anahtar Kelime Sütunu"
+
+#: ../keyword-posttype.php:66
+msgid "Posts related"
+msgstr "İlgili yazılar"
+
+#: ../keyword-posttype.php:67
+msgid "Picture"
+msgstr "Resim"
+
+#: ../keyword-posttype.php:68
+msgid "Is Prefix ?"
+msgstr ""
+
+#: ../meta-boxes.php:18
+#, fuzzy
+msgid "Keyword Settings"
+msgstr "Anahtar Kelime ayarları"
+
+#: ../meta-boxes.php:27
+msgid "Posts in concern"
+msgstr "İlgili yazı"
+
+#: ../meta-boxes.php:37 ../meta-boxes.php:46
+msgid "Keywords related"
+msgstr "İlgili Anahtar Kelimeler"
+
+#: ../meta-boxes.php:63
+msgid "Synonyms"
+msgstr "Eş Anlamlılar"
+
+#: ../meta-boxes.php:63
+msgid "Type here the keyword's Synonyms separated with '|'"
+msgstr ""
+"Anahtar Kelimelerin eş anlamlılarını aralarına '|' karakterini ekleyerek "
+"girin "
+
+#: ../meta-boxes.php:75
+msgid "Exclude this post from being matched"
+msgstr "Bu yazıda Anahtar Kelime eşleştirmesi yapma"
+
+#: ../meta-boxes.php:76
+msgid "Exclude this post"
+msgstr "Bu yazıyı hariç tut"
+
+#: ../meta-boxes.php:90
+msgid "Specify keywords to match"
+msgstr "Eşleştirilecek Anahtar Kelimeleri tanımlayın"
+
+#: ../meta-boxes.php:104
+msgid "Notice : if you leave them all unchecked they will be ALL matched"
+msgstr "Dikkat: Eğer seçim yapmazsanız tüm Anahtar Kelimeler eşleştirilecektir"
+
+#: ../meta-boxes.php:107
+msgid "No KeyWords found for this post"
+msgstr "Bu yazıda eşleştirilecek Anahtar Kelime bulunmamıştır"
+
+#: ../meta-boxes.php:111
+msgid "Manage KeyWords"
+msgstr "Anahtar Kelimeleri eşleştir"
+
+#: ../settings-page.php:53
+msgid "Post Types in concern :"
+msgstr "İlgili yazı türleri"
+
+#: ../settings-page.php:61
+msgid "Customise the tooltip style :"
+msgstr "İpucu kutusunu düzenle"
+
+#: ../settings-page.php:72
+msgid "Posts / Pages"
+msgstr "Yazılar / Sayfalar"
+
+#: ../settings-page.php:81
+msgid "Match once or all occurrences"
+msgstr "Bulunan ilk kelimeyi eşleştir veya tüm kelimeleri eşleştir"
+
+#: ../settings-page.php:90
+msgid "Keyword style"
+msgstr "Anahtar Kelime tipi"
+
+#: ../settings-page.php:98
+msgid "Description tooltip style"
+msgstr "İpucu açıklaması biçimi"
+
+#: ../settings-page.php:106
+msgid "Description tooltip Font size"
+msgstr "İpucu açıklaması font boyutu"
+
+#: ../settings-page.php:114
+msgid "Activate tooltips for images ?"
+msgstr "Resimler için ipuçlarını aktifleştir?"
+
+#: ../settings-page.php:139 ../settings-page.php:221
+msgid "KeyWords Settings"
+msgstr "Anahtar Kelime ayarları"
+
+#: ../settings-page.php:140 ../settings-page.php:226
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: ../settings-page.php:158
+msgid "alt property of the images will be displayed as a tooltip"
+msgstr "Resim açıklaması ipucu olarak belirsin"
+
+#: ../settings-page.php:171
+msgid "Description Background Colour"
+msgstr "Açıklama arkaplan rengi"
+
+#: ../settings-page.php:173
+msgid "Description font Colour"
+msgstr "Açıklama font rengi"
+
+#: ../settings-page.php:182
+msgid "Background Colour"
+msgstr "Arkaplan rengi"
+
+#: ../settings-page.php:182
+msgid "No background (Dotted style)"
+msgstr ""
+
+#: ../settings-page.php:183
+msgid "Font Colour"
+msgstr "Font rengi"
+
+#: ../settings-page.php:189
+msgid "Choose either Posts or/and Pages in concern"
+msgstr "İlgili yazılar ve / veya sayfaları seçin"
+
+#: ../settings-page.php:192
+msgid "Make your own style."
+msgstr "Kendi biçiminizi belirleyin"
+
+#: ../settings-page.php:197
+msgid "Posts"
+msgstr "Yazılar"
+
+#: ../settings-page.php:198
+msgid "Pages"
+msgstr "Sayfalar"
+
+#: ../settings-page.php:206
+msgid "Match all occurrences"
+msgstr "Tüm eşleşmelerde göster"
+
+#: ../settings-page.php:225
+msgid "Style"
+msgstr ""
+
+#: ../settings-page.php:227 ../settings-page.php:280
+msgid "Excluded posts"
+msgstr "Hariç tutulan yazılar"
+
+#: ../settings-page.php:228
+msgid "Help ?"
+msgstr "Yardım?"
+
+#: ../settings-page.php:229
+msgid "Premium Add-Ons"
+msgstr ""
+
+#: ../settings-page.php:230
+msgid "Donate"
+msgstr "Bağışta bulun"
+
+#: ../settings-page.php:249
+msgid ""
+"this plugin allows you easely create tooltips for your technical keywords in "
+"order to explain them for your site visitors making surfing more comfortable."
+msgstr ""
+"Bu eklenti oluşturduğunuz içeriklerde yer alan seçtiğiniz kelimelerle ilgili "
+"ek bilgi (sözlük, alt bilgi gibi) vermenizi sağlar."
+
+#: ../settings-page.php:251
+msgid "Click"
+msgstr "Tıkla"
+
+#: ../settings-page.php:253
+msgid "Here"
+msgstr "Burası"
+
+#: ../settings-page.php:255
+msgid "to rate our plugin if you appreciate it"
+msgstr "Eklentimizi derecelendirin"
+
+#: ../settings-page.php:268
+msgid "Preview"
+msgstr "Önizleme"
+
+#: ../settings-page.php:269
+msgid "Pass your mouse over the word"
+msgstr "İmleci kelime üzerine getirin"
+
+#: ../settings-page.php:270
+msgid "to test the tooltip layout."
+msgstr "İpucu kutusunu test edin"
+
+#: ../settings-page.php:281
+msgid "Posts which are excluded from being matched"
+msgstr "Eşleştirmeden hariç tutulan yazılar"
+
+#: ../settings-page.php:287
+msgid "No posts or pages are excluded"
+msgstr "Hariç tutulan yazı ve sayfa bulunmamaktadır"
+
+#: ../settings-page.php:306
+msgid "Save Settings"
+msgstr "Değişiklikleri kaydedin"
+
+#: ../widget.php:79
+msgid "no terms found for this post"
+msgstr "Bu yazıda kelime bulunamamıştır"
+
+#~ msgid "Match excerpts"
+#~ msgstr "Alıntılarda da eşleştirme yap"
+
+#~ msgid "Keywords Related"
+#~ msgstr "Mots clés en relation"

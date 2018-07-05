@@ -1,0 +1,399 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: translate Bluet KW\n"
+"POT-Creation-Date: 2015-03-02 20:18+0100\n"
+"PO-Revision-Date: 2015-04-15 12:30+0100\n"
+"Last-Translator: Jamel Zarga <jamel.zarga@gmail.com>\n"
+"Language-Team: leBleut\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;gettext;gettext_noop;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPath-1: ..\\..\\tltpy_pro_addon\n"
+
+#: ../glossary-shortcode.php:11
+msgid "ALL"
+msgstr "الكل"
+
+#: ../glossary-shortcode.php:95
+msgid "Sorry, no posts matched your criteria."
+msgstr "عفوا لم نجد الكلمات المناسبة"
+
+#: ../importer.php:6
+msgid "KeyWords Tooltip Generator Converter"
+msgstr "KeyWords Tooltip Generator - المستورد -"
+
+#: ../importer.php:7
+msgid "KTTG Converter"
+msgstr "مستورد KTTG"
+
+#: ../importer.php:17
+msgid "Begin converting my keywords"
+msgstr "بدء استيراد و تحويل المصطلحات"
+
+#: ../importer.php:31
+msgid "Convert from"
+msgstr "استيراد من"
+
+#: ../importer.php:84
+msgid "keywords converted"
+msgstr "الكلمات المستوردة"
+
+#: ../importer.php:88
+msgid "These posts were not converted (Duplicated)"
+msgstr "لم يمكن اعادة استيراد العناصر التالية"
+
+#: ../importer.php:94
+msgid ""
+"if you want to re-convert them, you have to delete them from My Keywords."
+msgstr "إذا كنت ترغب في اعادة استيرادها عليك أولا إزالتها من قائمة المصطلحات"
+
+#: ../importer.php:104
+msgid "No posts found"
+msgstr "المصطلحات غير موجودة"
+
+#: ../keyword-posttype.php:24
+msgid "KeyWords"
+msgstr "مصطلحات"
+
+#: ../keyword-posttype.php:25
+msgid "KeyWord"
+msgstr "مصطلح"
+
+#: ../keyword-posttype.php:26 ../keyword-posttype.php:27
+msgid "My KeyWords"
+msgstr "مصطلحاتي"
+
+#: ../keyword-posttype.php:28
+msgid "All my KeyWords"
+msgstr "كل مصطلحاتي"
+
+#: ../keyword-posttype.php:29
+msgid "Add new one"
+msgstr "اضافة مصطلح جديد"
+
+#: ../keyword-posttype.php:30 ../keyword-posttype.php:32
+msgid "New KeyWord"
+msgstr "مصطلح جديد"
+
+#: ../keyword-posttype.php:31
+msgid "Edit KeyWord"
+msgstr "تغير المصطلح"
+
+#: ../keyword-posttype.php:33
+msgid "View KeyWord"
+msgstr "عرض المصطلح"
+
+#: ../keyword-posttype.php:34
+msgid "Search for KeyWords"
+msgstr "البحث عن مصطلحات"
+
+#: ../keyword-posttype.php:35
+msgid "KeyWords not found"
+msgstr "مصطلح غير موجود"
+
+#: ../keyword-posttype.php:36
+msgid "KeyWords not found in trash"
+msgstr "لا يوجد مصطلحات في سلة المحذوفات"
+
+#: ../keyword-posttype.php:37
+msgid "Parent KeyWords colon"
+msgstr ""
+
+#: ../keyword-posttype.php:66
+msgid "Posts related"
+msgstr "مقال ذو صلة"
+
+#: ../keyword-posttype.php:67
+msgid "Picture"
+msgstr "صورة"
+
+#: ../keyword-posttype.php:68
+msgid "Is Prefix ?"
+msgstr "Is Prefix (بداية)"
+
+#: ../meta-boxes.php:18
+msgid "Keyword Settings"
+msgstr "اعدادات المصطلحات"
+
+#: ../meta-boxes.php:27
+msgid "Posts in concern"
+msgstr "المقالات ذات الصلة"
+
+#: ../meta-boxes.php:37 ../meta-boxes.php:47
+#: ..\..\tltpy_pro_addon/index.php:37
+msgid "Keywords related"
+msgstr "المصطلحات ذات الصلة"
+
+#: ../meta-boxes.php:64
+msgid "Synonyms"
+msgstr "مرادفات"
+
+#: ../meta-boxes.php:64
+msgid "Type here the keyword's Synonyms separated with '|'"
+msgstr "قم بكتابة المرادفات و قم بتفرقتها بـ' | '"
+
+#: ../meta-boxes.php:68
+msgid "Make this keyword <b>Case Sensitive</b>"
+msgstr ""
+
+#: ../meta-boxes.php:81
+msgid "Exclude this post from being matched"
+msgstr "استبعاد هذا المقال من المصطلحات"
+
+#: ../meta-boxes.php:82
+msgid "Exclude this post"
+msgstr "استبعاد هذا المقال"
+
+#: ../meta-boxes.php:95
+msgid "Specify keywords to match"
+msgstr "قم بتعين الصطلحات المراد معالجتها"
+
+#: ../meta-boxes.php:109
+msgid "Notice : if you leave them all unchecked they will be ALL matched"
+msgstr ""
+"ملاحظة : في حالة عدم تعين اي من الصطلحات التالية فسوف يتم معالجتها كلها آليا"
+
+#: ../meta-boxes.php:112
+msgid "No KeyWords found for this post"
+msgstr "لم يتم ايجاد مصطلحات في هذا المقال"
+
+#: ../meta-boxes.php:116
+msgid "Manage KeyWords"
+msgstr "ادارة المصطلحات"
+
+#: ../settings-page.php:53
+msgid "Post Types in concern :"
+msgstr "\"نوع المقال\" ذو الصلة"
+
+#: ../settings-page.php:61
+msgid "Customise the tooltip style :"
+msgstr "اختر هيأة التولتب"
+
+#: ../settings-page.php:72
+msgid "Posts / Pages"
+msgstr "مقالات / صفحات"
+
+#: ../settings-page.php:81
+msgid "Match once or all occurrences"
+msgstr "معالجة المصطلح حيث وجد في النص"
+
+#: ../settings-page.php:90
+msgid "Tooltip title"
+msgstr "عنوان المصطلح"
+
+#: ../settings-page.php:99
+msgid "Tooltip position"
+msgstr "مكان المصطلح"
+
+#: ../settings-page.php:108
+msgid "Keyword style"
+msgstr "هيأة المصطلح"
+
+#: ../settings-page.php:116
+msgid "Description tooltip style"
+msgstr "هيأة التولتب"
+
+#: ../settings-page.php:124
+msgid "Description tooltip Font size"
+msgstr "حجم الخط في التولتب"
+
+#: ../settings-page.php:132
+msgid "Activate tooltips for images ?"
+msgstr "تفعيل التولتب للصور"
+
+#: ../settings-page.php:157 ../settings-page.php:257
+msgid "KeyWords Settings"
+msgstr "اعدادات المصطلحات"
+
+#: ../settings-page.php:158 ../settings-page.php:262
+msgid "Settings"
+msgstr "الاعدادات"
+
+#: ../settings-page.php:176
+msgid "alt property of the images will be displayed as a tooltip"
+msgstr "سوف يتم عرض معطى 'alt' للصور في التولتب"
+
+#: ../settings-page.php:189
+msgid "Description Background Colour"
+msgstr "لون خلفية التولتب"
+
+#: ../settings-page.php:191
+msgid "Description font Colour"
+msgstr "لون الخط في التولتب"
+
+#: ../settings-page.php:200
+msgid "Background Colour"
+msgstr "لون الخلفية"
+
+#: ../settings-page.php:200
+msgid "No background (Dotted style)"
+msgstr "بدون خلفية (Dotted style)"
+
+#: ../settings-page.php:201
+msgid "Font Colour"
+msgstr "لون النص"
+
+#: ../settings-page.php:207
+msgid "Choose either Posts or/and Pages in concern"
+msgstr "اختر ان كنت تريد التطبيق على المقالات و/أو الصفحات"
+
+#: ../settings-page.php:210
+msgid "Make your own style."
+msgstr "اختر الهيأة التي تناسب الموقع"
+
+#: ../settings-page.php:215
+msgid "Posts"
+msgstr "مقالات"
+
+#: ../settings-page.php:216
+msgid "Pages"
+msgstr "صفحات"
+
+#: ../settings-page.php:224
+msgid "Match all occurrences"
+msgstr "طبق على الكل"
+
+#: ../settings-page.php:232
+msgid "Hide the tooltips title"
+msgstr "اخفاء العنوان"
+
+#: ../settings-page.php:240
+msgid "Top"
+msgstr "فوق"
+
+#: ../settings-page.php:241
+msgid "Bottom"
+msgstr "تحت"
+
+#: ../settings-page.php:242
+msgid "Right"
+msgstr "يمين"
+
+#: ../settings-page.php:243
+msgid "Left"
+msgstr "يسار"
+
+#: ../settings-page.php:261
+msgid "Style"
+msgstr "الشكل"
+
+#: ../settings-page.php:263 ../settings-page.php:318
+msgid "Excluded posts"
+msgstr "المقالات التي تم استبعادها"
+
+#: ../settings-page.php:264
+msgid "Help ?"
+msgstr "مساعدة"
+
+#: ../settings-page.php:265
+msgid "Premium Add-Ons"
+msgstr "اضافات (add-ons)"
+
+#: ../settings-page.php:266
+msgid "Donate"
+msgstr "تبرع"
+
+#: ../settings-page.php:285
+msgid ""
+"this plugin allows you easely create tooltips for your technical keywords."
+msgstr ""
+"هذا البرنامج \"البلوغن\" يمكنك بسهولة من خلق نوافذ مساعدة \"أو تولتب\" على "
+"الكلمات الفنية ذات ."
+
+#: ../settings-page.php:287
+msgid "Click"
+msgstr "أنقر"
+
+#: ../settings-page.php:289
+msgid "Here"
+msgstr "-- هنا --"
+
+#: ../settings-page.php:291
+msgid "to rate our plugin if you appreciate it"
+msgstr "لتقيم البرنامج اذا حاز علا اعجابك"
+
+#: ../settings-page.php:307
+msgid "Preview"
+msgstr "مثال"
+
+#: ../settings-page.php:308
+msgid "Pass your mouse over the word"
+msgstr "قم بتمرير مأشر الفأرة فوق المصطلح"
+
+#: ../settings-page.php:309
+msgid "to test the tooltip layout."
+msgstr "لاختبال مظهر التولتب"
+
+#: ../settings-page.php:319
+msgid "Posts which are excluded from being matched"
+msgstr "المقالات أو الصفحات المستبعدة من المعالجة بالمصطلحات"
+
+#: ../settings-page.php:325
+msgid "No posts or pages are excluded"
+msgstr "لم يتم استبعاد أي مقال أو صفحة"
+
+#: ../settings-page.php:344 ..\..\tltpy_pro_addon/settings-page.php:82
+msgid "Save Settings"
+msgstr "حفض الاعدادات"
+
+#: ../widget.php:98
+msgid "no terms found for this post"
+msgstr "لم يتم ايجاد مصطلحات في هذا المقال"
+
+#: ..\..\Bluet_kttg_pro_prefix_addon/functions.php:9
+msgid "This Keyword is a <b>Prefix</b>"
+msgstr "هذا المصطلح بمثابة بداة (Prefix)"
+
+#: ..\..\Bluet_kttg_pro_prefix_addon/functions.php:23
+msgid "Prefix"
+msgstr "Is Prefix (بداية)"
+
+#: ..\..\Bluet_kttg_pro_prefix_addon/functions.php:26
+msgid "No"
+msgstr "لا"
+
+#: ..\..\tltpy_pro_addon/settings-page.php:8
+msgid "KTTG Advanced"
+msgstr ""
+
+#: ..\..\tltpy_pro_addon/settings-page.php:9
+msgid "Advanced"
+msgstr "متقدم"
+
+#: ..\..\tltpy_pro_addon/settings-page.php:24
+msgid "Match the custom-fields :"
+msgstr "معالجة الحقول المخصصة :"
+
+#: ..\..\tltpy_pro_addon/settings-page.php:34
+msgid "Match custom-fields"
+msgstr "معالجة الحقول المخصصة"
+
+#: ..\..\tltpy_pro_addon/settings-page.php:43
+msgid "Match custom-posts"
+msgstr "معالجة المقالات المخصصة"
+
+#: ..\..\tltpy_pro_addon/settings-page.php:68
+msgid "KeyWords Avanced"
+msgstr "المصطلحات المتقدمة"
+
+#: ..\..\tltpy_pro_addon/settings-page.php:91
+msgid "Advanced space"
+msgstr "فضاء الخصائص المتقدمة"
+
+#: ..\..\tltpy_pro_addon/settings-page.php:99
+msgid "Write the name of the hooks in concern separated by \"|\"."
+msgstr "قم بكتابة الخطافات المناسبة مفصولة بـ ‘|’"
+
+#: ..\..\tltpy_pro_addon/settings-page.php:108
+msgid "Write the name of Post types in concern separated by \"|\"."
+msgstr "قم بكتابة أسماء المقالات المخصصة مفصولة بـ ‘|’"
+
+#~ msgid "Match excerpts"
+#~ msgstr "طبق على المقتطفات"
+
+#~ msgid "Keywords Related"
+#~ msgstr "Mots clés en relation"

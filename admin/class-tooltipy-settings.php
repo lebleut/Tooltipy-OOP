@@ -22,7 +22,7 @@ class Tooltipy_Settings {
 		global $tooltipy_obj;
 
 		// Add the menu item and page
-		$page_title = __('Tooltips settings :','tooltipy-lang');
+		$page_title = __('Tooltipy settings','tooltipy-lang');
 		$menu_title = __( 'Settings', 'tooltipy-lang' );
 		$capability = 'manage_options';
 		$slug = 'tooltipy_settings';
@@ -33,7 +33,7 @@ class Tooltipy_Settings {
     }
     public function plugin_settings_page_content() {?>
     	<div class="wrap">
-    		<h2><?php echo __('Tooltips settings :','tooltipy-lang'); ?></h2>
+    		<h2><?php echo __('Tooltipy settings','tooltipy-lang'); ?></h2>
 			<?php
             if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] ){
                   $this->admin_notice();
@@ -133,7 +133,7 @@ class Tooltipy_Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __('Tooltips settings :','tooltipy-lang'),
+						'title' 		=> __('Tooltips options','tooltipy-lang'),
 						'description' 	=> __('General tooltips settings','tooltipy-lang'),
 					),
 					array(

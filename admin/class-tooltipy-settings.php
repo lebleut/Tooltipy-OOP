@@ -203,7 +203,7 @@ class Tooltipy_Settings {
         		'type' => 'text',
         		'placeholder' => 'Some text',
         		'helper' => 'Does this help?',
-        		'supplimental' => 'I am underneath!',
+        		'description' => 'I am underneath!',
                 'default' => '',
         	),
         	array(
@@ -390,13 +390,13 @@ class Tooltipy_Settings {
 		}
 		
 		$helper = !empty($arguments['helper']) ? $arguments['helper'] : '';
-		$supplimental = !empty($arguments['supplimental']) ? $arguments['supplimental'] : '';
+		$field_description = !empty($arguments['description']) ? $arguments['description'] : '';
 
         if( $helper ){
             printf( '<span class="helper"> %s</span>', $helper );
         }
-        if( $supplimental ){
-            printf( '<p class="description">%s</p>', $supplimental );
+        if( $field_description ){
+            printf( '<p class="description">%s</p>', $field_description );
         }
     }
 }

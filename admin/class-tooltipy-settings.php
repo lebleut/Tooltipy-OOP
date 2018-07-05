@@ -311,7 +311,7 @@ class Tooltipy_Settings {
     public function field_callback( $arguments ) {
         $value = get_option( $arguments['uid'], false );
 		$uid = !empty($arguments['uid']) ? $arguments['uid'] : '' ;
-		$default = !empty($arguments['default']) || is_array($arguments['default'])  ? $arguments['default'] : '' ;
+		$default = !empty($arguments['default']) || ( array_key_exists('default', $arguments) && is_array($arguments['default']) )  ? $arguments['default'] : '' ;
 		$type = !empty($arguments['type']) ? $arguments['type'] : '' ;
 		$placeholder = !empty($arguments['placeholder']) ? $arguments['placeholder'] : '' ;
 		

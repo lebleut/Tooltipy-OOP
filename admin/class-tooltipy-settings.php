@@ -14,7 +14,7 @@ class Tooltipy_Settings {
 		global $tooltipy_obj;
 
 		// Add the menu item and page
-		$page_title = __( 'Tooltipy Settings Page', 'tooltipy-lang' );
+		$page_title = __('Tooltips settings :','tooltipy-lang');
 		$menu_title = __( 'Settings', 'tooltipy-lang' );
 		$capability = 'manage_options';
 		$slug = 'tooltipy_settings';
@@ -25,7 +25,7 @@ class Tooltipy_Settings {
     }
     public function plugin_settings_page_content() {?>
     	<div class="wrap">
-    		<h2>Tooltipy Settings</h2>
+    		<h2><?php echo __('Tooltips settings :','tooltipy-lang'); ?></h2>
 			<?php
             if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] ){
                   $this->admin_notice();
@@ -124,14 +124,14 @@ class Tooltipy_Settings {
 				'id' => 'general',
 				'sections' => array(
 					array(
-						'id' => 'general',
-						'title' => 'General options',
-						'description' => 'This is the general section in options tab',
+						'id' 			=> 'general',
+						'title' 		=> __('Tooltips settings :','tooltipy-lang'),
+						'description' 	=> __('General tooltips settings','tooltipy-lang'),
 					),
 					array(
-						'id' => 'advanced',
-						'title' => 'Advanced options',
-						'description' => 'This is the advanced section in options tab',
+						'id' 			=> 'advanced',
+						'title' 		=> __('Advanced','tooltipy-lang'),
+						'description' 	=> __('Advanced options','tooltipy-lang'),
 					),
 				)
 			),
@@ -139,9 +139,9 @@ class Tooltipy_Settings {
 				'id' => 'style',
 				'sections' => array(
 					array(
-						'id' => 'general',
-						'title' => 'The style',
-						'description' => 'This is the style section in options tab',
+						'id' 			=> 'general',
+						'title' 		=> __('Customise the tooltip style :','tooltipy-lang'),
+						'description' 	=> __('Make your own style.','tooltipy-lang'),
 					),
 				)
 			),
@@ -149,9 +149,9 @@ class Tooltipy_Settings {
 				'id' => 'glossary',
 				'sections' => array(
 					array(
-						'id' => 'general',
-						'title' => 'Glossary options',
-						'description' => 'This is the general section in glossary tab',
+						'id' 			=> 'general',
+						'title' 		=> __('Glossary settings :','tooltipy-lang'),
+						'description' 	=> __('Choose settings for your glossary.','tooltipy-lang'),
 					),
 				)
 			),

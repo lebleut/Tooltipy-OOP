@@ -143,6 +143,11 @@ class Tooltipy_Settings {
 						'title' 		=> __('Customise the tooltip style :','tooltipy-lang'),
 						'description' 	=> __('Make your own style.','tooltipy-lang'),
 					),
+					array(
+						'id' 			=> 'advanced',
+						'title' 		=> __('Advanced style','tooltipy-lang'),
+						'description' 	=> __('Advanced style settings','tooltipy-lang'),
+					),
 				)
 			),
 			array(
@@ -152,6 +157,31 @@ class Tooltipy_Settings {
 						'id' 			=> 'general',
 						'title' 		=> __('Glossary settings :','tooltipy-lang'),
 						'description' 	=> __('Choose settings for your glossary.','tooltipy-lang'),
+					),
+					array(
+						'id' 			=> 'labels',
+						'title' 		=> __('Glossary page labels','tooltipy-lang'),
+						'description' 	=> __('','tooltipy-lang'),
+					),
+					array(
+						'id' 			=> 'page',
+						'title' 		=> __('Glossary link page','tooltipy-lang'),
+						'description' 	=> __('','tooltipy-lang'),
+					),
+				)
+			),
+			array(
+				'id' => 'cover',
+				'sections' => array(
+					array(
+						'id' 			=> 'general',
+						'title' 		=> __('Cover','tooltipy-lang'),
+						'description' 	=> __('Sections to cover','tooltipy-lang'),
+					),
+					array(
+						'id' 			=> 'exclude',
+						'title' 		=> __('Exclude','tooltipy-lang'),
+						'description' 	=> __('Sections to exclude','tooltipy-lang'),
 					),
 				)
 			),
@@ -194,100 +224,473 @@ class Tooltipy_Settings {
 		}
     }
     public function setup_fields() {
-        $fields = array(
-        	array(
-				'uid' => 'awesome_text_field',
-				'label' => 'Sample Text Field',
-				'tab' => 'general',
-        		'section' => 'general',
-        		'type' => 'text',
-        		'placeholder' => 'Some text',
-        		'helper' => 'Does this help?',
-        		'description' => 'I am underneath!',
-                'default' => '',
-        	),
-        	array(
-        		'uid' => 'awesome_password_field',
-        		'label' => 'Sample Password Field',
-				'tab' => 'style',
-        		'type' => 'password',
-                'default' => '',
-        	),
-        	array(
-        		'uid' => 'awesome_number_field',
-				'label' => 'Sample Number Field',
-				'tab' => 'style',
-        		'section' => 'advanced',
-        		'type' => 'number',
-                'default' => '',
-        	),
-        	array(
-        		'uid' => 'awesome_textarea',
-        		'label' => 'Sample Text Area',
-        		'tab' => 'glossary',
-        		'type' => 'textarea',
-                'default' => '',
-        	),
-        	array(
-        		'uid' => 'awesome_select',
-        		'label' => 'Sample Select Dropdown',
-        		'tab' => 'general',
-        		'section' => 'advanced',
-        		'type' => 'select',
-        		'options' => array(
-        			'option1' => 'Option 1',
-        			'option2' => 'Option 2',
-        			'option3' => 'Option 3',
-        			'option4' => 'Option 4',
-        			'option5' => 'Option 5',
-        		),
-                'default' => array()
-        	),
-        	array(
-        		'uid' => 'awesome_multiselect',
-        		'label' => 'Sample Multi Select',
-        		'tab' => 'glossary',
-        		'type' => 'multiselect',
-        		'options' => array(
-        			'option1' => 'Option 1',
-        			'option2' => 'Option 2',
-        			'option3' => 'Option 3',
-        			'option4' => 'Option 4',
-        			'option5' => 'Option 5',
-        		),
-                'default' => array()
-        	),
-        	array(
-        		'uid' => 'awesome_radio',
-        		'label' => 'Sample Radio Buttons',
-        		'tab' => 'glossary',
-        		'type' => 'radio',
-        		'options' => array(
-        			'option1' => 'Option 1',
-        			'option2' => 'Option 2',
-        			'option3' => 'Option 3',
-        			'option4' => 'Option 4',
-        			'option5' => 'Option 5',
-        		),
-                'default' => array()
-        	),
-        	array(
-        		'uid' => 'awesome_checkboxes',
-        		'label' => 'Sample Checkboxes',
-				'tab' => 'glossary',
-        		'section' => 'advanced',
-        		'type' => 'checkbox',
-        		'options' => array(
-        			'option1' => 'Option 1',
-        			'option2' => 'Option 2',
-        			'option3' => 'Option 3',
-        			'option4' => 'Option 4',
-        			'option5' => 'Option 5',
-        		),
-                'default' => array()
-        	)
+
+		// for got_from_post_types field
+		$got_from_post_types_arr = array();
+		foreach(get_post_types() as $psttp){
+			$got_from_post_types_arr[$psttp] = $psttp;
+		}
+		// For animation field
+		$animations = array(
+			"none",
+			"bounce", "bounceIn", "bounceInLeft", "bounceInRight", "bounceInDown", "bounceInUp",
+			"fadeIn", "fadeInLeft", "fadeInLeftBig", "fadeInRight", "fadeInRightBig", "fadeInUp", "fadeInUpBig",
+			"flash",
+			"flip", "flipInX", "flipInY",
+			"lightSpeedIn",
+			"pulse",				
+			"rollIn",
+			"rotateIn", "rotateInDownLeft", "rotateInDownRight", "rotateInUpLeft", "rotateInUpRight",
+			"slideInDown", "slideInLeft", "slideInRight", "slideInUp",
+			"swing", "shake", "tada",
+			"wobble",
+			"zoomIn", "zoomInDown", "zoomInLeft", "zoomInRight", "zoomInUp"
 		);
-		
+
+        $fields = array(
+			/*
+			// Here is How to add a new Tooltipy setting field
+        	array(
+				'tab' 			=> '',
+				'section' 		=> '',
+				
+				'uid' 			=> '',
+        		'type' 			=> '',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
+
+				'label' 		=> __( '______', 'tooltipy-lang' ),
+        		'placeholder' 	=> __( '______', 'tooltipy-lang' ),
+        		'helper' 		=> __( '______', 'tooltipy-lang' ),		// Text helper beside the field
+        		'description' 	=> __( '______', 'tooltipy-lang' ),		// Text description below the field
+
+				'options' 		=> array(
+        			'option1' 		=> __( '______', 'tooltipy-lang' ),
+        		),
+                'default' 		=> array( '' ), 	// String or array
+			),
+			*/
+
+			// General tab
+			array(
+				'tab' 			=> 'general',
+				'section' 		=> 'general',
+				
+				'uid' 			=> 'match_all_occurrences',
+        		'type' 			=> 'checkbox',
+
+				'label' 		=> __( 'Match all occurrences', 'tooltipy-lang' ),
+
+				'options' 		=> array(
+        			'yes' 		=> __( 'All', 'tooltipy-lang' ),
+        		),
+			),
+			array(
+				'tab' 			=> 'general',
+				'section' 		=> 'general',
+				
+				'uid' 			=> 'hide_tooltip_title',
+        		'type' 			=> 'checkbox',
+
+				'label' 		=> __( 'Hide tooltip title', 'tooltipy-lang' ),
+
+				'options' 		=> array(
+        			'yes' 		=> __( 'Hide', 'tooltipy-lang' ),
+        		),
+			),
+			array(
+				'tab' 			=> 'general',
+				'section' 		=> 'general',
+				
+				'uid' 			=> 'tooltip_position',
+        		'type' 			=> 'select',
+
+				'label' 		=> __( 'Tooltip position', 'tooltipy-lang' ),
+
+				'options' 		=> array(
+        			'top' 		=> __( 'Top', 'tooltipy-lang' ),
+        			'bottom' 	=> __( 'Bottom', 'tooltipy-lang' ),
+        			'right' 	=> __( 'Right', 'tooltipy-lang' ),
+        			'left' 		=> __( 'Left', 'tooltipy-lang' ),
+        		),
+                'default' 		=> array( 'bottom' ),
+			),
+			array(
+				'tab' 			=> 'general',
+				'section' 		=> 'general',
+				
+				'uid' 			=> 'tooltip_animation',
+        		'type' 			=> 'select',
+
+				'label' 		=> __( 'Animation', 'tooltipy-lang' ),
+
+				'options' 		=> $animations,
+			),
+			array(
+				'tab' 			=> 'general',
+				'section' 		=> 'general',
+				
+				'uid' 			=> 'tooltip_animation_speed',
+        		'type' 			=> 'select',
+
+				'label' 		=> __( 'Animation speed', 'tooltipy-lang' ),
+
+				'options' 		=> array(
+					'fast'			=> __( 'Fast', 'tooltipy-lang' ),
+					'normal'		=> __( 'Normal', 'tooltipy-lang' ),
+					'slow'			=> __( 'Slow', 'tooltipy-lang' ),
+				),
+			),
+			array(
+				'tab' 			=> 'general',
+				'section' 		=> 'advanced',
+				
+				'uid' 			=> 'got_from_post_types',
+        		'type' 			=> 'multiselect',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
+
+				'label' 		=> __( 'Get tooltips from', 'tooltipy-lang' ),
+        		'description' 	=> __( 'Select post types from which you want to get tooltips', 'tooltipy-lang' ),		// Text description below the field
+
+				'options' 		=> $got_from_post_types_arr,
+			),
+			array(
+				'tab' 			=> 'general',
+				'section' 		=> 'advanced',
+				
+				'uid' 			=> 'load_all_keywords',
+        		'type' 			=> 'checkbox',
+
+				'label' 		=> __( 'Load all keywords', 'tooltipy-lang' ),
+
+				'options' 		=> array(
+        			'yes' 		=> __( 'Use only if needed to load all keywords per page', 'tooltipy-lang' ),
+        		),
+			),
+			array(
+				'tab' 			=> 'general',
+				'section' 		=> 'advanced',
+				
+				'uid' 			=> 'custom_events',
+        		'type' 			=> 'text',
+
+				'label' 		=> __( 'Events to fetch', 'tooltipy-lang' ),
+        		'placeholder' 	=> __( 'Events names saparated with (,)', 'tooltipy-lang' ),
+			),
+			array(
+				'tab' 			=> 'general',
+				'section' 		=> 'advanced',
+				
+				'uid' 			=> 'prevent_plugins_filters',
+        		'type' 			=> 'checkbox',
+
+				'label' 		=> __( 'Prevent other plugins filters', 'tooltipy-lang' ),
+
+				'options' 		=> array(
+        			'yes' 		=> __( 'Prevent any 3rd party plugin to filter or change the keywords content', 'tooltipy-lang' ),
+        		),
+			),
+
+			// Style tab
+        	array(
+				'tab' 			=> 'style',
+				'section' 		=> 'general',
+				
+				'uid' 			=> 'fetch_mode',
+				'type' 			=> 'radio',
+				
+				'label' 		=> __( 'Fetch mode', 'tooltipy-lang' ),
+				'options' 		=> array(
+					'highlight' 	=> 'Highlight Mode',
+					'icon' 			=> 'Icon Mode',
+        		),
+                'default' 		=> array('highlight'),
+			),
+        	array(
+				'tab' 			=> 'style',
+				'section' 		=> 'general',
+				
+				'uid' 			=> 'tooltip_width',
+				'type' 			=> 'number',	
+				'helper' 		=> 'px',
+				'label' 		=> __( 'Tooltip width', 'tooltipy-lang' ),
+			),
+			array(
+				'tab' 			=> 'style',
+				'section' 		=> 'general',
+				
+				'uid' 			=> 'description_font_size',
+        		'type' 			=> 'number',
+
+				'label' 		=> __( 'Description tooltip Font size', 'tooltipy-lang' ),
+        		'helper' 		=> __( 'px', 'tooltipy-lang' ),
+			),
+			array(
+				'tab' 			=> 'style',
+				'section' 		=> 'general',
+				
+				'uid' 			=> 'image_alt',
+        		'type' 			=> 'checkbox',
+
+				'label' 		=> __('Activate tooltips for images ?','tooltipy-lang'),
+
+				'options' 		=> array(
+        			'yes' 		=> __( 'alt property of the images will be displayed as a tooltip', 'tooltipy-lang' ),
+        		),
+			),
+			array(
+				'tab' 			=> 'style',
+				'section' 		=> 'advanced',
+				
+				'uid' 			=> 'keywords_css_classes',
+        		'type' 			=> 'text',
+
+				'label' 		=> __( 'Custom CSS classes for inline keywords', 'tooltipy-lang' ),
+        		'placeholder' 	=> __( 'Separated with spaces', 'tooltipy-lang' ),
+			),
+			array(
+				'tab' 			=> 'style',
+				'section' 		=> 'advanced',
+				
+				'uid' 			=> 'tooltip_css_classes',
+        		'type' 			=> 'text',
+
+				'label' 		=> __( 'Custom CSS classes for tooltips', 'tooltipy-lang' ),
+        		'placeholder' 	=> __( 'Separated with spaces', 'tooltipy-lang' ),
+			),
+			array(
+				'tab' 			=> 'style',
+				'section' 		=> 'advanced',
+				
+				'uid' 			=> 'custom_style_sheet',
+        		'type' 			=> 'checkbox',
+
+				'label' 		=> __( 'Custom style', 'tooltipy-lang' ),
+
+				'options' 		=> array(
+        			'yes' 		=> __( 'Apply custom style sheet', 'tooltipy-lang' ),
+        		),
+                'default' 		=> array( '' ),
+
+			),
+			array(
+				'tab' 			=> 'style',
+				'section' 		=> 'advanced',
+				
+				'uid' 			=> 'custom_style_sheet_url',
+        		'type' 			=> 'text',
+
+				'label' 		=> __( 'Custom style sheet URL', 'tooltipy-lang' ),
+        		'placeholder' 	=> __( 'CSS URL here', 'tooltipy-lang' ),
+			),
+
+			// Glossary tab
+			array(
+				'tab' 			=> 'glossary',
+				'section' 		=> 'general',
+				
+				'uid' 			=> 'tooltips_per_page',
+        		'type' 			=> 'number',
+
+				'label' 		=> __( 'Tooltips per page', 'tooltipy-lang' ),
+        		'placeholder' 	=> __( 'ALL', 'tooltipy-lang' ),
+        		'helper' 		=> __( 'Keywords Per Page (leave blank for unlimited keywords per page)', 'tooltipy-lang' ),
+			),
+			array(
+				'tab' 			=> 'glossary',
+				'section' 		=> 'labels',
+				
+				'uid' 			=> 'glossary_label_all',
+        		'type' 			=> 'text',
+
+				'label' 		=> __( 'ALL label', 'tooltipy-lang' ),
+        		'placeholder' 	=> __( 'ALL', 'tooltipy-lang' ),
+			),
+			array(
+				'tab' 			=> 'glossary',
+				'section' 		=> 'labels',
+				
+				'uid' 			=> 'glossary_label_previous',
+        		'type' 			=> 'text',
+
+				'label' 		=> __( 'Previous label', 'tooltipy-lang' ),
+        		'placeholder' 	=> __( 'Previous', 'tooltipy-lang' ),
+			),
+			array(
+				'tab' 			=> 'glossary',
+				'section' 		=> 'labels',
+				
+				'uid' 			=> 'glossary_label_next',
+        		'type' 			=> 'text',
+
+				'label' 		=> __( 'Next label', 'tooltipy-lang' ),
+        		'placeholder' 	=> __( 'Next', 'tooltipy-lang' ),
+			),
+			array(
+				'tab' 			=> 'glossary',
+				'section' 		=> 'labels',
+				
+				'uid' 			=> 'glossary_label_select_category',
+        		'type' 			=> 'text',
+
+				'label' 		=> __( 'Select a category label', 'tooltipy-lang' ),
+        		'placeholder' 	=> __( 'Select a category', 'tooltipy-lang' ),
+			),
+			array(
+				'tab' 			=> 'glossary',
+				'section' 		=> 'labels',
+				
+				'uid' 			=> 'glossary_label_all_categories',
+        		'type' 			=> 'text',
+
+				'label' 		=> __( 'All categories label', 'tooltipy-lang' ),
+        		'placeholder' 	=> __( 'All categories', 'tooltipy-lang' ),
+			),
+			array(
+				'tab' 			=> 'glossary',
+				'section' 		=> 'page',
+				
+				'uid' 			=> 'add_glossary_link',
+        		'type' 			=> 'checkbox',
+
+				'label' 		=> __( 'Add glossary link page in the tooltips footer', 'tooltipy-lang' ),
+
+				'options' 		=> array(
+        			'yes' 		=> __( 'Add glossary link', 'tooltipy-lang' ),
+        		),
+			),
+			array(
+				'tab' 			=> 'glossary',
+				'section' 		=> 'page',
+				
+				'uid' 			=> 'glossary_link',
+        		'type' 			=> 'text',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
+
+				'label' 		=> __( 'Glossary page link', 'tooltipy-lang' ),
+        		'placeholder' 	=> 'http://...',
+			),
+			array(
+				'tab' 			=> 'glossary',
+				'section' 		=> 'page',
+				
+				'uid' 			=> 'glossary_link_label',
+        		'type' 			=> 'text',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
+
+				'label' 		=> __( 'Glossary link label', 'tooltipy-lang' ),
+        		'placeholder' 	=> __( 'View glossary', 'tooltipy-lang' ),
+			),
+			array(
+				'tab' 			=> 'glossary',
+				'section' 		=> 'general',
+				
+				'uid' 			=> 'glossary_show_thumbnails',
+        		'type' 			=> 'checkbox',
+
+				'label' 		=> __( 'Glossary thumbnails', 'tooltipy-lang' ),
+
+				'options' 		=> array(
+        			'yes' 		=> __( 'Show thumbnails on the glossary page', 'tooltipy-lang' ),
+        		),
+			),
+			array(
+				'tab' 			=> 'glossary',
+				'section' 		=> 'general',
+				
+				'uid' 			=> 'glossary_link_titles',
+        		'type' 			=> 'checkbox',
+
+				'label' 		=> __( 'Titles', 'tooltipy-lang' ),
+
+				'options' 		=> array(
+        			'yes' 		=> __( 'Add links to titles', 'tooltipy-lang' ),
+        		),
+			),
+			// Scope
+			array(
+				'tab' 			=> 'cover',
+				'section' 		=> 'general',
+				
+				'uid' 			=> 'cover_classes',
+        		'type' 			=> 'text',
+
+				'label' 		=> __( 'Cover CSS classes', 'tooltipy-lang' ),
+        		'placeholder' 	=> __( 'Class ...', 'tooltipy-lang' ),
+        		'helper' 		=> __( 'Choose CSS classes to cover with tooltips', 'tooltipy-lang' ),
+        		'description' 	=> __( 'NB : Please avoid overlapped classes !<br>If you leave Classes AND Tags blank the whole page will be affected', 'tooltipy-lang' ),
+
+			),
+			array(
+				'tab' 			=> 'cover',
+				'section' 		=> 'general',
+				
+				'uid' 			=> 'cover_html_tags',
+        		'type' 			=> 'text',
+
+				'label' 		=> __( 'Cover HTML TAGS', 'tooltipy-lang' ),
+        		'placeholder' 	=> __( 'HTML tag ...', 'tooltipy-lang' ),
+        		'helper' 		=> __( 'Choose HTML TAGS (like h1, h2, strong, p, ... ) to cover with tooltips', 'tooltipy-lang' ),
+			),
+			array(
+				'tab' 			=> 'cover',
+				'section' 		=> 'exclude',
+				
+				'uid' 			=> 'exclude_classes',
+        		'type' 			=> 'text',
+
+				'label' 		=> __( 'Exclude CSS classes', 'tooltipy-lang' ),
+        		'placeholder' 	=> __( 'Class ...', 'tooltipy-lang' ),
+        		'helper' 		=> __( 'Choose CSS classes to exclude', 'tooltipy-lang' ),
+			),
+			array(
+				'tab' 			=> 'cover',
+				'section' 		=> 'exclude',
+				
+				'uid' 			=> 'exclude_links',
+        		'type' 			=> 'checkbox',
+
+				'label' 		=> __( 'Exclude links ?', 'tooltipy-lang' ),
+
+				'options' 		=> array(
+        			'yes' 		=> __( 'Yes', 'tooltipy-lang' ),
+        		),
+			),
+			array(
+				'tab' 			=> 'cover',
+				'section' 		=> 'exclude',
+				
+				'uid' 			=> 'exclude_heading_tags',
+        		'type' 			=> 'checkbox',
+
+				'label' 		=> __( 'Exclude Headings ?', 'tooltipy-lang' ),
+
+				'options' 		=> array(
+        			'h1' 		=> 'H1',
+        			'h2' 		=> 'H2',
+        			'h3' 		=> 'H3',
+        			'h4' 		=> 'H4',
+        			'h5' 		=> 'H5',
+        			'h6' 		=> 'H6',
+        		),
+			),
+			array(
+				'tab' 			=> 'cover',
+				'section' 		=> 'exclude',
+				
+				'uid' 			=> 'exclude_common_tags',
+        		'type' 			=> 'checkbox',
+
+				'label' 		=> __( 'Exclude Common Tags ?', 'tooltipy-lang' ),
+
+				'options' 		=> array(
+        			'strong' 		=> '<&zwnj;strong &zwnj;/>',
+        			'b' 			=> '<&zwnj;b &zwnj;/>',
+        			'abbr' 			=> '<&zwnj;abbr &zwnj;/>',
+        			'button' 		=> '<&zwnj;button &zwnj;/>',
+        			'dfn' 			=> '<&zwnj;dfn &zwnj;/>',
+        			'em' 			=> '<&zwnj;em &zwnj;/>',
+        			'i' 			=> '<&zwnj;i &zwnj;/>',
+        			'label' 		=> '<&zwnj;label &zwnj;/>',
+        		),
+			),
+		);
+
 		// settings fields filter hook
 		$fields = apply_filters( 'tltpy_setting_fields', $fields);
 

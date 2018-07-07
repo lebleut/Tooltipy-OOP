@@ -98,7 +98,7 @@ class Tooltipy_Metaboxes{
             ),
             array(
                 'meta_field_id' => 'tltpy_tooltip_case_sensitive',
-                'callback'      => array( $this, 'tooltip_case_field' )
+                'callback'      => array( $this, 'tooltip_case_sensitive_field' )
             ),
             array(
                 'meta_field_id' => 'tltpy_tooltip_is_prefix',
@@ -143,7 +143,7 @@ class Tooltipy_Metaboxes{
         <?php
     }
 
-    function tooltip_case_field( $meta_field_id ){
+    function tooltip_case_sensitive_field( $meta_field_id ){
         $is_checked = get_post_meta( get_the_id(), $meta_field_id ,true) ? 'checked' : '';
         ?>
         <p>

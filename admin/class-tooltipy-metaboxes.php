@@ -176,7 +176,7 @@ class Tooltipy_Metaboxes{
         <p>
             <label>
                 <b><?php _e('Youtube video ID','tooltipy-lang');?></b><br>
-                WWW.Youtube.com/watch?v=
+                www.youtube.com/watch?v=
                 <input
                     name="<? echo( $meta_field_id ); ?>"
                     type="text"

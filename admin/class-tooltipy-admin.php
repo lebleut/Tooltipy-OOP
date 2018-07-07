@@ -52,8 +52,13 @@ class Tooltipy_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 		
+		// Settings
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-settings.php';
 		new Tooltipy_Settings();
+
+		// Meta boxe
+		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-metaboxes.php';
+		new Tooltipy_Metaboxes();
 	}
 
 	/**

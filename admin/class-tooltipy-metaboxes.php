@@ -64,7 +64,7 @@ class Tooltipy_Metaboxes{
         }
 
         // editpost : to prevent bulk edit problems
-        if( $_POST['action'] == 'editpost' ){
+        if( !empty($_POST['action']) && $_POST['action'] == 'editpost' ){
 
             $tooltip_metabox_fields = $this->get_tooltip_metabox_fields();
             foreach ( $tooltip_metabox_fields as $field) {

@@ -7,6 +7,7 @@ class Tooltipy_Metaboxes{
         
         add_action( 'do_meta_boxes', array( $this, 'add_tooltipy_meta_boxes' ), 10, 3 );
 
+        add_action( 'do_meta_boxes', array( $this, 'add_other_meta_boxes' ), 10, 3 );
     }
     public function meta_box_after_title(){
         global $tooltipy_obj;
@@ -35,6 +36,24 @@ class Tooltipy_Metaboxes{
         );
     }
 
+    function add_other_meta_boxes( $post_type, $context, $post ){
+        global $tooltipy_obj;
+
+        // For all posts except Tooltipy
+        if( $tooltipy_obj->get_plugin_name() == $post_type ){
+            return false;
+        }
+
+        add_meta_box(
+            'tltpy_posts_metabox',
+            __('Related tooltips settings','tooltipy-lang'),
+            array( $this, 'posts_metabox_render' ) ,
+            null,
+            'side',
+            'high'
+        );
+    }
+
     function tooltip_metabox_render(){
 
         $tooltip_metabox_fields = array(
@@ -50,6 +69,10 @@ class Tooltipy_Metaboxes{
         foreach ($tooltip_metabox_fields as $field_callback) {
             call_user_func( $field_callback );
         }
+    }
+
+    function posts_metabox_render(){
+        echo "This is a metabox for posts other than tooltipy...";
     }
     
     function tooltip_synonyms_field(){

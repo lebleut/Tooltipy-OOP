@@ -172,6 +172,7 @@ class Tooltipy_Metaboxes{
     }
 
     function tooltip_video_field( $meta_field_id ){
+        $video_id = get_post_meta( get_the_id(), $meta_field_id, true );
 		?>
         <p>
             <label>
@@ -180,12 +181,19 @@ class Tooltipy_Metaboxes{
                 <input
                     name="<? echo( $meta_field_id ); ?>"
                     type="text"
-                    value="<?php echo( get_post_meta( get_the_id(), $meta_field_id, true ) ); ?>"
+                    value="<?php echo( $video_id ); ?>"
                 />
                 <img src="<?php echo( TOOLTIPY_PLUGIN_URL . 'assets/youtube_icon.png');?>" style="position: relative; top: 5px;"/>
             </label>
         </p>
         <?php
+        if( !empty($video_id) ){
+            ?>
+            <p>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo($video_id); ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </p>
+            <?php
+        }
     }
 
     function save_tooltip_metabox_field( $post_id, $meta_field_id, $sanitize_function = 'sanitize_text_field' ){

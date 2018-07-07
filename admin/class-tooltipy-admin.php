@@ -57,8 +57,10 @@ class Tooltipy_Admin {
 		new Tooltipy_Settings();
 
 		// Meta boxe
-		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-metaboxes.php';
-		new Tooltipy_Metaboxes();
+		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-tooltip-metaboxes.php';
+		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-posts-metaboxes.php';
+		new Tooltipy_Tooltip_Metaboxes();
+		new Tooltipy_Posts_Metaboxes();
 	}
 
 	/**

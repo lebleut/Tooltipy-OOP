@@ -1,24 +1,23 @@
 <?php
 
-class Tooltipy_Metaboxes{
+class Tooltipy_Tooltip_Metaboxes{
     public function __construct() {
     	// Hook after the Tooltipy edit title
         add_action( 'edit_form_after_title', array( $this, 'meta_box_after_title' ) );
         
-        add_action( 'do_meta_boxes', array( $this, 'add_tooltipy_meta_boxes' ), 10, 3 );
+        add_action( 'do_meta_boxes', array( $this, 'add_meta_boxes' ), 10, 3 );
 
-        add_action( 'do_meta_boxes', array( $this, 'add_other_meta_boxes' ), 10, 3 );
-        
         // Filter metabox fields before save if needed
         $this->filter_metabox_fields();
 
-        add_action('save_post', array( $this, 'save_tooltip_metabox_fields' ) );
+        add_action('save_post', array( $this, 'save_metabox_fields' ) );
     }
 
     // Filter metabox fields before save if needed
     public function filter_metabox_fields(){
-        add_filter( 'tltpy_tooltip_metabox_field_before_save_tltpy_tooltip_synonyms', array( $this, 'filter_synonyms_field') );
+        add_filter( 'tltpy_tooltip_metabox_field_before_save_tltpy_synonyms', array( $this, 'filter_synonyms_field') );
     }
+
     public function filter_synonyms_field( $syn_value ){
         // replace ||||||| by only one
         $syn_value = preg_replace('(\|{2,100})','|',$syn_value);
@@ -39,7 +38,7 @@ class Tooltipy_Metaboxes{
         );
     }
 
-    function add_tooltipy_meta_boxes( $post_type, $context, $post ){
+    function add_meta_boxes( $post_type, $context, $post ){
         global $tooltipy_obj;
 
         // Only for Tooltipy
@@ -50,85 +49,74 @@ class Tooltipy_Metaboxes{
         add_meta_box(
             'tltpy_tooltip_metabox',
             __('Tooltip settings','tooltipy-lang'),
-            array( $this, 'tooltip_metabox_render' ) ,
+            array( $this, 'metabox_render' ) ,
             null,
             'tooltipy_after_title'
         );
     }
 
-    function save_tooltip_metabox_fields( $post_id ){
+    function save_metabox_fields( $post_id ){
         global $tooltipy_obj;
 
-        if( !empty($_POST['post_type']) and $_POST['post_type'] != $tooltipy_obj->get_plugin_name() ){
+        if( !empty($_POST['post_type']) && $_POST['post_type'] != $tooltipy_obj->get_plugin_name() ){
             return false;
         }
 
         // editpost : to prevent bulk edit problems
         if( !empty($_POST['action']) && $_POST['action'] == 'editpost' ){
 
-            $tooltip_metabox_fields = $this->get_tooltip_metabox_fields();
-            foreach ( $tooltip_metabox_fields as $field) {
-                $this->save_tooltip_metabox_field( $post_id, $field['meta_field_id']);
+            $metabox_fields = $this->get_metabox_fields();
+            foreach ( $metabox_fields as $field) {
+                $this->save_metabox_field( $post_id, $field['meta_field_id']);
             }
         }
     }
 
-    function add_other_meta_boxes( $post_type, $context, $post ){
-        global $tooltipy_obj;
+    function save_metabox_field( $post_id, $meta_field_id, $sanitize_function = 'sanitize_text_field' ){
+        $value = call_user_func( $sanitize_function, $_POST[$meta_field_id] );
 
-        // For all posts except Tooltipy
-        if( $tooltipy_obj->get_plugin_name() == $post_type ){
-            return false;
-        }
+        // Filter hook before saving meta field
+        $value = apply_filters( 'tltpy_tooltip_metabox_field_before_save_' . $meta_field_id, $value);
 
-        add_meta_box(
-            'tltpy_posts_metabox',
-            __('Related tooltips settings','tooltipy-lang'),
-            array( $this, 'posts_metabox_render' ) ,
-            null,
-            'side',
-            'high'
-        );
+        update_post_meta( $post_id, $meta_field_id, $value);
     }
-    function get_tooltip_metabox_fields(){
-        $tooltip_fields = array(
+
+    function get_metabox_fields(){
+        $fields = array(
             array(
-                'meta_field_id' => 'tltpy_tooltip_synonyms',
-                'callback'      => array( $this, 'tooltip_synonyms_field' )
+                'meta_field_id' => 'tltpy_synonyms',
+                'callback'      => array( $this, 'synonyms_field' )
             ),
             array(
-                'meta_field_id' => 'tltpy_tooltip_case_sensitive',
-                'callback'      => array( $this, 'tooltip_case_sensitive_field' )
+                'meta_field_id' => 'tltpy_case_sensitive',
+                'callback'      => array( $this, 'case_sensitive_field' )
             ),
             array(
-                'meta_field_id' => 'tltpy_tooltip_is_prefix',
-                'callback'      => array( $this, 'tooltip_prefix_field' )
+                'meta_field_id' => 'tltpy_is_prefix',
+                'callback'      => array( $this, 'prefix_field' )
             ),
             array(
-                'meta_field_id' => 'tltpy_tooltip_youtube_id',
-                'callback'      => array( $this, 'tooltip_video_field' )
+                'meta_field_id' => 'tltpy_youtube_id',
+                'callback'      => array( $this, 'video_field' )
             )
         );
         
         // Filter hook
-        $tooltip_fields = apply_filters( 'tltpy_tooltip_metabox_fields', $tooltip_fields);
+        $fields = apply_filters( 'tltpy_tooltip_metabox_fields', $fields);
 
-        return $tooltip_fields;
+        return $fields;
     }
-    function tooltip_metabox_render(){
 
-        $tooltip_metabox_fields = $this->get_tooltip_metabox_fields();
+    function metabox_render(){
 
-        foreach ($tooltip_metabox_fields as $field) {
+        $metabox_fields = $this->get_metabox_fields();
+
+        foreach ($metabox_fields as $field) {
             call_user_func( $field['callback'], $field['meta_field_id'] );
         }
     }
 
-    function posts_metabox_render(){
-        echo "This is a metabox for posts other than tooltipy...";
-    }
-    
-    function tooltip_synonyms_field( $meta_field_id ){
+    function synonyms_field( $meta_field_id ){
         ?>
         <p>
             <Label><?php _e('Synonyms','tooltipy-lang');?>
@@ -143,7 +131,7 @@ class Tooltipy_Metaboxes{
         <?php
     }
 
-    function tooltip_case_sensitive_field( $meta_field_id ){
+    function case_sensitive_field( $meta_field_id ){
         $is_checked = get_post_meta( get_the_id(), $meta_field_id ,true) ? 'checked' : '';
         ?>
         <p>
@@ -156,7 +144,8 @@ class Tooltipy_Metaboxes{
         </p>
         <?php
     }
-    function tooltip_prefix_field( $meta_field_id ){
+    
+    function prefix_field( $meta_field_id ){
         $is_checked = get_post_meta( get_the_id(), $meta_field_id, true) ? 'checked' : '';
         ?>
         <p>
@@ -171,7 +160,7 @@ class Tooltipy_Metaboxes{
         <?php
     }
 
-    function tooltip_video_field( $meta_field_id ){
+    function video_field( $meta_field_id ){
         $video_id = get_post_meta( get_the_id(), $meta_field_id, true );
 		?>
         <p>
@@ -194,14 +183,5 @@ class Tooltipy_Metaboxes{
             </p>
             <?php
         }
-    }
-
-    function save_tooltip_metabox_field( $post_id, $meta_field_id, $sanitize_function = 'sanitize_text_field' ){
-        $value = call_user_func( $sanitize_function, $_POST[$meta_field_id] );
-
-        // Filter hook before saving meta field
-        $value = apply_filters( 'tltpy_tooltip_metabox_field_before_save_' . $meta_field_id, $value);
-
-        update_post_meta( $post_id, $meta_field_id, $value);
     }
 }

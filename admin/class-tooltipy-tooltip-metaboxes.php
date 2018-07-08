@@ -84,25 +84,30 @@ class Tooltipy_Tooltip_Metaboxes{
     function get_metabox_fields(){
         $fields = array(
             array(
-                'meta_field_id' => 'tltpy_synonyms',
+                'meta_field_id' => 'synonyms',
                 'callback'      => array( $this, 'synonyms_field' )
             ),
             array(
-                'meta_field_id' => 'tltpy_case_sensitive',
+                'meta_field_id' => 'case_sensitive',
                 'callback'      => array( $this, 'case_sensitive_field' )
             ),
             array(
-                'meta_field_id' => 'tltpy_is_prefix',
+                'meta_field_id' => 'is_prefix',
                 'callback'      => array( $this, 'prefix_field' )
             ),
             array(
-                'meta_field_id' => 'tltpy_youtube_id',
+                'meta_field_id' => 'youtube_id',
                 'callback'      => array( $this, 'video_field' )
             )
         );
         
         // Filter hook
         $fields = apply_filters( 'tltpy_tooltip_metabox_fields', $fields);
+        
+        // Add metadata prefix
+        foreach( $fields as $key => $field ){
+			$fields[$key]['meta_field_id'] = 'tltpy_' . $field['meta_field_id'];
+        }
 
         return $fields;
     }

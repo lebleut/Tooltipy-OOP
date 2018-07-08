@@ -63,22 +63,26 @@ class Tooltipy_Posts_Metaboxes{
     function get_metabox_fields(){
         $tooltip_fields = array(
             array(
-                'meta_field_id' => 'tltpy_exclude_me',
+                'meta_field_id' => 'exclude_me',
                 'callback'      => array( $this, 'exclude_me_field' )
             ),
             array(
-                'meta_field_id' => 'tltpy_matched_tooltips',
+                'meta_field_id' => 'matched_tooltips',
                 'callback'      => array( $this, 'matched_tooltips_field' )
             ),
             array(
-                'meta_field_id' => 'tltpy_exclude_tooltips',
+                'meta_field_id' => 'exclude_tooltips',
                 'callback'      => array( $this, 'exclude_tooltips_field' )
             ),
         );
         
         // Filter hook
         $tooltip_fields = apply_filters( 'tltpy_posts_metabox_fields', $tooltip_fields);
-
+        
+        // Add metadata prefix
+        foreach( $tooltip_fields as $key => $field ){
+			$tooltip_fields[$key]['meta_field_id'] = 'tltpy_' . $field['meta_field_id'];
+        }
         return $tooltip_fields;
     }
 

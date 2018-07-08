@@ -7,7 +7,7 @@ class Tooltipy_Settings {
     	// Hook into the admin menu
 		add_action( 'admin_menu', array( $this, 'create_plugin_settings_page' ) );
 		// Load setting fields
-    	add_action( 'admin_menu', array( $this, 'load_main_settings' ) );
+    	add_action( 'init', array( $this, 'load_main_settings' ) );
         // Add Settings and Fields
     	add_action( 'admin_init', array( $this, 'setup_sections' ) );
     	add_action( 'admin_init', array( $this, 'setup_settings' ) );
@@ -129,7 +129,7 @@ class Tooltipy_Settings {
         </div><?php
 	}
 
-	public function get_tabs(){
+	public static function get_tabs(){
 		$setting_tabs = array(
 			array(
 				'id' => 'general',
@@ -237,7 +237,7 @@ class Tooltipy_Settings {
 		}
 	}
 
-	public function get_settings(){
+	public static function get_settings(){
         $fields = array(
 			/*
 			// Main fields are added using the tltpy_setting_fields filter hook
@@ -265,6 +265,10 @@ class Tooltipy_Settings {
 
 		// settings fields filter hook
 		$fields = apply_filters( 'tltpy_setting_fields', $fields);
+		
+		foreach( $fields as $key=>$field ){
+			$fields[$key]['uid'] = 'tltpy_' . $field['uid'];
+		}
 
 		return $fields;
 	}
@@ -273,7 +277,6 @@ class Tooltipy_Settings {
 		$fields = $this->get_settings();
 
     	foreach( $fields as $field ){
-			$field['uid'] = 'tltpy_' . $field['uid'];
 
 			$tab = !empty($field['tab']) ? $field['tab'] : 'general';
 			$section_id = !empty($field['section']) ? $tab .'__'. $field['section'] : $tab .'__general';

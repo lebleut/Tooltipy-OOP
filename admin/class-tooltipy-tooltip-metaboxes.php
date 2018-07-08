@@ -81,23 +81,23 @@ class Tooltipy_Tooltip_Metaboxes{
         update_post_meta( $post_id, $meta_field_id, $value);
     }
 
-    function get_metabox_fields(){
+    static function get_metabox_fields(){
         $fields = array(
             array(
                 'meta_field_id' => 'synonyms',
-                'callback'      => array( $this, 'synonyms_field' )
+                'callback'      => array( __CLASS__, 'synonyms_field' )
             ),
             array(
                 'meta_field_id' => 'case_sensitive',
-                'callback'      => array( $this, 'case_sensitive_field' )
+                'callback'      => array( __CLASS__, 'case_sensitive_field' )
             ),
             array(
                 'meta_field_id' => 'is_prefix',
-                'callback'      => array( $this, 'prefix_field' )
+                'callback'      => array( __CLASS__, 'prefix_field' )
             ),
             array(
                 'meta_field_id' => 'youtube_id',
-                'callback'      => array( $this, 'video_field' )
+                'callback'      => array( __CLASS__, 'video_field' )
             )
         );
         

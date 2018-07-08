@@ -60,19 +60,19 @@ class Tooltipy_Posts_Metaboxes{
         );
     }
 
-    function get_metabox_fields(){
+    static function get_metabox_fields(){
         $tooltip_fields = array(
             array(
                 'meta_field_id' => 'exclude_me',
-                'callback'      => array( $this, 'exclude_me_field' )
+                'callback'      => array( __CLASS__, 'exclude_me_field' )
             ),
             array(
                 'meta_field_id' => 'matched_tooltips',
-                'callback'      => array( $this, 'matched_tooltips_field' )
+                'callback'      => array( __CLASS__, 'matched_tooltips_field' )
             ),
             array(
                 'meta_field_id' => 'exclude_tooltips',
-                'callback'      => array( $this, 'exclude_tooltips_field' )
+                'callback'      => array( __CLASS__, 'exclude_tooltips_field' )
             ),
         );
         

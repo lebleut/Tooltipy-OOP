@@ -141,6 +141,19 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
                 'yes' 		=> __( 'Prevent any 3rd party plugin to filter or change the keywords content', 'tooltipy-lang' ),
             ),
         ),
+        array(
+            'tab' 			=> 'general',
+            'section' 		=> 'advanced',
+            
+            'uid' 			=> 'debug_mode',
+            'type' 			=> 'checkbox',
+    
+            'label' 		=> __( 'Activate the debug mode', 'tooltipy-lang' ),
+    
+            'options' 		=> array(
+                'yes' 		=> __( 'Debug mode', 'tooltipy-lang' ),
+            ),
+        ),
     );
     
     $fields = array_merge( $fields, $general_settings );

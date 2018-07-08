@@ -188,4 +188,97 @@ class Tooltipy_Public {
 			delete_option( 'tooltipy_activated_just_now');
 		}
 	}
+
+	function debug_mode(){
+		global $post_type;
+
+		$tooltipy_debug_mode = get_option( 'tltpy_debug_mode' );
+
+		if( !$tooltipy_debug_mode || !current_user_can( 'administrator' ) ){
+			return false;
+		}
+		?>
+		<div id="tooltipy-debug" style="background:white; padding: 50px;">
+			<?php
+			if( 'tooltipy' == $post_type):		
+				$this->debug_tooltip_meta();
+			else:
+				$this->debug_posts_meta();
+			endif;
+
+			$this->debug_settings();
+			?>
+		</div>
+		<?php		
+	}
+
+	function debug_settings(){
+		$settings = new Tooltipy_Settings();
+		$all_settings = $settings->get_settings();
+
+		?>
+		<h2>Tooltipy settings :</h2>
+		<ul>
+		<?php
+			foreach($all_settings as $setting){
+				$setting_id = $setting['uid'];
+				$setting_vals = get_option($setting_id);
+				$setting_vals = is_array($setting_vals) ? implode(', ',$setting_vals) : $setting_vals;
+				
+				if( true === $setting_vals ){
+					$setting_vals = '<span style="color:green;">--TRUE--</span>';
+				}else if( false === $setting_vals ){
+					$setting_vals = '<span style="color:red;">--FALSE--</span>';
+				}else if( empty($setting_vals) ){
+					$setting_vals = '<span style="color:orange;">--EMPTY--</span>';
+				}else{
+					$setting_vals = '<span style="color:blue;">'.$setting_vals.'</span>';
+				}
+				?>
+					<li>
+						<b><?php echo($setting_id); ?></b>
+						<span>( <?php echo( $setting_vals ); ?> )</span>
+					</li>
+				<?php
+			}
+		?>
+		</ul>
+		<?php
+	}
+	function debug_tooltip_meta(){
+		?>
+			<h2>Current Tooltip metadata :</h2>
+			<ul>
+				<?php
+					$tooltip_metabox_fields = Tooltipy_Tooltip_Metaboxes::get_metabox_fields();
+					foreach ($tooltip_metabox_fields as $field) {
+						?>
+						<li>
+							<b><?php echo($field['meta_field_id']); ?></b>
+							<span>( <?php echo( get_post_meta(get_the_ID(), $field['meta_field_id'], true ) ); ?> )</span>
+						</li>
+						<?php
+					}
+				?>
+			</ul>
+		<?php
+	}
+	function debug_posts_meta(){
+		?>
+		<h2>Current post metadata :</h2>
+		<ul>
+		<?php
+			$posts_metabox_fields = Tooltipy_Posts_Metaboxes::get_metabox_fields();
+			foreach ($posts_metabox_fields as $field) {
+				?>
+				<li>
+					<b><?php echo($field['meta_field_id']); ?></b>
+					<span>( <?php echo( get_post_meta(get_the_ID(), $field['meta_field_id'], true ) ); ?> )</span>
+				</li>
+				<?php
+			}
+		?>
+		</ul>
+		<?php
+	}
 }

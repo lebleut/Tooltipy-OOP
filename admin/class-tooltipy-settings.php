@@ -12,12 +12,14 @@ class Tooltipy_Settings {
     	add_action( 'admin_init', array( $this, 'setup_sections' ) );
     	add_action( 'admin_init', array( $this, 'setup_settings' ) );
 	}
+	
 	public function load_main_settings(){
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/general_settings.php';
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/style_settings.php';
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/glossary_settings.php';
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/scope_settings.php';
 	}
+
     public function create_plugin_settings_page() {
 		global $tooltipy_obj;
 
@@ -30,7 +32,8 @@ class Tooltipy_Settings {
 		$post_type = $tooltipy_obj->get_plugin_name();
 	
 		add_submenu_page( 'edit.php?post_type='.$post_type, $page_title, $menu_title, $capability, $slug, $callback );
-    }
+	}
+	
     public function plugin_settings_page_content() {?>
     	<div class="wrap">
     		<h2><?php echo __('Tooltipy settings','tooltipy-lang'); ?></h2>
@@ -200,6 +203,7 @@ class Tooltipy_Settings {
 
 		return $setting_tabs;
 	}
+
     public function setup_sections() {
 		$tabs = $this->get_tabs();
 		
@@ -217,7 +221,8 @@ class Tooltipy_Settings {
 				);
 			}
 		}
-    }
+	}
+	
     public function section_header_callback( $arguments ) {
 		$tabs = $this->get_tabs();
 		foreach ($tabs as $tab) {
@@ -231,6 +236,7 @@ class Tooltipy_Settings {
 			}
 		}
 	}
+
 	public function get_settings(){
         $fields = array(
 			/*
@@ -262,6 +268,7 @@ class Tooltipy_Settings {
 
 		return $fields;
 	}
+
     public function setup_settings() {
 		$fields = $this->get_settings();
 
@@ -281,7 +288,8 @@ class Tooltipy_Settings {
 			);
             register_setting( 'tooltipy_' . $section_id, $field['uid'] );
     	}
-    }
+	}
+	
     public function field_callback( $arguments ) {
         $value = get_option( $arguments['uid'], false );
 		$uid = !empty($arguments['uid']) ? $arguments['uid'] : '' ;

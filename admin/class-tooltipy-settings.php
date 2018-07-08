@@ -10,7 +10,7 @@ class Tooltipy_Settings {
     	add_action( 'admin_menu', array( $this, 'load_main_settings' ) );
         // Add Settings and Fields
     	add_action( 'admin_init', array( $this, 'setup_sections' ) );
-    	add_action( 'admin_init', array( $this, 'setup_fields' ) );
+    	add_action( 'admin_init', array( $this, 'setup_settings' ) );
 	}
 	public function load_main_settings(){
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/general_settings.php';
@@ -230,9 +230,8 @@ class Tooltipy_Settings {
 				}
 			}
 		}
-    }
-    public function setup_fields() {
-
+	}
+	public function get_settings(){
         $fields = array(
 			/*
 			// Main fields are added using the tltpy_setting_fields filter hook
@@ -260,6 +259,11 @@ class Tooltipy_Settings {
 
 		// settings fields filter hook
 		$fields = apply_filters( 'tltpy_setting_fields', $fields);
+
+		return $fields;
+	}
+    public function setup_settings() {
+		$fields = $this->get_settings();
 
     	foreach( $fields as $field ){
 			$field['uid'] = 'tltpy_' . $field['uid'];

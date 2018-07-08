@@ -17,10 +17,10 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
         "zoomIn", "zoomInDown", "zoomInLeft", "zoomInRight", "zoomInUp"
     );
 
-    // for got_from_post_types field
-    $got_from_post_types_arr = array();
+    // for get_from_post_types field
+    $get_from_post_types_arr = array();
     foreach(get_post_types() as $psttp){
-        $got_from_post_types_arr[$psttp] = $psttp;
+        $get_from_post_types_arr[$psttp] = $psttp;
     }
     
     $general_settings = array(
@@ -97,22 +97,22 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'tab' 			=> 'general',
             'section' 		=> 'advanced',
             
-            'uid' 			=> 'got_from_post_types',
+            'uid' 			=> 'get_from_post_types',
             'type' 			=> 'multiselect',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
     
             'label' 		=> __( 'Get tooltips from', 'tooltipy-lang' ),
             'description' 	=> __( 'Select post types from which you want to get tooltips', 'tooltipy-lang' ),		// Text description below the field
     
-            'options' 		=> $got_from_post_types_arr,
+            'options' 		=> $get_from_post_types_arr,
         ),
         array(
             'tab' 			=> 'general',
             'section' 		=> 'advanced',
             
-            'uid' 			=> 'load_all_keywords',
+            'uid' 			=> 'load_all_tooltips',
             'type' 			=> 'checkbox',
     
-            'label' 		=> __( 'Load all keywords', 'tooltipy-lang' ),
+            'label' 		=> __( 'Load all tooltips', 'tooltipy-lang' ),
     
             'options' 		=> array(
                 'yes' 		=> __( 'Use only if needed to load all keywords per page', 'tooltipy-lang' ),

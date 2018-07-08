@@ -51,7 +51,7 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'tab' 			=> 'style',
             'section' 		=> 'advanced',
             
-            'uid' 			=> 'keywords_css_classes',
+            'uid' 			=> 'keyword_css_classes',
             'type' 			=> 'text',
 
             'label' 		=> __( 'Custom CSS classes for inline keywords', 'tooltipy-lang' ),
@@ -71,7 +71,7 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'tab' 			=> 'style',
             'section' 		=> 'advanced',
             
-            'uid' 			=> 'custom_style_sheet',
+            'uid' 			=> 'custom_style',
             'type' 			=> 'checkbox',
 
             'label' 		=> __( 'Custom style', 'tooltipy-lang' ),

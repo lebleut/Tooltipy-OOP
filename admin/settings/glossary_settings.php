@@ -5,7 +5,7 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'tab' 			=> 'glossary',
             'section' 		=> 'general',
             
-            'uid' 			=> 'tooltips_per_page',
+            'uid' 			=> 'glossary_tooltips_per_page',
             'type' 			=> 'number',
 
             'label' 		=> __( 'Tooltips per page', 'tooltipy-lang' ),

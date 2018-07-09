@@ -142,7 +142,14 @@ class Tooltipy_Admin {
 				break;
 
 			case 'tltpy_youtube_id':
-				echo get_post_meta($post_id, 'tltpy_youtube_id', true );
+				$youtube_id = get_post_meta($post_id, 'tltpy_youtube_id', true );
+				if( !empty($youtube_id) ){
+					$link = 'https://www.youtube.com/watch?v='.$youtube_id;
+					$youtube_icon_src = TOOLTIPY_PLUGIN_URL . 'assets/youtube_icon.png';
+					?>
+					<a href="<?php echo($link); ?>" target="_blank"><img src="<?php echo($youtube_icon_src);?>"> <?php echo($youtube_id); ?></a>
+					<?php
+				}
 				break;
 			
 			case 'image':

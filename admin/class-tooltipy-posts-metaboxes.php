@@ -106,7 +106,7 @@ class Tooltipy_Posts_Metaboxes{
         $is_checked = get_post_meta( get_the_id(), $meta_field_id ,true) ? 'checked' : '';
         ?>
         <p>
-            <h3><?php _e('Exclude this post from being matched', 'tooltipy-lang'); ?></h3>
+            <h4><?php _e('Exclude this post from being matched', 'tooltipy-lang'); ?></h4>
             <Label><?php echo(__('Exclude this ','tooltipy-lang') . '<b>' . strtolower($post_type_label) . '</b>' ); ?>
                 <input type="checkbox" 
                     name="<? echo( $meta_field_id ); ?>" 
@@ -126,7 +126,7 @@ class Tooltipy_Posts_Metaboxes{
     function exclude_tooltips_field($meta_field_id){
         $excluded_tooltips = get_post_meta( get_the_id(), $meta_field_id, true );
         ?>
-        <h3><?php _e('Tooltips to exclude', 'tooltipy-lang'); ?></h3>
+        <h4><?php _e('Tooltips to exclude', 'tooltipy-lang'); ?></h4>
         <input
             type="text"
             name="<?php echo($meta_field_id); ?>"

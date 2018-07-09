@@ -185,7 +185,7 @@ class Tooltipy_Public {
 			'show_ui'               => true,
 			'show_in_menu'          => true,
 			'menu_position'         => 5,
-			'menu_icon'             => TOOLTIPY_PLUGIN_URL.'/admin/css/menu_icon.png',
+			'menu_icon'             => TOOLTIPY_PLUGIN_URL.'assets/menu_icon.png',
 			'show_in_admin_bar'     => true,
 			'show_in_nav_menus'     => true,
 			'can_export'            => true,

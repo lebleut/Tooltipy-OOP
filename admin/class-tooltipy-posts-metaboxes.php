@@ -23,13 +23,19 @@ class Tooltipy_Posts_Metaboxes{
 
         $tooltips = $tooltipy_obj->get_tooltips();
 
-        $matches = array();
+        $matched_tooltips = array();
         foreach($tooltips as $tltp){
-            preg_match( '/'.$tltp->post_title.'/i', $content, $mt);
-            $matches = array_merge($matches, $mt);
+            preg_match( '/'.$tltp->post_title.'/i', $content, $matches);
+            if( !empty($matches) ){
+                $tltp_vector = array(
+                    'tooltip_id'    => $tltp->ID,
+                    'tooltip_title' => $tltp->post_title
+                );
+                array_push($matched_tooltips, $tltp_vector );
+            }
         }
 
-        return $matches;
+        return $matched_tooltips;
     }
 
     function save_metabox_fields( $post_id ){
@@ -135,7 +141,7 @@ class Tooltipy_Posts_Metaboxes{
     }
     
     function matched_tooltips_field($meta_field_id){
-        $matched_tooltips = get_post_meta( get_the_id(), $meta_field_id ,true);
+        $matched_tooltips = get_post_meta( get_the_id(), $meta_field_id, true );
         ?>
         <h4><?php _e('Tooltips in this post', 'tooltipy-lang'); ?></h4>
         <?php
@@ -150,7 +156,7 @@ class Tooltipy_Posts_Metaboxes{
             <?php
             foreach ($matched_tooltips as $tltp) {
               ?>
-              <li style="color:green;"><?php echo($tltp); ?></li>
+              <li style="color:green;"><?php echo($tltp['tooltip_title']); ?></li>
               <?php  
             }
             ?>

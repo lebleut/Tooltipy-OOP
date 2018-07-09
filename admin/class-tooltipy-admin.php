@@ -153,9 +153,15 @@ class Tooltipy_Admin {
 				break;
 		}
 	}
-	
+
 	function column_synonyms_content($post_id){
-		echo get_post_meta($post_id, 'tltpy_synonyms', true );
+		$synonyms = get_post_meta($post_id, 'tltpy_synonyms', true );
+		if( $synonyms ){
+			$synonyms_arr = explode( '|', $synonyms );
+			$synonyms_arr = array_map( 'trim', $synonyms_arr );
+			$syn_style = 'style="background: grey;color: white;padding: 4px;margin-bottom: 4px; display: inline-block;"';
+			echo "<span $syn_style>".implode( "</span>&nbsp;<span $syn_style>", $synonyms_arr )."</span>";
+		} 
 	}
 
 	function column_case_sensitive_content($post_id){

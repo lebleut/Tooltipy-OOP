@@ -130,26 +130,19 @@ class Tooltipy_Admin {
 
 		switch ($column) {
 			case 'tltpy_synonyms':
-				echo get_post_meta($post_id, 'tltpy_synonyms', true );
+				$this->column_synonyms_content( $post_id );
 				break;
 
 			case 'tltpy_case_sensitive':
-				echo get_post_meta($post_id, 'tltpy_case_sensitive', true );
+				$this->column_case_sensitive_content( $post_id );
 				break;
 
 			case 'tltpy_is_prefix':
-				echo get_post_meta($post_id, 'tltpy_is_prefix', true );
+				$this->column_prefix_content( $post_id );
 				break;
 
 			case 'tltpy_youtube_id':
-				$youtube_id = get_post_meta($post_id, 'tltpy_youtube_id', true );
-				if( !empty($youtube_id) ){
-					$link = 'https://www.youtube.com/watch?v='.$youtube_id;
-					$youtube_icon_src = TOOLTIPY_PLUGIN_URL . 'assets/youtube_icon.png';
-					?>
-					<a href="<?php echo($link); ?>" target="_blank"><img src="<?php echo($youtube_icon_src);?>"> <?php echo($youtube_id); ?></a>
-					<?php
-				}
+				$this->column_youtube_content( $post_id );
 				break;
 			
 			case 'image':
@@ -158,6 +151,29 @@ class Tooltipy_Admin {
 			
 			default:
 				break;
+		}
+	}
+	
+	function column_synonyms_content($post_id){
+		echo get_post_meta($post_id, 'tltpy_synonyms', true );
+	}
+
+	function column_case_sensitive_content($post_id){
+		echo get_post_meta($post_id, 'tltpy_case_sensitive', true );
+	}
+
+	function column_prefix_content($post_id){
+		echo get_post_meta($post_id, 'tltpy_is_prefix', true );
+	}
+
+	function column_youtube_content( $post_id ){
+		$youtube_id = get_post_meta($post_id, 'tltpy_youtube_id', true );
+		if( !empty($youtube_id) ){
+			$link = 'https://www.youtube.com/watch?v='.$youtube_id;
+			$youtube_icon_src = TOOLTIPY_PLUGIN_URL . 'assets/youtube_icon.png';
+			?>
+			<a href="<?php echo($link); ?>" target="_blank"><img src="<?php echo($youtube_icon_src);?>"> <?php echo($youtube_id); ?></a>
+			<?php
 		}
 	}
 }

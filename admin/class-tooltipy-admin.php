@@ -54,6 +54,11 @@ class Tooltipy_Admin {
 		
 		add_filter( 'manage_' . Tooltipy::get_plugin_name() . '_posts_columns', array($this, 'manage_columns') );
 		add_filter( 'manage_' . Tooltipy::get_plugin_name() . '_posts_custom_column', array($this, 'manage_column_content'), 10, 2 );
+
+		// Make sortable prefix & case sensitive
+		add_filter( 'manage_edit-' . Tooltipy::get_plugin_name() . '_sortable_columns', array($this, 'sortable_columns') );
+		add_action( 'pre_get_posts', array($this, 'tooltips_orderby') );
+
 		// Settings
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-settings.php';
 		new Tooltipy_Settings();
@@ -210,6 +215,28 @@ class Tooltipy_Admin {
 			?>
 			<a href="<?php echo($link); ?>" target="_blank"><img src="<?php echo($youtube_icon_src);?>"> <?php echo($youtube_id); ?></a>
 			<?php
+		}
+	}
+
+	function sortable_columns( $columns ){
+		$columns['tltpy_is_prefix'] = 'is_prefix';
+		$columns['tltpy_case_sensitive'] = 'case_sensitive';
+  		return $columns;
+	}
+
+	function tooltips_orderby( $query ){
+		if( ! is_admin() || ! $query->is_main_query() ) {
+			return;
+		}
+		
+		if ( 'is_prefix' === $query->get( 'orderby') ) {
+			$query->set( 'orderby', 'meta_value' );
+			$query->set( 'meta_key', 'tltpy_is_prefix' );
+			$query->set( 'meta_type', 'char' );
+		}elseif ( 'case_sensitive' === $query->get( 'orderby') ) {
+			$query->set( 'orderby', 'meta_value' );
+			$query->set( 'meta_key', 'tltpy_case_sensitive' );
+			$query->set( 'meta_type', 'char' );
 		}
 	}
 }

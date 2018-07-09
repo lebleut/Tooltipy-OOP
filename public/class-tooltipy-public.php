@@ -175,7 +175,7 @@ class Tooltipy_Public {
 			'label'                 => __( 'Tooltip', 'tooltipy-lang' ),
 			'description'           => __( 'Post type to create keywords to generate tooltips in the frontend.', 'tooltipy-lang' ),
 			'labels'                => $labels,
-			'supports'              => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields', 'page-attributes', ),
+			'supports'              => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'page-attributes', ),
 			'taxonomies'            => array( 'tooltip_cat' ),
 			'hierarchical'          => false,
 			'public'                => true,

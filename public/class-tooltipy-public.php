@@ -51,9 +51,38 @@ class Tooltipy_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
+		add_filter( 'the_content', array($this, 'filter_content') );
 	}
 
+	// The main filtering content of Tooltipy
+	function filter_content($content){
+		global $tooltipy_obj, $post_type;
+
+		// Don't filter Tooltipy post types them selves
+		if( $tooltipy_obj->get_plugin_name() == $post_type ){
+			return $content;
+		}
+
+		$matched_tooltips = get_post_meta( get_the_id(), 'tltpy_matched_tooltips', true );
+
+		$patterns = array();
+		$replacements = array();
+
+		foreach ($matched_tooltips as $tooltip) {
+			$case_sensitive_modifier = 'i';
+			$is_case_sensitive = get_post_meta( $tooltip['tooltip_id'], 'tltpy_case_sensitive', true);
+			if($is_case_sensitive){
+				$case_sensitive_modifier = '';
+			}
+			array_push($patterns, '/('.$tooltip['tooltip_title'].')/'.$case_sensitive_modifier);
+			array_push($replacements, '<span style="color:green;" tooltip-id="'.$tooltip['tooltip_id'].'">$1</span>');
+		}
+
+		$limit = get_option('tltpy_match_all_occurrences',false) ? -1 : 1;
+		$content = preg_replace( $patterns, $replacements, $content, $limit);
+
+		return $content;
+	}
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 *

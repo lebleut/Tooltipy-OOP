@@ -52,6 +52,8 @@ class Tooltipy_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 		
+		add_filter( 'manage_' . Tooltipy::get_plugin_name() . '_posts_columns', array($this, 'manage_columns') );
+		add_filter( 'manage_' . Tooltipy::get_plugin_name() . '_posts_custom_column', array($this, 'manage_column_content'), 10, 2 );
 		// Settings
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-settings.php';
 		new Tooltipy_Settings();
@@ -107,5 +109,48 @@ class Tooltipy_Admin {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tooltipy-admin.js', array( 'jquery' ), $this->version, false );
 
+	}
+
+	public function manage_columns( $columns ){
+
+		$columns = array(
+			'cb' 						=> $columns['cb'],
+			'title' 					=> __( 'Title' ),
+			'tltpy_synonyms'			=> __( 'Synonyms', 'tooltipy-lang' ),
+			'tltpy_case_sensitive'	=> __( 'Case sensitive', 'tooltipy-lang' ),
+			'tltpy_is_prefix'			=> __( 'Prefix', 'tooltipy-lang' ),
+			'tltpy_youtube_id'			=> __( 'Youtube ID', 'tooltipy-lang' ),
+			'image' 					=> __( 'Image' ),
+			'author' 					=> __( 'Author' ),
+			'date' 						=> __( 'Date' ),
+		  );
+		return $columns;
+	}
+	public function manage_column_content( $column, $post_id ){
+
+		switch ($column) {
+			case 'tltpy_synonyms':
+				echo get_post_meta($post_id, 'tltpy_synonyms', true );
+				break;
+
+			case 'tltpy_case_sensitive':
+				echo get_post_meta($post_id, 'tltpy_case_sensitive', true );
+				break;
+
+			case 'tltpy_is_prefix':
+				echo get_post_meta($post_id, 'tltpy_is_prefix', true );
+				break;
+
+			case 'tltpy_youtube_id':
+				echo get_post_meta($post_id, 'tltpy_youtube_id', true );
+				break;
+			
+			case 'image':
+				echo get_the_post_thumbnail( $post_id, array(80, 80) );
+				break;
+			
+			default:
+				break;
+		}
 	}
 }

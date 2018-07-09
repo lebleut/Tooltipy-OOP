@@ -13,6 +13,23 @@ class Tooltipy_Posts_Metaboxes{
     // Filter metabox fields before save if needed
     public function filter_metabox_fields(){
         // Filter fields here
+        add_filter('tltpy_posts_metabox_field_before_save_tltpy_matched_tooltips', array($this, 'filter_matched_tooltips'), 10, 2);
+    }
+
+    function filter_matched_tooltips($old_val, $post_vars){
+        global $tooltipy_obj;
+
+        $content = $post_vars['post_content'];
+
+        $tooltips = $tooltipy_obj->get_tooltips();
+
+        $matches = array();
+        foreach($tooltips as $tltp){
+            preg_match( '/'.$tltp->post_title.'/i', $content, $mt);
+            $matches = array_merge($matches, $mt);
+        }
+
+        return $matches;
     }
 
     function save_metabox_fields( $post_id ){
@@ -118,8 +135,26 @@ class Tooltipy_Posts_Metaboxes{
     }
     
     function matched_tooltips_field($meta_field_id){
+        $matched_tooltips = get_post_meta( get_the_id(), $meta_field_id ,true);
         ?>
-        <p style="color:green;">TODO : here the matched tooltips in this post should show up.</p>
+        <h4><?php _e('Tooltips in this post', 'tooltipy-lang'); ?></h4>
+        <?php
+        if( empty($matched_tooltips) ){
+            ?>
+            <p style="color:red;"><?php _e('No tooltips matched yet', 'tooltipy-lang'); ?></p>
+            <?php
+            return false;
+        }
+        ?>
+        <ul style="padding: 0px 10px;">
+            <?php
+            foreach ($matched_tooltips as $tltp) {
+              ?>
+              <li style="color:green;"><?php echo($tltp); ?></li>
+              <?php  
+            }
+            ?>
+        </ul>
         <?php
     }
 

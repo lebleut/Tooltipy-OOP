@@ -215,4 +215,14 @@ class Tooltipy {
 		return $this->version;
 	}
 
+	public function get_tooltips(){
+		$args = array(
+			'posts_per_page' => -1,
+			'post_type'   =>  $this->get_plugin_name()
+		  );
+		   
+		$tooltips = get_posts( $args );
+		
+		return $tooltips;
+	}
 }

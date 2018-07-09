@@ -56,10 +56,10 @@ class Tooltipy_Public {
 
 	// The main filtering content of Tooltipy
 	function filter_content($content){
-		global $tooltipy_obj, $post_type;
+		global $post_type;
 
 		// Don't filter Tooltipy post types them selves
-		if( $tooltipy_obj->get_plugin_name() == $post_type ){
+		if( Tooltipy::get_plugin_name() == $post_type ){
 			return $content;
 		}
 
@@ -131,7 +131,6 @@ class Tooltipy_Public {
 
 	// Register Tooltipy Post Type
 	function tooltipy_post_type() {
-		global $tooltipy_obj;
 
 		$labels = array(
 			'name'                  => _x( 'Tooltips', 'Post Type General Name', 'tooltipy-lang' ),
@@ -193,7 +192,7 @@ class Tooltipy_Public {
 			'show_in_rest'          => true,
 		);
 
-		register_post_type( $tooltipy_obj->get_plugin_name(), $args );
+		register_post_type( Tooltipy::get_plugin_name(), $args );
 
 		// Tooltips category taxonomy
 		$cat_args = array(
@@ -207,7 +206,7 @@ class Tooltipy_Public {
 
 		register_taxonomy(
 			'tooltip_cat',
-			$tooltipy_obj->get_plugin_name(),
+			Tooltipy::get_plugin_name(),
 			$cat_args
 		);
 		

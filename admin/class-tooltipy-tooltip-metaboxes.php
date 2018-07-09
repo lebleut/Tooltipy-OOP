@@ -29,20 +29,16 @@ class Tooltipy_Tooltip_Metaboxes{
     }
     
     public function meta_box_after_title(){
-        global $tooltipy_obj;
-    
         do_meta_boxes(
-            $tooltipy_obj->get_plugin_name(),
+            Tooltipy::get_plugin_name(),
             'tooltipy_after_title',
             '' 
         );
     }
 
     function add_meta_boxes( $post_type, $context, $post ){
-        global $tooltipy_obj;
-
         // Only for Tooltipy
-        if( $tooltipy_obj->get_plugin_name() != $post_type ){
+        if( Tooltipy::get_plugin_name() != $post_type ){
             return false;
         }
 
@@ -56,9 +52,8 @@ class Tooltipy_Tooltip_Metaboxes{
     }
 
     function save_metabox_fields( $post_id ){
-        global $tooltipy_obj;
 
-        if( !empty($_POST['post_type']) && $_POST['post_type'] != $tooltipy_obj->get_plugin_name() ){
+        if( !empty($_POST['post_type']) && $_POST['post_type'] != Tooltipy::get_plugin_name() ){
             return false;
         }
 

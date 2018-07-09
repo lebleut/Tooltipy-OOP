@@ -17,11 +17,9 @@ class Tooltipy_Posts_Metaboxes{
     }
 
     function filter_matched_tooltips($old_val, $post_vars){
-        global $tooltipy_obj;
-
         $content = $post_vars['post_content'];
 
-        $tooltips = $tooltipy_obj->get_tooltips();
+        $tooltips = Tooltipy::get_tooltips();
 
         $matched_tooltips = array();
         foreach($tooltips as $tltp){
@@ -39,10 +37,8 @@ class Tooltipy_Posts_Metaboxes{
     }
 
     function save_metabox_fields( $post_id ){
-        global $tooltipy_obj;
-
         // Not for Tooltipy post type
-        if( !empty($_POST['post_type']) && $_POST['post_type'] == $tooltipy_obj->get_plugin_name() ){
+        if( !empty($_POST['post_type']) && $_POST['post_type'] == Tooltipy::get_plugin_name() ){
             return false;
         }
 
@@ -66,10 +62,8 @@ class Tooltipy_Posts_Metaboxes{
     }
 
     function add_meta_boxes( $post_type, $context, $post ){
-        global $tooltipy_obj;
-
         // For all posts except Tooltipy
-        if( $tooltipy_obj->get_plugin_name() == $post_type ){
+        if( Tooltipy::get_plugin_name() == $post_type ){
             return false;
         }
 

@@ -21,15 +21,13 @@ class Tooltipy_Settings {
 	}
 
     public function create_plugin_settings_page() {
-		global $tooltipy_obj;
-
 		// Add the menu item and page
 		$page_title = __('Tooltipy settings','tooltipy-lang');
 		$menu_title = __( 'Settings', 'tooltipy-lang' );
 		$capability = 'manage_options';
 		$slug = 'tooltipy_settings';
 		$callback = array( $this, 'plugin_settings_page_content' );
-		$post_type = $tooltipy_obj->get_plugin_name();
+		$post_type = Tooltipy::get_plugin_name();
 	
 		add_submenu_page( 'edit.php?post_type='.$post_type, $page_title, $menu_title, $capability, $slug, $callback );
 	}

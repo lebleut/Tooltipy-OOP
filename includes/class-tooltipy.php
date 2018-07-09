@@ -46,7 +46,7 @@ class Tooltipy {
 	 * @access   protected
 	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
 	 */
-	protected $plugin_name;
+	protected static $plugin_name = 'tooltipy';
 
 	/**
 	 * The current version of the plugin.
@@ -68,7 +68,6 @@ class Tooltipy {
 	 */
 	public function __construct() {
 
-		$this->plugin_name = 'tooltipy';
 		$this->version = '4.0.0';
 
 		$this->load_dependencies();
@@ -150,7 +149,7 @@ class Tooltipy {
 	 */
 	private function define_admin_hooks() {
 		
-		$plugin_admin = new Tooltipy_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Tooltipy_Admin( self::get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -165,7 +164,7 @@ class Tooltipy {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Tooltipy_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Tooltipy_Public( self::get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'init',  $plugin_public, 'tooltipy_post_type' );	
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
@@ -191,8 +190,8 @@ class Tooltipy {
 	 * @since     4.0.0
 	 * @return    string    The name of the plugin.
 	 */
-	public function get_plugin_name() {
-		return $this->plugin_name;
+	public static function get_plugin_name() {
+		return self::$plugin_name;
 	}
 
 	/**
@@ -218,7 +217,7 @@ class Tooltipy {
 	public function get_tooltips(){
 		$args = array(
 			'posts_per_page' => -1,
-			'post_type'   =>  $this->get_plugin_name()
+			'post_type'   =>  self::get_plugin_name()
 		  );
 		   
 		$tooltips = get_posts( $args );

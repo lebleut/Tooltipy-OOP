@@ -165,11 +165,41 @@ class Tooltipy_Admin {
 	}
 
 	function column_case_sensitive_content($post_id){
-		echo get_post_meta($post_id, 'tltpy_case_sensitive', true );
+		$case_sensitive = get_post_meta($post_id, 'tltpy_case_sensitive', true );
+		if( $case_sensitive ){
+			$style = 'style="color:white; background: #2ECC71; padding: 4px;"';
+			?>
+			<span <?php echo $style; ?> >
+				<?php _e('is case sensitive', 'tooltipy-lang' ); ?>
+			</span>
+			<?php
+		}else{
+			$style = 'style="color:white; background: #D91E18; padding: 4px;"';
+			?>
+			<span <?php echo $style; ?> >
+				<?php _e('NOT case sensitive', 'tooltipy-lang' ); ?>
+			</span>
+			<?php
+		}
 	}
 
 	function column_prefix_content($post_id){
-		echo get_post_meta($post_id, 'tltpy_is_prefix', true );
+		$is_prefix = get_post_meta($post_id, 'tltpy_is_prefix', true );
+		if( $is_prefix ){
+			$style = 'style="color:white; background: #2ECC71; padding: 4px;"';
+			?>
+			<span <?php echo $style; ?> >
+				<?php _e('is a prefix', 'tooltipy-lang' ); ?>
+			</span>
+			<?php
+		}else{
+			$style = 'style="color:white; background: #D91E18; padding: 4px;"';
+			?>
+			<span <?php echo $style; ?> >
+				<?php _e('NOT prefix', 'tooltipy-lang' ); ?>
+			</span>
+			<?php
+		}
 	}
 
 	function column_youtube_content( $post_id ){

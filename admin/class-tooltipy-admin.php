@@ -178,8 +178,8 @@ class Tooltipy_Admin {
 		if( $synonyms ){
 			$synonyms_arr = explode( '|', $synonyms );
 			$synonyms_arr = array_map( 'trim', $synonyms_arr );
-			$syn_style = 'style="background: grey;color: white;padding: 4px;margin-bottom: 4px; display: inline-block;"';
-			echo "<span $syn_style>".implode( "</span>&nbsp;<span $syn_style>", $synonyms_arr )."</span>";
+			$syn_class = 'tltpy-cell-synonym';
+			echo "<span class='$syn_class'>".implode( "</span>&nbsp;<span class='$syn_class'>", $synonyms_arr )."</span>";
 		} 
 	}
 
@@ -188,16 +188,16 @@ class Tooltipy_Admin {
 		echo "<div class='data' style='display:none;'>" . $case_sensitive . "</div>";
 
 		if( $case_sensitive ){
-			$style = 'style="color:white; background: #2ECC71; padding: 4px;"';
+			$class = 'tltpy-cell-yes';
 			?>
-			<span <?php echo $style; ?> >
+			<span class="<?php echo $class; ?>" >
 				<?php _e('is case sensitive', 'tooltipy-lang' ); ?>
 			</span>
 			<?php
 		}else{
-			$style = 'style="color:white; background: #D91E18; padding: 4px;"';
+			$class = 'tltpy-cell-no';
 			?>
-			<span <?php echo $style; ?> >
+			<span class="<?php echo $class; ?>" >
 				<?php _e('NOT case sensitive', 'tooltipy-lang' ); ?>
 			</span>
 			<?php
@@ -209,16 +209,16 @@ class Tooltipy_Admin {
 		echo "<div class='data' style='display:none;'>" . $is_prefix . "</div>";
 
 		if( $is_prefix ){
-			$style = 'style="color:white; background: #2ECC71; padding: 4px;"';
+			$class = 'tltpy-cell-yes';
 			?>
-			<span <?php echo $style; ?> >
+			<span class="<?php echo $class; ?>" >
 				<?php _e('is a prefix', 'tooltipy-lang' ); ?>
 			</span>
 			<?php
 		}else{
-			$style = 'style="color:white; background: #D91E18; padding: 4px;"';
+			$class = 'tltpy-cell-no';
 			?>
-			<span <?php echo $style; ?> >
+			<span class="<?php echo $class; ?>" >
 				<?php _e('NOT prefix', 'tooltipy-lang' ); ?>
 			</span>
 			<?php

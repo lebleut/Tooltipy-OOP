@@ -2,22 +2,25 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
-
+ .tltpy-cell-yes,
+ .tltpy-cell-no,
+ .tltpy-cell-synonym{
+    border-radius: 8px;
+    padding: 4px 6px;
+    margin-bottom: 4px;
+    display: inline-block;
+ }
+ 
 .tltpy-cell-yes{
-    color: #24292e;
+    color: #1b1f2380;;
     background: #e6ffed;
-    padding: 4px;
 }
 .tltpy-cell-no{
-    color: #24292e;
+    color:  #1b1f2380;;
     background: #ffeef0;
-    padding: 4px;
 }
 
 .tltpy-cell-synonym{
-    background: grey;
-    color: white;
-    padding: 4px;
-    margin-bottom: 4px;
-    display: inline-block;
+    color:#24292e;
+    background: #dbedff;
 }

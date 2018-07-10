@@ -47,10 +47,12 @@ jQuery(function($){
  
 		// define: prices, featured products and the bulk edit table row
 		var bulk_edit_row = $( 'tr#bulk-edit' ),
-		    post_ids = new Array()
-		    tltpy_synonyms = bulk_edit_row.find( 'input[name="tltpy_synonyms"]' ).val(),
-		    tltpy_is_prefix = bulk_edit_row.find( 'input[name="tltpy_is_prefix"]' ).attr('checked') ? 1 : 0;
-		    tltpy_case_sensitive = bulk_edit_row.find( 'input[name="tltpy_case_sensitive"]' ).attr('checked') ? 1 : 0;
+            post_ids = new Array()
+            
+        var tltpy_synonyms = bulk_edit_row.find( 'input[name="tltpy_synonyms"]' ).val()
+            
+		var tltpy_is_prefix = bulk_edit_row.find( 'select[name="tltpy_is_prefix"]' ).val()
+		var tltpy_case_sensitive = bulk_edit_row.find( 'select[name="tltpy_case_sensitive"]' ).val()
  
 		// now we have to obtain the post IDs selected for bulk edit
 		bulk_edit_row.find( '#bulk-titles' ).children().each( function() {

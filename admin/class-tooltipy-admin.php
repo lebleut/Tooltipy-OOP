@@ -73,9 +73,13 @@ class Tooltipy_Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_edits_script' ) );
 
 		// Quick edit
-		add_filter('quick_edit_custom_box', array( $this, 'quick_edit_add' ), 10, 2 );
+		add_filter( 'quick_edit_custom_box', array( $this, 'quick_edit_add' ), 10, 2 );
 		add_action( 'save_post', array( $this, 'quick_edit_save') );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_quick_edit_population' ) );
+
+		// Bulk edit
+		add_action('bulk_edit_custom_box', array( $this, 'bulk_edit_add' ), 10, 2 );
+		add_action( 'wp_ajax_tltpy_bulk_save', array( $this, 'bulk_edit_save_hook' ) ); 
+	
 	}
 
 	/**
@@ -304,7 +308,7 @@ class Tooltipy_Admin {
 				break;
 		}
 	}
- 
+
 	function quick_edit_save( $post_id ){
 	
 		// check user capabilities
@@ -335,6 +339,112 @@ class Tooltipy_Admin {
 		$is_prefix = apply_filters( 'tltpy_tooltip_metabox_field_before_save_' . 'tltpy_is_prefix', $is_prefix, $_POST);
 
 		update_post_meta( $post_id, 'tltpy_is_prefix', $is_prefix );
+	}
+	
+	function bulk_edit_add( $column_name, $post_type ){
+		// Only for Tooltipy post type
+		if( Tooltipy::get_plugin_name() != $post_type ){
+			return false;
+		}
+
+		switch ( $column_name ) {
+			case 'tltpy_synonyms':
+				// You can also print Nonce here, do not do it ouside the switch() because it will be printed many times
+				wp_nonce_field( 'tltpy_bulk_edit_nonce', 'tooltipy_nonce' );
+
+				// for the FIRST column only, it opens <fieldset> element, all our fields will be there
+				echo '<fieldset class="inline-edit-col-right">
+						<div class="inline-edit-col">
+							<div class="inline-edit-group wp-clearfix">';
+				?>
+							<label class="alignleft">
+								<span class="title"><?php _e( 'Synonyms', 'tooltipy-lang' ); ?></span>
+								<span class="input-text-wrap">
+									<input type="text" name="tltpy_synonyms" value="">
+								</span>
+							</label>
+				<?php
+				echo('</div></div></fieldset>');
+				break;
+			case 'tltpy_case_sensitive':
+				echo '<fieldset class="inline-edit-col-right">
+							<div class="inline-edit-col">
+								<div class="inline-edit-group wp-clearfix">';
+				?>
+						<label class="alignleft">
+							<span class="title"><?php _e( 'Case sensitive', 'tooltipy-lang' ); ?></span>
+							<select name="tltpy_case_sensitive">
+								<option value="-1">— <?php _e( 'No Change' ); ?> —</option>
+								<option value="yes"><?php _e( 'Yes' ); ?></option>
+								<option value="no"><?php _e( 'No' ); ?></option>
+							</select>
+						</label>
+				<?php
+				echo('</div></div></fieldset>');
+				break;
+
+			case 'tltpy_is_prefix':
+				echo '<fieldset class="inline-edit-col-right">
+							<div class="inline-edit-col">
+								<div class="inline-edit-group wp-clearfix">';
+				?>
+							<label class="alignleft">
+								<span class="title"><?php _e( 'Prefix', 'tooltipy-lang' ); ?></span>
+								<select name="tltpy_is_prefix">
+									<option value="-1">— <?php _e( 'No Change' ); ?> —</option>
+									<option value="yes"><?php _e( 'Yes' ); ?></option>
+									<option value="no"><?php _e( 'No' ); ?></option>
+								</select>
+							</label>
+				<?php
+						// for the LAST column only - closing the fieldset element
+				echo('</div></div></fieldset>');
+				break;
+
+			default:
+				break;
+		}
+	}
+
+	function bulk_edit_save_hook() {
+
+		// you can check the same nonce we added in Quick Edit tutorial
+		if ( !wp_verify_nonce( $_POST['nonce'], 'tltpy_bulk_edit_nonce' ) ) {
+			die();
+		}
+	
+		// well, if post IDs are empty, it is nothing to do here
+		if( empty( $_POST[ 'post_ids' ] ) ) {
+			die();
+		}
+
+		// for each post ID
+		foreach( $_POST[ 'post_ids' ] as $post_id ) {
+	
+			// if price is empty, maybe we shouldn't change it
+			if( !empty( $_POST[ 'tltpy_synonyms' ] ) ) {
+				$synonyms = $_POST[ 'tltpy_synonyms' ];
+				$synonyms = apply_filters( 'tltpy_tooltip_metabox_field_before_save_' . 'tltpy_synonyms', $synonyms, $_POST);
+				update_post_meta( $post_id, 'tltpy_synonyms', $synonyms );
+			}
+
+			// update checkbox
+			if( "-1" != $_POST['tltpy_case_sensitive'] ){ // if not NO CHANGE
+				$case_sensitive = !empty( $_POST['tltpy_case_sensitive'] ) && strtolower($_POST['tltpy_case_sensitive']) == 'yes' ? 'on' : '';
+				$case_sensitive = apply_filters( 'tltpy_tooltip_metabox_field_before_save_' . 'tltpy_case_sensitive', $case_sensitive, $_POST);
+	
+				update_post_meta( $post_id, 'tltpy_case_sensitive', $case_sensitive );
+			}
+
+			if( "-1" != $_POST['tltpy_is_prefix'] ){ // if not NO CHANGE
+				$prefix = !empty( $_POST['tltpy_is_prefix'] ) && strtolower($_POST['tltpy_is_prefix']) == 'yes' ? 'on' : '';
+				$prefix = apply_filters( 'tltpy_tooltip_metabox_field_before_save_' . 'tltpy_is_prefix', $prefix, $_POST);
+	
+				update_post_meta( $post_id, 'tltpy_is_prefix', $prefix );	
+			}
+		}
+	
+		die();
 	}
 
 	function enqueue_edits_script( $page_hook ){

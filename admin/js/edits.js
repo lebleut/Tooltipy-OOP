@@ -49,8 +49,6 @@ jQuery(function($){
 		var bulk_edit_row = $( 'tr#bulk-edit' ),
             post_ids = new Array()
             
-        var tltpy_synonyms = bulk_edit_row.find( 'input[name="tltpy_synonyms"]' ).val()
-            
 		var tltpy_is_prefix = bulk_edit_row.find( 'select[name="tltpy_is_prefix"]' ).val()
 		var tltpy_case_sensitive = bulk_edit_row.find( 'select[name="tltpy_case_sensitive"]' ).val()
  
@@ -68,7 +66,6 @@ jQuery(function($){
 			data: {
 				action: 'tltpy_bulk_save',
                 post_ids: post_ids, 
-                tltpy_synonyms: tltpy_synonyms,
                 tltpy_is_prefix: tltpy_is_prefix,
                 tltpy_case_sensitive: tltpy_case_sensitive,
 				nonce: $('#tooltipy_nonce').val()

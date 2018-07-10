@@ -321,7 +321,7 @@ class Tooltipy_Admin {
 			return;
 		}
 	
-		// update the price
+		// update the synonyms
 		if ( isset( $_POST['tltpy_synonyms'] ) ) {
 			$synonyms = $_POST['tltpy_synonyms'];
 			$synonyms = apply_filters( 'tltpy_tooltip_metabox_field_before_save_' . 'tltpy_synonyms', $synonyms, $_POST);
@@ -348,25 +348,10 @@ class Tooltipy_Admin {
 		}
 
 		switch ( $column_name ) {
-			case 'tltpy_synonyms':
+			case 'tltpy_case_sensitive':
 				// You can also print Nonce here, do not do it ouside the switch() because it will be printed many times
 				wp_nonce_field( 'tltpy_bulk_edit_nonce', 'tooltipy_nonce' );
 
-				// for the FIRST column only, it opens <fieldset> element, all our fields will be there
-				echo '<fieldset class="inline-edit-col-right">
-						<div class="inline-edit-col">
-							<div class="inline-edit-group wp-clearfix">';
-				?>
-							<label class="alignleft">
-								<span class="title"><?php _e( 'Synonyms', 'tooltipy-lang' ); ?></span>
-								<span class="input-text-wrap">
-									<input type="text" name="tltpy_synonyms" value="">
-								</span>
-							</label>
-				<?php
-				echo('</div></div></fieldset>');
-				break;
-			case 'tltpy_case_sensitive':
 				echo '<fieldset class="inline-edit-col-right">
 							<div class="inline-edit-col">
 								<div class="inline-edit-group wp-clearfix">';
@@ -421,13 +406,6 @@ class Tooltipy_Admin {
 		// for each post ID
 		foreach( $_POST[ 'post_ids' ] as $post_id ) {
 	
-			// if price is empty, maybe we shouldn't change it
-			if( !empty( $_POST[ 'tltpy_synonyms' ] ) ) {
-				$synonyms = $_POST[ 'tltpy_synonyms' ];
-				$synonyms = apply_filters( 'tltpy_tooltip_metabox_field_before_save_' . 'tltpy_synonyms', $synonyms, $_POST);
-				update_post_meta( $post_id, 'tltpy_synonyms', $synonyms );
-			}
-
 			// update checkbox
 			if( "-1" != $_POST['tltpy_case_sensitive'] ){ // if not NO CHANGE
 				$case_sensitive = !empty( $_POST['tltpy_case_sensitive'] ) && strtolower($_POST['tltpy_case_sensitive']) == 'yes' ? 'on' : '';

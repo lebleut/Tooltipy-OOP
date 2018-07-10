@@ -78,8 +78,15 @@ class Tooltipy_Public {
 			if($is_case_sensitive){
 				$case_sensitive_modifier = '';
 			}
+
+			$tooltip_post = get_post($tooltip['tooltip_id']);
+
+			// Tooltip content formatted for the title attrib
+			$tooltip_content = $tooltip_post->post_content;
+			$tooltip_content = esc_attr( wp_strip_all_tags( $tooltip_content ) );
+
 			array_push($patterns, '/('.$tooltip['tooltip_title'].')/'.$case_sensitive_modifier);
-			array_push($replacements, '<span style="color:green;" tooltip-id="'.$tooltip['tooltip_id'].'">$1</span>');
+			array_push($replacements, '<span style="color:green;" tooltip-id="'.$tooltip['tooltip_id'].'" title="' . $tooltip_content . '">$1</span>');
 		}
 
 		$limit = get_option('tltpy_match_all_occurrences',false) ? -1 : 1;

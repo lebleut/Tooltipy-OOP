@@ -69,6 +69,9 @@ class Tooltipy_Admin {
 		new Tooltipy_Tooltip_Metaboxes();
 		new Tooltipy_Posts_Metaboxes();
 
+		// Script needed for edit page (quick edit& bulk edit ...)
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_edits_script' ) );
+
 		// Quick edit
 		add_filter('quick_edit_custom_box', array( $this, 'quick_edit_add' ), 10, 2 );
 		add_action( 'save_post', array( $this, 'quick_edit_save') );
@@ -334,13 +337,13 @@ class Tooltipy_Admin {
 		update_post_meta( $post_id, 'tltpy_is_prefix', $is_prefix );
 	}
 
-	function enqueue_quick_edit_population( $page_hook ){
+	function enqueue_edits_script( $page_hook ){
 
 		// do nothing if we are not on the target pages
 		if ( 'edit.php' != $page_hook ) {
 			return;
 		}
 	
-		wp_enqueue_script( 'tltpy_populate_quick_edit', plugin_dir_url( __FILE__ ) . 'js/quick-edit.js', array( 'jquery' ) );
+		wp_enqueue_script( 'tltpy_edits', plugin_dir_url( __FILE__ ) . 'js/edits.js', array( 'jquery' ) );
 	}
 }

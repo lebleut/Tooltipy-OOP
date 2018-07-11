@@ -55,7 +55,7 @@ class Tooltipy_Public {
 	}
 
 	// The main filtering content of Tooltipy
-	function filter_content($content){
+	function filter_content( $content ){
 		global $post_type;
 
 		// Don't filter Tooltipy post types them selves
@@ -63,9 +63,16 @@ class Tooltipy_Public {
 			return $content;
 		}
 
-		$matched_tooltips = get_post_meta( get_the_id(), 'tltpy_matched_tooltips', true );
+		// Current post meta data
+		$exclude_me 		= get_post_meta( get_the_id(), 'tltpy_exclude_me', true );
+		$matched_tooltips 	= get_post_meta( get_the_id(), 'tltpy_matched_tooltips', true );
+		$exclude_tooltips	= get_post_meta( get_the_id(), 'tltpy_exclude_tooltips', true );
 
-		if( empty( $matched_tooltips ) ){
+		$exclude_tooltips = explode( ',', $exclude_tooltips );
+		$exclude_tooltips = array_map( 'trim', $exclude_tooltips );
+		$exclude_tooltips = array_map( 'strtolower', $exclude_tooltips );
+
+		if( empty( $matched_tooltips ) || $exclude_me ){
 			return $content;
 		}
 
@@ -73,9 +80,17 @@ class Tooltipy_Public {
 		$replacements = array();
 
 		foreach ($matched_tooltips as $tooltip) {
+			if( in_array( strtolower($tooltip['tooltip_title']), $exclude_tooltips ) ){
+				continue;
+			}
 			$case_sensitive_modifier = 'i';
-			$is_case_sensitive = get_post_meta( $tooltip['tooltip_id'], 'tltpy_case_sensitive', true);
-			if($is_case_sensitive){
+
+			// Tooltips meta data
+			$tt_synonyms			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_synonyms', true);
+			$tt_is_prefix			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_is_prefix', true);
+			$tt_is_case_sensitive	= get_post_meta( $tooltip['tooltip_id'], 'tltpy_case_sensitive', true);
+
+			if($tt_is_case_sensitive){
 				$case_sensitive_modifier = '';
 			}
 

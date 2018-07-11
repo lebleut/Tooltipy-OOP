@@ -92,6 +92,9 @@ class Tooltipy_Public {
 
 			$tt_synonyms_arr = explode( '|', $tt_synonyms );
 			$tt_synonyms_arr = array_map( 'trim', $tt_synonyms_arr );
+			
+			// Add main keyword to synonyms array
+			array_push( $tt_synonyms_arr, $tooltip['tooltip_title']);
 
 			if($tt_is_case_sensitive){
 				$case_sensitive_modifier = '';
@@ -103,13 +106,20 @@ class Tooltipy_Public {
 			$tooltip_content = $tooltip_post->post_content;
 			$tooltip_content = esc_attr( wp_strip_all_tags( $tooltip_content ) );
 
-			array_push($patterns, '/('.$tooltip['tooltip_title'].')/'.$case_sensitive_modifier);
-			array_push($replacements, '<span style="color:green;" tooltip-id="'.$tooltip['tooltip_id'].'" title="' . $tooltip_content . '">$1</span>');
+			$before = '(^|\s|\W)'; // Group 1 in regex $1
+			$after = '($|\s|\W)'; // Group 3 in regex $3
+			$inner_after = '';
 
+			// If is prefix
+			if( $tt_is_prefix ){
+				$inner_after = '\w*';
+			}
+
+			// Consider the main keyword and synonyms
 			foreach ($tt_synonyms_arr as $synonym) {
 				if( !empty( $synonym ) ){
-					array_push($patterns, '/('.$synonym.')/'.$case_sensitive_modifier);
-					array_push($replacements, '<span style="color:green;" tooltip-id="'.$tooltip['tooltip_id'].'" title="' . $tooltip_content . '">$1</span>');
+					array_push($patterns, '/' . $before . '('.$synonym . $inner_after . ')' . $after . '/'.$case_sensitive_modifier);
+					array_push($replacements, '$1<span style="color:green;" tooltip-id="'.$tooltip['tooltip_id'].'" title="' . $tooltip_content . '">$2</span>$3');
 				}
 			}
 		}

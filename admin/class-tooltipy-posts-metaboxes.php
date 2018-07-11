@@ -67,14 +67,18 @@ class Tooltipy_Posts_Metaboxes{
             return false;
         }
 
-        add_meta_box(
-            'tltpy_posts_metabox',
-            __('Related tooltips settings','tooltipy-lang'),
-            array( $this, 'metabox_render' ) ,
-            null,
-            'side',
-            'high'
-        );
+        //for post types except my_keywords
+        $all_post_types = get_post_types();
+        foreach($all_post_types as $screen) {
+            add_meta_box(
+                'tltpy_posts_metabox',
+                __('Related tooltips settings','tooltipy-lang'),
+                array( $this, 'metabox_render' ) ,
+                $screen,
+                'side',
+                'high'
+            );
+        }
     }
 
     static function get_metabox_fields(){

@@ -1,6 +1,34 @@
 <?php
 add_filter( 'tltpy_setting_fields', function( $fields ){
+    $args = array(
+        'sort_order' => 'asc',
+        'sort_column' => 'post_title',
+        'post_type' => 'page',
+    );
+
+    $pages = get_pages( $args );
+
+    $all_pages = array(
+        '' => __( 'Select a page', 'tooltipy-lang' )
+    );
+    foreach ($pages as $page) {
+        $all_pages[$page->ID] = $page->post_title;
+    }
+
     $glossary_settings = array(
+        array(
+            'tab' 			=> 'glossary',
+            'section' 		=> 'general',
+            
+            'uid' 			=> 'glossary_page',
+            'type' 			=> 'select',
+
+            'label' 		=> __( 'Glossary page', 'tooltipy-lang' ),
+            'helper' 		=> __( 'Select the page on which the glossary will show up', 'tooltipy-lang' ),
+
+            'options' 		=> $all_pages,
+            'default' 		=> array( '' ),
+        ),
         array(
             'tab' 			=> 'glossary',
             'section' 		=> 'general',
@@ -69,21 +97,11 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'uid' 			=> 'add_glossary_link',
             'type' 			=> 'checkbox',
 
-            'label' 		=> __( 'Add glossary link page in the tooltips footer', 'tooltipy-lang' ),
+            'label' 		=> __( 'Add glossary link', 'tooltipy-lang' ),
 
             'options' 		=> array(
-                'yes' 		=> __( 'Add glossary link', 'tooltipy-lang' ),
+                'yes' 		=> __( 'Add glossary link page in the tooltips footer', 'tooltipy-lang' ),
             ),
-        ),
-        array(
-            'tab' 			=> 'glossary',
-            'section' 		=> 'page',
-            
-            'uid' 			=> 'glossary_link',
-            'type' 			=> 'text',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
-
-            'label' 		=> __( 'Glossary page link', 'tooltipy-lang' ),
-            'placeholder' 	=> 'http://...',
         ),
         array(
             'tab' 			=> 'glossary',

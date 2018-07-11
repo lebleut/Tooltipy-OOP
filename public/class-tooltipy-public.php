@@ -90,6 +90,9 @@ class Tooltipy_Public {
 			$tt_is_prefix			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_is_prefix', true);
 			$tt_is_case_sensitive	= get_post_meta( $tooltip['tooltip_id'], 'tltpy_case_sensitive', true);
 
+			$tt_synonyms_arr = explode( '|', $tt_synonyms );
+			$tt_synonyms_arr = array_map( 'trim', $tt_synonyms_arr );
+
 			if($tt_is_case_sensitive){
 				$case_sensitive_modifier = '';
 			}
@@ -102,11 +105,38 @@ class Tooltipy_Public {
 
 			array_push($patterns, '/('.$tooltip['tooltip_title'].')/'.$case_sensitive_modifier);
 			array_push($replacements, '<span style="color:green;" tooltip-id="'.$tooltip['tooltip_id'].'" title="' . $tooltip_content . '">$1</span>');
+
+			foreach ($tt_synonyms_arr as $synonym) {
+				if( !empty( $synonym ) ){
+					array_push($patterns, '/('.$synonym.')/'.$case_sensitive_modifier);
+					array_push($replacements, '<span style="color:green;" tooltip-id="'.$tooltip['tooltip_id'].'" title="' . $tooltip_content . '">$1</span>');
+				}
+			}
 		}
 
 		$limit = get_option('tltpy_match_all_occurrences',false) ? -1 : 1;
-		$content = preg_replace( $patterns, $replacements, $content, $limit);
 
+		$content = $this->text_nodes_replace( $patterns, $replacements, $content, $limit );
+
+		return $content;
+	}
+
+	/**
+	 * text_nodes_replace : execute preg_replace just for text html dom nodes
+	 * that means that it doesn't affect HTML tags
+	 */
+	function text_nodes_replace( $patterns, $replacements, $content, $limit ){
+		include_once( TOOLTIPY_BASE_DIR . '/includes/libraries/simple-html-dom/simple_html_dom.php');
+
+		foreach( $patterns as $key => $pat ){
+			$html_obj = str_get_html( $content );
+			$text_nodes = $html_obj->find('text');
+
+			foreach($text_nodes as $line) {
+				$line->innertext = preg_replace( $patterns[$key], $replacements[$key], $line->innertext, $limit);
+			}
+			$content = $html_obj;
+		}				
 		return $content;
 	}
 	/**

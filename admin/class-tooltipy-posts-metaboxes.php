@@ -13,10 +13,27 @@ class Tooltipy_Posts_Metaboxes{
     // Filter metabox fields before save if needed
     public function filter_metabox_fields(){
         // Filter fields here
-        add_filter('tltpy_posts_metabox_field_before_save_tltpy_matched_tooltips', array($this, 'filter_matched_tooltips'), 10, 2);
+        add_filter('tltpy_posts_metabox_field_before_save_' . 'tltpy_matched_tooltips', array($this, 'filter_matched_tooltips'), 10, 2 );
+        add_filter('tltpy_posts_metabox_field_before_save_' . 'tltpy_exclude_tooltips', array($this, 'filter_exclude_tooltips'), 10, 2 );
     }
 
-    function filter_matched_tooltips($old_val, $post_vars){
+    function filter_exclude_tooltips( $old_value, $post_vars ){
+        $new_value = '';
+
+        $arr_value = explode( ',', $old_value);
+        $arr_value = array_map( 'trim', $arr_value );
+        $arr_value = array_map( 'strtolower', $arr_value );
+
+        foreach ($arr_value as $key => $value) {
+            if( empty($value) ){
+                unset( $arr_value[$key] );
+            }
+        }
+        $new_value = implode( ', ', $arr_value );
+
+        return $new_value;
+    }
+    function filter_matched_tooltips( $old_value, $post_vars ){
         $content = $post_vars['post_content'];
 
         $tooltips = Tooltipy::get_tooltips();

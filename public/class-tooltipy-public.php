@@ -309,10 +309,22 @@ class Tooltipy_Public {
 		<?php
 			$posts_metabox_fields = Tooltipy_Posts_Metaboxes::get_metabox_fields();
 			foreach ($posts_metabox_fields as $field) {
+				$meta_val = get_post_meta(get_the_ID(), $field['meta_field_id'], true );
+
+				$meta_str = '';
+				if( is_array($meta_val) ){
+					$meta_str = array();
+					foreach ($meta_val as $val) {
+						 array_push( $meta_str, $val['tooltip_title'].' ('.$val['tooltip_id'].')' );
+					}
+					$meta_str = implode( ', ', $meta_str );
+				}else{
+					$meta_str = $meta_val;
+				}
 				?>
 				<li>
 					<b><?php echo($field['meta_field_id']); ?></b>
-					<span>( <?php echo( get_post_meta(get_the_ID(), $field['meta_field_id'], true ) ); ?> )</span>
+					<span>( <?php echo( $meta_str ); ?> )</span>
 				</li>
 				<?php
 			}

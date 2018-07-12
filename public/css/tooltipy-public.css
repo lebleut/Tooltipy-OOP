@@ -2,3 +2,9 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+ .tooltipy-kw{
+    color: #2196F3;
+    font-weight: bold;
+    border-bottom: #FF5722 1px dashed;
+ }

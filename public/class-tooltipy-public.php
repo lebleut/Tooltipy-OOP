@@ -85,6 +85,17 @@ class Tooltipy_Public {
 			}
 			$case_sensitive_modifier = 'i';
 
+			$keyword_classes = array(
+				'tooltipy-kw',
+				'tooltipy-kw-'. $tooltip['tooltip_id'],
+			);
+
+			$tooltip_categories = wp_get_post_terms( $tooltip['tooltip_id'], Tooltipy::get_taxonomy(), array("fields" => "ids") );
+			
+			foreach ($tooltip_categories as $key => $value) {
+				array_push( $keyword_classes, "tooltipy-kw-cat-".$value );
+			}
+
 			// Tooltips meta data
 			$tt_synonyms			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_synonyms', true);
 			$tt_is_prefix			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_is_prefix', true);
@@ -98,6 +109,8 @@ class Tooltipy_Public {
 
 			if($tt_is_case_sensitive){
 				$case_sensitive_modifier = '';
+				
+				array_push( $keyword_classes, 'tooltipy-case-sensitive' );
 			}
 
 			$tooltip_post = get_post($tooltip['tooltip_id']);
@@ -113,13 +126,17 @@ class Tooltipy_Public {
 			// If is prefix
 			if( $tt_is_prefix ){
 				$inner_after = '\w*';
+
+				array_push( $keyword_classes, 'tooltipy-prefix' );
 			}
+
+			$keyword_classes = apply_filters( 'tltpy_keyword_classes', $keyword_classes );
 
 			// Consider the main keyword and synonyms
 			foreach ($tt_synonyms_arr as $synonym) {
 				if( !empty( $synonym ) ){
 					array_push($patterns, '/' . $before . '('.$synonym . $inner_after . ')' . $after . '/'.$case_sensitive_modifier);
-					array_push($replacements, '$1<span style="color:green;" tooltip-id="'.$tooltip['tooltip_id'].'" title="' . $tooltip_content . '">$2</span>$3');
+					array_push($replacements, '$1<span class="' . implode( ' ', $keyword_classes) . '" data-tooltip="'.$tooltip['tooltip_id'].'" title="' . $tooltip_content . '">$2</span>$3');
 				}
 			}
 		}

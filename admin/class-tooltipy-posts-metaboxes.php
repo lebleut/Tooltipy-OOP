@@ -8,6 +8,31 @@ class Tooltipy_Posts_Metaboxes{
         $this->filter_metabox_fields();
 
         add_action('save_post', array( $this, 'save_metabox_fields' ) );
+
+        // Regenerate matched tooltips when restoring a post revision
+        add_action( 'wp_restore_post_revision', array( $this, 'regenerate_matched_tooltips'), 10 );
+    }
+
+    function is_related_posttype( $post_id ){
+        $related_posttypes = Tooltipy::get_related_post_types();
+        $current_post = get_post( $post_id );
+
+        if( in_array( $current_post->post_type, $related_posttypes ) ){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function regenerate_matched_tooltips( $post_id ){
+        if( !$this->is_related_posttype( $post_id ) ){
+            return false;
+        }
+
+        $current_post = get_post( $post_id );
+
+        $new_value = $this->filter_matched_tooltips( null, $current_post->post_content );
+        update_post_meta( $post_id, 'tltpy_matched_tooltips', $new_value);
     }
 
     // Filter metabox fields before save if needed
@@ -33,8 +58,12 @@ class Tooltipy_Posts_Metaboxes{
 
         return $new_value;
     }
-    function filter_matched_tooltips( $old_value, $post_vars ){
-        $content = $post_vars['post_content'];
+    function filter_matched_tooltips( $old_value, $data ){
+        $content = $data;
+
+        if( is_array( $data ) ){
+            $content = $data['post_content'];
+        }        
 
         $tooltips = Tooltipy::get_tooltips();
 
@@ -85,7 +114,7 @@ class Tooltipy_Posts_Metaboxes{
         }
 
         //for post types except my_keywords
-        $all_post_types = get_post_types();
+        $all_post_types = Tooltipy::get_related_post_types();
         foreach($all_post_types as $screen) {
             add_meta_box(
                 'tltpy_posts_metabox',

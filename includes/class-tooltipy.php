@@ -194,6 +194,19 @@ class Tooltipy {
 		return self::$plugin_name;
 	}
 
+	public static function get_related_post_types(){
+		$post_types = get_post_types();
+
+		// Remove Tooltipy from related post_types
+		foreach ($post_types as $key => $pt) {
+			if( $pt == self::get_plugin_name() ){
+				unset( $post_types[$key] );
+			}
+		}
+		$post_types = apply_filters( 'tltpy_related_post_types', $post_types );
+
+		return $post_types;
+	}
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *

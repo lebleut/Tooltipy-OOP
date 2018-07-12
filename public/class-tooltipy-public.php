@@ -183,7 +183,11 @@ class Tooltipy_Public {
 			$text_nodes = $html_obj->find('text');
 
 			foreach($text_nodes as $line) {
-				$line->innertext = preg_replace( $patterns[$key], $replacements[$key], $line->innertext, $limit);
+				$line->innertext = preg_replace( $patterns[$key], $replacements[$key], $line->innertext, $limit, $count);
+
+				if( $limit == 1 && $count > 0){
+					break;
+				}
 			}
 			$content = $html_obj;
 		}				

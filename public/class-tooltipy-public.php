@@ -107,6 +107,7 @@ class Tooltipy_Public {
 			$tt_synonyms			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_synonyms', true);
 			$tt_is_prefix			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_is_prefix', true);
 			$tt_is_case_sensitive	= get_post_meta( $tooltip['tooltip_id'], 'tltpy_case_sensitive', true);
+			$tltpy_youtube_id		= get_post_meta( $tooltip['tooltip_id'], 'tltpy_youtube_id', true);
 
 			$tt_synonyms_arr = explode( '|', $tt_synonyms );
 			$tt_synonyms_arr = array_map( 'trim', $tt_synonyms_arr );
@@ -118,6 +119,10 @@ class Tooltipy_Public {
 				$case_sensitive_modifier = '';
 				
 				array_push( $keyword_classes, 'tooltipy-case-sensitive' );
+			}
+
+			if( !empty( trim( $tltpy_youtube_id ) ) ){
+				array_push( $keyword_classes, 'tooltipy-kw-youtube' );
 			}
 
 			$tooltip_post = get_post($tooltip['tooltip_id']);

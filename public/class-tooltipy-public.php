@@ -107,7 +107,7 @@ class Tooltipy_Public {
 			$tt_synonyms			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_synonyms', true);
 			$tt_is_prefix			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_is_prefix', true);
 			$tt_is_case_sensitive	= get_post_meta( $tooltip['tooltip_id'], 'tltpy_case_sensitive', true);
-			$tltpy_youtube_id		= get_post_meta( $tooltip['tooltip_id'], 'tltpy_youtube_id', true);
+			$tt_youtube_id			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_youtube_id', true);
 
 			$tt_synonyms_arr = explode( '|', $tt_synonyms );
 			$tt_synonyms_arr = array_map( 'trim', $tt_synonyms_arr );
@@ -118,10 +118,10 @@ class Tooltipy_Public {
 			if($tt_is_case_sensitive){
 				$case_sensitive_modifier = '';
 				
-				array_push( $keyword_classes, 'tooltipy-case-sensitive' );
+				array_push( $keyword_classes, 'tooltipy-kw-case-sensitive' );
 			}
 
-			if( !empty( trim( $tltpy_youtube_id ) ) ){
+			if( !empty( trim( $tt_youtube_id ) ) ){
 				array_push( $keyword_classes, 'tooltipy-kw-youtube' );
 			}
 
@@ -139,10 +139,10 @@ class Tooltipy_Public {
 			if( $tt_is_prefix ){
 				$inner_after = '\w*';
 
-				array_push( $keyword_classes, 'tooltipy-prefix' );
+				array_push( $keyword_classes, 'tooltipy-kw-prefix' );
 			}
 
-			$keyword_classes = apply_filters( 'tltpy_keyword_classes', $keyword_classes );
+			$keyword_classes = apply_filters( 'tltpy_keyword_classes', $keyword_classes, $tooltip[ 'tooltip_id' ] );
 			
 			// Consider the main keyword and synonyms
 			foreach ($tt_synonyms_arr as $synonym) {

@@ -207,6 +207,14 @@ class Tooltipy {
 
 		return $post_types;
 	}
+
+	public static function get_taxonomy(){
+		$taxonomy = 'tooltip_cat';
+		
+		$taxonomy = apply_filters( 'tltpy_taxonomy', $taxonomy );
+
+		return $taxonomy;
+	}
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *

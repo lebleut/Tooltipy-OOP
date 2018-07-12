@@ -271,7 +271,7 @@ class Tooltipy_Public {
 		);
 
 		register_taxonomy(
-			'tooltip_cat',
+			Tooltipy::get_taxonomy(),
 			Tooltipy::get_plugin_name(),
 			$cat_args
 		);

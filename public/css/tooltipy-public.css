@@ -8,3 +8,12 @@
     font-weight: bold;
     border-bottom: #FF5722 1px dashed;
  }
+
+ .tooltipy-pop {
+    background: #2196F3;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    display: inline-block;
+    border-radius: 10px;
+}

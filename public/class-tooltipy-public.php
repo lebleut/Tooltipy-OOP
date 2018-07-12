@@ -54,6 +54,102 @@ class Tooltipy_Public {
 		add_filter( 'the_content', array($this, 'filter_content') );
 	}
 
+	/**
+	 * Renders the required tooltips to be related to the keyword
+	 */
+	public function tooltips_section(){
+		global $post_type;
+
+		if( Tooltipy::get_plugin_name() == $post_type ){
+			return false;
+		}
+		// Tooltipy settings
+		if( $tooltip_mode = get_option( 'tltpy_tooltip_mode' ) ){
+			$tooltip_mode = $tooltip_mode[0];
+		}
+
+		if( 'title' == $tooltip_mode ){
+			return false;
+		}
+		
+		// Current post meta data
+		$exclude_me 		= get_post_meta( get_the_id(), 'tltpy_exclude_me', true );
+		$matched_tooltips 	= get_post_meta( get_the_id(), 'tltpy_matched_tooltips', true );
+		$exclude_tooltips	= get_post_meta( get_the_id(), 'tltpy_exclude_tooltips', true );
+
+		$exclude_tooltips = explode( ',', $exclude_tooltips );
+		$exclude_tooltips = array_map( 'trim', $exclude_tooltips );
+		$exclude_tooltips = array_map( 'strtolower', $exclude_tooltips );
+
+		if( empty( $matched_tooltips ) || $exclude_me ){
+			return false;
+		}
+		foreach ( $matched_tooltips as $key => $tooltip ) {
+			if( in_array( strtolower($tooltip['tooltip_title']), $exclude_tooltips ) ){
+				unset( $matched_tooltips[$key] );
+			}
+		}
+
+		if( empty( $matched_tooltips ) ){
+			return false;
+		}
+		?>
+		<div id="tooltipy-popups-wrapper" >
+		<?php
+		// HTML section
+		foreach ( $matched_tooltips as $tooltip ) {
+
+			// Tooltips meta data
+			$tt_synonyms			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_synonyms', true);
+			$tt_is_prefix			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_is_prefix', true);
+			$tt_is_case_sensitive	= get_post_meta( $tooltip['tooltip_id'], 'tltpy_case_sensitive', true);
+			$tt_youtube_id		= get_post_meta( $tooltip['tooltip_id'], 'tltpy_youtube_id', true);
+			
+			$tooltip_post = get_post( $tooltip['tooltip_id'] );
+			$tooltip_content = apply_filters( 'tltpy_pop_content', $tooltip_post->post_content, $tooltip[ 'tooltip_id' ] );
+			$tooltip_content = str_replace( ']]>', ']]&gt;', $tooltip_content );
+
+			$popup_classes = array(
+				'tooltipy-pop',
+				'tooltipy-pop-' . $tooltip_post->ID
+			);
+			$tooltip_categories = wp_get_post_terms( $tooltip['tooltip_id'], Tooltipy::get_taxonomy(), array( "fields" => "ids" ) );
+			
+			foreach ($tooltip_categories as $key => $value) {
+				array_push( $popup_classes, "tooltipy-pop-cat-".$value );
+			}
+			if($tt_is_case_sensitive){
+				array_push( $popup_classes, 'tooltipy-pop-case-sensitive' );
+			}
+
+			if( !empty( trim( $tt_youtube_id ) ) ){
+				array_push( $popup_classes, 'tooltipy-pop-youtube' );
+			}
+			if( $tt_is_prefix ){
+				array_push( $popup_classes, 'tooltipy-pop-prefix' );
+			}
+			$popup_classes = apply_filters( 'tltpy_popup_classes', $popup_classes, $tooltip[ 'tooltip_id' ] );
+			?>
+			<div class="<?php echo implode( ' ', $popup_classes ); ?>">
+				<?php
+				
+				do_action( 'tltpy_popup_header', $tooltip[ 'tooltip_id' ] );
+
+				?>
+				<div class="tooltipy-pop-content"><?php echo $tooltip_content; ?></div>
+				<?php
+				
+				do_action( 'tltpy_popup_footer', $tooltip[ 'tooltip_id' ] );
+
+				?>
+			</div>
+			<?php
+		}
+		?>
+		</div>
+		<?php
+	}
+
 	// The main filtering content of Tooltipy
 	function filter_content( $content ){
 		global $post_type;
@@ -100,10 +196,7 @@ class Tooltipy_Public {
 				$tooltip_mode = $tooltip_mode[0];
 			}
 
-			if( 'title' == $tooltip_mode ){
-				// TODO : don't load tooltips description sections since it will be based on the title attribute of the keywword
-			}
-			// Tooltips meta data
+						// Tooltips meta data
 			$tt_synonyms			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_synonyms', true);
 			$tt_is_prefix			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_is_prefix', true);
 			$tt_is_case_sensitive	= get_post_meta( $tooltip['tooltip_id'], 'tltpy_case_sensitive', true);

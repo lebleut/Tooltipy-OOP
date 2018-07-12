@@ -170,6 +170,9 @@ class Tooltipy {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+		// Tooltips HTML section
+		$this->loader->add_action( 'wp_footer', $plugin_public, 'tooltips_section' );
+
 		// Debug mode
 		$this->loader->add_action( 'wp_footer', $plugin_public, 'debug_mode' );
 	}

@@ -5,15 +5,16 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'tab' 			=> 'style',
             'section' 		=> 'general',
             
-            'uid' 			=> 'fetch_mode',
+            'uid' 			=> 'tooltip_mode',
             'type' 			=> 'radio',
             
-            'label' 		=> __( 'Fetch mode', 'tooltipy-lang' ),
+            'label' 		=> __( 'Tooltip mode', 'tooltipy-lang' ),
             'options' 		=> array(
-                'highlight' 	=> 'Highlight Mode',
-                'icon' 			=> 'Icon Mode',
+                'standard' 	=> 'Standard mode',
+                'icon'		=> 'Icon mode',
+                'title' 	=> 'Simple title mode',
             ),
-            'default' 		=> array('highlight'),
+            'default' 		=> array('standard'),
         ),
         array(
             'tab' 			=> 'style',

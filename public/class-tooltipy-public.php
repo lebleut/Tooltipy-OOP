@@ -95,7 +95,14 @@ class Tooltipy_Public {
 			foreach ($tooltip_categories as $key => $value) {
 				array_push( $keyword_classes, "tooltipy-kw-cat-".$value );
 			}
+			// Tooltipy settings
+			if( $tooltip_mode = get_option( 'tltpy_tooltip_mode' ) ){
+				$tooltip_mode = $tooltip_mode[0];
+			}
 
+			if( 'title' == $tooltip_mode ){
+				// TODO : don't load tooltips description sections since it will be based on the title attribute of the keywword
+			}
 			// Tooltips meta data
 			$tt_synonyms			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_synonyms', true);
 			$tt_is_prefix			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_is_prefix', true);
@@ -119,6 +126,12 @@ class Tooltipy_Public {
 			$tooltip_content = $tooltip_post->post_content;
 			$tooltip_content = esc_attr( wp_strip_all_tags( $tooltip_content ) );
 
+			$title_attr = '';
+
+			if( 'title' == $tooltip_mode ){
+				$title_attr = 'title="' . $tooltip_content . '"';
+			}
+
 			$before = '(^|\s|\W)'; // Group 1 in regex $1
 			$after = '($|\s|\W)'; // Group 3 in regex $3
 			$inner_after = '';
@@ -136,7 +149,7 @@ class Tooltipy_Public {
 			foreach ($tt_synonyms_arr as $synonym) {
 				if( !empty( $synonym ) ){
 					array_push($patterns, '/' . $before . '('.$synonym . $inner_after . ')' . $after . '/'.$case_sensitive_modifier);
-					array_push($replacements, '$1<span class="' . implode( ' ', $keyword_classes) . '" data-tooltip="'.$tooltip['tooltip_id'].'" title="' . $tooltip_content . '">$2</span>$3');
+					array_push($replacements, '$1<span class="' . implode( ' ', $keyword_classes) . '" data-tooltip="'.$tooltip['tooltip_id'].'" ' . $title_attr . '>$2</span>$3');
 				}
 			}
 		}

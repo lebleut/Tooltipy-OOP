@@ -150,7 +150,7 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
     
             'label' 		=> __( 'Activate the debug mode', 'tooltipy-lang' ),
             'helper'        => __( 'Shows debug in the footer of each page if you are administrator and add the Tooltipy log in the ../wp-content/debug.log file', 'tooltipy-lang' ),
-            'description'   => __( 'Note : You should set the "WP_DEBUG_LOG" constant to true in the wp-config.php file to see the error_log messages.', 'tooltipy-lang' ),
+            'description'   => __( 'Note : You should set the WP_DEBUG_LOG & WP_DEBUG constants to true in the wp-config.php file to see the error_log messages.', 'tooltipy-lang' ),
 
             'options' 		=> array(
                 'yes' 		=> __( 'Debug mode', 'tooltipy-lang' ),

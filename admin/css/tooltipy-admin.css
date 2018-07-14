@@ -24,3 +24,10 @@
     color:#24292e;
     background: #dbedff;
 }
+
+.tooltipy-log--error{
+    color: red;
+}
+.tooltipy-log--notice{
+    color: blue;
+}

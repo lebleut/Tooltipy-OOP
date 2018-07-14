@@ -434,4 +434,40 @@ class Tooltipy_Admin {
 	
 		wp_enqueue_script( 'tltpy_edits', plugin_dir_url( __FILE__ ) . 'js/edits.js', array( 'jquery' ) );
 	}
+
+	function log_content( $section_id ){
+		if( 'log__general' == $section_id ){
+			$debug_file_path = WP_CONTENT_DIR . "/debug.log";
+
+			if( file_exists($debug_file_path) && ($debug_file = fopen($debug_file_path, "r"))!==false ){
+				if( filesize( $debug_file_path ) == 0 ){
+					echo '<div class="tooltipy-log--notice">' . __( 'The debug file is empty', 'tooltipy-lang' ) . '</div>';
+				}else{
+					$degug_file_content = fread( $debug_file, filesize( $debug_file_path ) );
+					fclose($debug_file);
+
+					$logs = explode( ' --- TOOLTIPY ---', $degug_file_content );
+					?>
+					<div class="tooltipy-log">
+						<?php
+						$count = 0;
+						foreach ($logs as $log) {
+							if( preg_match( '/\* File\:/', $log ) ){
+								$count++;
+								echo nl2br( explode( '--------', $log )[0] );
+							}
+						}
+																		
+						if( !$count ){
+							echo '<div class="tooltipy-log--notice">' . __( 'Debug file doesn\'t contain Tooltipy logs', 'tooltipy-lang' ) . '</div>';
+						}
+						?>
+					</div>
+					<?php
+				}
+			}else{
+				echo '<div class="tooltipy-log--error">' . __( 'Debug file not found', 'tooltipy-lang' ) . '</div>';
+			}
+		}
+	}
 }

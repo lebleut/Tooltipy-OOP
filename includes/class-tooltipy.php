@@ -153,6 +153,9 @@ class Tooltipy {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
+		// Show log from ../wp-conetnt/debug.log
+		$this->loader->add_action( 'tltpy_tab_after_settings', $plugin_admin, 'log_content' );
 	}
 
 	/**

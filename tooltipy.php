@@ -43,6 +43,9 @@ if ( ! defined( 'TOOLTIPY_PLUGIN_URL' ) )
 if ( ! defined( 'TOOLTIPY_PLUGIN_DIR' ) )
     define( 'TOOLTIPY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
+// Include global tools and functions
+include TOOLTIPY_PLUGIN_DIR . 'includes/functions.php';
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-tooltipy-activator.php

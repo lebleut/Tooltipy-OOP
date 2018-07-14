@@ -263,7 +263,7 @@ class Tooltipy {
 		$backtrace = debug_backtrace();
 		$caller = array_shift( $backtrace );
 
-		$caller_file = $caller['file'];
+		$caller_file = preg_replace( '/.*\/wp-content\//', '.../wp-content/', $caller['file'] );
 		$caller_line = $caller['line'];
 
 		error_log( '--- TOOLTIPY ---' );

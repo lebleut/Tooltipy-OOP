@@ -317,7 +317,7 @@ class Tooltipy_Admin {
 		}
 	
 		// check nonce
-		if ( !wp_verify_nonce( $_POST['tooltipy_nonce'], 'tltpy_quick_edit_nonce' ) ) {
+		if ( empty($_POST['tooltipy_nonce']) || !wp_verify_nonce( $_POST['tooltipy_nonce'], 'tltpy_quick_edit_nonce' ) ) {
 			return;
 		}
 	

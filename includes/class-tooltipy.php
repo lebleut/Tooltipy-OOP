@@ -178,6 +178,9 @@ class Tooltipy {
 
 		// Debug mode
 		$this->loader->add_action( 'wp_footer', $plugin_public, 'debug_mode' );
+
+		// Filter the single_template with our custom function for Tooltipy post_type
+		$this->loader->add_filter( 'single_template', $plugin_public, 'tooltip_single_template');
 	}
 
 	/**

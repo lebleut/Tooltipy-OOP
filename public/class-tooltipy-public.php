@@ -524,4 +524,17 @@ class Tooltipy_Public {
 		</ul>
 		<?php
 	}
+	
+	function tooltip_single_template( $single ) {
+
+		global $wp_query, $post;
+
+		/* Checks for single template by post type */
+		if ( $post->post_type == Tooltipy::get_plugin_name() ) {
+			return TOOLTIPY_PLUGIN_DIR . 'public/single.php';
+		}
+
+		return $single;
+
+	}
 }

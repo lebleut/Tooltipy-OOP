@@ -58,6 +58,7 @@ class Tooltipy_Posts_Metaboxes{
 
         return $new_value;
     }
+
     function filter_matched_tooltips( $old_value, $data ){
         $content = $data;
 
@@ -69,7 +70,11 @@ class Tooltipy_Posts_Metaboxes{
 
         $matched_tooltips = array();
         foreach($tooltips as $tltp){
-            preg_match( '/'.$tltp->post_title.'/i', $content, $matches);
+            $synonyms = array( $tltp->post_title );
+            $syn_meta = get_post_meta( $tltp->ID, 'tltpy_synonyms', true );
+            $synonyms = array_merge( $synonyms, explode( '|', $syn_meta ) );
+
+            preg_match( '/'. implode( '|', $synonyms ) .'/i', $content, $matches);
             if( !empty($matches) ){
                 $tltp_vector = array(
                     'tooltip_id'    => $tltp->ID,

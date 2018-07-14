@@ -113,7 +113,15 @@ class Tooltipy_Settings {
 					<?php
 						// Fields
 						settings_fields( 'tooltipy_' . $section_id );
+						
+						// to allow add settings or content before settings
+						do_action( 'tltpy_tab_before_settings', $section_id );
+
 						do_settings_sections( 'tooltipy_' . $section_id );
+
+						// Too add settings or content after settings
+						do_action( 'tltpy_tab_after_settings', $section_id );
+
 						submit_button();
 					?>
 				</form>
@@ -191,6 +199,16 @@ class Tooltipy_Settings {
 						'id' 			=> 'exclude',
 						'title' 		=> __('Exclude','tooltipy-lang'),
 						'description' 	=> __('Sections to exclude','tooltipy-lang'),
+					),
+				)
+			),
+			array(
+				'id' => 'log',
+				'sections' => array(
+					array(
+						'id' 			=> 'general',
+						'title' 		=> __('Log','tooltipy-lang'),
+						'description' 	=> __('Shows the log Tooltipy sections from the debug.log file','tooltipy-lang'),
 					),
 				)
 			),
@@ -287,7 +305,7 @@ class Tooltipy_Settings {
 				$section_id,
 				$field
 			);
-            register_setting( 'tooltipy_' . $section_id, $field['uid'] );
+			register_setting( 'tooltipy_' . $section_id, $field['uid'] );
     	}
 	}
 	

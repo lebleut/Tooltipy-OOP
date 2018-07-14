@@ -248,4 +248,30 @@ class Tooltipy {
 		
 		return $tooltips;
 	}
+	/**
+	 * Print a custom message in the ../wp-content/debug.log file if the debug_mode option is activated
+	 * Note : you should set the 'WP_DEBUG_LOG' constant to true in the wp-config.php file :
+	 * define( 'WP_DEBUG_LOG', true );
+	 */
+	public static function log( $msg ){
+		$debug_mode_setting = get_option( 'tltpy_debug_mode' );
+
+		if( !$debug_mode_setting ){
+			return false;
+		}
+		
+		$backtrace = debug_backtrace();
+		$caller = array_shift( $backtrace );
+
+		$caller_file = $caller['file'];
+		$caller_line = $caller['line'];
+
+		error_log( '--- TOOLTIPY ---' );
+		error_log( ' * File: ' .$caller_file );
+		error_log( ' * line : ' .$caller_line);
+
+		error_log( $msg );
+
+		error_log( '--------' );
+	}
 }

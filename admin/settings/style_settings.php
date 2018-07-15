@@ -12,7 +12,7 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'options' 		=> array(
                 'standard' 	=> 'Standard mode',
                 'icon'		=> 'Icon mode',
-                'title' 	=> 'Simple title mode',
+                'title' 	=> 'Title attrib mode',
                 'link' 	    => 'Link mode',
             ),
             'default' 		=> array('standard'),

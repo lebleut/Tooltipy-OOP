@@ -96,7 +96,7 @@ class Tooltipy_Public {
 			return false;
 		}
 		?>
-		<div id="tooltipy-popups-wrapper" >
+		<div id="tooltipy-popups-wrapper" style="display:none;">
 		<?php
 		// HTML section
 		foreach ( $matched_tooltips as $tooltip ) {
@@ -132,18 +132,23 @@ class Tooltipy_Public {
 			}
 			$popup_classes = apply_filters( 'tltpy_popup_classes', $popup_classes, $tooltip[ 'tooltip_id' ] );
 			?>
+			<div id="tooltipy-pop-<?php echo $tooltip_post->ID; ?>">
 			<div class="<?php echo implode( ' ', $popup_classes ); ?>">
 				<?php
 				
 				do_action( 'tltpy_popup_header', $tooltip[ 'tooltip_id' ] );
 
 				?>
+					<?php if( has_post_thumbnail( $tooltip_post->ID ) ): ?>
+						<div class="tooltipy-pop-image"><?php echo get_the_post_thumbnail( $tooltip_post->ID, 'medium' ); ?></div>
+					<?php endif; ?>
 				<div class="tooltipy-pop-content"><?php echo $tooltip_content; ?></div>
 				<?php
 				
 				do_action( 'tltpy_popup_footer', $tooltip[ 'tooltip_id' ] );
 
 				?>
+			</div>
 			</div>
 			<?php
 		}

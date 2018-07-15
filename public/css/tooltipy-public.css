@@ -22,11 +22,6 @@
     margin: 0px 2px;
 }
 
- .tooltipy-pop {
-    background: #2196F3;
-    color: white;
-    padding: 10px;
-    margin: 5px;
-    display: inline-block;
-    border-radius: 10px;
+.tooltipy-pop .tooltipy-pop-content {
+    text-align: left;
 }

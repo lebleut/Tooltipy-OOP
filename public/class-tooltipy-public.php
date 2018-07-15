@@ -133,22 +133,22 @@ class Tooltipy_Public {
 			$popup_classes = apply_filters( 'tltpy_popup_classes', $popup_classes, $tooltip[ 'tooltip_id' ] );
 			?>
 			<div id="tooltipy-pop-<?php echo $tooltip_post->ID; ?>">
-			<div class="<?php echo implode( ' ', $popup_classes ); ?>">
-				<?php
-				
-				do_action( 'tltpy_popup_header', $tooltip[ 'tooltip_id' ] );
+				<div class="<?php echo implode( ' ', $popup_classes ); ?>">
+					<?php
+					
+					do_action( 'tltpy_popup_header', $tooltip[ 'tooltip_id' ] );
 
-				?>
+					?>
 					<?php if( has_post_thumbnail( $tooltip_post->ID ) ): ?>
 						<div class="tooltipy-pop-image"><?php echo get_the_post_thumbnail( $tooltip_post->ID, 'medium' ); ?></div>
 					<?php endif; ?>
-				<div class="tooltipy-pop-content"><?php echo $tooltip_content; ?></div>
-				<?php
-				
-				do_action( 'tltpy_popup_footer', $tooltip[ 'tooltip_id' ] );
+					<div class="tooltipy-pop-content"><?php echo $tooltip_content; ?></div>
+					<?php
+					
+					do_action( 'tltpy_popup_footer', $tooltip[ 'tooltip_id' ] );
 
-				?>
-			</div>
+					?>
+				</div>
 			</div>
 			<?php
 		}
@@ -341,6 +341,13 @@ class Tooltipy_Public {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/tooltipy-public.css', array(), $this->version, 'all' );
 
+		if( $tooltip_mode = get_option( 'tltpy_tooltip_mode' ) ){
+			$tooltip_mode = $tooltip_mode[0];
+		}
+		if( in_array( $tooltip_mode, array( 'standard', 'icon' ) ) ){
+			// Tippy library style
+			wp_enqueue_style( 'tippy-style', TOOLTIPY_PLUGIN_URL . 'assets/libraries/tippy/tippy.css', array(), $this->version, 'all' );
+		}
 	}
 
 	/**
@@ -364,6 +371,14 @@ class Tooltipy_Public {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tooltipy-public.js', array( 'jquery' ), $this->version, false );
 
+		// Tippy library script
+		if( $tooltip_mode = get_option( 'tltpy_tooltip_mode' ) ){
+			$tooltip_mode = $tooltip_mode[0];
+		}
+		if( in_array( $tooltip_mode, array( 'standard', 'icon' ) ) ){
+			wp_enqueue_script( 'tippy-script', TOOLTIPY_PLUGIN_URL . 'assets/libraries/tippy/tippy.min.js', array(), $this->version, 'all' );
+			wp_enqueue_script( 'tippy-handler', TOOLTIPY_PLUGIN_URL . 'public/js/tippy-handler.js', array(), $this->version, 'all' );
+		}
 	}
 
 	// Register Tooltipy Post Type

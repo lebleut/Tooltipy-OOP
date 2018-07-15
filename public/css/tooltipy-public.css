@@ -3,11 +3,24 @@
  * included in this file.
  */
 
- .tooltipy-kw{
+ /* standard & title modes */
+ .tltpy_mode_standard.tooltipy-kw,
+ .tltpy_mode_title.tooltipy-kw
+ {
     color: #2196F3;
     font-weight: bold;
     border-bottom: #FF5722 1px dashed;
  }
+
+/* Icon Mode */
+.tltpy_mode_icon.tooltipy-kw {
+    width: 20px;
+    height: 20px;
+    background: #FFC107;
+    display: inline-block;
+    border-radius: 50%;
+    margin: 0px 2px;
+}
 
  .tooltipy-pop {
     background: #2196F3;

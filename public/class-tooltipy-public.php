@@ -68,7 +68,9 @@ class Tooltipy_Public {
 			$tooltip_mode = $tooltip_mode[0];
 		}
 
-		if( 'title' == $tooltip_mode ){
+		// Don't load popups if 'title' or 'link' tooltip mode are picked from the settings
+		// Load only for 'standard' & 'icon' modes
+		if( in_array( $tooltip_mode, array( 'title', 'link' ) ) ){
 			return false;
 		}
 		
@@ -196,7 +198,7 @@ class Tooltipy_Public {
 				$tooltip_mode = $tooltip_mode[0];
 			}
 
-						// Tooltips meta data
+			// Tooltips meta data
 			$tt_synonyms			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_synonyms', true);
 			$tt_is_prefix			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_is_prefix', true);
 			$tt_is_case_sensitive	= get_post_meta( $tooltip['tooltip_id'], 'tltpy_case_sensitive', true);
@@ -220,10 +222,6 @@ class Tooltipy_Public {
 
 			$tooltip_post = get_post($tooltip['tooltip_id']);
 
-			// Tooltip content formatted for the title attrib
-			$tooltip_content = $tooltip_post->post_content;
-			$tooltip_content = esc_attr( wp_strip_all_tags( $tooltip_content ) );
-
 			$before = '(^|\s|\W)'; // Group 1 in regex $1
 			$after = '($|\s|\W)'; // Group 3 in regex $3
 			$inner_after = '';
@@ -241,18 +239,49 @@ class Tooltipy_Public {
 			foreach ($tt_synonyms_arr as $synonym) {
 				if( !empty( $synonym ) ){
 
-					$classes_attr 		= 'class="' . implode( ' ', $keyword_classes) . '"';
 					$data_tooltip_attr 	= 'data-tooltip="'.$tooltip['tooltip_id'].'"';
-					$title_attr = '';
-
-					if( 'title' == $tooltip_mode ){
-						$title_attr = 'title="' . $tooltip_content . '"';
-					}
-
-					$tooltip_attributes = array( $classes_attr, $data_tooltip_attr, $title_attr );
 
 					array_push($patterns, '/' . $before . '('.$synonym . $inner_after . ')' . $after . '/'.$case_sensitive_modifier);
-					array_push($replacements, '$1<span ' . implode( ' ', $tooltip_attributes ) . '>$2</span>$3');
+					
+					switch ($tooltip_mode) {
+						case 'standard':
+							$keyword_classes[] = 'tltpy_mode_standard';
+							$classes_attr = 'class="' . implode( ' ', $keyword_classes) . '"';
+							$tooltip_attributes = array( $classes_attr, $data_tooltip_attr );
+							$replacement = '$1<span ' . implode( ' ', $tooltip_attributes ) . '>$2</span>$3';
+							break;
+					
+						case 'icon':
+							$keyword_classes[] = 'tltpy_mode_icon';
+							$classes_attr = 'class="' . implode( ' ', $keyword_classes) . '"';
+							$tooltip_attributes = array( $classes_attr, $data_tooltip_attr );
+							$replacement = '$1<span ' . implode( ' ', $tooltip_attributes ) . '></span>$2$3';
+							break;
+					
+						case 'title':
+							// Tooltip content formatted for the title attrib
+							$title_attr_content = $tooltip_post->post_content;
+							$title_attr_content = esc_attr( wp_strip_all_tags( $title_attr_content ) );
+							$title_attr = 'title="' . $title_attr_content . '"';
+
+							$keyword_classes[] = 'tltpy_mode_title';
+							$classes_attr = 'class="' . implode( ' ', $keyword_classes) . '"';
+							$tooltip_attributes = array( $classes_attr, $data_tooltip_attr, $title_attr );
+							$replacement = '$1<span ' . implode( ' ', $tooltip_attributes ) . '>$2</span>$3';
+							break;
+					
+						case 'link':
+							$keyword_classes[] = 'tltpy_mode_link';
+							$classes_attr = 'class="' . implode( ' ', $keyword_classes) . '"';
+							$tooltip_attributes = array( $classes_attr, $data_tooltip_attr );
+							$replacement = '$1<a href="' . get_post_permalink( $tooltip_post->ID ) . '" ' . implode( ' ', $tooltip_attributes ) . '>$2</a>$3';
+							break;
+						
+						default:
+							break;
+					}
+
+					array_push($replacements, $replacement );
 				}
 			}
 		}

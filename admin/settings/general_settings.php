@@ -22,6 +22,16 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
     foreach(get_post_types() as $psttp){
         $get_from_post_types_arr[$psttp] = $psttp;
     }
+    $style_tab = add_query_arg( array(
+        'post_type' => 'tooltipy',
+        'page'      => 'tooltipy_settings',
+        'tab'       => 'style'
+    ), admin_url() . '/edit.php' );
+    
+    $standard_style_link    = '<a href="' . add_query_arg( 'section', 'standard_mode' , $style_tab ) . '">' . __( 'Style' ) . '</a>';
+    $icon_style_link        = '<a href="' . add_query_arg( 'section', 'icon_mode' , $style_tab ) . '">' . __( 'Style' ) . '</a>';
+    $title_style_link       = '<a href="' . add_query_arg( 'section', 'title_mode' , $style_tab ) . '">' . __( 'Style' ) . '</a>';
+    $link_style_link        = '<a href="' . add_query_arg( 'section', 'link_mode' , $style_tab ) . '">' . __( 'Style' ) . '</a>';
     
     $settings = array(
         array(
@@ -32,10 +42,10 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             
             'label' 		=> __( 'Tooltip mode', 'tooltipy-lang' ),
             'options' 		=> array(
-                'standard' 	=> 'Standard mode',
-                'icon'		=> 'Icon mode',
-                'title' 	=> 'Title attrib mode',
-                'link' 	    => 'Link mode',
+                'standard' 	=> __( 'Standard mode', 'tooltipy-lang').' ' . $standard_style_link,
+                'icon'		=> __( 'Icon mode', 'tooltipy-lang').' ' . $icon_style_link,
+                'title' 	=> __( 'Title attrib mode', 'tooltipy-lang').' ' . $title_style_link,
+                'link' 	    => __( 'Link mode', 'tooltipy-lang').' ' . $link_style_link,
             ),
             'default' 		=> array('standard'),
         ),

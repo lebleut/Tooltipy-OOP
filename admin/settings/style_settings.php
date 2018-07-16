@@ -5,22 +5,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'tab' 			=> 'style',
             'section' 		=> 'general',
             
-            'uid' 			=> 'tooltip_mode',
-            'type' 			=> 'radio',
-            
-            'label' 		=> __( 'Tooltip mode', 'tooltipy-lang' ),
-            'options' 		=> array(
-                'standard' 	=> 'Standard mode',
-                'icon'		=> 'Icon mode',
-                'title' 	=> 'Title attrib mode',
-                'link' 	    => 'Link mode',
-            ),
-            'default' 		=> array('standard'),
-        ),
-        array(
-            'tab' 			=> 'style',
-            'section' 		=> 'general',
-            
             'uid' 			=> 'tooltip_width',
             'type' 			=> 'number',	
             'helper' 		=> 'px',

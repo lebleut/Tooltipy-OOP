@@ -28,6 +28,22 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'tab' 			=> 'general',
             'section' 		=> 'general',
             
+            'uid' 			=> 'tooltip_mode',
+            'type' 			=> 'radio',
+            
+            'label' 		=> __( 'Tooltip mode', 'tooltipy-lang' ),
+            'options' 		=> array(
+                'standard' 	=> 'Standard mode',
+                'icon'		=> 'Icon mode',
+                'title' 	=> 'Title attrib mode',
+                'link' 	    => 'Link mode',
+            ),
+            'default' 		=> array('standard'),
+        ),
+        array(
+            'tab' 			=> 'general',
+            'section' 		=> 'general',
+            
             'uid' 			=> 'match_all_occurrences',
             'type' 			=> 'checkbox',
     

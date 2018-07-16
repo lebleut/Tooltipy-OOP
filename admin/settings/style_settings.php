@@ -71,6 +71,22 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'label' 		=> __( 'Custom style sheet URL', 'tooltipy-lang' ),
             'placeholder' 	=> __( 'CSS URL here', 'tooltipy-lang' ),
         ),
+        array(
+            'section' 		=> 'icon_mode',
+            
+            'uid' 			=> 'icon_background_color',
+            'type' 			=> 'text',
+
+            'label' 		=> __( 'Icon background', 'tooltipy-lang' ),
+        ),
+        array(
+            'section' 		=> 'icon_mode',
+            
+            'uid' 			=> 'icon_text_color',
+            'type' 			=> 'text',
+
+            'label' 		=> __( 'Icon text color', 'tooltipy-lang' ),
+        ),
 
     );
         

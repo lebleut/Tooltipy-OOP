@@ -92,7 +92,11 @@ class Tooltipy_Settings {
 												admin_url( 'edit.php') 
 											)
 										);
-										$section_name = ucfirst($section['id']);
+										if( array_key_exists( 'name', $section ) && !empty( $section['name'] ) ){
+											$section_name = ucfirst($section['name']);
+										}else{
+											$section_name = ucfirst($section['id']);
+										}
 										$is_current_section = $current_section_id == $section['id'] ? 'current' : '';
 										$sections_separator = ($key + 1 < count($tab['sections']) ) ? " | " : "";
 										?>
@@ -142,7 +146,7 @@ class Tooltipy_Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __('Tooltips options','tooltipy-lang'),
+												'title' 		=> __('Tooltips options','tooltipy-lang'),
 						'description' 	=> __('General tooltips settings','tooltipy-lang'),
 					),
 					array(
@@ -167,21 +171,25 @@ class Tooltipy_Settings {
 					),
 					array(
 						'id' 			=> 'standard_mode',
+						'name' 			=> 'standard mode',
 						'title' 		=> __('Standard mode','tooltipy-lang'),
 						'description' 	=> __('Tooltip standard mode settings','tooltipy-lang'),
 					),
 					array(
 						'id' 			=> 'icon_mode',
+						'name' 			=> 'icon mode',
 						'title' 		=> __('Icon mode','tooltipy-lang'),
 						'description' 	=> __('Tooltip icon mode settings','tooltipy-lang'),
 					),
 					array(
 						'id' 			=> 'title_mode',
+						'name' 			=> 'title mode',
 						'title' 		=> __('Title mode','tooltipy-lang'),
 						'description' 	=> __('Tooltip title mode settings','tooltipy-lang'),
 					),
 					array(
 						'id' 			=> 'link_mode',
+						'name' 			=> 'link mode',
 						'title' 		=> __('Link mode','tooltipy-lang'),
 						'description' 	=> __('Tooltip link mode settings','tooltipy-lang'),
 					),

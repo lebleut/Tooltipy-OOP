@@ -165,6 +165,26 @@ class Tooltipy_Settings {
 						'title' 		=> __('Advanced style','tooltipy-lang'),
 						'description' 	=> __('Advanced style settings','tooltipy-lang'),
 					),
+					array(
+						'id' 			=> 'standard_mode',
+						'title' 		=> __('Standard mode','tooltipy-lang'),
+						'description' 	=> __('Tooltip standard mode settings','tooltipy-lang'),
+					),
+					array(
+						'id' 			=> 'icon_mode',
+						'title' 		=> __('Icon mode','tooltipy-lang'),
+						'description' 	=> __('Tooltip icon mode settings','tooltipy-lang'),
+					),
+					array(
+						'id' 			=> 'title_mode',
+						'title' 		=> __('Title mode','tooltipy-lang'),
+						'description' 	=> __('Tooltip title mode settings','tooltipy-lang'),
+					),
+					array(
+						'id' 			=> 'link_mode',
+						'title' 		=> __('Link mode','tooltipy-lang'),
+						'description' 	=> __('Tooltip link mode settings','tooltipy-lang'),
+					),
 				)
 			),
 			array(

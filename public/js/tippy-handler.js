@@ -10,6 +10,7 @@
 			var options = {
 					animation: 'fade',
 					arrow: true,
+					interactive: true,
   					arrowType: 'round',
 					trigger: 'mouseenter',
 					theme: 'dark',

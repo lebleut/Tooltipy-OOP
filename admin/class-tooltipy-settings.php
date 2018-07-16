@@ -193,6 +193,12 @@ class Tooltipy_Settings {
 						'title' 		=> __('Link mode','tooltipy-lang'),
 						'description' 	=> __('Tooltip link mode settings','tooltipy-lang'),
 					),
+					array(
+						'id' 			=> 'footnote_mode',
+						'name' 			=> 'Footnote mode',
+						'title' 		=> __('Footnote mode','tooltipy-lang'),
+						'description' 	=> __('Tooltip footnote mode settings','tooltipy-lang'),
+					),
 				)
 			),
 			array(

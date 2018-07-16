@@ -32,7 +32,8 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
     $icon_style_link        = '<a href="' . add_query_arg( 'section', 'icon_mode' , $style_tab ) . '">' . __( 'Style' ) . '</a>';
     $title_style_link       = '<a href="' . add_query_arg( 'section', 'title_mode' , $style_tab ) . '">' . __( 'Style' ) . '</a>';
     $link_style_link        = '<a href="' . add_query_arg( 'section', 'link_mode' , $style_tab ) . '">' . __( 'Style' ) . '</a>';
-    
+    $footnote_style_link    = '<a href="' . add_query_arg( 'section', 'footnote_mode' , $style_tab ) . '">' . __( 'Style' ) . '</a>';
+
     $settings = array(
         array(
             'section' 		=> 'general',
@@ -46,6 +47,7 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
                 'icon'		=> __( 'Icon mode', 'tooltipy-lang').' ' . $icon_style_link,
                 'title' 	=> __( 'Title attrib mode', 'tooltipy-lang').' ' . $title_style_link,
                 'link' 	    => __( 'Link mode', 'tooltipy-lang').' ' . $link_style_link,
+                'footnote' 	    => __( 'Footnote mode', 'tooltipy-lang').' ' . $footnote_style_link,
             ),
             'default' 		=> array('standard'),
         ),

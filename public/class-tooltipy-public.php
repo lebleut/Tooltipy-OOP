@@ -186,7 +186,7 @@ class Tooltipy_Public {
 
 		if( empty( $matched_tooltips ) || $exclude_me ){
 			return $content;
-			}
+		}
 
 		foreach ($matched_tooltips as $num => $tooltip) {
 			$case_sensitive_modifier = 'i';
@@ -250,7 +250,7 @@ class Tooltipy_Public {
 					$data_tooltip_attr 	= 'data-tooltip="'.$tooltip['tooltip_id'].'"';
 
 					array_push($patterns, '/' . $before . '('.$synonym . $inner_after . ')' . $after . '/'.$case_sensitive_modifier);
-					
+
 					// init replacement
 					$replacement = '$1$2$3';
 
@@ -320,7 +320,14 @@ class Tooltipy_Public {
 							$tooltip_attributes = array( $classes_attr, $data_tooltip_attr );
 							$replacement = '$1<a href="' . get_post_permalink( $tooltip_post->ID ) . '" ' . implode( ' ', $tooltip_attributes ) . '>$2</a>$3';
 							break;
-						
+
+						case 'footnote':
+							$keyword_classes[] = 'tltpy_mode_footnote';
+							$classes_attr = 'class="' . implode( ' ', $keyword_classes) . '"';
+							$tooltip_attributes = array( $classes_attr, $data_tooltip_attr );
+							$replacement = '$1<sup><a href="#tltpy-footnotes" ' . implode( ' ', $tooltip_attributes ) . '>' . ($num+1) . '</a></sup>$2$3';
+							break;
+					
 						default:
 							break;
 					}
@@ -624,5 +631,52 @@ class Tooltipy_Public {
 
 		return $single;
 
+	}
+
+	function footnote_section( $content ){
+		global $post_type;
+
+		$tooltipy_footnote_mode = get_option( 'tltpy_tooltip_mode' );
+		if( is_array( $tooltipy_footnote_mode ) ){
+			$tooltipy_footnote_mode = $tooltipy_footnote_mode[0];
+		}
+
+		if( $tooltipy_footnote_mode != 'footnote' || Tooltipy::get_plugin_name() == $post_type ){
+			return $content;
+		}
+		
+		$matched_tooltips 	= get_post_meta( get_the_id(), 'tltpy_matched_tooltips', true );
+		$exclude_me			= get_post_meta( get_the_id(), 'tltpy_exclude_me', true );
+		$exclude_tooltips	= get_post_meta( get_the_id(), 'tltpy_exclude_tooltips', true );
+
+		$exclude_tooltips = explode( ',', $exclude_tooltips );
+		$exclude_tooltips = array_map( 'trim', $exclude_tooltips );
+		$exclude_tooltips = array_map( 'strtolower', $exclude_tooltips );
+
+		foreach ($matched_tooltips as $num => $tooltip) {
+			if( in_array( strtolower($tooltip['tooltip_title']), $exclude_tooltips ) ){
+				unset( $matched_tooltips[$num]);
+			}
+		}
+
+		if( empty( $matched_tooltips ) || $exclude_me ){
+			return $content;
+		}
+		
+		$notes = array();
+		
+		foreach ($matched_tooltips as $num => $tooltip) {
+			$tooltip_post = get_post($tooltip['tooltip_id']);
+
+			$note_html = '<li>' . $tooltip_post->post_content . '</li>';
+			array_push( $notes, $note_html );
+		}
+
+		$footnote_section = '<div id="tltpy-footnotes">
+		<hr>
+		<ol>' . implode( '', $notes ) . '</ol>
+		</div>';
+		
+		return $content . $footnote_section;
 	}
 }

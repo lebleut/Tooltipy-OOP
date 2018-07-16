@@ -181,6 +181,9 @@ class Tooltipy {
 
 		// Filter the single_template with our custom function for Tooltipy post_type
 		$this->loader->add_filter( 'single_template', $plugin_public, 'tooltip_single_template');
+
+		// if footnote mode load the footnotes section under the content
+		$this->loader->add_filter( 'the_content', $plugin_public, 'footnote_section' );
 	}
 
 	/**

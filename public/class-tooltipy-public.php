@@ -175,17 +175,20 @@ class Tooltipy_Public {
 		$exclude_tooltips = array_map( 'trim', $exclude_tooltips );
 		$exclude_tooltips = array_map( 'strtolower', $exclude_tooltips );
 
-		if( empty( $matched_tooltips ) || $exclude_me ){
-			return $content;
-		}
-
 		$patterns = array();
 		$replacements = array();
 
-		foreach ($matched_tooltips as $tooltip) {
+		foreach ($matched_tooltips as $num => $tooltip) {
 			if( in_array( strtolower($tooltip['tooltip_title']), $exclude_tooltips ) ){
-				continue;
+				unset( $matched_tooltips[$num]);
 			}
+		}
+
+		if( empty( $matched_tooltips ) || $exclude_me ){
+			return $content;
+			}
+
+		foreach ($matched_tooltips as $num => $tooltip) {
 			$case_sensitive_modifier = 'i';
 
 			$keyword_classes = array(
@@ -248,6 +251,9 @@ class Tooltipy_Public {
 
 					array_push($patterns, '/' . $before . '('.$synonym . $inner_after . ')' . $after . '/'.$case_sensitive_modifier);
 					
+					// init replacement
+					$replacement = '$1$2$3';
+
 					switch ($tooltip_mode) {
 						case 'standard':
 							$keyword_classes[] = 'tltpy_mode_standard';
@@ -513,7 +519,7 @@ class Tooltipy_Public {
 		?>
 		<div id="tooltipy-debug" style="background:white; padding: 50px;">
 			<?php
-			if( 'tooltipy' == $post_type):		
+			if( Tooltipy::get_plugin_name() == $post_type):		
 				$this->debug_tooltip_meta();
 			else:
 				$this->debug_posts_meta();

@@ -1,8 +1,7 @@
 <?php
 add_filter( 'tltpy_setting_fields', function( $fields ){
-    $scope_settings = array(
+    $settings = array(
         array(
-            'tab' 			=> 'cover',
             'section' 		=> 'general',
             
             'uid' 			=> 'cover_classes',
@@ -15,7 +14,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
 
         ),
         array(
-            'tab' 			=> 'cover',
             'section' 		=> 'general',
             
             'uid' 			=> 'cover_html_tags',
@@ -26,7 +24,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'helper' 		=> __( 'Choose HTML TAGS (like h1, h2, strong, p, ... ) to cover with tooltips', 'tooltipy-lang' ),
         ),
         array(
-            'tab' 			=> 'cover',
             'section' 		=> 'exclude',
             
             'uid' 			=> 'exclude_classes',
@@ -37,7 +34,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'helper' 		=> __( 'Choose CSS classes to exclude', 'tooltipy-lang' ),
         ),
         array(
-            'tab' 			=> 'cover',
             'section' 		=> 'exclude',
             
             'uid' 			=> 'exclude_links',
@@ -50,7 +46,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             ),
         ),
         array(
-            'tab' 			=> 'cover',
             'section' 		=> 'exclude',
             
             'uid' 			=> 'exclude_heading_tags',
@@ -68,7 +63,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             ),
         ),
         array(
-            'tab' 			=> 'cover',
             'section' 		=> 'exclude',
             
             'uid' 			=> 'exclude_common_tags',
@@ -88,8 +82,13 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             ),
         ),
     );
+    
+    // Assign the COVER tab slug
+    foreach ( $settings as $key => $setting ) {
+        $settings[$key]["tab"] = "cover";
+    }
 
-    $fields = array_merge( $fields, $scope_settings );
+    $fields = array_merge( $fields, $settings );
 
     return $fields;
 });

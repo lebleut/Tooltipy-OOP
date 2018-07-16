@@ -23,9 +23,8 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
         $get_from_post_types_arr[$psttp] = $psttp;
     }
     
-    $general_settings = array(
+    $settings = array(
         array(
-            'tab' 			=> 'general',
             'section' 		=> 'general',
             
             'uid' 			=> 'tooltip_mode',
@@ -41,7 +40,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'default' 		=> array('standard'),
         ),
         array(
-            'tab' 			=> 'general',
             'section' 		=> 'general',
             
             'uid' 			=> 'match_all_occurrences',
@@ -54,7 +52,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             ),
         ),
         array(
-            'tab' 			=> 'general',
             'section' 		=> 'general',
             
             'uid' 			=> 'hide_tooltip_title',
@@ -67,7 +64,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             ),
         ),
         array(
-            'tab' 			=> 'general',
             'section' 		=> 'general',
             
             'uid' 			=> 'tooltip_position',
@@ -84,7 +80,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'default' 		=> array( 'bottom' ),
         ),
         array(
-            'tab' 			=> 'general',
             'section' 		=> 'general',
             
             'uid' 			=> 'tooltip_animation',
@@ -95,7 +90,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'options' 		=> $animations,
         ),
         array(
-            'tab' 			=> 'general',
             'section' 		=> 'general',
             
             'uid' 			=> 'tooltip_animation_speed',
@@ -110,7 +104,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             ),
         ),
         array(
-            'tab' 			=> 'general',
             'section' 		=> 'advanced',
             
             'uid' 			=> 'get_from_post_types',
@@ -122,7 +115,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'options' 		=> $get_from_post_types_arr,
         ),
         array(
-            'tab' 			=> 'general',
             'section' 		=> 'advanced',
             
             'uid' 			=> 'load_all_tooltips',
@@ -135,7 +127,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             ),
         ),
         array(
-            'tab' 			=> 'general',
             'section' 		=> 'advanced',
             
             'uid' 			=> 'custom_events',
@@ -145,7 +136,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'placeholder' 	=> __( 'Events names saparated with (,)', 'tooltipy-lang' ),
         ),
         array(
-            'tab' 			=> 'general',
             'section' 		=> 'advanced',
             
             'uid' 			=> 'prevent_plugins_filters',
@@ -158,7 +148,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             ),
         ),
         array(
-            'tab' 			=> 'general',
             'section' 		=> 'advanced',
             
             'uid' 			=> 'debug_mode',
@@ -173,8 +162,13 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             ),
         ),
     );
-   
-    $fields = array_merge( $fields, $general_settings );
+
+    // Assign the GENERAL tab slug
+    foreach ( $settings as $key => $setting ) {
+        $settings[$key]["tab"] = "general";
+    }
+
+    $fields = array_merge( $fields, $settings );
 
     return $fields;
 });

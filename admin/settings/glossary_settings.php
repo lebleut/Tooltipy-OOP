@@ -15,9 +15,8 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
         $all_pages[$page->ID] = $page->post_title;
     }
 
-    $glossary_settings = array(
+    $settings = array(
         array(
-            'tab' 			=> 'glossary',
             'section' 		=> 'general',
             
             'uid' 			=> 'glossary_page',
@@ -30,7 +29,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'default' 		=> array( '' ),
         ),
         array(
-            'tab' 			=> 'glossary',
             'section' 		=> 'general',
             
             'uid' 			=> 'glossary_tooltips_per_page',
@@ -41,7 +39,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'helper' 		=> __( 'Keywords Per Page (leave blank for unlimited keywords per page)', 'tooltipy-lang' ),
         ),
         array(
-            'tab' 			=> 'glossary',
             'section' 		=> 'labels',
             
             'uid' 			=> 'glossary_label_all',
@@ -51,7 +48,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'placeholder' 	=> __( 'ALL', 'tooltipy-lang' ),
         ),
         array(
-            'tab' 			=> 'glossary',
             'section' 		=> 'labels',
             
             'uid' 			=> 'glossary_label_previous',
@@ -61,7 +57,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'placeholder' 	=> __( 'Previous', 'tooltipy-lang' ),
         ),
         array(
-            'tab' 			=> 'glossary',
             'section' 		=> 'labels',
             
             'uid' 			=> 'glossary_label_next',
@@ -71,7 +66,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'placeholder' 	=> __( 'Next', 'tooltipy-lang' ),
         ),
         array(
-            'tab' 			=> 'glossary',
             'section' 		=> 'labels',
             
             'uid' 			=> 'glossary_label_select_category',
@@ -81,7 +75,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'placeholder' 	=> __( 'Select a category', 'tooltipy-lang' ),
         ),
         array(
-            'tab' 			=> 'glossary',
             'section' 		=> 'labels',
             
             'uid' 			=> 'glossary_label_all_categories',
@@ -91,7 +84,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'placeholder' 	=> __( 'All categories', 'tooltipy-lang' ),
         ),
         array(
-            'tab' 			=> 'glossary',
             'section' 		=> 'page',
             
             'uid' 			=> 'add_glossary_link',
@@ -104,7 +96,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             ),
         ),
         array(
-            'tab' 			=> 'glossary',
             'section' 		=> 'page',
             
             'uid' 			=> 'glossary_link_label',
@@ -114,7 +105,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'placeholder' 	=> __( 'View glossary', 'tooltipy-lang' ),
         ),
         array(
-            'tab' 			=> 'glossary',
             'section' 		=> 'general',
             
             'uid' 			=> 'glossary_show_thumbnails',
@@ -127,7 +117,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             ),
         ),
         array(
-            'tab' 			=> 'glossary',
             'section' 		=> 'general',
             
             'uid' 			=> 'glossary_link_titles',
@@ -141,7 +130,12 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
         ),
     );
     
-    $fields = array_merge( $fields, $glossary_settings );
+    // Assign the GLOSSARY tab slug
+    foreach ( $settings as $key => $setting ) {
+        $settings[$key]["tab"] = "glossary";
+    }
+    
+    $fields = array_merge( $fields, $settings );
 
     return $fields;
 });

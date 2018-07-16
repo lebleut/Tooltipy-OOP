@@ -1,8 +1,7 @@
 <?php
 add_filter( 'tltpy_setting_fields', function( $fields ){
-    $style_settings = array(
+    $settings = array(
         array(
-            'tab' 			=> 'style',
             'section' 		=> 'general',
             
             'uid' 			=> 'tooltip_width',
@@ -11,7 +10,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'label' 		=> __( 'Tooltip width', 'tooltipy-lang' ),
         ),
         array(
-            'tab' 			=> 'style',
             'section' 		=> 'general',
             
             'uid' 			=> 'description_font_size',
@@ -21,7 +19,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'helper' 		=> __( 'px', 'tooltipy-lang' ),
         ),
         array(
-            'tab' 			=> 'style',
             'section' 		=> 'general',
             
             'uid' 			=> 'image_alt',
@@ -34,7 +31,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             ),
         ),
         array(
-            'tab' 			=> 'style',
             'section' 		=> 'advanced',
             
             'uid' 			=> 'keyword_css_classes',
@@ -44,7 +40,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'placeholder' 	=> __( 'Separated with spaces', 'tooltipy-lang' ),
         ),
         array(
-            'tab' 			=> 'style',
             'section' 		=> 'advanced',
             
             'uid' 			=> 'tooltip_css_classes',
@@ -54,7 +49,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
             'placeholder' 	=> __( 'Separated with spaces', 'tooltipy-lang' ),
         ),
         array(
-            'tab' 			=> 'style',
             'section' 		=> 'advanced',
             
             'uid' 			=> 'custom_style',
@@ -69,7 +63,6 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
 
         ),
         array(
-            'tab' 			=> 'style',
             'section' 		=> 'advanced',
             
             'uid' 			=> 'custom_style_sheet_url',
@@ -80,8 +73,13 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
         ),
 
     );
-    
-    $fields = array_merge( $fields, $style_settings );
+        
+    // Assign the STYLE tab slug
+    foreach ( $settings as $key => $setting ) {
+        $settings[$key]["tab"] = "style";
+    }
+
+    $fields = array_merge( $fields, $settings );
 
     return $fields;
 });

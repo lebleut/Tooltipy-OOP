@@ -12,14 +12,11 @@
     border-bottom: #FF5722 1px dashed;
  }
 
-/* Icon Mode */
-.tltpy_mode_icon.tooltipy-kw {
-    width: 20px;
-    height: 20px;
-    background: #FFC107;
+ /* icon mode */
+.tltpy_mode_icon.tooltipy-kw{
     display: inline-block;
-    border-radius: 50%;
-    margin: 0px 2px;
+    position: relative;
+    top: 8px;
 }
 
 .tooltipy-pop .tooltipy-pop-content {

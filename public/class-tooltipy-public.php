@@ -325,7 +325,7 @@ class Tooltipy_Public {
 							$keyword_classes[] = 'tltpy_mode_footnote';
 							$classes_attr = 'class="' . implode( ' ', $keyword_classes) . '"';
 							$tooltip_attributes = array( $classes_attr, $data_tooltip_attr );
-							$replacement = '$1<sup><a href="#tltpy-footnotes" ' . implode( ' ', $tooltip_attributes ) . '>' . ($num+1) . '</a></sup>$2$3';
+							$replacement = '$1$2<sup>[<a href="#tltpy-footnote-' . $tooltip['tooltip_id'] . '" ' . implode( ' ', $tooltip_attributes ) . '>' . ($num+1) . '</a>]</sup>$3';
 							break;
 					
 						default:
@@ -668,7 +668,7 @@ class Tooltipy_Public {
 		foreach ($matched_tooltips as $num => $tooltip) {
 			$tooltip_post = get_post($tooltip['tooltip_id']);
 
-			$note_html = '<li>' . $tooltip_post->post_content . '</li>';
+			$note_html = '<li id="tltpy-footnote-' . $tooltip['tooltip_id'] . '" class="tltpy-footnote">' . $tooltip_post->post_content . '</li>';
 			array_push( $notes, $note_html );
 		}
 

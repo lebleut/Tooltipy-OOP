@@ -159,7 +159,7 @@ class Tooltipy_Public {
 
 	// The main filtering content of Tooltipy
 	function filter_content( $content ){
-		global $post_type;
+		global $post_type, $post;
 
 		// Don't filter Tooltipy post types them selves
 		if( Tooltipy::get_plugin_name() == $post_type ){
@@ -170,6 +170,10 @@ class Tooltipy_Public {
 		$exclude_me 		= get_post_meta( get_the_id(), 'tltpy_exclude_me', true );
 		$matched_tooltips 	= get_post_meta( get_the_id(), 'tltpy_matched_tooltips', true );
 		$exclude_tooltips	= get_post_meta( get_the_id(), 'tltpy_exclude_tooltips', true );
+		
+		if( empty( $matched_tooltips || $exclude_me  ) ){
+			return $content;
+		}
 
 		$exclude_tooltips = explode( ',', $exclude_tooltips );
 		$exclude_tooltips = array_map( 'trim', $exclude_tooltips );
@@ -184,7 +188,7 @@ class Tooltipy_Public {
 			}
 		}
 
-		if( empty( $matched_tooltips ) || $exclude_me ){
+		if( empty( $matched_tooltips ) ){
 			return $content;
 		}
 
@@ -631,6 +635,19 @@ class Tooltipy_Public {
 
 		return $single;
 
+	}
+	
+	function glossary_template( $page_template ){
+		global $wp_query, $post;
+		$tooltipy_glossary_page_id = get_option( 'tltpy_glossary_page' );
+		if( is_array($tooltipy_glossary_page_id) ){
+			$tooltipy_glossary_page_id = $tooltipy_glossary_page_id[0];
+		}
+
+		if( $tooltipy_glossary_page_id == get_the_ID() ){
+			return TOOLTIPY_PLUGIN_DIR . 'public/glossary.php';
+		}
+		return $page_template;
 	}
 
 	function footnote_section( $content ){

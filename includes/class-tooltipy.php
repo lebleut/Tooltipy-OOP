@@ -77,7 +77,6 @@ class Tooltipy {
 
 	}
 
-
 	/**
 	 * Load the required dependencies for this plugin.
 	 *
@@ -182,6 +181,9 @@ class Tooltipy {
 		// Filter the single_template with our custom function for Tooltipy post_type
 		$this->loader->add_filter( 'single_template', $plugin_public, 'tooltip_single_template');
 
+		// Filter the page_template to show the glossary content
+		$this->loader->add_filter( 'page_template', $plugin_public, 'glossary_template');
+
 		// if footnote mode load the footnotes section under the content
 		$this->loader->add_filter( 'the_content', $plugin_public, 'footnote_section' );
 	}
@@ -282,5 +284,24 @@ class Tooltipy {
 		error_log( $msg );
 
 		error_log( '--------' );
+	}
+
+	public static function get_glossary_page_id(){
+		$glossary_id = get_option( 'tltpy_glossary_page' );
+		if( is_array( $glossary_id ) ){
+			$glossary_id = $glossary_id[0];
+		}
+
+		return $glossary_id;
+	}
+
+	public static function get_glossary_page_link(){
+		$glossary_id = self::get_glossary_page_id();
+
+		if( $glossary_id ){
+			return get_the_permalink( $glossary_id );
+		}else{
+			return false;
+		}
 	}
 }

@@ -9,7 +9,7 @@ get_header(); ?>
 global $wp_query;
 
 $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-$first_letter = ( !empty($_GET['letter']) ) ? $_GET['letter'] : '';
+$first_letter = get_query_var( 'letter' );
 
 $postids = tooltipy_get_posts_id_start_with( $first_letter );
 

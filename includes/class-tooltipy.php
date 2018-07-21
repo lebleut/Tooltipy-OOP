@@ -186,8 +186,11 @@ class Tooltipy {
 
 		// if footnote mode load the footnotes section under the content
 		$this->loader->add_filter( 'the_content', $plugin_public, 'footnote_section' );
-	}
 
+		// Rewrite rules
+		$this->loader->add_action( 'init', $plugin_public, 'rewrite_rules' );
+		$this->loader->add_filter( 'query_vars', $plugin_public, 'register_query_var' );
+	}
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *

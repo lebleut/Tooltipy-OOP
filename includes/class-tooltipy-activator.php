@@ -37,6 +37,9 @@ class Tooltipy_Activator {
 		}else{
 			update_option('tooltipy_activated_just_now',true);
 		}
+
+		// flush_rewrite_rules to consider the tooltipy new rewrite rules (letter, ...)
+		flush_rewrite_rules();
 	}
 
 }

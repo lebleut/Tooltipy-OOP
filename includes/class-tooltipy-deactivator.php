@@ -31,6 +31,8 @@ class Tooltipy_Deactivator {
 	 */
 	public static function deactivate() {
 
+		// flush_rewrite_rules to remove the tooltipy rewrite rules (letter, ...)
+		flush_rewrite_rules();
 	}
 
 }

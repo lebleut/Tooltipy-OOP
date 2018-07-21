@@ -9,9 +9,7 @@ $glossary_link = Tooltipy::get_glossary_page_link();
         $letter_link = $glossary_link;
 
         if( !empty($letter[ "value" ]) ){
-            $letter_link = add_query_arg( array(
-                'letter' => $letter["value"],
-            ), $glossary_link );
+            $letter_link = $glossary_link . "letter/" . $letter["value"];
         }
         
         ?>

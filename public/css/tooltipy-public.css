@@ -32,3 +32,14 @@
     color: black;
     outline: none;
 }
+
+/* Glossary page */
+.tltpy-glossary-header-list li {
+    display: inline-block;
+}
+
+.tltpy-glossary-header-list li a{
+    margin: auto 2px;
+    padding: 10px;
+    background-color: #eee;
+}

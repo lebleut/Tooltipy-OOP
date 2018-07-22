@@ -3,7 +3,7 @@ $glossary_letters = tooltipy_get_glossary_letters();
 $glossary_link = Tooltipy::get_glossary_page_link();
 
 ?>
-<ul>
+<ul class="tltpy-glossary-header-list">
     <?php foreach( $glossary_letters as $letter ): ?>
         <?php
         $letter_link = $glossary_link;

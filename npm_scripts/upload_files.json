@@ -1,0 +1,44 @@
+[
+    { "upload":false, "path":"admin/index.php" },
+    { "upload":false, "path":"admin/class-tooltipy-admin.php" },
+    { "upload":false, "path":"admin/class-tooltipy-posts-metaboxes.php" },
+    { "upload":false, "path":"admin/class-tooltipy-settings.php" },
+    { "upload":false, "path":"admin/class-tooltipy-tooltip-metaboxes.php" },
+
+    { "upload":false, "path":"admin/partials/tooltipy-admin-display.php" },
+
+    { "upload":false, "path":"admin/settings/general_settings.php" },
+    { "upload":false, "path":"admin/settings/glossary_settings.php" },
+    { "upload":false, "path":"admin/settings/scope_settings.php" },
+    { "upload":false, "path":"admin/settings/style_settings.php" },
+
+    { "upload":false, "path":"includes/functions.php" },
+    { "upload":false, "path":"includes/index.php" },
+
+    { "upload":false, "path":"includes/class-tooltipy.php" },
+    { "upload":false, "path":"includes/class-tooltipy-loader.php" },
+    { "upload":false, "path":"includes/class-tooltipy-activator.php" },
+    { "upload":false, "path":"includes/class-tooltipy-deactivator.php" },
+    { "upload":false, "path":"includes/class-tooltipy-i18n.php" },
+
+    { "upload":false, "path":"public/class-tooltipy-public.php" },
+    { "upload":false, "path":"public/glossary.php" },
+    { "upload":false, "path":"public/index.php" },
+    { "upload":false, "path":"public/single.php" },
+
+    { "upload":false, "path":"includes/libraries/simple-html-dom/simple_html_dom.php" },
+
+    { "upload":false, "path":"public/partials/glossary-content.php" },
+    { "upload":false, "path":"public/partials/glossary-header.php" },
+    { "upload":false, "path":"public/partials/glossary-none.php" },
+    { "upload":false, "path":"public/partials/glossary-tooltip.php" },
+
+    { "upload":false, "path":"public/partials/tooltip-content.php" },
+    { "upload":false, "path":"public/partials/tooltip-related.php" },
+    { "upload":false, "path":"public/partials/tooltip-synonyms.php" },
+    { "upload":false, "path":"public/partials/tooltipy-public-display.php"},
+
+
+    { "upload":false, "path":"public/css/tooltipy-public.css" },
+    { "upload":false, "path":"public/js/tooltipy-public.js" }
+]

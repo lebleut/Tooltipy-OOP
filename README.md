@@ -2,6 +2,8 @@
 
 Tooltipy (Keywords tooltip generator) allows you to highlight the keywords in your content in order to show a responsive description tooltip
 
+Old version published on Wordpress.org : https://wordpress.org/plugins/bluet-keywords-tooltip-generator/
+
 ## Description
 
 * Tooltipy OOP is the revamp version of Tooltipy which is published on Wordpress.org which comes with a moders OOP code structure for advanced development and addons

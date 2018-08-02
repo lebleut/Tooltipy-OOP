@@ -1,5 +1,7 @@
 <?php
-add_filter( 'tltpy_setting_fields', function( $fields ){
+add_filter( 'tltpy_setting_fields', 'tltpy_add_scope_settings' );
+
+function tltpy_add_scope_settings( $fields ){
     $settings = array(
         array(
             'section' 		=> 'general',
@@ -91,4 +93,4 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
     $fields = array_merge( $fields, $settings );
 
     return $fields;
-});
+}

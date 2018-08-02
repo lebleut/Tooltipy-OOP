@@ -1,5 +1,7 @@
 <?php
-add_filter( 'tltpy_setting_fields', function( $fields ){
+add_filter( 'tltpy_setting_fields', 'tltpy_add_general_serttings' );
+
+function tltpy_add_general_serttings( $fields ){
     // For animation field
     $animations = array(
         "none",
@@ -183,4 +185,4 @@ add_filter( 'tltpy_setting_fields', function( $fields ){
     $fields = array_merge( $fields, $settings );
 
     return $fields;
-});
+}

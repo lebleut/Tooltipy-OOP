@@ -36,6 +36,7 @@
     { "upload":false, "path":"public/partials/tooltip-content.php" },
     { "upload":false, "path":"public/partials/tooltip-related.php" },
     { "upload":false, "path":"public/partials/tooltip-synonyms.php" },
+    { "upload":false, "path":"public/partials/tooltip-pop.php" },
     { "upload":false, "path":"public/partials/tooltipy-public-display.php"},
 
 

@@ -19,10 +19,22 @@
     top: 8px;
 }
 
-.tooltipy-pop .tooltipy-pop-content {
+/* Tooltipy popup template */
+.tooltipy-pop {
     text-align: left;
 }
-
+.tooltipy-pop .tooltipy-synonyms h2{
+    font-size: 1rem;
+}
+.tooltipy-synonyms ul {
+    list-style: none;
+}
+.tooltipy-synonyms li {
+    display: inline-block;
+}
+.tooltipy-synonyms li:not(:last-child):after {
+    content: ",";
+}
 /* footnote mode */
 .tltpy-footnote{
     padding: 2px 10px;

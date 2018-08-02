@@ -136,16 +136,14 @@ class Tooltipy_Public {
 				<div class="<?php echo implode( ' ', $popup_classes ); ?>">
 					<?php
 					
-					do_action( 'tltpy_popup_header', $tooltip[ 'tooltip_id' ] );
-
-					?>
-					<?php if( has_post_thumbnail( $tooltip_post->ID ) ): ?>
-						<div class="tooltipy-pop-image"><?php echo get_the_post_thumbnail( $tooltip_post->ID, 'medium' ); ?></div>
-					<?php endif; ?>
-					<div class="tooltipy-pop-content"><?php echo $tooltip_content; ?></div>
-					<?php
+					// Add the popup main content
+					add_action( 'tltpy_popup_sections', 'tltpy_popup_add_main_section', 10, 2 );
 					
-					do_action( 'tltpy_popup_footer', $tooltip[ 'tooltip_id' ] );
+					// Add the synonyms after the main content
+					add_action( 'tltpy_popup_sections', 'tltpy_popup_add_synonyms_section', 10, 1 );
+
+					// The popup_sections stack action hook by which you can add any content to the tooltip popup template
+					do_action( 'tltpy_popup_sections', $tooltip[ 'tooltip_id' ], $tooltip_content );
 
 					?>
 				</div>

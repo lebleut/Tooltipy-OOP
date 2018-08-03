@@ -141,14 +141,16 @@ class Tooltipy_Public {
 				<div id="tooltipy-pop-<?php echo get_the_ID(); ?>">
 					<div class="<?php echo implode( ' ', $popup_classes ); ?>">
 						<?php
-						
-						// Add the popup main content
-						add_action( 'tltpy_popup_sections', 'tltpy_popup_add_main_section' );
-						
-						// Add the synonyms after the main content
-						add_action( 'tltpy_popup_sections', 'tltpy_popup_add_synonyms_section' );
+						/**
+						 * @Hook : tltpy_popup_sections
+						 * The popup_sections stack action hook by which you can add any content to the tooltip popup template
+						 * 
+						 * Hooked :
+						 * tltpy_popup_add_video_section	- 10
+						 * tltpy_popup_add_main_section 	- 10
+						 * tltpy_popup_add_synonyms_section - 10
+						 */
 
-						// The popup_sections stack action hook by which you can add any content to the tooltip popup template
 						do_action( 'tltpy_popup_sections' );
 
 						?>

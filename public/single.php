@@ -13,8 +13,8 @@ get_header(); ?>
             the_post();
             
             tooltipy_template_part( 'tooltip', 'content' );
-            tooltipy_template_part( 'tooltip', 'synonyms' );
-            tooltipy_template_part( 'tooltip', 'related' );
+            tooltipy_template_part( 'tooltip/tooltip', 'synonyms' );
+            tooltipy_template_part( 'tooltip/tooltip', 'related' );
 
 			// End of the loop.
 		endwhile;

@@ -24,7 +24,7 @@ $args = array(
 $wp_query = new WP_Query( $args );
 
 ?>
-	<?php tooltipy_template_part( 'glossary', 'header' ); ?>
+	<?php tooltipy_template_part( 'glossary/glossary', 'header' ); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
@@ -54,7 +54,7 @@ $wp_query = new WP_Query( $args );
 			);
 			// If no content, include the "No posts found" template.
 		else :
-			tooltipy_template_part( 'glossary', 'none' );
+			tooltipy_template_part( 'glossary/glossary', 'none' );
 
 		endif;
 		?>

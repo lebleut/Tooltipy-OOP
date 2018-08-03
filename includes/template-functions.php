@@ -18,7 +18,7 @@ function tooltipy_template_part( $file_prefix, $file_suffix = '' ){
  * Main popup content
  */
 function tltpy_popup_add_main_section(){
-    tooltipy_template_part( 'tooltip', 'pop' );
+    tooltipy_template_part( 'tooltip', 'content' );
 }
 
 /**
@@ -26,20 +26,12 @@ function tltpy_popup_add_main_section(){
  */
 function tltpy_popup_add_synonyms_section(){
 
-    tooltipy_template_part( 'tooltip', 'synonyms' );
+    tooltipy_template_part( 'tooltip/tooltip', 'synonyms' );
 }
 
 /**
  * Adds video section to the popup content
  */
 function tltpy_popup_add_video_section(){
-    $video_id = get_post_meta( get_the_ID(), 'tltpy_youtube_id', true );
-
-    if( $video_id ):
-        ?>
-            <div class="tltpy_video">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo($video_id); ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-        <?php
-    endif;
+    tooltipy_template_part( 'tooltip/tooltip', 'video' );
 }

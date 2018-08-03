@@ -2,9 +2,11 @@
     <header class="entry-header">
         <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
     </header><!-- .entry-header -->
-    <div class="post-thumbnail">
-        <?php the_post_thumbnail(); ?>                    
-    </div>
+    <?php if( has_post_thumbnail( get_the_ID() ) ): ?>
+        <div class="post-thumbnail">
+            <?php the_post_thumbnail( 'medium' ); ?>                    
+        </div>
+    <?php endif; ?>
 
     <div class="entry-content">
         <?php

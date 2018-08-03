@@ -1,2 +1,2 @@
 <?php
-tooltipy_template_part( 'glossary', 'tooltip' );
+tooltipy_template_part( 'glossary/glossary', 'tooltip' );

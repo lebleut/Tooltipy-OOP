@@ -1,9 +1,5 @@
 <?php
-    if( !isset( $id ) ){
-        $id = get_the_ID();
-    }
-
-    $synonyms = get_post_meta( $id, 'tltpy_synonyms', true );
+    $synonyms = get_post_meta( get_the_ID(), 'tltpy_synonyms', true );
     $synonyms_arr = explode( '|', $synonyms );
     $synonyms_arr = array_map( 'trim', $synonyms_arr );
     $synonyms_arr = array_map( 'strtolower', $synonyms_arr );

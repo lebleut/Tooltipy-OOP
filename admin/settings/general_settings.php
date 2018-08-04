@@ -4,19 +4,57 @@ add_filter( 'tltpy_setting_fields', 'tltpy_add_general_serttings' );
 function tltpy_add_general_serttings( $fields ){
     // For animation field
     $animations = array(
-        "none",
-        "bounce", "bounceIn", "bounceInLeft", "bounceInRight", "bounceInDown", "bounceInUp",
-        "fadeIn", "fadeInLeft", "fadeInLeftBig", "fadeInRight", "fadeInRightBig", "fadeInUp", "fadeInUpBig",
-        "flash",
-        "flip", "flipInX", "flipInY",
-        "lightSpeedIn",
-        "pulse",				
-        "rollIn",
-        "rotateIn", "rotateInDownLeft", "rotateInDownRight", "rotateInUpLeft", "rotateInUpRight",
-        "slideInDown", "slideInLeft", "slideInRight", "slideInUp",
-        "swing", "shake", "tada",
-        "wobble",
-        "zoomIn", "zoomInDown", "zoomInLeft", "zoomInRight", "zoomInUp"
+        "none"              => "none",
+        
+        "bounce"            => "bounce",
+        "bounceIn"          => "bounceIn",
+        "bounceInLeft"      => "bounceInLeft",
+        "bounceInRight"     => "bounceInRight",
+        "bounceInDown"      => "bounceInDown",
+        "bounceInUp"        => "bounceInUp",
+        
+        "fadeIn"            => "fadeIn",
+        "fadeInLeft"        => "fadeInLeft",
+        "fadeInLeftBig"     => "fadeInLeftBig",
+        "fadeInRight"       => "fadeInRight",
+        "fadeInRightBig"    => "fadeInRightBig",
+        "fadeInUp"          => "fadeInUp",
+        "fadeInUpBig"       => "fadeInUpBig",
+        
+        "flash"             => "flash",
+        
+        "flip"              => "flip",
+        "flipInX"           => "flipInX",
+        "flipInY"           => "flipInY",
+        
+        "lightSpeedIn"      => "lightSpeedIn",
+        
+        "pulse"             => "pulse",
+
+        "rollIn"            => "rollIn",
+        
+        "rotateIn"          => "rotateIn",
+        "rotateInDownLeft"  => "rotateInDownLeft",
+        "rotateInDownRight" => "rotateInDownRight",
+        "rotateInUpLeft"    => "rotateInUpLeft",
+        "rotateInUpRight"   => "rotateInUpRight",
+        
+        "slideInDown"       => "slideInDown",
+        "slideInLeft"       => "slideInLeft",
+        "slideInRight"      => "slideInRight",
+        "slideInUp"         => "slideInUp",
+        
+        "swing"             => "swing",
+        "shake"             => "shake",
+        "tada"              => "tada",
+        
+        "wobble"            => "wobble",
+        
+        "zoomIn"            => "zoomIn",
+        "zoomInDown"        => "zoomInDown",
+        "zoomInLeft"        => "zoomInLeft",
+        "zoomInRight"       => "zoomInRight",
+        "zoomInUp"          => "zoomInUp"
     );
 
     // for get_from_post_types field

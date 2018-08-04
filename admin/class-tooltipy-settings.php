@@ -323,6 +323,37 @@ class Tooltipy_Settings {
 		return $fields;
 	}
 
+	/**
+	 * @return : (array) the first setting array related to the id in parameter
+	 * @param : $id (string) the setting identifier
+	 */
+	public static function get_setting_by_id( $id ){
+		$setting = self::filter_settings( 'uid', $id );
+
+		if( is_array( $setting ) && count( $setting ) ){
+			reset( $setting );
+			return current( $setting );
+		}else{
+			return $setting;
+		}
+	}
+
+	/**
+	 * @return : (array) list of settings where setting having the $key is equal to $value
+	 */
+	public static function filter_settings( $key, $value ){
+		$tltpy_all_settings = Tooltipy_Settings::get_settings();
+
+		$filtered = array();
+
+		foreach ( $tltpy_all_settings as $setting ) {
+			if( $setting[ $key ] == $value ){
+				array_push( $filtered, $setting );
+			}
+		} 
+		return $filtered;
+	}
+
     public function setup_settings() {
 		$fields = $this->get_settings();
 

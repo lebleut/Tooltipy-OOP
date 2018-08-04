@@ -1,17 +1,12 @@
 var FtpDeploy = require('ftp-deploy');
 var ftpDeploy = new FtpDeploy();
 const gitFiles = require('git-files')
-var dotenv = require('dotenv').config();
+var dotenv = require('dotenv').config()
 
-var fs = require('fs');
+// Get all modified files from git and add them to files to upload
+upload_files = gitFiles.all()
 
-var myfiles = JSON.parse(fs.readFileSync('./npm_scripts/upload_files.json', 'utf8'));
-upload_files = []
-myfiles.forEach( file => {
-    if( file.upload ){
-        upload_files.push(file.path.trim())
-    }
-});
+console.log( upload_files )
 
 var config = {
     host: process.env.SITE_HOST, // Create a .env file in which you store the environment vars

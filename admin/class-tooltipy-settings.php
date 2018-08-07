@@ -298,7 +298,7 @@ class Tooltipy_Settings {
 				'section' 		=> '',
 				
 				'uid' 			=> '',
-        		'type' 			=> '',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
+        		'type' 			=> '',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox or even 'custom'
 
 				'label' 		=> __( '______', 'tooltipy-lang' ),
         		'placeholder' 	=> __( '______', 'tooltipy-lang' ),
@@ -308,7 +308,8 @@ class Tooltipy_Settings {
 				'options' 		=> array(
         			'option1' 		=> __( '______', 'tooltipy-lang' ),
         		),
-                'default' 		=> array( '' ), 	// String or array
+				'default' 		=> array( '' ), 	// String or array
+				'callback'		=> array( '' ),		// String or array : the function that will render the custom field
 			),
 			*/
 		);
@@ -385,6 +386,17 @@ class Tooltipy_Settings {
             $value = $default;
 		}
 
+		// If custom field
+		if( 'custom' == $arguments['type'] ){
+			// Call the callback function to render the custom section field
+			if( !empty( $arguments[ 'callback' ] ) && function_exists( $arguments[ 'callback' ] ) ){
+				call_user_func( $arguments[ 'callback' ] );
+			}
+
+			// Important instruction
+			return;
+		}
+
         switch( $arguments['type'] ){
             case 'text':
             case 'password':
@@ -452,7 +464,10 @@ class Tooltipy_Settings {
                     }
                     printf( '<fieldset>%s</fieldset>', $options_markup );
                 }
-                break;
+				break;
+
+				default:
+				break;
 		}
 		
 		$helper = !empty($arguments['helper']) ? $arguments['helper'] : '';

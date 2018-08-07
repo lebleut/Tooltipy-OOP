@@ -165,7 +165,9 @@ class Tooltipy_Public {
 		<?php
 	}
 
-	// The main filtering content of Tooltipy
+	/**
+	 *  The main filtering content of Tooltipy
+	 */
 	function filter_content( $content ){
 		global $post_type, $post;
 

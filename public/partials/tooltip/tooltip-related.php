@@ -17,6 +17,11 @@ $posts_array = array();
         <?php
         $matched_tooltips = get_post_meta( get_the_ID(), 'tltpy_matched_tooltips', true );
         $matched = false;
+
+        if( !is_array($matched_tooltips) ){
+            continue;
+        }
+        
         foreach ($matched_tooltips as $ttp) {
             if( $ttp['tooltip_id'] == $current_tooltip_id ){
                 $matched = true;

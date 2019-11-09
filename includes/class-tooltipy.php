@@ -268,7 +268,7 @@ class Tooltipy {
 	 * define( 'WP_DEBUG_LOG', true );
 	 */
 	public static function log( $msg ){
-		$debug_mode_setting = get_option( 'tltpy_debug_mode' );
+		$debug_mode_setting = tooltipy_get_option( 'debug_mode' );
 
 		if( !$debug_mode_setting ){
 			return false;
@@ -290,7 +290,7 @@ class Tooltipy {
 	}
 
 	public static function get_glossary_page_id(){
-		$glossary_id = get_option( 'tltpy_glossary_page' );
+		$glossary_id = tooltipy_get_option( 'glossary_page' );
 		if( is_array( $glossary_id ) ){
 			$glossary_id = $glossary_id[0];
 		}

@@ -64,9 +64,7 @@ class Tooltipy_Public {
 			return false;
 		}
 		// Tooltipy settings
-		if( $tooltip_mode = get_option( 'tltpy_tooltip_mode' ) ){
-			$tooltip_mode = $tooltip_mode[0];
-		}
+		$tooltip_mode = tooltipy_get_option( 'tooltip_mode' );
 
 		// Don't load popups if 'title' or 'link' tooltip mode are picked from the settings
 		// Load only for 'standard' & 'icon' modes
@@ -168,7 +166,7 @@ class Tooltipy_Public {
 	/**
 	 *  The main filtering content of Tooltipy
 	 */
-	function filter_content( $content ){
+	public function filter_content( $content ){
 		global $post_type, $post;
 
 		// Don't filter Tooltipy post types them selves
@@ -216,9 +214,7 @@ class Tooltipy_Public {
 				array_push( $keyword_classes, "tooltipy-kw-cat-".$value );
 			}
 			// Tooltipy settings
-			if( $tooltip_mode = get_option( 'tltpy_tooltip_mode' ) ){
-				$tooltip_mode = $tooltip_mode[0];
-			}
+			$tooltip_mode = tooltipy_get_option( 'tooltip_mode' );
 
 			// Tooltips meta data
 			$tt_synonyms			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_synonyms', true);
@@ -281,12 +277,12 @@ class Tooltipy_Public {
 							$classes_attr = 'class="' . implode( ' ', $keyword_classes) . '"';
 							$tooltip_attributes = array( $classes_attr, $data_tooltip_attr );
 							
-							$bg_color = get_option( 'tltpy_icon_background_color', false );
+							$bg_color = tooltipy_get_option( 'icon_background_color', false );
 							if( empty( $bg_color ) ){
 								$bg_color = "#27ae60";
 							}
 							
-							$txt_color = get_option( 'tltpy_icon_text_color', false );
+							$txt_color = tooltipy_get_option( 'icon_text_color', false );
 							if( empty( $txt_color ) ){
 								$txt_color = "#ffffff";
 							}
@@ -351,7 +347,7 @@ class Tooltipy_Public {
 			}
 		}
 
-		$limit = get_option('tltpy_match_all_occurrences',false) ? -1 : 1;
+		$limit = tooltipy_get_option( 'match_all_occurrences',false) ? -1 : 1;
 
 		$content = $this->text_nodes_replace( $patterns, $replacements, $content, $limit );
 
@@ -362,7 +358,7 @@ class Tooltipy_Public {
 	 * text_nodes_replace : execute preg_replace just for text html dom nodes
 	 * that means that it doesn't affect HTML tags
 	 */
-	function text_nodes_replace( $patterns, $replacements, $content, $limit ){
+	public function text_nodes_replace( $patterns, $replacements, $content, $limit ){
 		include_once( TOOLTIPY_BASE_DIR . '/includes/libraries/simple-html-dom/simple_html_dom.php');
 
 		foreach( $patterns as $key => $pat ){
@@ -401,10 +397,9 @@ class Tooltipy_Public {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/tooltipy-public.css', array(), $this->version, 'all' );
 
-		if( $tooltip_mode = get_option( 'tltpy_tooltip_mode' ) ){
-			$tooltip_mode = $tooltip_mode[0];
-		}
-		if( in_array( $tooltip_mode, array( 'standard', 'icon' ) ) ){
+			$tooltip_mode = tooltipy_get_option( 'tooltip_mode' );
+
+			if( in_array( $tooltip_mode, array( 'standard', 'icon' ) ) ){
 			// Tippy library style
 			wp_enqueue_style( 'tippy-style', TOOLTIPY_PLUGIN_URL . 'assets/libraries/tippy/tippy.css', array(), $this->version, 'all' );
 		}
@@ -432,9 +427,8 @@ class Tooltipy_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tooltipy-public.js', array( 'jquery' ), $this->version, false );
 
 		// Tippy library script
-		if( $tooltip_mode = get_option( 'tltpy_tooltip_mode' ) ){
-			$tooltip_mode = $tooltip_mode[0];
-		}
+		$tooltip_mode = tooltipy_get_option( 'tooltip_mode' );
+
 		if( in_array( $tooltip_mode, array( 'standard', 'icon' ) ) ){
 			wp_enqueue_script( 'tippy-script', TOOLTIPY_PLUGIN_URL . 'assets/libraries/tippy/tippy.min.js', array(), $this->version, 'all' );
 			wp_enqueue_script( 'tippy-handler', TOOLTIPY_PLUGIN_URL . 'public/js/tippy-handler.js', array(), $this->version, 'all' );
@@ -442,7 +436,7 @@ class Tooltipy_Public {
 	}
 
 	// Register Tooltipy Post Type
-	function tooltipy_post_type() {
+	public function tooltipy_post_type() {
 
 		$labels = array(
 			'name'                  => _x( 'Tooltips', 'Post Type General Name', 'tooltipy-lang' ),
@@ -523,16 +517,16 @@ class Tooltipy_Public {
 		);
 		
 		// Flush permalinks to consider new tooltipy post type rewrite rule if activated now
-		if( get_option( 'tooltipy_activated_just_now',false ) ){
+		if( tooltipy_get_option( 'activated_just_now',false ) ){
 			flush_rewrite_rules();
-			delete_option( 'tooltipy_activated_just_now');
+			delete_option( 'tltpy_activated_just_now');
 		}
 	}
 
-	function debug_mode(){
+	public function debug_mode(){
 		global $post_type;
 
-		$tooltipy_debug_mode = get_option( 'tltpy_debug_mode' );
+		$tooltipy_debug_mode = tooltipy_get_option( 'debug_mode' );
 
 		if( !$tooltipy_debug_mode || !current_user_can( 'administrator' ) ){
 			return false;
@@ -552,7 +546,7 @@ class Tooltipy_Public {
 		<?php		
 	}
 
-	function debug_settings(){
+	public function debug_settings(){
 		$settings = new Tooltipy_Settings();
 		$all_settings = $settings->get_settings();
 
@@ -562,7 +556,7 @@ class Tooltipy_Public {
 		<?php
 			foreach($all_settings as $setting){
 				$setting_id = $setting['uid'];
-				$setting_vals = get_option($setting_id);
+				$setting_vals = get_option( $setting_id );
 				$setting_vals = is_array($setting_vals) ? implode(', ',$setting_vals) : $setting_vals;
 				
 				if( true === $setting_vals ){
@@ -585,7 +579,7 @@ class Tooltipy_Public {
 		</ul>
 		<?php
 	}
-	function debug_tooltip_meta(){
+	public function debug_tooltip_meta(){
 		?>
 			<h2>Current Tooltip metadata :</h2>
 			<ul>
@@ -603,7 +597,7 @@ class Tooltipy_Public {
 			</ul>
 		<?php
 	}
-	function debug_posts_meta(){
+	public function debug_posts_meta(){
 		?>
 		<h2>Current post metadata :</h2>
 		<ul>
@@ -634,7 +628,7 @@ class Tooltipy_Public {
 		<?php
 	}
 	
-	function tooltip_single_template( $single ) {
+	public function tooltip_single_template( $single ) {
 
 		global $wp_query, $post;
 
@@ -647,9 +641,9 @@ class Tooltipy_Public {
 
 	}
 	
-	function glossary_template( $page_template ){
+	public function glossary_template( $page_template ){
 		global $wp_query, $post;
-		$tooltipy_glossary_page_id = get_option( 'tltpy_glossary_page' );
+		$tooltipy_glossary_page_id = tooltipy_get_option( 'glossary_page' );
 		if( is_array($tooltipy_glossary_page_id) ){
 			$tooltipy_glossary_page_id = $tooltipy_glossary_page_id[0];
 		}
@@ -660,15 +654,12 @@ class Tooltipy_Public {
 		return $page_template;
 	}
 
-	function footnote_section( $content ){
+	public function footnote_section( $content ){
 		global $post_type;
 
-		$tooltipy_footnote_mode = get_option( 'tltpy_tooltip_mode' );
-		if( is_array( $tooltipy_footnote_mode ) ){
-			$tooltipy_footnote_mode = $tooltipy_footnote_mode[0];
-		}
-
-		if( $tooltipy_footnote_mode != 'footnote' || Tooltipy::get_plugin_name() == $post_type ){
+		$tooltip_mode = tooltipy_get_option( 'tooltip_mode' );
+		
+		if( $tooltip_mode != 'footnote' || Tooltipy::get_plugin_name() == $post_type ){
 			return $content;
 		}
 		
@@ -691,7 +682,7 @@ class Tooltipy_Public {
 		}
 		
 		$notes = array();
-		
+
 		foreach ($matched_tooltips as $num => $tooltip) {
 			$tooltip_post = get_post($tooltip['tooltip_id']);
 
@@ -706,12 +697,12 @@ class Tooltipy_Public {
 		
 		return $content . $footnote_section;
 	}
-	function rewrite_rules() {
+	public function rewrite_rules() {
 		// Consider the letter query var for glossary pages
 		add_rewrite_rule( '([^/]+)/letter/([^/])', 'index.php?pagename=$matches[1]&letter=$matches[2]', 'top' );
 	}
 
-	function register_query_var( $vars ) {
+	public function register_query_var( $vars ) {
 		$vars[] = 'letter';
 
 		return $vars;

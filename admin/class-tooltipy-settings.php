@@ -415,7 +415,7 @@ class Tooltipy_Settings {
 		$type = !empty($arguments['type']) ? $arguments['type'] : '' ;
 		$placeholder = !empty($arguments['placeholder']) ? $arguments['placeholder'] : '' ;
 		
-		if( !$value ) {
+		if( false === $value ) {
             $value = $default;
 		}
 

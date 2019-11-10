@@ -85,27 +85,7 @@ function tltpy_get_glossary_settings( $fields ){
             'label' 		=> __( 'All categories label', 'tooltipy-lang' ),
             'placeholder' 	=> __( 'All categories', 'tooltipy-lang' ),
         ),
-        array(
-            'section' 		=> 'page',
-            
-            'uid' 			=> 'add_glossary_link',
-            'type' 			=> 'checkbox',
 
-            'label' 		=> __( 'Add glossary link', 'tooltipy-lang' ),
-
-            'options' 		=> array(
-                'yes' 		=> __( 'Add glossary link page in the tooltips footer', 'tooltipy-lang' ),
-            ),
-        ),
-        array(
-            'section' 		=> 'page',
-            
-            'uid' 			=> 'glossary_link_label',
-            'type' 			=> 'text',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
-
-            'label' 		=> __( 'Glossary link label', 'tooltipy-lang' ),
-            'placeholder' 	=> __( 'View glossary', 'tooltipy-lang' ),
-        ),
         array(
             'section' 		=> 'general',
             

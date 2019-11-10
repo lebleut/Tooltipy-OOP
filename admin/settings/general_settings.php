@@ -106,18 +106,6 @@ function tltpy_get_general_serttings( $fields ){
         array(
             'section' 		=> 'general',
             
-            'uid' 			=> 'hide_tooltip_title',
-            'type' 			=> 'checkbox',
-    
-            'label' 		=> __( 'Hide tooltip title', 'tooltipy-lang' ),
-    
-            'options' 		=> array(
-                'yes' 		=> __( 'Hide', 'tooltipy-lang' ),
-            ),
-        ),
-        array(
-            'section' 		=> 'general',
-            
             'uid' 			=> 'tooltip_position',
             'type' 			=> 'select',
     
@@ -212,6 +200,36 @@ function tltpy_get_general_serttings( $fields ){
             'options' 		=> array(
                 'yes' 		=> __( 'Debug mode', 'tooltipy-lang' ),
             ),
+        ),
+
+        // add_to_popup
+        array(
+            'section' 		=> 'general',
+            
+            'uid' 			=> 'add_to_popup',
+            'type' 			=> 'checkbox',
+    
+            'label' 		=> __( 'Add to tooltip popup', 'tooltipy-lang' ),
+
+            'options' 		=> array(
+                'title' 		=> __( 'Title', 'tooltipy-lang' ),
+                'synonyms' 		=> __( 'Synonyms section', 'tooltipy-lang' ),
+                'glossary' 		=> __( 'Add glossary link page in the tooltips footer', 'tooltipy-lang' ),
+            ),
+
+            'default'       => array( 'title' )
+        ),
+
+        array(
+            'section' 		=> 'general',
+            
+            'uid' 			=> 'glossary_link_label',
+            'type' 			=> 'text',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
+
+            'label' 		=> __( 'Glossary link label', 'tooltipy-lang' ),
+            'placeholder' 	=> __( 'View glossary', 'tooltipy-lang' ),
+
+            'default' 	=> __( 'View glossary', 'tooltipy-lang' ),
         ),
     );
 

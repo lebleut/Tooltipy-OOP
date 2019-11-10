@@ -35,3 +35,10 @@ function tltpy_popup_add_synonyms_section(){
 function tltpy_popup_add_video_section(){
     tooltipy_template_part( 'tooltip/tooltip', 'video' );
 }
+
+/**
+ * Adds glossary link section to the popup content
+ */
+function tltpy_popup_add_glossary_link_section(){
+    tooltipy_template_part( 'tooltip/tooltip', 'glossary' );
+}

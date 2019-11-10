@@ -60,12 +60,11 @@ function tooltipy_get_posts_id_start_with( $first_letter ){
  *
  * @param  string $field_id
  * @param  mixed $default
- * @param  bool $cache
  * @param  bool $unique_option
  *
  * @return void
  */
-function tooltipy_get_option( $field_id, $default = false, $cache = true, $unique_option = true ){
+function tooltipy_get_option( $field_id, $default = false, $unique_option = true ){
 
     $option_id = 'tltpy_' . $field_id;
 
@@ -73,15 +72,28 @@ function tooltipy_get_option( $field_id, $default = false, $cache = true, $uniqu
 
     $field = Tooltipy_Settings::get_field( $field_id );
 
+    $field_type = isset( $field[ 'type' ] ) ? $field[ 'type' ] : 'text' ;
+
 	// If the option doesn't exist return the default value of the field
-	if( false === $option_value ){
+	if( 
+        ( 
+            !in_array( $field_type, array( 'radio', 'select', 'checkbox' ) )
+            &&
+            empty($option_value)
+        )
+        ||
+        (
+            in_array( $field_type, array( 'radio', 'select', 'checkbox' ) )
+            &&
+            false === $option_value
+        )
+    ){
 
 		if( $field &&  array_key_exists( 'default', $field ) ){
 			$option_value = $field['default'];
 		}
 	}
     
-    $field_type = isset( $field[ 'type' ] ) ? $field[ 'type' ] : 'text' ;
 
 	// If field type is radio or select return first elem in array result
 	if( 

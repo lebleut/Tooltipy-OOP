@@ -214,11 +214,6 @@ class Tooltipy_Settings {
 						'title' 		=> __('Glossary page labels','tooltipy-lang'),
 						'description' 	=> __('','tooltipy-lang'),
 					),
-					array(
-						'id' 			=> 'page',
-						'title' 		=> __('Glossary link page','tooltipy-lang'),
-						'description' 	=> __('','tooltipy-lang'),
-					),
 				)
 			),
 			array(

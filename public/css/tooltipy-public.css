@@ -55,3 +55,10 @@
     padding: 10px;
     background-color: #eee;
 }
+
+.tippy-tooltip a{
+    color: #b9b8ff;
+}
+.tippy-tooltip a:hover{
+    color: white;
+}

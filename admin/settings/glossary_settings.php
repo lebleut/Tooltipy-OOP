@@ -1,7 +1,7 @@
 <?php
-add_filter( 'tltpy_setting_fields', 'tltpy_add_glossary_settings' );
+add_filter( 'tltpy_setting_fields', 'tltpy_get_glossary_settings' );
 
-function tltpy_add_glossary_settings( $fields ){
+function tltpy_get_glossary_settings( $fields ){
     $args = array(
         'sort_order' => 'asc',
         'sort_column' => 'post_title',

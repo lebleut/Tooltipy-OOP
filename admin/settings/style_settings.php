@@ -1,7 +1,7 @@
 <?php
-add_filter( 'tltpy_setting_fields', 'tltpy_add_style_settings' );
+add_filter( 'tltpy_setting_fields', 'tltpy_get_style_settings' );
 
-function tltpy_add_style_settings( $fields ){
+function tltpy_get_style_settings( $fields ){
     $settings = array(
         array(
             'section' 		=> 'general',

@@ -6,10 +6,11 @@ function tltpy_get_style_settings( $fields ){
         array(
             'section' 		=> 'general',
             
-            'uid' 			=> 'tooltip_width',
+            'uid' 			=> 'tooltip_max_width',
             'type' 			=> 'number',	
             'helper' 		=> 'px',
-            'label' 		=> __( 'Tooltip width', 'tooltipy-lang' ),
+            'label' 		=> __( 'Tooltip max width', 'tooltipy-lang' ),
+            'default'       => 350,
         ),
         array(
             'section' 		=> 'general',

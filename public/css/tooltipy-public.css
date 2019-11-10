@@ -62,3 +62,7 @@
 .tippy-tooltip a:hover{
     color: white;
 }
+
+.tooltipy-pop .post-thumbnail{
+    text-align: center;
+}

@@ -395,6 +395,7 @@ class Tooltipy_Public {
 		 * class.
 		 */
 
+		wp_enqueue_style( $this->plugin_name . '-animate', plugin_dir_url( __FILE__ ) . 'css/animate.css', array(), $this->version, 'all' );
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/tooltipy-public.css', array(), $this->version, 'all' );
 
 		$tooltip_mode = tooltipy_get_option( 'tooltip_mode' );
@@ -436,6 +437,18 @@ class Tooltipy_Public {
 			wp_enqueue_script( 'tippy-script', 'https://unpkg.com/tippy.js@5', array('popper-script'), $this->version, 'all' );
 
 			wp_enqueue_script( 'tippy-handler', TOOLTIPY_PLUGIN_URL . 'public/js/tippy-handler.js', array(), $this->version, 'all' );
+
+			$options = array();
+			
+			foreach( Tooltipy_Settings::get_fields() as $field ){
+				$options[$field['uid']] = tooltipy_get_option( $field['uid'] );
+			}
+			
+			wp_localize_script(
+				'tippy-handler',
+				'wpTooltipy',
+				$options
+			); 
 		}
 	}
 

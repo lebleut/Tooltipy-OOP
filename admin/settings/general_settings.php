@@ -4,7 +4,7 @@ add_filter( 'tltpy_setting_fields', 'tltpy_get_general_serttings' );
 function tltpy_get_general_serttings( $fields ){
     // For animation field
     $animations = array(
-        "none"              => "none",
+        "none"              => __( 'None', 'tooltipy-lang' ),
         
         "bounce"            => "bounce",
         "bounceIn"          => "bounceIn",
@@ -56,6 +56,9 @@ function tltpy_get_general_serttings( $fields ){
         "zoomInRight"       => "zoomInRight",
         "zoomInUp"          => "zoomInUp"
     );
+
+    // Uppercase first character
+    $animations = array_map('ucfirst', $animations);
     
     // for get_from_post_types field
     $get_from_post_types_arr = array();
@@ -128,6 +131,7 @@ function tltpy_get_general_serttings( $fields ){
             'label' 		=> __( 'Animation', 'tooltipy-lang' ),
     
             'options' 		=> $animations,
+            'default'       => array( 'fadeIn' ),
         ),
         array(
             'section' 		=> 'general',
@@ -139,8 +143,10 @@ function tltpy_get_general_serttings( $fields ){
     
             'options' 		=> array(
                 'fast'			=> __( 'Fast', 'tooltipy-lang' ),
+                'faster'		=> __( 'Faster', 'tooltipy-lang' ),
                 'normal'		=> __( 'Normal', 'tooltipy-lang' ),
                 'slow'			=> __( 'Slow', 'tooltipy-lang' ),
+                'slower'		=> __( 'Slower', 'tooltipy-lang' ),
             ),
         ),
         array(

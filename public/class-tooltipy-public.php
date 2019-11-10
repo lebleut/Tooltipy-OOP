@@ -397,11 +397,11 @@ class Tooltipy_Public {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/tooltipy-public.css', array(), $this->version, 'all' );
 
-			$tooltip_mode = tooltipy_get_option( 'tooltip_mode' );
+		$tooltip_mode = tooltipy_get_option( 'tooltip_mode' );
 
-			if( in_array( $tooltip_mode, array( 'standard', 'icon' ) ) ){
-			// Tippy library style
-			wp_enqueue_style( 'tippy-style', TOOLTIPY_PLUGIN_URL . 'assets/libraries/tippy/tippy.css', array(), $this->version, 'all' );
+		if( in_array( $tooltip_mode, array( 'standard', 'icon' ) ) ){
+			// Tippy library style CDN version
+			wp_enqueue_style( 'tippy-style', 'https://unpkg.com/tippy.js@5/dist/backdrop.css', array(), $this->version, 'all' );
 		}
 	}
 
@@ -430,7 +430,11 @@ class Tooltipy_Public {
 		$tooltip_mode = tooltipy_get_option( 'tooltip_mode' );
 
 		if( in_array( $tooltip_mode, array( 'standard', 'icon' ) ) ){
-			wp_enqueue_script( 'tippy-script', TOOLTIPY_PLUGIN_URL . 'assets/libraries/tippy/tippy.min.js', array(), $this->version, 'all' );
+			
+			//Tippy CDN version (require popper)
+			wp_enqueue_script( 'popper-script', 'https://unpkg.com/popper.js@1', array(), $this->version, 'all' );
+			wp_enqueue_script( 'tippy-script', 'https://unpkg.com/tippy.js@5', array('popper-script'), $this->version, 'all' );
+
 			wp_enqueue_script( 'tippy-handler', TOOLTIPY_PLUGIN_URL . 'public/js/tippy-handler.js', array(), $this->version, 'all' );
 		}
 	}

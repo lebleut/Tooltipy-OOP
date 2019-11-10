@@ -8,18 +8,19 @@
 			var tooltip_id = jQuery(elem).attr("data-tooltip")
 
 			var options = {
+					content: jQuery( "#tooltipy-pop-" + tooltip_id ).get(0),
+					
 					animation: 'fade',
 					arrow: true,
 					interactive: true,
-  					arrowType: 'round',
 					trigger: 'mouseenter',
-					theme: 'dark',
-					position: 'bottom',
+					placement: 'bottom-start',
 					zIndex: 9999,
-					html: "#tooltipy-pop-" + tooltip_id
+					//theme: 'custom', // Check https://atomiks.github.io/tippyjs/themes/#creating-a-theme
+					//maxWidth: 350,
 				}
 
-			tippy.one( elem, options );
+			tippy( elem, options );
 		});
 	 });
 

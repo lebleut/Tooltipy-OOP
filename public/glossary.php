@@ -24,51 +24,48 @@ $args = array(
 $wp_query = new WP_Query( $args );
 
 ?>
-	<?php tooltipy_template_part( 'glossary/glossary', 'header' ); ?>
+	<div class="wrap">
+		<?php tooltipy_template_part( 'glossary/glossary', 'header' ); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+		<div id="primary" class="content-area">
+			<main id="main" class="site-main" role="main">
 
-		<?php if ( have_posts() ) : ?>
+			<?php if ( have_posts() ) : ?>
 
-			<header class="page-header">
-				<h1 class="page-title">Glossary page</h1>
-			</header><!-- .page-header -->
+				<header class="page-header" style="width: 100%;">
+					<h1 class="page-title">Glossary page</h1>
+				</header><!-- .page-header -->
+				<div class="tooltipy-glossary-elems">
+					<?php
+					// Start the Loop.
+					while ( have_posts() ) :
+						the_post();
 
-			<?php
-			// Start the Loop.
-			while ( have_posts() ) :
-				the_post();
+						tooltipy_template_part( 'glossary', 'content' );
 
-                tooltipy_template_part( 'glossary', 'content' );
+					endwhile;
 
-			endwhile;
+					// Previous/next page navigation.
+					the_posts_pagination(
+						array(
+							'prev_text'          => __( 'Previous page', 'tooltipy-lang' ),
+							'next_text'          => __( 'Next page', 'tooltipy-lang' ),
+							'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'tooltipy-lang' ) . ' </span>',
+						)
+					);
+					// If no content, include the "No posts found" template.
+					?>
+				</div>
+			<?php else : ?>
+				<?php tooltipy_template_part( 'glossary/glossary', 'none' ); ?>
+			<?php endif; ?>
 
-			// Previous/next page navigation.
-			the_posts_pagination(
-				array(
-					'prev_text'          => __( 'Previous page', 'tooltipy-lang' ),
-					'next_text'          => __( 'Next page', 'tooltipy-lang' ),
-					'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'tooltipy-lang' ) . ' </span>',
-				)
-			);
-			// If no content, include the "No posts found" template.
-		else :
-			tooltipy_template_part( 'glossary/glossary', 'none' );
-
-		endif;
-		?>
-
-		</main><!-- .site-main -->
-	</div><!-- .content-area -->
-
-
-
-
+			</main><!-- .site-main -->
+		</div><!-- .content-area -->
+	</div>
     <?php
     /* Restore original Post Data */
     
     wp_reset_postdata(); ?>
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

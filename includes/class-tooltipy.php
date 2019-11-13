@@ -255,13 +255,31 @@ class Tooltipy {
 	public function get_tooltips(){
 		$args = array(
 			'posts_per_page' => -1,
-			'post_type'   =>  self::get_plugin_name()
+			'post_type'   =>  self::get_from_post_types()
 		  );
 		   
 		$tooltips = get_posts( $args );
 		
 		return $tooltips;
 	}
+
+	/**
+	 * The list of post type slugs to calculate tooltip keywords from
+	 *
+	 * @return array
+	 */
+	public static function get_from_post_types(){
+		$get_from_opt = tooltipy_get_option( 'get_from_post_types' );
+		
+		if( empty($get_from_opt) ){
+			$pts = array( Tooltipy::get_plugin_name() );
+		}else{
+			$pts = $get_from_opt;
+		}
+
+		return $pts;
+	}
+
 	/**
 	 * Print a custom message in the ../wp-content/debug.log file if the debug_mode option is activated
 	 * Note : you should set the 'WP_DEBUG_LOG' constant to true in the wp-config.php file :

@@ -101,9 +101,11 @@ class Tooltipy_Public {
 			return intval($elem['tooltip_id']);
 		}, $matched_tooltips );
 
+		$get_from_post_types = Tooltipy::get_from_post_types();
+
 		$query = new WP_Query(
 			array(
-			'post_type' => Tooltipy::get_plugin_name(),
+			'post_type' => $get_from_post_types,
 			'post__in' => $matched_ids
 			)
 		);
@@ -178,7 +180,7 @@ class Tooltipy_Public {
 		$exclude_me 		= get_post_meta( get_the_id(), 'tltpy_exclude_me', true );
 		$matched_tooltips 	= get_post_meta( get_the_id(), 'tltpy_matched_tooltips', true );
 		$exclude_tooltips	= get_post_meta( get_the_id(), 'tltpy_exclude_tooltips', true );
-		
+
 		if( empty( $matched_tooltips || $exclude_me  ) ){
 			return $content;
 		}

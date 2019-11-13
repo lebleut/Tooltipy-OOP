@@ -72,9 +72,22 @@ class Tooltipy_Posts_Metaboxes{
         foreach($tooltips as $tltp){
             $synonyms = array( $tltp->post_title );
             $syn_meta = get_post_meta( $tltp->ID, 'tltpy_synonyms', true );
-            $synonyms = array_merge( $synonyms, explode( '|', $syn_meta ) );
 
-            preg_match( '/'. implode( '|', $synonyms ) .'/i', $content, $matches);
+            if( $syn_meta ){
+                $synonyms = array_merge( $synonyms, explode( '|', $syn_meta ) );
+            }
+
+            // Quote regular expression characters
+            $synonyms = array_map( 'preg_quote', $synonyms );
+
+            $pattern = '/'. implode( '|', $synonyms ) .'/i';
+
+            preg_match( $pattern, $content, $matches);
+
+            if( is_array($matches) && count($matches) == 1 && empty($matches[0]) ){
+                $matches = array();
+            }
+
             if( !empty($matches) ){
                 $tltp_vector = array(
                     'tooltip_id'    => $tltp->ID,

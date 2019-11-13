@@ -156,7 +156,8 @@ function tltpy_get_general_serttings( $fields ){
             'type' 			=> 'multiselect',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
     
             'label' 		=> __( 'Get tooltips from', 'tooltipy-lang' ),
-            'description' 	=> __( 'Select post types from which you want to get tooltips', 'tooltipy-lang' ),		// Text description below the field
+            'description' 	=> __( 'Select post types from which you want to get tooltips', 'tooltipy-lang' )		// Text description below the field
+                                . '<div style="color:red;">TODO: consider to tell the user that he should recalculate matched tooltips if this option is changed</div>',
     
             'options' 		=> $get_from_post_types_arr,
         ),

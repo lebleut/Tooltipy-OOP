@@ -134,3 +134,14 @@ function tooltipy_add_option( $option, $value = '', $deprecated = '', $autoload 
 function tooltipy_update_option( $option, $value, $autoload = null ){
     return update_option( 'tltpy_' . $option, $value, $autoload = null );
 }
+
+/**
+ * tooltipy_debug
+ *
+ * @param  mixed $var
+ *
+ * @return void
+ */
+function tooltipy_debug( $var ){
+    echo '<pre class="tooltipy-debug">'. print_r( $var, true ) .'</pre>';
+}

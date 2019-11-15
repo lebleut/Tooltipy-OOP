@@ -61,12 +61,12 @@ class Admin {
 		add_action( 'pre_get_posts', array($this, 'tooltips_orderby') );
 
 		// Settings
-		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-settings.php';
+		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-settings.php';
 		new Settings();
 
 		// Meta boxe
-		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-tooltip-metaboxes.php';
-		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-posts-metaboxes.php';
+		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltip-metaboxes.php';
+		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-posts-metaboxes.php';
 		new Tooltip_Metaboxes();
 		new Posts_Metaboxes();
 

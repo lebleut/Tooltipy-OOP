@@ -58,19 +58,19 @@ include TOOLTIPY_PLUGIN_DIR . 'includes/template-hooks.php';
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-tooltipy-activator.php
+ * This action is documented in includes/class-plugin-activator.php
  */
 function activate_tooltipy() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-tooltipy-activator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-activator.php';
 	Plugin_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-tooltipy-deactivator.php
+ * This action is documented in includes/class-plugin-deactivator.php
  */
 function deactivate_tooltipy() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-tooltipy-deactivator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-deactivator.php';
 	Plugin_Deactivator::deactivate();
 }
 

@@ -100,18 +100,18 @@ class Tooltipy {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-tooltipy-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-tooltipy-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-tooltipy-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing

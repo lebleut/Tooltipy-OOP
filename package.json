@@ -3,21 +3,21 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "deploy-all": "node npm_scripts/deploy-all",
-    "deploy-some": "node npm_scripts/deploy-some"
+	"deploy-all": "node npm_scripts/deploy-all",
+	"deploy-some": "node npm_scripts/deploy-some"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "dotenv": "^6.0.0",
-    "ftp-deploy": "^2.1.1",
-    "git-files": "^0.3.0",
-    "watch": "^1.0.2"
+	"dotenv": "^6.0.0",
+	"ftp-deploy": "^2.1.1",
+	"git-files": "^0.3.0",
+	"watch": "^1.0.2"
   },
   "dependencies": {},
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lebleut/Tooltipy-OOP.git"
+	"type": "git",
+	"url": "git+https://github.com/lebleut/Tooltipy-OOP.git"
   },
   "homepage": "https://github.com/lebleut/Tooltipy-OOP",
   "description": ""

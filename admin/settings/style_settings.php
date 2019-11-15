@@ -4,111 +4,111 @@ use Tooltipy\Tooltipy;
 add_filter( 'tltpy_setting_fields', 'tltpy_get_style_settings' );
 
 function tltpy_get_style_settings( $fields ){
-    $settings = array(
-        array(
-            'section' 		=> 'general',
-            
-            'uid' 			=> 'tooltip_max_width',
-            'type' 			=> 'number',	
-            'helper' 		=> 'px',
-            'label' 		=> __( 'Tooltip max width', 'tooltipy-lang' ),
-            'default'       => 350,
-        ),
-        array(
-            'section' 		=> 'general',
-            
-            'uid' 			=> 'description_font_size',
-            'type' 			=> 'number',
+	$settings = array(
+		array(
+			'section' 		=> 'general',
+			
+			'uid' 			=> 'tooltip_max_width',
+			'type' 			=> 'number',	
+			'helper' 		=> 'px',
+			'label' 		=> __( 'Tooltip max width', 'tooltipy-lang' ),
+			'default'       => 350,
+		),
+		array(
+			'section' 		=> 'general',
+			
+			'uid' 			=> 'description_font_size',
+			'type' 			=> 'number',
 
-            'label' 		=> __( 'Description tooltip Font size', 'tooltipy-lang' )
-                            .'<div style="color:red;">Not yet implemented</div>',
-            'helper' 		=> __( 'px', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'general',
-            
-            'uid' 			=> 'image_alt',
-            'type' 			=> 'checkbox',
+			'label' 		=> __( 'Description tooltip Font size', 'tooltipy-lang' )
+							.'<div style="color:red;">Not yet implemented</div>',
+			'helper' 		=> __( 'px', 'tooltipy-lang' ),
+		),
+		array(
+			'section' 		=> 'general',
+			
+			'uid' 			=> 'image_alt',
+			'type' 			=> 'checkbox',
 
-            'label' 		=> __('Activate tooltips for images ?','tooltipy-lang')
-                                .'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __('Activate tooltips for images ?','tooltipy-lang')
+								.'<div style="color:red;">Not yet implemented</div>',
 
-            'options' 		=> array(
-                'yes' 		=> __( 'alt property of the images will be displayed as a tooltip', 'tooltipy-lang' ),
-            ),
-        ),
-        array(
-            'section' 		=> 'advanced',
-            
-            'uid' 			=> 'keyword_css_classes',
-            'type' 			=> 'text',
+			'options' 		=> array(
+				'yes' 		=> __( 'alt property of the images will be displayed as a tooltip', 'tooltipy-lang' ),
+			),
+		),
+		array(
+			'section' 		=> 'advanced',
+			
+			'uid' 			=> 'keyword_css_classes',
+			'type' 			=> 'text',
 
-            'label' 		=> __( 'Custom CSS classes for inline keywords', 'tooltipy-lang' )
-                                .'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __( 'Custom CSS classes for inline keywords', 'tooltipy-lang' )
+								.'<div style="color:red;">Not yet implemented</div>',
 
-            'placeholder' 	=> __( 'Separated with spaces', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'advanced',
-            
-            'uid' 			=> 'tooltip_css_classes',
-            'type' 			=> 'text',
+			'placeholder' 	=> __( 'Separated with spaces', 'tooltipy-lang' ),
+		),
+		array(
+			'section' 		=> 'advanced',
+			
+			'uid' 			=> 'tooltip_css_classes',
+			'type' 			=> 'text',
 
-            'label' 		=> __( 'Custom CSS classes for tooltips', 'tooltipy-lang' )
-                                .'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __( 'Custom CSS classes for tooltips', 'tooltipy-lang' )
+								.'<div style="color:red;">Not yet implemented</div>',
 
-            'placeholder' 	=> __( 'Separated with spaces', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'advanced',
-            
-            'uid' 			=> 'custom_style',
-            'type' 			=> 'checkbox',
+			'placeholder' 	=> __( 'Separated with spaces', 'tooltipy-lang' ),
+		),
+		array(
+			'section' 		=> 'advanced',
+			
+			'uid' 			=> 'custom_style',
+			'type' 			=> 'checkbox',
 
-            'label' 		=> __( 'Custom style', 'tooltipy-lang' )
-                                .'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __( 'Custom style', 'tooltipy-lang' )
+								.'<div style="color:red;">Not yet implemented</div>',
 
-            'options' 		=> array(
-                'yes' 		=> __( 'Apply custom style sheet', 'tooltipy-lang' ),
-            ),
-            'default' 		=> array( '' ),
-        ),
-        array(
-            'section' 		=> 'advanced',
-            
-            'uid' 			=> 'custom_style_sheet_url',
-            'type' 			=> 'text',
+			'options' 		=> array(
+				'yes' 		=> __( 'Apply custom style sheet', 'tooltipy-lang' ),
+			),
+			'default' 		=> array( '' ),
+		),
+		array(
+			'section' 		=> 'advanced',
+			
+			'uid' 			=> 'custom_style_sheet_url',
+			'type' 			=> 'text',
 
-            'label' 		=> __( 'Custom style sheet URL', 'tooltipy-lang' )
-                                .'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __( 'Custom style sheet URL', 'tooltipy-lang' )
+								.'<div style="color:red;">Not yet implemented</div>',
 
-            'placeholder' 	=> __( 'CSS URL here', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'icon_mode',
-            
-            'uid' 			=> 'icon_background_color',
-            'type' 			=> 'text',
+			'placeholder' 	=> __( 'CSS URL here', 'tooltipy-lang' ),
+		),
+		array(
+			'section' 		=> 'icon_mode',
+			
+			'uid' 			=> 'icon_background_color',
+			'type' 			=> 'text',
 
-            'label' 		=> __( 'Icon background', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'icon_mode',
-            
-            'uid' 			=> 'icon_text_color',
-            'type' 			=> 'text',
+			'label' 		=> __( 'Icon background', 'tooltipy-lang' ),
+		),
+		array(
+			'section' 		=> 'icon_mode',
+			
+			'uid' 			=> 'icon_text_color',
+			'type' 			=> 'text',
 
-            'label' 		=> __( 'Icon text color', 'tooltipy-lang' ),
-        ),
+			'label' 		=> __( 'Icon text color', 'tooltipy-lang' ),
+		),
 
-    );
-        
-    // Assign the STYLE tab slug
-    foreach ( $settings as $key => $setting ) {
-        $settings[$key]["tab"] = "style";
-    }
+	);
+		
+	// Assign the STYLE tab slug
+	foreach ( $settings as $key => $setting ) {
+		$settings[$key]["tab"] = "style";
+	}
 
-    $fields = array_merge( $fields, $settings );
+	$fields = array_merge( $fields, $settings );
 
-    return $fields;
+	return $fields;
 }

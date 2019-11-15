@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The plugin bootstrap file
  *
@@ -24,6 +23,11 @@
  * Text Domain:       tooltipy-lang
  * Domain Path:       /languages
  */
+
+// Use namespaces
+use Tooltipy\Tooltipy;
+use Tooltipy\Plugin_Activator;
+use Tooltipy\Plugin_Deactivator;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -58,7 +62,7 @@ include TOOLTIPY_PLUGIN_DIR . 'includes/template-hooks.php';
  */
 function activate_tooltipy() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-tooltipy-activator.php';
-	Tooltipy_Activator::activate();
+	Plugin_Activator::activate();
 }
 
 /**
@@ -67,7 +71,7 @@ function activate_tooltipy() {
  */
 function deactivate_tooltipy() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-tooltipy-deactivator.php';
-	Tooltipy_Deactivator::deactivate();
+	Plugin_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_tooltipy' );

@@ -1,6 +1,7 @@
 <?php
+namespace Tooltipy;
 
-class Tooltipy_Posts_Metaboxes{
+class Posts_Metaboxes{
     public function __construct() {
         add_action( 'do_meta_boxes', array( $this, 'add_meta_boxes' ), 10, 3 );
         

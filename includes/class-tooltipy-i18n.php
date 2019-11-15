@@ -1,4 +1,5 @@
 <?php
+namespace Tooltipy;
 
 /**
  * Define the internationalization functionality
@@ -24,7 +25,7 @@
  * @subpackage Tooltipy/includes
  * @author     Jamel Eddine Zarga <jamel.zarga@gmail.com>
  */
-class Tooltipy_i18n {
+class Plugin_i18n {
 
 
 	/**

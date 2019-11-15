@@ -1,6 +1,7 @@
 <?php
+namespace Tooltipy;
 
-class Tooltipy_Tooltip_Metaboxes{
+class Tooltip_Metaboxes{
     public function __construct() {
     	// Hook after the Tooltipy edit title
         add_action( 'edit_form_after_title', array( $this, 'meta_box_after_title' ) );

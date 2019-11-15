@@ -1,4 +1,6 @@
 <?php
+use Tooltipy\Tooltipy;
+
 /**
  * The template for displaying the Tooltipy Gloassary page
  */

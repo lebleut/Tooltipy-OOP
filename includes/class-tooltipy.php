@@ -1,4 +1,5 @@
 <?php
+namespace Tooltipy;
 
 /**
  * The file that defines the core plugin class
@@ -35,7 +36,7 @@ class Tooltipy {
 	 *
 	 * @since    4.0.0
 	 * @access   protected
-	 * @var      Tooltipy_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Plugin_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -82,9 +83,9 @@ class Tooltipy {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Tooltipy_Loader. Orchestrates the hooks of the plugin.
-	 * - Tooltipy_i18n. Defines internationalization functionality.
-	 * - Tooltipy_Admin. Defines all hooks for the admin area.
+	 * - Plugin_Loader. Orchestrates the hooks of the plugin.
+	 * - Plugin_i18n. Defines internationalization functionality.
+	 * - Tooltipy\Admin. Defines all hooks for the admin area.
 	 * - Tooltipy_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
@@ -118,14 +119,14 @@ class Tooltipy {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-tooltipy-public.php';
 
-		$this->loader = new Tooltipy_Loader();
+		$this->loader = new Plugin_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Tooltipy_i18n class in order to set the domain and to register the hook
+	 * Uses the Plugin_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    4.0.0
@@ -133,7 +134,7 @@ class Tooltipy {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Tooltipy_i18n();
+		$plugin_i18n = new Plugin_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -148,7 +149,7 @@ class Tooltipy {
 	 */
 	private function define_admin_hooks() {
 		
-		$plugin_admin = new Tooltipy_Admin( self::get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Admin( self::get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -236,7 +237,7 @@ class Tooltipy {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     4.0.0
-	 * @return    Tooltipy_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Plugin_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

@@ -1,4 +1,6 @@
 <?php
+use Tooltipy\Tooltipy;
+use Tooltipy\Settings;
 
 function tooltipy_get_glossary_letters(){
     $posts = get_posts( array(
@@ -70,7 +72,7 @@ function tooltipy_get_option( $field_id, $default = false, $unique_option = true
 
     $option_value = get_option( $option_id, $default );
 
-    $field = Tooltipy_Settings::get_field( $field_id );
+    $field = Settings::get_field( $field_id );
 
     $field_type = isset( $field[ 'type' ] ) ? $field[ 'type' ] : 'text' ;
 

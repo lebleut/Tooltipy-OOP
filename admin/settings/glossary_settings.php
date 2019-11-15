@@ -1,4 +1,6 @@
 <?php
+use Tooltipy\Tooltipy;
+
 add_filter( 'tltpy_setting_fields', 'tltpy_get_glossary_settings' );
 
 function tltpy_get_glossary_settings( $fields ){

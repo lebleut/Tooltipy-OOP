@@ -1,4 +1,6 @@
 <?php
+use Tooltipy\Tooltipy;
+
 /**
  * Template hooks
  */

@@ -1,4 +1,6 @@
 <?php
+use Tooltipy\Tooltipy;
+
 $glossary_letters = tooltipy_get_glossary_letters();
 $glossary_link = Tooltipy::get_glossary_page_link();
 

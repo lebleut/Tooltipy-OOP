@@ -1,4 +1,5 @@
 <?php
+namespace Tooltipy;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -20,7 +21,7 @@
  * @subpackage Tooltipy/admin
  * @author     Jamel Eddine Zarga <jamel.zarga@gmail.com>
  */
-class Tooltipy_Admin {
+class Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -61,13 +62,13 @@ class Tooltipy_Admin {
 
 		// Settings
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-settings.php';
-		new Tooltipy_Settings();
+		new Settings();
 
 		// Meta boxe
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-tooltip-metaboxes.php';
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-posts-metaboxes.php';
-		new Tooltipy_Tooltip_Metaboxes();
-		new Tooltipy_Posts_Metaboxes();
+		new Tooltip_Metaboxes();
+		new Posts_Metaboxes();
 
 		// Script needed for edit page (quick edit& bulk edit ...)
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_edits_script' ) );
@@ -93,10 +94,10 @@ class Tooltipy_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Tooltipy_Loader as all of the hooks are defined
+		 * defined in Plugin_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Tooltipy_Loader will then create the relationship
+		 * The Plugin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -116,10 +117,10 @@ class Tooltipy_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Tooltipy_Loader as all of the hooks are defined
+		 * defined in Plugin_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Tooltipy_Loader will then create the relationship
+		 * The Plugin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */

@@ -199,6 +199,7 @@ class Posts_Metaboxes{
                     <?php echo ( $is_checked ); ?> 
                 />
             </label>
+            <div style="color:red;">NOT WORKING PROPERLY YET</div>
         </p>
         <?php
     }

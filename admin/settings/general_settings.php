@@ -169,7 +169,8 @@ function tltpy_get_general_serttings( $fields ){
             'uid' 			=> 'load_all_tooltips',
             'type' 			=> 'checkbox',
     
-            'label' 		=> __( 'Load all tooltips', 'tooltipy-lang' ),
+            'label' 		=> __( 'Load all tooltips', 'tooltipy-lang' )
+                            .'<div style="color:red;">Not yet implemented</div>',
     
             'options' 		=> array(
                 'yes' 		=> __( 'Use only if needed to load all keywords per page', 'tooltipy-lang' ),
@@ -181,7 +182,8 @@ function tltpy_get_general_serttings( $fields ){
             'uid' 			=> 'custom_events',
             'type' 			=> 'text',
     
-            'label' 		=> __( 'Events to fetch', 'tooltipy-lang' ),
+            'label' 		=> __( 'Events to fetch', 'tooltipy-lang' )
+                                .'<div style="color:red;">Not yet implemented</div>',
             'placeholder' 	=> __( 'Events names saparated with (,)', 'tooltipy-lang' ),
         ),
         array(
@@ -190,7 +192,8 @@ function tltpy_get_general_serttings( $fields ){
             'uid' 			=> 'prevent_plugins_filters',
             'type' 			=> 'checkbox',
     
-            'label' 		=> __( 'Prevent other plugins filters', 'tooltipy-lang' ),
+            'label' 		=> __( 'Prevent other plugins filters', 'tooltipy-lang' )
+                                .'<div style="color:red;">Not yet implemented</div>',
     
             'options' 		=> array(
                 'yes' 		=> __( 'Prevent any 3rd party plugin to filter or change the keywords content', 'tooltipy-lang' ),

@@ -134,10 +134,10 @@ class Admin {
 		$columns = array(
 			'cb' 						=> $columns['cb'],
 			'title' 					=> __( 'Title' ),
-			'tltpy_synonyms'			=> __( 'Synonyms', 'tooltipy-lang' ),
-			'tltpy_case_sensitive'	=> __( 'Case sensitive', 'tooltipy-lang' ),
-			'tltpy_is_prefix'			=> __( 'Prefix', 'tooltipy-lang' ),
-			'tltpy_youtube_id'			=> __( 'Youtube ID', 'tooltipy-lang' ),
+			'tltpy_synonyms'			=> __tooltipy( 'Synonyms' ),
+			'tltpy_case_sensitive'		=> __tooltipy( 'Case sensitive' ),
+			'tltpy_is_prefix'			=> __tooltipy( 'Prefix' ),
+			'tltpy_youtube_id'			=> __tooltipy( 'Youtube ID' ),
 			'image' 					=> __( 'Image' ),
 			'author' 					=> __( 'Author' ),
 			'date' 						=> __( 'Date' ),
@@ -192,14 +192,14 @@ class Admin {
 			$class = 'tltpy-cell-yes';
 			?>
 			<span class="<?php echo $class; ?>" >
-				<?php _e('is case sensitive', 'tooltipy-lang' ); ?>
+				<?php _e_tooltipy( 'is case sensitive' ); ?>
 			</span>
 			<?php
 		}else{
 			$class = 'tltpy-cell-no';
 			?>
 			<span class="<?php echo $class; ?>" >
-				<?php _e('NOT case sensitive', 'tooltipy-lang' ); ?>
+				<?php _e_tooltipy( 'NOT case sensitive' ); ?>
 			</span>
 			<?php
 		}
@@ -213,14 +213,14 @@ class Admin {
 			$class = 'tltpy-cell-yes';
 			?>
 			<span class="<?php echo $class; ?>" >
-				<?php _e('is a prefix', 'tooltipy-lang' ); ?>
+				<?php _e_tooltipy( 'is a prefix' ); ?>
 			</span>
 			<?php
 		}else{
 			$class = 'tltpy-cell-no';
 			?>
 			<span class="<?php echo $class; ?>" >
-				<?php _e('NOT prefix', 'tooltipy-lang' ); ?>
+				<?php _e_tooltipy( 'NOT prefix' ); ?>
 			</span>
 			<?php
 		}
@@ -278,7 +278,7 @@ class Admin {
 							<div class="inline-edit-group wp-clearfix">';
 				?>
 							<label class="alignleft">
-								<span class="title"><?php _e( 'Synonyms', 'tooltipy-lang' ); ?></span>
+								<span class="title"><?php _e_tooltipy( 'Synonyms' ); ?></span>
 								<span class="input-text-wrap">
 									<input type="text" name="tltpy_synonyms" value="">
 								</span>
@@ -288,7 +288,7 @@ class Admin {
 			case 'tltpy_case_sensitive':
 				?>
 						<label class="alignleft">
-							<span class="title"><?php _e( 'Case sensitive', 'tooltipy-lang' ); ?></span>
+							<span class="title"><?php _e_tooltipy( 'Case sensitive' ); ?></span>
 							<input type="checkbox" name="tltpy_case_sensitive" value="">
 						</label>
 				<?php
@@ -297,7 +297,7 @@ class Admin {
 			case 'tltpy_is_prefix':
 				?>
 							<label class="alignleft">
-								<span class="title"><?php _e( 'Prefix', 'tooltipy-lang' ); ?></span>
+								<span class="title"><?php _e_tooltipy( 'Prefix' ); ?></span>
 								<input type="checkbox" name="tltpy_is_prefix" value="">
 							</label>
 				<?php
@@ -358,7 +358,7 @@ class Admin {
 								<div class="inline-edit-group wp-clearfix">';
 				?>
 						<label class="alignleft">
-							<span class="title"><?php _e( 'Case sensitive', 'tooltipy-lang' ); ?></span>
+							<span class="title"><?php _e_tooltipy( 'Case sensitive' ); ?></span>
 							<select name="tltpy_case_sensitive">
 								<option value="-1">— <?php _e( 'No Change' ); ?> —</option>
 								<option value="yes"><?php _e( 'Yes' ); ?></option>
@@ -375,7 +375,7 @@ class Admin {
 								<div class="inline-edit-group wp-clearfix">';
 				?>
 							<label class="alignleft">
-								<span class="title"><?php _e( 'Prefix', 'tooltipy-lang' ); ?></span>
+								<span class="title"><?php _e_tooltipy( 'Prefix' ); ?></span>
 								<select name="tltpy_is_prefix">
 									<option value="-1">— <?php _e( 'No Change' ); ?> —</option>
 									<option value="yes"><?php _e( 'Yes' ); ?></option>
@@ -442,7 +442,7 @@ class Admin {
 
 			if( file_exists($debug_file_path) && ($debug_file = fopen($debug_file_path, "r"))!==false ){
 				if( filesize( $debug_file_path ) == 0 ){
-					echo '<div class="tooltipy-log--notice">' . __( 'The debug file is empty', 'tooltipy-lang' ) . '</div>';
+					echo '<div class="tooltipy-log--notice">' . __tooltipy( 'The debug file is empty' ) . '</div>';
 				}else{
 					$degug_file_content = fread( $debug_file, filesize( $debug_file_path ) );
 					fclose($debug_file);
@@ -460,14 +460,14 @@ class Admin {
 						}
 																		
 						if( !$count ){
-							echo '<div class="tooltipy-log--notice">' . __( 'Debug file doesn\'t contain Tooltipy logs', 'tooltipy-lang' ) . '</div>';
+							echo '<div class="tooltipy-log--notice">' . __tooltipy( 'Debug file doesn\'t contain Tooltipy logs' ) . '</div>';
 						}
 						?>
 					</div>
 					<?php
 				}
 			}else{
-				echo '<div class="tooltipy-log--error">' . __( 'Debug file not found', 'tooltipy-lang' ) . '</div>';
+				echo '<div class="tooltipy-log--error">' . __tooltipy( 'Debug file not found' ) . '</div>';
 			}
 		}
 	}

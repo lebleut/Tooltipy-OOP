@@ -46,7 +46,7 @@ $posts_array = array();
 		</ul>
 	<?php else: ?>
 		<div>
-			<i><?php _e( 'No related posts for this tooltip.', 'tooltipy-lang' ); ?></i>
+			<i><?php _e_tooltipy( 'No related posts for this tooltip.' ); ?></i>
 		</div>
 	<?php endif;?>
 

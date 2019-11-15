@@ -13,7 +13,7 @@ function tltpy_get_glossary_settings( $fields ){
 	$pages = get_pages( $args );
 
 	$all_pages = array(
-		'' => __( 'Select a page', 'tooltipy-lang' )
+		'' => __tooltipy( 'Select a page' )
 	);
 	foreach ($pages as $page) {
 		$all_pages[$page->ID] = $page->post_title;
@@ -26,8 +26,8 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_page',
 			'type' 			=> 'select',
 
-			'label' 		=> __( 'Glossary page', 'tooltipy-lang' ),
-			'helper' 		=> __( 'Select the page on which the glossary will show up', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Glossary page' ),
+			'helper' 		=> __tooltipy( 'Select the page on which the glossary will show up' ),
 
 			'options' 		=> $all_pages,
 			'default' 		=> array( '' ),
@@ -38,11 +38,11 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_tooltips_per_page',
 			'type' 			=> 'number',
 
-			'label' 		=> __( 'Tooltips per page', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Tooltips per page' )
 								.'<div style="color:red;">Not yet implemented</div>',
 
-			'placeholder' 	=> __( 'ALL', 'tooltipy-lang' ),
-			'helper' 		=> __( 'Keywords Per Page (leave blank for unlimited keywords per page)', 'tooltipy-lang' ),
+			'placeholder' 	=> __tooltipy( 'ALL' ),
+			'helper' 		=> __( 'Keywords Per Page (leave blank for unlimited keywords per page)' ),
 		),
 		array(
 			'section' 		=> 'labels',
@@ -50,9 +50,9 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_label_all',
 			'type' 			=> 'text',
 
-			'label' 		=> __( 'ALL label', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'ALL label' )
 								.'<div style="color:red;">Not yet implemented</div>',
-			'placeholder' 	=> __( 'ALL', 'tooltipy-lang' ),
+			'placeholder' 	=> __tooltipy( 'ALL' ),
 		),
 		array(
 			'section' 		=> 'labels',
@@ -60,9 +60,9 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_label_previous',
 			'type' 			=> 'text',
 
-			'label' 		=> __( 'Previous label', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Previous label' )
 								.'<div style="color:red;">Not yet implemented</div>',
-			'placeholder' 	=> __( 'Previous', 'tooltipy-lang' ),
+			'placeholder' 	=> __tooltipy( 'Previous' ),
 		),
 		array(
 			'section' 		=> 'labels',
@@ -70,9 +70,9 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_label_next',
 			'type' 			=> 'text',
 
-			'label' 		=> __( 'Next label', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Next label' )
 								.'<div style="color:red;">Not yet implemented</div>',
-			'placeholder' 	=> __( 'Next', 'tooltipy-lang' ),
+			'placeholder' 	=> __tooltipy( 'Next' ),
 		),
 		array(
 			'section' 		=> 'labels',
@@ -80,9 +80,9 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_label_select_category',
 			'type' 			=> 'text',
 
-			'label' 		=> __( 'Select a category label', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Select a category label' )
 								.'<div style="color:red;">Not yet implemented</div>',
-			'placeholder' 	=> __( 'Select a category', 'tooltipy-lang' ),
+			'placeholder' 	=> __tooltipy( 'Select a category' ),
 		),
 		array(
 			'section' 		=> 'labels',
@@ -90,9 +90,9 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_label_all_categories',
 			'type' 			=> 'text',
 
-			'label' 		=> __( 'All categories label', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'All categories label' )
 								.'<div style="color:red;">Not yet implemented</div>',
-			'placeholder' 	=> __( 'All categories', 'tooltipy-lang' ),
+			'placeholder' 	=> __tooltipy( 'All categories' ),
 		),
 
 		array(
@@ -101,11 +101,11 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_show_thumbnails',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __( 'Glossary thumbnails', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Glossary thumbnails' )
 								.'<div style="color:red;">Not yet implemented</div>',
 
 			'options' 		=> array(
-				'yes' 		=> __( 'Show thumbnails on the glossary page', 'tooltipy-lang' ),
+				'yes' 		=> __tooltipy( 'Show thumbnails on the glossary page' ),
 			),
 		),
 		array(
@@ -114,11 +114,11 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_link_titles',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __( 'Titles', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Titles' )
 								.'<div style="color:red;">Not yet implemented</div>',
 
 			'options' 		=> array(
-				'yes' 		=> __( 'Add links to titles', 'tooltipy-lang' ),
+				'yes' 		=> __tooltipy( 'Add links to titles' ),
 			),
 		),
 	);

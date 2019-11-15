@@ -138,6 +138,30 @@ function tooltipy_update_option( $option, $value, $autoload = null ){
 }
 
 /**
+ * __tooltipy()
+ * Returns the internationalized message according to tooltipy
+ *
+ * @param  mixed $msg
+ *
+ * @return string
+ */
+function __tooltipy( $msg ){
+	return __( $msg, 'tooltipy-lang' );
+}
+
+/**
+ * _e_tooltipy
+ * Echo out the internationalized message according to tooltipy
+ * 
+ * @param  mixed $msg
+ *
+ * @return void
+ */
+function _e_tooltipy( $msg ){
+	echo __tooltipy( $msg );
+}
+
+/**
  * tooltipy_debug
  *
  * @param  mixed $var

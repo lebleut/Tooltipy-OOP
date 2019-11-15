@@ -24,8 +24,8 @@ class Settings {
 
     public function create_plugin_settings_page() {
 		// Add the menu item and page
-		$page_title = __('Tooltipy settings','tooltipy-lang');
-		$menu_title = __( 'Settings', 'tooltipy-lang' );
+		$page_title = __tooltipy( 'Tooltipy settings' );
+		$menu_title = __tooltipy( 'Settings' );
 		$capability = 'manage_options';
 		$slug = 'tooltipy_settings';
 		$callback = array( $this, 'plugin_settings_page_content' );
@@ -36,7 +36,7 @@ class Settings {
 	
     public function plugin_settings_page_content() {?>
     	<div class="wrap">
-    		<h2><?php echo __('Tooltipy settings','tooltipy-lang'); ?></h2>
+    		<h2><?php echo __tooltipy( 'Tooltipy settings' ); ?></h2>
 			<?php
             if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] ){
                   $this->admin_notice();
@@ -148,13 +148,13 @@ class Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-												'title' 		=> __('Tooltips options','tooltipy-lang'),
-						'description' 	=> __('General tooltips settings','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Tooltips options' ),
+						'description' 	=> __tooltipy( 'General tooltips settings' ),
 					),
 					array(
 						'id' 			=> 'advanced',
-						'title' 		=> __('Advanced','tooltipy-lang'),
-						'description' 	=> __('Advanced options','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Advanced' ),
+						'description' 	=> __tooltipy( 'Advanced options' ),
 					),
 				)
 			),
@@ -163,43 +163,43 @@ class Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __('Customise the tooltip style :','tooltipy-lang'),
-						'description' 	=> __('Make your own style.','tooltipy-lang'),
+						'title' 		=> __( 'Customise the tooltip style :' ),
+						'description' 	=> __( 'Make your own style.' ),
 					),
 					array(
 						'id' 			=> 'advanced',
-						'title' 		=> __('Advanced style','tooltipy-lang'),
-						'description' 	=> __('Advanced style settings','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Advanced style' ),
+						'description' 	=> __tooltipy( 'Advanced style settings' ),
 					),
 					array(
 						'id' 			=> 'standard_mode',
 						'name' 			=> 'standard mode',
-						'title' 		=> __('Standard mode','tooltipy-lang'),
-						'description' 	=> __('Tooltip standard mode settings','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Standard mode' ),
+						'description' 	=> __tooltipy( 'Tooltip standard mode settings' ),
 					),
 					array(
 						'id' 			=> 'icon_mode',
 						'name' 			=> 'icon mode',
-						'title' 		=> __('Icon mode','tooltipy-lang'),
-						'description' 	=> __('Tooltip icon mode settings','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Icon mode' ),
+						'description' 	=> __tooltipy( 'Tooltip icon mode settings' ),
 					),
 					array(
 						'id' 			=> 'title_mode',
 						'name' 			=> 'title mode',
-						'title' 		=> __('Title mode','tooltipy-lang'),
-						'description' 	=> __('Tooltip title mode settings','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Title mode' ),
+						'description' 	=> __tooltipy( 'Tooltip title mode settings' ),
 					),
 					array(
 						'id' 			=> 'link_mode',
 						'name' 			=> 'link mode',
-						'title' 		=> __('Link mode','tooltipy-lang'),
-						'description' 	=> __('Tooltip link mode settings','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Link mode' ),
+						'description' 	=> __tooltipy( 'Tooltip link mode settings' ),
 					),
 					array(
 						'id' 			=> 'footnote_mode',
 						'name' 			=> 'Footnote mode',
-						'title' 		=> __('Footnote mode','tooltipy-lang'),
-						'description' 	=> __('Tooltip footnote mode settings','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Footnote mode' ),
+						'description' 	=> __tooltipy( 'Tooltip footnote mode settings' ),
 					),
 				)
 			),
@@ -208,13 +208,13 @@ class Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __('Glossary settings :','tooltipy-lang'),
-						'description' 	=> __('Choose settings for your glossary.','tooltipy-lang'),
+						'title' 		=> __( 'Glossary settings :' ),
+						'description' 	=> __( 'Choose settings for your glossary.' ),
 					),
 					array(
 						'id' 			=> 'labels',
-						'title' 		=> __('Glossary page labels','tooltipy-lang'),
-						'description' 	=> __('','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Glossary page labels' ),
+						'description' 	=> __tooltipy( '' ),
 					),
 				)
 			),
@@ -223,13 +223,13 @@ class Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __('Cover','tooltipy-lang'),
-						'description' 	=> __('Sections to cover','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Cover' ),
+						'description' 	=> __tooltipy( 'Sections to cover' ),
 					),
 					array(
 						'id' 			=> 'exclude',
-						'title' 		=> __('Exclude','tooltipy-lang'),
-						'description' 	=> __('Sections to exclude','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Exclude' ),
+						'description' 	=> __tooltipy( 'Sections to exclude' ),
 					),
 				)
 			),
@@ -238,8 +238,8 @@ class Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __('Log','tooltipy-lang'),
-						'description' 	=> __('Shows the log Tooltipy sections from the debug.log file','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Log' ),
+						'description' 	=> __( 'Shows the log Tooltipy sections from the debug.log file' ),
 					),
 				)
 			),
@@ -331,13 +331,13 @@ class Settings {
 				'uid' 			=> '',
         		'type' 			=> '',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox or even 'custom'
 
-				'label' 		=> __( '______', 'tooltipy-lang' ),
-        		'placeholder' 	=> __( '______', 'tooltipy-lang' ),
-        		'helper' 		=> __( '______', 'tooltipy-lang' ),		// Text helper beside the field
-        		'description' 	=> __( '______', 'tooltipy-lang' ),		// Text description below the field
+				'label' 		=> __tooltipy( '______' ),
+        		'placeholder' 	=> __tooltipy( '______' ),
+        		'helper' 		=> __tooltipy( '______' ),		// Text helper beside the field
+        		'description' 	=> __tooltipy( '______' ),		// Text description below the field
 
 				'options' 		=> array(
-        			'option1' 		=> __( '______', 'tooltipy-lang' ),
+        			'option1' 		=> __tooltipy( '______' ),
         		),
 				'default' 		=> array( '' ), 	// String or array
 				'callback'		=> array( '' ),		// String or array : the function that will render the custom field

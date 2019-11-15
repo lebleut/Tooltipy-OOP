@@ -45,7 +45,7 @@ class Tooltip_Metaboxes{
 
 		add_meta_box(
 			'tltpy_tooltip_metabox',
-			__('Tooltip settings','tooltipy-lang'),
+			__tooltipy( 'Tooltip settings' ),
 			array( $this, 'metabox_render' ) ,
 			null,
 			'tooltipy_after_title'
@@ -124,7 +124,7 @@ class Tooltip_Metaboxes{
 	function synonyms_field( $meta_field_id ){
 		?>
 		<p>
-			<Label><?php _e('Synonyms','tooltipy-lang');?>
+			<Label><?php _e_tooltipy( 'Synonyms' );?>
 				<input type="text" 
 					name="<? echo( $meta_field_id ); ?>" 
 					value="<?php echo( get_post_meta( get_the_id(), $meta_field_id, true ) ); ?>" 
@@ -140,7 +140,7 @@ class Tooltip_Metaboxes{
 		$is_checked = get_post_meta( get_the_id(), $meta_field_id ,true) ? 'checked' : '';
 		?>
 		<p>
-			<label><?php _e('Make this keyword <b>Case Sensitive</b>','tooltipy-lang');?>
+			<label><?php _e_tooltipy( 'Make this keyword <b>Case Sensitive</b>' );?>
 				<input type="checkbox" 
 					name="<? echo( $meta_field_id ); ?>"
 					<?php echo ( $is_checked ); ?> 
@@ -154,7 +154,7 @@ class Tooltip_Metaboxes{
 		$is_checked = get_post_meta( get_the_id(), $meta_field_id, true) ? 'checked' : '';
 		?>
 		<p>
-			<label><?php _e('This Keyword is a <b>Prefix</b>','tooltipy-lang');?>
+			<label><?php _e_tooltipy( 'This Keyword is a <b>Prefix</b>' );?>
 				<input
 					name="<? echo( $meta_field_id ); ?>"
 					type="checkbox"
@@ -170,7 +170,7 @@ class Tooltip_Metaboxes{
 		?>
 		<p>
 			<label>
-				<b><?php _e('Youtube video ID','tooltipy-lang');?></b><br>
+				<b><?php _e_tooltipy( 'Youtube video ID' );?></b><br>
 				www.youtube.com/watch?v=
 				<input
 					name="<? echo( $meta_field_id ); ?>"

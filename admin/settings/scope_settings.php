@@ -11,11 +11,11 @@ function tltpy_get_scope_settings( $fields ){
 			'uid' 			=> 'cover_classes',
 			'type' 			=> 'text',
 
-			'label' 		=> __( 'Cover CSS classes', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Cover CSS classes' )
 								.'<div style="color:red;">Not yet implemented</div>',
-			'placeholder' 	=> __( 'Class ...', 'tooltipy-lang' ),
-			'helper' 		=> __( 'Choose CSS classes to cover with tooltips', 'tooltipy-lang' ),
-			'description' 	=> __( 'NB : Please avoid overlapped classes !<br>If you leave Classes AND Tags blank the whole page will be affected', 'tooltipy-lang' ),
+			'placeholder' 	=> __( 'Class ...' ),
+			'helper' 		=> __tooltipy( 'Choose CSS classes to cover with tooltips' ),
+			'description' 	=> __( 'NB : Please avoid overlapped classes !<br>If you leave Classes AND Tags blank the whole page will be affected' ),
 
 		),
 		array(
@@ -24,10 +24,10 @@ function tltpy_get_scope_settings( $fields ){
 			'uid' 			=> 'cover_html_tags',
 			'type' 			=> 'text',
 
-			'label' 		=> __( 'Cover HTML TAGS', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Cover HTML TAGS' )
 								.'<div style="color:red;">Not yet implemented</div>',
-			'placeholder' 	=> __( 'HTML tag ...', 'tooltipy-lang' ),
-			'helper' 		=> __( 'Choose HTML TAGS (like h1, h2, strong, p, ... ) to cover with tooltips', 'tooltipy-lang' ),
+			'placeholder' 	=> __( 'HTML tag ...' ),
+			'helper' 		=> __( 'Choose HTML TAGS (like h1, h2, strong, p, ... ) to cover with tooltips' ),
 		),
 		array(
 			'section' 		=> 'exclude',
@@ -35,10 +35,10 @@ function tltpy_get_scope_settings( $fields ){
 			'uid' 			=> 'exclude_classes',
 			'type' 			=> 'text',
 
-			'label' 		=> __( 'Exclude CSS classes', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Exclude CSS classes' )
 								.'<div style="color:red;">Not yet implemented</div>',
-			'placeholder' 	=> __( 'Class ...', 'tooltipy-lang' ),
-			'helper' 		=> __( 'Choose CSS classes to exclude', 'tooltipy-lang' ),
+			'placeholder' 	=> __( 'Class ...' ),
+			'helper' 		=> __tooltipy( 'Choose CSS classes to exclude' ),
 		),
 		array(
 			'section' 		=> 'exclude',
@@ -46,11 +46,11 @@ function tltpy_get_scope_settings( $fields ){
 			'uid' 			=> 'exclude_links',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __( 'Exclude links ?', 'tooltipy-lang' )
+			'label' 		=> __( 'Exclude links ?' )
 								.'<div style="color:red;">Not yet implemented</div>',
 
 			'options' 		=> array(
-				'yes' 		=> __( 'Yes', 'tooltipy-lang' ),
+				'yes' 		=> __tooltipy( 'Yes' ),
 			),
 		),
 		array(
@@ -59,7 +59,7 @@ function tltpy_get_scope_settings( $fields ){
 			'uid' 			=> 'exclude_heading_tags',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __( 'Exclude Headings ?', 'tooltipy-lang' )
+			'label' 		=> __( 'Exclude Headings ?' )
 								.'<div style="color:red;">Not yet implemented</div>',
 
 			'options' 		=> array(
@@ -77,7 +77,7 @@ function tltpy_get_scope_settings( $fields ){
 			'uid' 			=> 'exclude_common_tags',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __( 'Exclude Common Tags ?', 'tooltipy-lang' )
+			'label' 		=> __( 'Exclude Common Tags ?' )
 								.'<div style="color:red;">Not yet implemented</div>',
 
 			'options' 		=> array(

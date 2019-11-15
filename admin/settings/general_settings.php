@@ -6,7 +6,7 @@ add_filter( 'tltpy_setting_fields', 'tltpy_get_general_serttings' );
 function tltpy_get_general_serttings( $fields ){
 	// For animation field
 	$animations = array(
-		"none"              => __( 'None', 'tooltipy-lang' ),
+		"none"              => __tooltipy( 'None' ),
 		
 		"bounce"            => "bounce",
 		"bounceIn"          => "bounceIn",
@@ -86,13 +86,13 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'tooltip_mode',
 			'type' 			=> 'radio',
 			
-			'label' 		=> __( 'Tooltip mode', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Tooltip mode' ),
 			'options' 		=> array(
-				'standard' 	=> __( 'Standard mode', 'tooltipy-lang').' ' . $standard_style_link,
-				'icon'		=> __( 'Icon mode', 'tooltipy-lang').' ' . $icon_style_link,
-				'title' 	=> __( 'Title attrib mode', 'tooltipy-lang').' ' . $title_style_link,
-				'link' 	    => __( 'Link mode', 'tooltipy-lang').' ' . $link_style_link,
-				'footnote' 	    => __( 'Footnote mode', 'tooltipy-lang').' ' . $footnote_style_link,
+				'standard' 	=> __tooltipy( 'Standard mode' ) .' ' . $standard_style_link,
+				'icon'		=> __tooltipy( 'Icon mode' ) .' ' . $icon_style_link,
+				'title' 	=> __tooltipy( 'Title attrib mode' ) .' ' . $title_style_link,
+				'link' 	    => __tooltipy( 'Link mode' ) .' ' . $link_style_link,
+				'footnote' 	    => __tooltipy( 'Footnote mode' ) .' ' . $footnote_style_link,
 			),
 			'default' 		=> array('standard'),
 		),
@@ -102,10 +102,10 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'match_all_occurrences',
 			'type' 			=> 'checkbox',
 	
-			'label' 		=> __( 'Match all occurrences', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Match all occurrences' ),
 	
 			'options' 		=> array(
-				'yes' 		=> __( 'All', 'tooltipy-lang' ),
+				'yes' 		=> __tooltipy( 'All' ),
 			),
 		),
 		array(
@@ -114,13 +114,13 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'tooltip_position',
 			'type' 			=> 'select',
 	
-			'label' 		=> __( 'Tooltip position', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Tooltip position' ),
 	
 			'options' 		=> array(
-				'top' 		=> __( 'Top', 'tooltipy-lang' ),
-				'bottom' 	=> __( 'Bottom', 'tooltipy-lang' ),
-				'right' 	=> __( 'Right', 'tooltipy-lang' ),
-				'left' 		=> __( 'Left', 'tooltipy-lang' ),
+				'top' 		=> __tooltipy( 'Top' ),
+				'bottom' 	=> __tooltipy( 'Bottom' ),
+				'right' 	=> __tooltipy( 'Right' ),
+				'left' 		=> __tooltipy( 'Left' ),
 			),
 			'default' 		=> array( 'bottom' ),
 		),
@@ -130,7 +130,7 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'tooltip_animation',
 			'type' 			=> 'select',
 	
-			'label' 		=> __( 'Animation', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Animation' ),
 	
 			'options' 		=> $animations,
 			'default'       => array( 'fadeIn' ),
@@ -141,14 +141,14 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'tooltip_animation_speed',
 			'type' 			=> 'select',
 	
-			'label' 		=> __( 'Animation speed', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Animation speed' ),
 	
 			'options' 		=> array(
-				'fast'			=> __( 'Fast', 'tooltipy-lang' ),
-				'faster'		=> __( 'Faster', 'tooltipy-lang' ),
-				'normal'		=> __( 'Normal', 'tooltipy-lang' ),
-				'slow'			=> __( 'Slow', 'tooltipy-lang' ),
-				'slower'		=> __( 'Slower', 'tooltipy-lang' ),
+				'fast'			=> __tooltipy( 'Fast' ),
+				'faster'		=> __tooltipy( 'Faster' ),
+				'normal'		=> __tooltipy( 'Normal' ),
+				'slow'			=> __tooltipy( 'Slow' ),
+				'slower'		=> __tooltipy( 'Slower' ),
 			),
 		),
 		array(
@@ -157,8 +157,8 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'get_from_post_types',
 			'type' 			=> 'multiselect',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
 	
-			'label' 		=> __( 'Get tooltips from', 'tooltipy-lang' ),
-			'description' 	=> __( 'Select post types from which you want to get tooltips', 'tooltipy-lang' )		// Text description below the field
+			'label' 		=> __tooltipy( 'Get tooltips from' ),
+			'description' 	=> __tooltipy( 'Select post types from which you want to get tooltips' )		// Text description below the field
 								. '<div style="color:red;">TODO: consider to tell the user that he should recalculate matched tooltips if this option is changed</div>',
 	
 			'options' 		=> $get_from_post_types_arr,
@@ -169,11 +169,11 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'load_all_tooltips',
 			'type' 			=> 'checkbox',
 	
-			'label' 		=> __( 'Load all tooltips', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Load all tooltips' )
 							.'<div style="color:red;">Not yet implemented</div>',
 	
 			'options' 		=> array(
-				'yes' 		=> __( 'Use only if needed to load all keywords per page', 'tooltipy-lang' ),
+				'yes' 		=> __tooltipy( 'Use only if needed to load all keywords per page' ),
 			),
 		),
 		array(
@@ -182,9 +182,9 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'custom_events',
 			'type' 			=> 'text',
 	
-			'label' 		=> __( 'Events to fetch', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Events to fetch' )
 								.'<div style="color:red;">Not yet implemented</div>',
-			'placeholder' 	=> __( 'Events names saparated with (,)', 'tooltipy-lang' ),
+			'placeholder' 	=> __( 'Events names saparated with (,)' ),
 		),
 		array(
 			'section' 		=> 'advanced',
@@ -192,11 +192,11 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'prevent_plugins_filters',
 			'type' 			=> 'checkbox',
 	
-			'label' 		=> __( 'Prevent other plugins filters', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Prevent other plugins filters' )
 								.'<div style="color:red;">Not yet implemented</div>',
 	
 			'options' 		=> array(
-				'yes' 		=> __( 'Prevent any 3rd party plugin to filter or change the keywords content', 'tooltipy-lang' ),
+				'yes' 		=> __tooltipy( 'Prevent any 3rd party plugin to filter or change the keywords content' ),
 			),
 		),
 		array(
@@ -205,12 +205,12 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'debug_mode',
 			'type' 			=> 'checkbox',
 	
-			'label' 		=> __( 'Activate the debug mode', 'tooltipy-lang' ),
-			'helper'        => __( 'Shows debug in the footer of each page if you are administrator and add the Tooltipy log in the ../wp-content/debug.log file', 'tooltipy-lang' ),
-			'description'   => __( 'Note : You should set the WP_DEBUG_LOG & WP_DEBUG constants to true in the wp-config.php file to see the error_log messages.', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Activate the debug mode' ),
+			'helper'        => __( 'Shows debug in the footer of each page if you are administrator and add the Tooltipy log in the ../wp-content/debug.log file' ),
+			'description'   => __( 'Note : You should set the WP_DEBUG_LOG & WP_DEBUG constants to true in the wp-config.php file to see the error_log messages.' ),
 
 			'options' 		=> array(
-				'yes' 		=> __( 'Debug mode', 'tooltipy-lang' ),
+				'yes' 		=> __tooltipy( 'Debug mode' ),
 			),
 		),
 
@@ -221,12 +221,12 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'add_to_popup',
 			'type' 			=> 'checkbox',
 	
-			'label' 		=> __( 'Add to tooltip popup', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Add to tooltip popup' ),
 
 			'options' 		=> array(
-				'title' 		=> __( 'Title', 'tooltipy-lang' ),
-				'synonyms' 		=> __( 'Synonyms section', 'tooltipy-lang' ),
-				'glossary' 		=> __( 'Add glossary link page in the tooltips footer', 'tooltipy-lang' ),
+				'title' 		=> __tooltipy( 'Title' ),
+				'synonyms' 		=> __tooltipy( 'Synonyms section' ),
+				'glossary' 		=> __tooltipy( 'Add glossary link page in the tooltips footer' ),
 			),
 
 			'default'       => array( 'title' )
@@ -238,10 +238,10 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'glossary_link_label',
 			'type' 			=> 'text',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
 
-			'label' 		=> __( 'Glossary link label', 'tooltipy-lang' ),
-			'placeholder' 	=> __( 'View glossary', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Glossary link label' ),
+			'placeholder' 	=> __tooltipy( 'View glossary' ),
 
-			'default' 	=> __( 'View glossary', 'tooltipy-lang' ),
+			'default' 	=> __tooltipy( 'View glossary' ),
 		),
 	);
 

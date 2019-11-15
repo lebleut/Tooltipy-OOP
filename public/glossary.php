@@ -50,9 +50,9 @@ $wp_query = new WP_Query( $args );
 					// Previous/next page navigation.
 					the_posts_pagination(
 						array(
-							'prev_text'          => __( 'Previous page', 'tooltipy-lang' ),
-							'next_text'          => __( 'Next page', 'tooltipy-lang' ),
-							'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'tooltipy-lang' ) . ' </span>',
+							'prev_text'          => __tooltipy( 'Previous page' ),
+							'next_text'          => __tooltipy( 'Next page' ),
+							'before_page_number' => '<span class="meta-nav screen-reader-text">' . __tooltipy( 'Page' ) . ' </span>',
 						)
 					);
 					// If no content, include the "No posts found" template.

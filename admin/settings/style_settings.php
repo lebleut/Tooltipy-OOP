@@ -11,7 +11,7 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'tooltip_max_width',
 			'type' 			=> 'number',	
 			'helper' 		=> 'px',
-			'label' 		=> __( 'Tooltip max width', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Tooltip max width' ),
 			'default'       => 350,
 		),
 		array(
@@ -20,9 +20,9 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'description_font_size',
 			'type' 			=> 'number',
 
-			'label' 		=> __( 'Description tooltip Font size', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Description tooltip Font size' )
 							.'<div style="color:red;">Not yet implemented</div>',
-			'helper' 		=> __( 'px', 'tooltipy-lang' ),
+			'helper' 		=> __tooltipy( 'px' ),
 		),
 		array(
 			'section' 		=> 'general',
@@ -30,11 +30,11 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'image_alt',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __('Activate tooltips for images ?','tooltipy-lang')
+			'label' 		=> __( 'Activate tooltips for images ?' )
 								.'<div style="color:red;">Not yet implemented</div>',
 
 			'options' 		=> array(
-				'yes' 		=> __( 'alt property of the images will be displayed as a tooltip', 'tooltipy-lang' ),
+				'yes' 		=> __tooltipy( 'alt property of the images will be displayed as a tooltip' ),
 			),
 		),
 		array(
@@ -43,10 +43,10 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'keyword_css_classes',
 			'type' 			=> 'text',
 
-			'label' 		=> __( 'Custom CSS classes for inline keywords', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Custom CSS classes for inline keywords' )
 								.'<div style="color:red;">Not yet implemented</div>',
 
-			'placeholder' 	=> __( 'Separated with spaces', 'tooltipy-lang' ),
+			'placeholder' 	=> __tooltipy( 'Separated with spaces' ),
 		),
 		array(
 			'section' 		=> 'advanced',
@@ -54,10 +54,10 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'tooltip_css_classes',
 			'type' 			=> 'text',
 
-			'label' 		=> __( 'Custom CSS classes for tooltips', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Custom CSS classes for tooltips' )
 								.'<div style="color:red;">Not yet implemented</div>',
 
-			'placeholder' 	=> __( 'Separated with spaces', 'tooltipy-lang' ),
+			'placeholder' 	=> __tooltipy( 'Separated with spaces' ),
 		),
 		array(
 			'section' 		=> 'advanced',
@@ -65,11 +65,11 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'custom_style',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __( 'Custom style', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Custom style' )
 								.'<div style="color:red;">Not yet implemented</div>',
 
 			'options' 		=> array(
-				'yes' 		=> __( 'Apply custom style sheet', 'tooltipy-lang' ),
+				'yes' 		=> __tooltipy( 'Apply custom style sheet' ),
 			),
 			'default' 		=> array( '' ),
 		),
@@ -79,10 +79,10 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'custom_style_sheet_url',
 			'type' 			=> 'text',
 
-			'label' 		=> __( 'Custom style sheet URL', 'tooltipy-lang' )
+			'label' 		=> __tooltipy( 'Custom style sheet URL' )
 								.'<div style="color:red;">Not yet implemented</div>',
 
-			'placeholder' 	=> __( 'CSS URL here', 'tooltipy-lang' ),
+			'placeholder' 	=> __tooltipy( 'CSS URL here' ),
 		),
 		array(
 			'section' 		=> 'icon_mode',
@@ -90,7 +90,7 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'icon_background_color',
 			'type' 			=> 'text',
 
-			'label' 		=> __( 'Icon background', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Icon background' ),
 		),
 		array(
 			'section' 		=> 'icon_mode',
@@ -98,7 +98,7 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'icon_text_color',
 			'type' 			=> 'text',
 
-			'label' 		=> __( 'Icon text color', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Icon text color' ),
 		),
 
 	);

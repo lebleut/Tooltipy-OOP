@@ -1,4 +1,5 @@
 <?php
+namespace Tooltipy;
 
 /**
  * The public-facing functionality of the plugin.
@@ -20,6 +21,7 @@
  * @subpackage Tooltipy/public
  * @author     Jamel Eddine Zarga <jamel.zarga@gmail.com>
  */
+
 class Tooltipy_Public {
 
 	/**
@@ -103,7 +105,7 @@ class Tooltipy_Public {
 
 		$get_from_post_types = Tooltipy::get_from_post_types();
 
-		$query = new WP_Query(
+		$query = new \WP_Query(
 			array(
 			'post_type' => $get_from_post_types,
 			'post__in' => $matched_ids
@@ -389,10 +391,10 @@ class Tooltipy_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Tooltipy_Loader as all of the hooks are defined
+		 * defined in Plugin_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Tooltipy_Loader will then create the relationship
+		 * The Plugin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -419,10 +421,10 @@ class Tooltipy_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Tooltipy_Loader as all of the hooks are defined
+		 * defined in Plugin_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Tooltipy_Loader will then create the relationship
+		 * The Plugin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -442,7 +444,7 @@ class Tooltipy_Public {
 
 			$options = array();
 			
-			foreach( Tooltipy_Settings::get_fields() as $field ){
+			foreach( Settings::get_fields() as $field ){
 				$options[$field['uid']] = tooltipy_get_option( $field['uid'] );
 			}
 			
@@ -566,7 +568,7 @@ class Tooltipy_Public {
 	}
 
 	public function debug_settings(){
-		$settings = new Tooltipy_Settings();
+		$settings = new Settings();
 		$all_settings = $settings->get_settings();
 
 		?>
@@ -603,7 +605,7 @@ class Tooltipy_Public {
 			<h2>Current Tooltip metadata :</h2>
 			<ul>
 				<?php
-					$tooltip_metabox_fields = Tooltipy_Tooltip_Metaboxes::get_metabox_fields();
+					$tooltip_metabox_fields = Tooltip_Metaboxes::get_metabox_fields();
 					foreach ($tooltip_metabox_fields as $field) {
 						?>
 						<li>
@@ -621,7 +623,7 @@ class Tooltipy_Public {
 		<h2>Current post metadata :</h2>
 		<ul>
 		<?php
-			$posts_metabox_fields = Tooltipy_Posts_Metaboxes::get_metabox_fields();
+			$posts_metabox_fields = Posts_Metaboxes::get_metabox_fields();
 			foreach ($posts_metabox_fields as $field) {
 				$meta_val = get_post_meta(get_the_ID(), $field['meta_field_id'], true );
 

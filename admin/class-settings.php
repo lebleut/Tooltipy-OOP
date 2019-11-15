@@ -1,8 +1,10 @@
 <?php
+namespace Tooltipy;
+
 /**
- * Tooltipy_Settings : this class handles the Tooltipy settings page
+ * Tooltipy\Settings : this class handles the Tooltipy settings page
  */
-class Tooltipy_Settings {
+class Settings {
     public function __construct() {
     	// Hook into the admin menu
 		add_action( 'admin_menu', array( $this, 'create_plugin_settings_page' ) );
@@ -371,7 +373,7 @@ class Tooltipy_Settings {
 	 * @return : (array) list of settings where setting having the $key is equal to $value
 	 */
 	public static function filter_settings( $key, $value ){
-		$tltpy_all_settings = Tooltipy_Settings::get_settings();
+		$tltpy_all_settings = Settings::get_settings();
 
 		$filtered = array();
 

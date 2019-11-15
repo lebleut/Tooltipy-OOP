@@ -1,6 +1,7 @@
 <?php
+namespace Tooltipy;
 
-class Tooltipy_Tooltip_Metaboxes{
+class Tooltip_Metaboxes{
     public function __construct() {
     	// Hook after the Tooltipy edit title
         add_action( 'edit_form_after_title', array( $this, 'meta_box_after_title' ) );
@@ -68,8 +69,12 @@ class Tooltipy_Tooltip_Metaboxes{
     }
 
     function save_metabox_field( $post_id, $meta_field_id, $sanitize_function = 'sanitize_text_field' ){
-        $value = call_user_func( $sanitize_function, $_POST[$meta_field_id] );
-
+        if( isset($_POST[$meta_field_id]) ){
+            $value = call_user_func( $sanitize_function, $_POST[$meta_field_id] );
+        }else{
+            $value = '';
+        }
+        
         // Filter hook before saving meta field
         $value = apply_filters( 'tltpy_tooltip_metabox_field_before_save_' . $meta_field_id, $value);
 

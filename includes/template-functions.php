@@ -1,4 +1,5 @@
 <?php
+use Tooltipy\Tooltipy;
 
 /**
  * Works like the theme Wordpress get_template_part()

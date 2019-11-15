@@ -1,4 +1,5 @@
 <?php
+namespace Tooltipy;
 
 /**
  * Fired during plugin activation
@@ -20,7 +21,7 @@
  * @subpackage Tooltipy/includes
  * @author     Jamel Eddine Zarga <jamel.zarga@gmail.com>
  */
-class Tooltipy_Activator {
+class Plugin_Activator {
 
 	/**
 	 * Short Description. (use period)

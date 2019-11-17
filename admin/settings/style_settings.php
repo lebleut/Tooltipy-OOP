@@ -53,8 +53,7 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'tooltip_css_classes',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'Custom CSS classes for tooltips' )
-								.'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __tooltipy( 'Custom CSS classes for tooltips' ),
 
 			'placeholder' 	=> __tooltipy( 'Separated with spaces' ),
 		),

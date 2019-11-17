@@ -25,11 +25,23 @@
 
 					onMount: function(instance) {
 						const {tooltip} = instance.popperChildren;
+
 						requestAnimationFrame(() => {
 						  tooltip.classList.add('animated');
 						  tooltip.classList.add( animation );
 						  tooltip.classList.add( animation_speed );
 						});
+
+						// Add custom classes to tooltip popup
+						var customClasses = wpTooltipy.tooltip_css_classes.trim()
+
+						if( customClasses ){
+							customClasses.split( ' ' ).forEach( cls => {
+								if( cls.trim() != '' ){
+									tooltip.classList.add( cls.trim() )
+								}
+							});
+						}
 					},
 					onHidden: function(instance) {
 						const {tooltip} = instance.popperChildren;

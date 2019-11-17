@@ -214,9 +214,17 @@ class Tooltipy_Public {
 
 			$tooltip_categories = wp_get_post_terms( $tooltip['tooltip_id'], Tooltipy::get_taxonomy(), array("fields" => "ids") );
 			
+			// Categories classes
 			foreach ($tooltip_categories as $key => $value) {
 				array_push( $keyword_classes, "tooltipy-kw-cat-".$value );
 			}
+
+			// custom classes
+			$custom_classes = tooltipy_get_option( 'keyword_css_classes' );
+			if( $custom_classes && trim($custom_classes) != '' ){
+				array_push( $keyword_classes, trim( $custom_classes ) );
+			}
+
 			// Tooltipy settings
 			$tooltip_mode = tooltipy_get_option( 'tooltip_mode' );
 
@@ -270,14 +278,20 @@ class Tooltipy_Public {
 
 					switch ($tooltip_mode) {
 						case 'standard':
-							$keyword_classes[] = 'tltpy_mode_standard';
+							if( !in_array( 'tltpy_mode_standard', $keyword_classes ) ){
+								$keyword_classes[] = 'tltpy_mode_standard';
+							}
+
 							$classes_attr = 'class="' . implode( ' ', $keyword_classes) . '"';
 							$tooltip_attributes = array( $classes_attr, $data_tooltip_attr );
 							$replacement = '$1<span ' . implode( ' ', $tooltip_attributes ) . '>$2</span>$3';
 							break;
 					
 						case 'icon':
-							$keyword_classes[] = 'tltpy_mode_icon';
+							if( !in_array( 'tltpy_mode_icon', $keyword_classes ) ){
+								$keyword_classes[] = 'tltpy_mode_icon';
+							}
+
 							$classes_attr = 'class="' . implode( ' ', $keyword_classes) . '"';
 							$tooltip_attributes = array( $classes_attr, $data_tooltip_attr );
 							
@@ -322,21 +336,30 @@ class Tooltipy_Public {
 							$title_attr_content = esc_attr( wp_strip_all_tags( $title_attr_content ) );
 							$title_attr = 'title="' . $title_attr_content . '"';
 
-							$keyword_classes[] = 'tltpy_mode_title';
+							if( !in_array( 'tltpy_mode_title', $keyword_classes ) ){
+								$keyword_classes[] = 'tltpy_mode_title';
+							}
+
 							$classes_attr = 'class="' . implode( ' ', $keyword_classes) . '"';
 							$tooltip_attributes = array( $classes_attr, $data_tooltip_attr, $title_attr );
 							$replacement = '$1<span ' . implode( ' ', $tooltip_attributes ) . '>$2</span>$3';
 							break;
 					
 						case 'link':
-							$keyword_classes[] = 'tltpy_mode_link';
+							if( !in_array( 'tltpy_mode_link', $keyword_classes ) ){
+								$keyword_classes[] = 'tltpy_mode_link';
+							}
+
 							$classes_attr = 'class="' . implode( ' ', $keyword_classes) . '"';
 							$tooltip_attributes = array( $classes_attr, $data_tooltip_attr );
 							$replacement = '$1<a href="' . get_post_permalink( $tooltip_post->ID ) . '" ' . implode( ' ', $tooltip_attributes ) . '>$2</a>$3';
 							break;
 
 						case 'footnote':
-							$keyword_classes[] = 'tltpy_mode_footnote';
+							if( !in_array( 'tltpy_mode_footnote', $keyword_classes ) ){
+								$keyword_classes[] = 'tltpy_mode_footnote';
+							}
+
 							$classes_attr = 'class="' . implode( ' ', $keyword_classes) . '"';
 							$tooltip_attributes = array( $classes_attr, $data_tooltip_attr );
 							$replacement = '$1$2<sup>[<a href="#tltpy-footnote-' . $tooltip['tooltip_id'] . '" ' . implode( ' ', $tooltip_attributes ) . '>' . ($num+1) . '</a>]</sup>$3';

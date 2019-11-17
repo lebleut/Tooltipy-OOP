@@ -22,5 +22,3 @@
 		?>
 	</div><!-- .tooltipy-pop__content -->
 </article><!-- #post-## -->
-
-.tooltipy-pop

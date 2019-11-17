@@ -43,8 +43,7 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'keyword_css_classes',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'Custom CSS classes for inline keywords' )
-								.'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __tooltipy( 'Custom CSS classes for inline keywords' ),
 
 			'placeholder' 	=> __tooltipy( 'Separated with spaces' ),
 		),

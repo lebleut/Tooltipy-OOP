@@ -17,7 +17,7 @@
 					animation: false, // To use custom animation below
 					arrow: true,
 					interactive: true,
-					trigger: 'mouseenter',
+					trigger: wpTooltipy.tooltip_trigger,
 					placement: wpTooltipy.tooltip_position + '-start',
 					zIndex: 9999,
 					//theme: 'custom', // Check https://atomiks.github.io/tippyjs/themes/#creating-a-theme

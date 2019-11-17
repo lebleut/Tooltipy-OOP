@@ -99,6 +99,36 @@ function tltpy_get_general_serttings( $fields ){
 		array(
 			'section' 		=> 'general',
 			
+			'uid' 			=> 'tooltip_trigger',
+			'type' 			=> 'radio',
+			
+			'label' 		=> __tooltipy( 'Trigger on' ),
+			'options' 		=> array(
+				'mouseenter' 	=> __tooltipy( 'On hover' ),
+				'click'			=> __tooltipy( 'On click' ),
+			),
+			'default' 		=> array('mouseenter'),
+		),
+		array(
+			'section' 		=> 'general',
+			
+			'uid' 			=> 'tooltip_cursor',
+			'type' 			=> 'radio',
+			
+			'label' 		=> __tooltipy( 'Mouse cursor' ),
+			'options' 		=> array(
+				'auto' 			=> __tooltipy( 'Auto' ),
+				'pointer' 		=> __tooltipy( 'Pointer' ),
+				'zoom-in'		=> __tooltipy( 'Zoom In' ),
+				'help' 			=> __tooltipy( 'Help' ),
+				'context-menu'	=> __tooltipy( 'Context Menu' ),
+			),
+			
+			'default' 		=> array('pointer'),
+		),
+		array(
+			'section' 		=> 'general',
+			
 			'uid' 			=> 'match_all_occurrences',
 			'type' 			=> 'checkbox',
 	

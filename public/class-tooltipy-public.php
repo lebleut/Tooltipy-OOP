@@ -438,7 +438,8 @@ class Tooltipy_Public {
 	public function inline_style(){
 		// Options
 		$desc_font_size = tooltipy_get_option( 'description_font_size' );
-
+		$tooltip_cursor = tooltipy_get_option( 'tooltip_cursor' );
+		
 		?>
 		<!-- Tooltipy inline style -->
 		<style>
@@ -447,6 +448,14 @@ class Tooltipy_Public {
 			?>
 			.tooltipy-pop__content{
 				font-size: <?php echo $desc_font_size; ?>px;
+			}
+			<?php
+		}
+
+		if( $tooltip_cursor && $tooltip_cursor != 'auto' ){
+			?>
+			.tooltipy-kw{
+				cursor: <?php echo $tooltip_cursor; ?>;
 			}
 			<?php
 		}

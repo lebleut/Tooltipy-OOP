@@ -20,8 +20,8 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'description_font_size',
 			'type' 			=> 'number',
 
-			'label' 		=> __tooltipy( 'Description tooltip Font size' )
-							.'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __tooltipy( 'Description tooltip Font size' ),
+
 			'helper' 		=> __tooltipy( 'px' ),
 		),
 		array(

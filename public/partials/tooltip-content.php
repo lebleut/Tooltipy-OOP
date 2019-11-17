@@ -4,21 +4,23 @@
 
 	if( is_array( $add_to_popup ) && in_array( 'title', $add_to_popup ) ){
 		?>
-		<header class="entry-header">
+		<header class="tooltipy-pop__title">
 			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-		</header><!-- .entry-header -->
+		</header><!-- .tooltipy-pop__title -->
 		<?php
 	}
 	?>
 	<?php if( has_post_thumbnail( get_the_ID() ) ): ?>
-		<div class="post-thumbnail">
+		<div class="tooltipy-pop__thumbnail">
 			<?php the_post_thumbnail( 'medium' ); ?>                    
 		</div>
 	<?php endif; ?>
 
-	<div class="entry-content">
+	<div class="tooltipy-pop__content">
 		<?php
 			the_content();
 		?>
-	</div><!-- .entry-content -->
+	</div><!-- .tooltipy-pop__content -->
 </article><!-- #post-## -->
+
+.tooltipy-pop

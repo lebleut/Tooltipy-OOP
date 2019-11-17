@@ -408,6 +408,29 @@ class Tooltipy_Public {
 			// Tippy library style CDN version
 			wp_enqueue_style( 'tippy-style', 'https://unpkg.com/tippy.js@5/dist/backdrop.css', array(), $this->version, 'all' );
 		}
+
+		$this->inline_style();
+	}
+
+	public function inline_style(){
+		// Options
+		$desc_font_size = tooltipy_get_option( 'description_font_size' );
+
+		?>
+		<!-- Tooltipy inline style -->
+		<style>
+		<?php
+		if( $desc_font_size && intval( $desc_font_size ) > 0 ){
+			?>
+			.tooltipy-pop__content{
+				font-size: <?php echo $desc_font_size; ?>px;
+			}
+			<?php
+		}
+		?>
+		</style>
+		<?php
+
 	}
 
 	/**
@@ -600,6 +623,7 @@ class Tooltipy_Public {
 		</ul>
 		<?php
 	}
+
 	public function debug_tooltip_meta(){
 		?>
 			<h2>Current Tooltip metadata :</h2>
@@ -618,6 +642,7 @@ class Tooltipy_Public {
 			</ul>
 		<?php
 	}
+
 	public function debug_posts_meta(){
 		?>
 		<h2>Current post metadata :</h2>
@@ -718,6 +743,7 @@ class Tooltipy_Public {
 		
 		return $content . $footnote_section;
 	}
+
 	public function rewrite_rules() {
 		// Consider the letter query var for glossary pages
 		add_rewrite_rule( '([^/]+)/letter/([^/])', 'index.php?pagename=$matches[1]&letter=$matches[2]', 'top' );

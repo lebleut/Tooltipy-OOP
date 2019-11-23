@@ -17,6 +17,7 @@ class Settings {
 	
 	public function load_main_settings(){
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/general_settings.php';
+		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/wikipedia_settings.php';
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/style_settings.php';
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/glossary_settings.php';
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/scope_settings.php';
@@ -155,6 +156,16 @@ class Settings {
 						'id' 			=> 'advanced',
 						'title' 		=> __tooltipy( 'Advanced' ),
 						'description' 	=> __tooltipy( 'Advanced options' ),
+					),
+				)
+			),
+			array(
+				'id' => 'wikipedia',
+				'sections' => array(
+					array(
+						'id' 			=> 'general',
+						'title' 		=> __tooltipy( 'Wikipedia' ),
+						'description' 	=> __tooltipy( 'Wikipedia API settings' ),
 					),
 				)
 			),

@@ -2,9 +2,7 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
- .tltpy-cell-yes,
- .tltpy-cell-no,
- .tltpy-cell-synonym{
+ .tltpy-cell{
 	border-radius: 8px;
 	padding: 4px 6px;
 	margin-bottom: 4px;
@@ -30,4 +28,8 @@
 }
 .tooltipy-log--notice{
 	color: blue;
+}
+.tltpy-cell--wiki{
+	color:#ffffff;
+	background: gray;
 }

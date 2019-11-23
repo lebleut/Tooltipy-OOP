@@ -135,6 +135,7 @@ class Admin {
 			'cb' 						=> $columns['cb'],
 			'title' 					=> __( 'Title' ),
 			'tltpy_synonyms'			=> __tooltipy( 'Synonyms' ),
+			'tltpy_wikipedia'			=> __tooltipy( 'Wikipedia' ),
 			'tltpy_case_sensitive'		=> __tooltipy( 'Case sensitive' ),
 			'tltpy_is_prefix'			=> __tooltipy( 'Prefix' ),
 			'tltpy_youtube_id'			=> __tooltipy( 'Youtube ID' ),
@@ -144,6 +145,7 @@ class Admin {
 		  );
 		return $columns;
 	}
+
 	public function manage_column_content( $column, $post_id ){
 
 		switch ($column) {
@@ -166,6 +168,10 @@ class Admin {
 			case 'image':
 				echo get_the_post_thumbnail( $post_id, array(80, 80) );
 				break;
+
+			case 'tltpy_wikipedia':
+				$this->column_wikipedia_content( $post_id );
+				break;
 			
 			default:
 				break;
@@ -179,7 +185,7 @@ class Admin {
 		if( $synonyms ){
 			$synonyms_arr = explode( '|', $synonyms );
 			$synonyms_arr = array_map( 'trim', $synonyms_arr );
-			$syn_class = 'tltpy-cell-synonym';
+			$syn_class = 'tltpy-cell tltpy-cell-synonym';
 			echo "<span class='$syn_class'>".implode( "</span>&nbsp;<span class='$syn_class'>", $synonyms_arr )."</span>";
 		} 
 	}
@@ -189,14 +195,14 @@ class Admin {
 		echo "<div class='data' style='display:none;'>" . $case_sensitive . "</div>";
 
 		if( $case_sensitive ){
-			$class = 'tltpy-cell-yes';
+			$class = 'tltpy-cell tltpy-cell-yes';
 			?>
 			<span class="<?php echo $class; ?>" >
 				<?php _e_tooltipy( 'is case sensitive' ); ?>
 			</span>
 			<?php
 		}else{
-			$class = 'tltpy-cell-no';
+			$class = 'tltpy-cell tltpy-cell-no';
 			?>
 			<span class="<?php echo $class; ?>" >
 				<?php _e_tooltipy( 'NOT case sensitive' ); ?>
@@ -210,14 +216,14 @@ class Admin {
 		echo "<div class='data' style='display:none;'>" . $is_prefix . "</div>";
 
 		if( $is_prefix ){
-			$class = 'tltpy-cell-yes';
+			$class = 'tltpy-cell tltpy-cell-yes';
 			?>
 			<span class="<?php echo $class; ?>" >
 				<?php _e_tooltipy( 'is a prefix' ); ?>
 			</span>
 			<?php
 		}else{
-			$class = 'tltpy-cell-no';
+			$class = 'tltpy-cell tltpy-cell-no';
 			?>
 			<span class="<?php echo $class; ?>" >
 				<?php _e_tooltipy( 'NOT prefix' ); ?>
@@ -235,6 +241,24 @@ class Admin {
 			$youtube_icon_src = TOOLTIPY_PLUGIN_URL . 'assets/youtube_icon.png';
 			?>
 			<a href="<?php echo($link); ?>" target="_blank"><img src="<?php echo($youtube_icon_src);?>"> <?php echo($youtube_id); ?></a>
+			<?php
+		}
+	}
+
+	
+	/**
+	 * Shows the cell content if the term is Wiki
+	 *
+	 * @param  mixed $post_id
+	 *
+	 * @return void
+	 */
+	public function column_wikipedia_content( $post_id ){
+		$is_wiki = get_post_meta( $post_id, 'tltpy_is_wiki', true );
+
+		if( $is_wiki ){
+			?>
+			<span class="tltpy-cell tltpy-cell--wiki">Wiki</span>
 			<?php
 		}
 	}
@@ -296,13 +320,13 @@ class Admin {
 
 			case 'tltpy_is_prefix':
 				?>
-							<label class="alignleft">
-								<span class="title"><?php _e_tooltipy( 'Prefix' ); ?></span>
-								<input type="checkbox" name="tltpy_is_prefix" value="">
-							</label>
+					<label class="alignleft">
+						<span class="title"><?php _e_tooltipy( 'Prefix' ); ?></span>
+						<input type="checkbox" name="tltpy_is_prefix" value="">
+					</label>
 				<?php
-						// for the LAST column only - closing the fieldset element
-						echo('</div></div></fieldset>');
+				// for the LAST column only - closing the fieldset element
+				echo('</div></div></fieldset>');
 				break;
 
 			default:

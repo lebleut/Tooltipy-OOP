@@ -98,6 +98,14 @@ class Tooltip_Metaboxes{
 			array(
 				'meta_field_id' => 'youtube_id',
 				'callback'      => array( __CLASS__, 'video_field' )
+			),
+			array(
+				'meta_field_id' => 'is_wiki',
+				'callback'      => array( __CLASS__, 'is_wiki_field' )
+			),
+			array(
+				'meta_field_id' => 'wiki_term',
+				'callback'      => array( __CLASS__, 'wiki_term_field' )
 			)
 		);
 		
@@ -187,6 +195,61 @@ class Tooltip_Metaboxes{
 				<iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo($video_id); ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 			</p>
 			<?php
+		}
+	}
+
+	/**
+	 * Renders the 'is_wiki' meta field
+	 *
+	 * @param  mixed $meta_field_id
+	 *
+	 * @return void
+	 */
+	public function is_wiki_field( $meta_field_id ){
+		$is_checked = get_post_meta( get_the_id(), $meta_field_id, true) ? 'checked' : '';
+		?>
+		<p>
+			<label><?php _e_tooltipy( 'This is a <b>Wikipedia term</b>' );?>
+				<input
+					name="<? echo( $meta_field_id ); ?>"
+					type="checkbox"
+					<?php echo ( $is_checked ); ?>
+				/>
+			</label>
+		</p>
+		<?php
+	}
+
+	/**
+	 * Renders the 'wiki_term' meta field
+	 *
+	 * @param  mixed $meta_field_id
+	 *
+	 * @return void
+	 */
+	public function wiki_term_field( $meta_field_id ){
+		$wiki_term = get_post_meta( get_the_id(), $meta_field_id, true );
+
+		if( !$wiki_term ){
+			$wiki_term = get_the_title();
+		}
+
+		?>
+		<p>
+			<label>
+				<b><?php _e_tooltipy( 'Wikipedia term' );?></b><br>
+				<input
+					name="<? echo( $meta_field_id ); ?>"
+					type="text"
+					value="<?php echo( $wiki_term ); ?>"
+				/>
+			</label>
+		</p>
+		<?php
+		$wiki_data = tooltipy_get_post_wiki_data( get_the_id() );
+
+		if( $wiki_data ){
+			echo $wiki_data->extract_html;
 		}
 	}
 }

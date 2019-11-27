@@ -388,11 +388,17 @@ class Tooltipy_Public {
 	public function text_nodes_replace( $patterns, $replacements, $content, $limit ){
 		include_once( TOOLTIPY_BASE_DIR . '/includes/libraries/simple-html-dom/simple_html_dom.php');
 
+		$html_obj = str_get_html( $content );
+		$text_nodes = $html_obj->find('text');
+		
 		foreach( $patterns as $key => $pat ){
-			$html_obj = str_get_html( $content );
-			$text_nodes = $html_obj->find('text');
 
 			foreach($text_nodes as $line) {
+				// Exclude classes
+				if( self::is_node_excluded( $line ) ){
+					continue;
+				}
+
 				$line->innertext = preg_replace( $patterns[$key], $replacements[$key], $line->innertext, $limit, $count);
 
 				if( $limit == 1 && $count > 0){
@@ -403,6 +409,106 @@ class Tooltipy_Public {
 		}				
 		return $content;
 	}
+
+	/**
+	 * Checks whether if an HTML node is excluded from being matched
+	 *
+	 * @param  object $html_node
+	 *
+	 * @return void
+	 */
+	public static function is_node_excluded( $html_node ){
+		// classes
+		$exclude_class_name = tooltipy_get_option( 'exclude_classes', false );
+		if( $exclude_class_name ){
+			if( '' != $exclude_class_name && self::parents_has_class( $html_node, $exclude_class_name ) ){
+				return true;
+			}
+		}
+
+		// tag names ( a, h1 ... h6 , strong, b, abr, ...)
+		$exclude_links 			= tooltipy_get_option( 'exclude_links', false, true );
+		$exclude_heading_tags 	= tooltipy_get_option( 'exclude_heading_tags', false, false );
+		$exclude_common_tags 	= tooltipy_get_option( 'exclude_common_tags', false, false );
+
+		$exclude_tags = array();
+
+		if( $exclude_links && 'yes' == $exclude_links ){
+			array_push( $exclude_tags, 'a' );
+		}
+
+		if( $exclude_heading_tags && is_array( $exclude_heading_tags ) ){
+			$exclude_tags = array_merge( $exclude_tags, $exclude_heading_tags );
+		}
+
+		if( $exclude_common_tags && is_array( $exclude_common_tags ) ){
+			$exclude_tags = array_merge( $exclude_tags, $exclude_common_tags );
+		}
+
+		if( count($exclude_tags) ){
+			if( self::is_node_in_tag( $html_node, $exclude_tags ) ){
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Checks whether if a node is a child of another node having tag_names in argument
+	 *
+	 * @param  object $html_node
+	 * @param  mixed $tag_names
+	 *
+	 * @return void
+	 */
+	public static function is_node_in_tag( $html_node, $tag_names ){
+		$parent = $html_node->parentNode();
+
+		if( $parent ){		
+			if(  in_array( $parent->tag, $tag_names ) ){
+				return true;
+			}
+
+			return self::is_node_in_tag( $parent, $tag_names );
+
+		}else if( !$parent ){
+			return false;
+		}
+	}
+
+	/**
+	 * Checks whether if a node is a child of another node having the class name in argument
+	 *
+	 * @param  mixed $html_node
+	 * @param  mixed $class_name
+	 *
+	 * @return void
+	 */
+	public static function parents_has_class( $html_node, $class_name ){
+		$parent = $html_node->parentNode();
+		if( $parent ){
+			$classes = explode( ' ', $parent->getAttribute( 'class' ) );
+		
+			$class_name = trim($class_name);
+			$arr_cls = explode( ' ', $class_name );
+			$arr_cls = array_map( 'trim', $arr_cls );
+			$arr_cls = array_filter( $arr_cls, function($w){ return '' != $w; } );
+			$class_name = implode( ' ', $arr_cls );
+
+			foreach( explode( ' ', $class_name ) as $cls ){
+				if(  in_array( $cls, $classes ) ){
+					return true;
+				}
+			}
+
+			return self::parents_has_class( $parent, $class_name );
+
+		}else if( !$parent ){
+			return false;
+		}
+	}
+
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 *

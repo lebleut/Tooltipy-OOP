@@ -230,15 +230,10 @@ class Settings {
 				)
 			),
 			array(
-				'id' => 'cover',
+				'id' => 'exclude',
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __tooltipy( 'Cover' ),
-						'description' 	=> __tooltipy( 'Sections to cover' ),
-					),
-					array(
-						'id' 			=> 'exclude',
 						'title' 		=> __tooltipy( 'Exclude' ),
 						'description' 	=> __tooltipy( 'Sections to exclude' ),
 					),

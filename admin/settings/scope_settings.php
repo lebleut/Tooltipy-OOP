@@ -8,59 +8,32 @@ function tltpy_get_scope_settings( $fields ){
 		array(
 			'section' 		=> 'general',
 			
-			'uid' 			=> 'cover_classes',
-			'type' 			=> 'text',
-
-			'label' 		=> __tooltipy( 'Cover CSS classes' )
-								.'<div style="color:red;">Not yet implemented</div>',
-			'placeholder' 	=> __( 'Class ...' ),
-			'helper' 		=> __tooltipy( 'Choose CSS classes to cover with tooltips' ),
-			'description' 	=> __( 'NB : Please avoid overlapped classes !<br>If you leave Classes AND Tags blank the whole page will be affected' ),
-
-		),
-		array(
-			'section' 		=> 'general',
-			
-			'uid' 			=> 'cover_html_tags',
-			'type' 			=> 'text',
-
-			'label' 		=> __tooltipy( 'Cover HTML TAGS' )
-								.'<div style="color:red;">Not yet implemented</div>',
-			'placeholder' 	=> __( 'HTML tag ...' ),
-			'helper' 		=> __( 'Choose HTML TAGS (like h1, h2, strong, p, ... ) to cover with tooltips' ),
-		),
-		array(
-			'section' 		=> 'exclude',
-			
 			'uid' 			=> 'exclude_classes',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'Exclude CSS classes' )
-								.'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __tooltipy( 'Exclude CSS classes' ),
 			'placeholder' 	=> __( 'Class ...' ),
 			'helper' 		=> __tooltipy( 'Choose CSS classes to exclude' ),
 		),
 		array(
-			'section' 		=> 'exclude',
+			'section' 		=> 'general',
 			
 			'uid' 			=> 'exclude_links',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __( 'Exclude links ?' )
-								.'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __( 'Exclude links ?' ),
 
 			'options' 		=> array(
 				'yes' 		=> __tooltipy( 'Yes' ),
 			),
 		),
 		array(
-			'section' 		=> 'exclude',
+			'section' 		=> 'general',
 			
 			'uid' 			=> 'exclude_heading_tags',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __( 'Exclude Headings ?' )
-								.'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __( 'Exclude Headings ?' ),
 
 			'options' 		=> array(
 				'h1' 		=> 'H1',
@@ -72,13 +45,12 @@ function tltpy_get_scope_settings( $fields ){
 			),
 		),
 		array(
-			'section' 		=> 'exclude',
+			'section' 		=> 'general',
 			
 			'uid' 			=> 'exclude_common_tags',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __( 'Exclude Common Tags ?' )
-								.'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __( 'Exclude Common Tags ?' ),
 
 			'options' 		=> array(
 				'strong' 		=> '<&zwnj;strong &zwnj;/>',
@@ -93,9 +65,9 @@ function tltpy_get_scope_settings( $fields ){
 		),
 	);
 	
-	// Assign the COVER tab slug
+	// Assign the exclude tab slug
 	foreach ( $settings as $key => $setting ) {
-		$settings[$key]["tab"] = "cover";
+		$settings[$key]["tab"] = "exclude";
 	}
 
 	$fields = array_merge( $fields, $settings );

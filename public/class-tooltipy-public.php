@@ -484,7 +484,7 @@ class Tooltipy_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tooltipy-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tooltipy-public.js', array( 'jquery' ), $this->version, true );
 
 		// Tippy library script
 		$tooltip_mode = tooltipy_get_option( 'tooltip_mode' );
@@ -492,10 +492,10 @@ class Tooltipy_Public {
 		if( in_array( $tooltip_mode, array( 'standard', 'icon' ) ) ){
 			
 			//Tippy CDN version (require popper)
-			wp_enqueue_script( 'popper-script', 'https://unpkg.com/popper.js@1', array(), $this->version, 'all' );
-			wp_enqueue_script( 'tippy-script', 'https://unpkg.com/tippy.js@5', array('popper-script'), $this->version, 'all' );
+			wp_enqueue_script( 'popper-script', 'https://unpkg.com/popper.js@1', array(), $this->version, true );
+			wp_enqueue_script( 'tippy-script', 'https://unpkg.com/tippy.js@5', array('popper-script'), $this->version, true );
 
-			wp_enqueue_script( 'tippy-handler', TOOLTIPY_PLUGIN_URL . 'public/js/tippy-handler.js', array(), $this->version, 'all' );
+			wp_enqueue_script( 'tippy-handler', TOOLTIPY_PLUGIN_URL . 'public/js/tippy-handler.js', array(), $this->version, true );
 
 			$options = array();
 			

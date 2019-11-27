@@ -50,8 +50,6 @@
 						tooltip.classList.remove( animation_speed );
 					},
 				}
-				console.log(options)
-
 			tippy( elem, options );
 		});
 	 });

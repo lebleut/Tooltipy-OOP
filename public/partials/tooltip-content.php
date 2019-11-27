@@ -1,6 +1,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php
 		// init
+		global $tooltipy_is_glossary_page;
 		$wiki_data = tooltipy_get_post_wiki_data( get_the_id() );
 		$is_wiki = get_post_meta( get_the_ID(), 'tltpy_is_wiki', true );
 	?>
@@ -9,9 +10,20 @@
 	<!-- Title -->
 	<?php
 	if( is_array( $add_to_popup ) && in_array( 'title', $add_to_popup ) ){
+		$before_title = '<h1 class="entry-title">';
+		$after_title = '</h1>';
+
+		if( $tooltipy_is_glossary_page ){
+			$add_glossary_link_titles = tooltipy_get_option( 'glossary_link_titles', false );
+
+			if( 'yes' == $add_glossary_link_titles ){
+				$before_title = $before_title . '<a href="'. get_the_permalink() .'">';
+				$after_title = '</a>' . $after_title;
+			}
+		}
 		?>
 		<header class="tooltipy-pop__title">
-			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+			<?php the_title( $before_title, $after_title ); ?>
 		</header>
 		<?php
 	}
@@ -19,9 +31,7 @@
 
 	<!-- Thumbnail -->
 	<?php
-		
 		$glossary_show_thumbnails = tooltipy_get_option( 'glossary_show_thumbnails', false );
-		global $tooltipy_is_glossary_page;
 
 		if( 
 			( $tooltipy_is_glossary_page && 'yes' == $glossary_show_thumbnails )

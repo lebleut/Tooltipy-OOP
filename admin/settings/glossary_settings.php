@@ -113,12 +113,12 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_link_titles',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __tooltipy( 'Titles' )
-								.'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __tooltipy( 'Titles' ),
 
 			'options' 		=> array(
 				'yes' 		=> __tooltipy( 'Add links to titles' ),
 			),
+			'default'		=> array( 'yes' ),
 		),
 	);
 	

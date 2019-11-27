@@ -196,42 +196,6 @@ function tltpy_get_general_serttings( $fields ){
 		array(
 			'section' 		=> 'advanced',
 			
-			'uid' 			=> 'load_all_tooltips',
-			'type' 			=> 'checkbox',
-	
-			'label' 		=> __tooltipy( 'Load all tooltips' )
-							.'<div style="color:red;">Not yet implemented</div>',
-	
-			'options' 		=> array(
-				'yes' 		=> __tooltipy( 'Use only if needed to load all keywords per page' ),
-			),
-		),
-		array(
-			'section' 		=> 'advanced',
-			
-			'uid' 			=> 'custom_events',
-			'type' 			=> 'text',
-	
-			'label' 		=> __tooltipy( 'Events to fetch' )
-								.'<div style="color:red;">Not yet implemented</div>',
-			'placeholder' 	=> __( 'Events names saparated with (,)' ),
-		),
-		array(
-			'section' 		=> 'advanced',
-			
-			'uid' 			=> 'prevent_plugins_filters',
-			'type' 			=> 'checkbox',
-	
-			'label' 		=> __tooltipy( 'Prevent other plugins filters' )
-								.'<div style="color:red;">Not yet implemented</div>',
-	
-			'options' 		=> array(
-				'yes' 		=> __tooltipy( 'Prevent any 3rd party plugin to filter or change the keywords content' ),
-			),
-		),
-		array(
-			'section' 		=> 'advanced',
-			
 			'uid' 			=> 'debug_mode',
 			'type' 			=> 'checkbox',
 	

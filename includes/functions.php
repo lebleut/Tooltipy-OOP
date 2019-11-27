@@ -24,9 +24,17 @@ function tooltipy_get_glossary_letters(){
 			);
 		}
 
+		$all_label = __tooltipy( 'All' );
+		$all_option_lab = tooltipy_get_option( 'glossary_label_all', false );
+
+		if( $all_option_lab && '' != trim( $all_option_lab ) ){
+			$all_label = trim( $all_option_lab );
+		}
+
 		$all_vector = array(
 			array(
-				"label" => __( "All", "tooltipy-lang" ), "value" => ""
+				"label" => $all_label,
+				"value" => ""
 			)
 		);
 

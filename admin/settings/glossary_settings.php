@@ -50,8 +50,7 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_label_all',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'ALL label' )
-								.'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __tooltipy( 'ALL label' ),
 			'placeholder' 	=> __tooltipy( 'ALL' ),
 		),
 		array(
@@ -60,8 +59,7 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_label_previous',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'Previous label' )
-								.'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __tooltipy( 'Previous label' ),
 			'placeholder' 	=> __tooltipy( 'Previous' ),
 		),
 		array(
@@ -70,8 +68,7 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_label_next',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'Next label' )
-								.'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __tooltipy( 'Next label' ),
 			'placeholder' 	=> __tooltipy( 'Next' ),
 		),
 		array(

@@ -55,12 +55,17 @@ $wp_query = new WP_Query( $args );
 						tooltipy_template_part( 'glossary', 'content' );
 
 					endwhile;
+					$prev_opt = tooltipy_get_option( 'glossary_label_previous' );
+					$next_opt = tooltipy_get_option( 'glossary_label_next' );
+
+					$prev_label = $prev_opt && '' !== trim( $prev_opt ) ? trim( $prev_opt ) : __tooltipy( 'Previous page' );
+					$next_label = $next_opt && '' !== trim( $next_opt ) ? trim( $next_opt ) : __tooltipy( 'Next page' );
 
 					// Previous/next page navigation.
 					the_posts_pagination(
 						array(
-							'prev_text'          => __tooltipy( 'Previous page' ),
-							'next_text'          => __tooltipy( 'Next page' ),
+							'prev_text'          => $prev_label,
+							'next_text'          => $next_label,
 							'before_page_number' => '<span class="meta-nav screen-reader-text">' . __tooltipy( 'Page' ) . ' </span>',
 						)
 					);

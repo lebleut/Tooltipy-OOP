@@ -19,21 +19,31 @@
 
 	<!-- Thumbnail -->
 	<?php
-	
-		if( $is_wiki && isset($wiki_data->thumbnail) && isset($wiki_data->thumbnail->source) ){
-			?>
-			<div class="tooltipy-pop__thumbnail tooltipy-pop__thumbnail--wiki">
-				<img src="<?php echo $wiki_data->thumbnail->source; ?>">
-			</div>
-			<?php
-		}
+		
+		$glossary_show_thumbnails = tooltipy_get_option( 'glossary_show_thumbnails', false );
+		global $tooltipy_is_glossary_page;
 
-		if( has_post_thumbnail( get_the_ID() ) ): ?>
-			<div class="tooltipy-pop__thumbnail">
-				<?php the_post_thumbnail( 'medium' ); ?>                    
-			</div>
-			<?php
-		endif;
+		if( 
+			( $tooltipy_is_glossary_page && 'yes' == $glossary_show_thumbnails )
+			||
+			$tooltipy_is_glossary_page !== true
+		){
+			if( $is_wiki && isset($wiki_data->thumbnail) && isset($wiki_data->thumbnail->source) ){
+				// Wiki thumbnail
+				?>
+				<div class="tooltipy-pop__thumbnail tooltipy-pop__thumbnail--wiki">
+					<img src="<?php echo $wiki_data->thumbnail->source; ?>">
+				</div>
+				<?php
+			}else if( has_post_thumbnail( get_the_ID() ) ):
+				// Post thumbnail
+				?>
+				<div class="tooltipy-pop__thumbnail">
+					<?php the_post_thumbnail( 'medium' ); ?>                    
+				</div>
+				<?php
+			endif;
+		}
 	?>
 
 	<!-- Content -->

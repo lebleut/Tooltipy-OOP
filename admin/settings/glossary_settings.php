@@ -101,8 +101,7 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_show_thumbnails',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __tooltipy( 'Glossary thumbnails' )
-								.'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __tooltipy( 'Glossary thumbnails' ),
 
 			'options' 		=> array(
 				'yes' 		=> __tooltipy( 'Show thumbnails on the glossary page' ),

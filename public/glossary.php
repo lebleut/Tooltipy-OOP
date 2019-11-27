@@ -8,7 +8,9 @@ use Tooltipy\Tooltipy;
 get_header(); ?>
 
 <?php
-global $wp_query;
+global $wp_query, $tooltipy_is_glossary_page;
+
+$tooltipy_is_glossary_page = true;
 
 $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 $first_letter = get_query_var( 'letter' );

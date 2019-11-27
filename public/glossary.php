@@ -22,6 +22,13 @@ $args = array(
 	'post_status' 	=> 'publish',
 );
 
+// posts per page
+$posts_per_page = tooltipy_get_option( 'glossary_tooltips_per_page', false );
+
+if( !empty($posts_per_page) ){
+	$args['posts_per_page'] = $posts_per_page;
+}
+
 // The Query
 $wp_query = new WP_Query( $args );
 

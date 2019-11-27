@@ -38,11 +38,11 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_tooltips_per_page',
 			'type' 			=> 'number',
 
-			'label' 		=> __tooltipy( 'Tooltips per page' )
-								.'<div style="color:red;">Not yet implemented</div>',
+			'label' 		=> __tooltipy( 'Tooltips per page' ),
 
-			'placeholder' 	=> __tooltipy( 'ALL' ),
-			'helper' 		=> __( 'Keywords Per Page (leave blank for unlimited keywords per page)' ),
+			'placeholder' 	=> __tooltipy( 'Default' ),
+			'helper' 		=> __tooltipy( 'Keywords per glossary page' ),
+			'default'		=> '',
 		),
 		array(
 			'section' 		=> 'labels',

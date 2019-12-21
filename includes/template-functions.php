@@ -4,11 +4,28 @@ use Tooltipy\Tooltipy;
 /**
  * Works like the theme Wordpress get_template_part()
  */
-function tooltipy_template_part( $file_prefix, $file_suffix = '' ){
+function tooltipy_template_part( $slug, $suffix = '' ){
+	// Theme templates part
+	if( !empty( $suffix ) ){
+		$template = $slug . '-' . $suffix . '.php';
+	}else{
+		$template = $slug . '.php';
+	}
 
-	$template_file = TOOLTIPY_PLUGIN_DIR . 'public/partials/' . $file_prefix;
-	if( !empty( $file_suffix ) ){
-		$template_file .= '-' . $file_suffix;
+	$theme_template_dir =  'tooltipy';
+
+	$located = locate_template( $theme_template_dir . '/' . $template , true, false );
+
+	if( $located ){
+		return;
+	}
+
+	// Plugin templates part
+	$template_dir = TOOLTIPY_PLUGIN_DIR . 'templates/';
+
+	$template_file = $template_dir . $slug;
+	if( !empty( $suffix ) ){
+		$template_file .= '-' . $suffix;
 	}
 	$template_file .= '.php';
 

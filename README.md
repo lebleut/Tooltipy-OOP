@@ -11,5 +11,9 @@ Old version published on Wordpress.org : https://wordpress.org/plugins/bluet-key
 * Tooltipy allows you to assign a glossary page from the settings
 * Tooltipy comes with brand new and easy settings pages
 
+## Templates
+* Tooltipy provides now templating
+* Template files located in /templates can be overridden by copying them to YOUR_THEME/tooltipy directory
+
 ## Contribution
 * Tooltipy OOP is open for every one who wants to cooperate to improve Tooltipy as modern and open source Worpress plugin

@@ -97,72 +97,72 @@ class Tooltipy_Public {
 		}
 		?>
 		<div id="tooltipy-popups-wrapper" style="display:none;">
-		<?php
-		// HTML section
-		$matched_ids = array_map( function( $elem ){
-			return intval($elem['tooltip_id']);
-		}, $matched_tooltips );
+			<?php
+			// HTML section
+			$matched_ids = array_map( function( $elem ){
+				return intval($elem['tooltip_id']);
+			}, $matched_tooltips );
 
-		$get_from_post_types = Tooltipy::get_from_post_types();
+			$get_from_post_types = Tooltipy::get_from_post_types();
 
-		$query = new \WP_Query(
-			array(
-			'post_type' => $get_from_post_types,
-			'post__in' => $matched_ids
-			)
-		);
-		if ( $query->have_posts() ) :
-			while ( $query->have_posts() ) : $query->the_post();
-				// Tooltips meta data
-				$tt_synonyms			= get_post_meta( get_the_ID(), 'tltpy_synonyms', true);
-				$tt_is_prefix			= get_post_meta( get_the_ID(), 'tltpy_is_prefix', true);
-				$tt_is_case_sensitive	= get_post_meta( get_the_ID(), 'tltpy_case_sensitive', true);
-				$tt_youtube_id		= get_post_meta( get_the_ID(), 'tltpy_youtube_id', true);
-				
-				$popup_classes = array(
-					'tooltipy-pop',
-					'tooltipy-pop-' . get_the_ID()
-				);
-				$tooltip_categories = wp_get_post_terms( get_the_ID(), Tooltipy::get_taxonomy(), array( "fields" => "ids" ) );
-				
-				foreach ($tooltip_categories as $key => $value) {
-					array_push( $popup_classes, "tooltipy-pop-cat-".$value );
-				}
-				if($tt_is_case_sensitive){
-					array_push( $popup_classes, 'tooltipy-pop-case-sensitive' );
-				}
+			$query = new \WP_Query(
+				array(
+				'post_type' => $get_from_post_types,
+				'post__in' => $matched_ids
+				)
+			);
+			if ( $query->have_posts() ) :
+				while ( $query->have_posts() ) : $query->the_post();
+					// Tooltips meta data
+					$tt_synonyms			= get_post_meta( get_the_ID(), 'tltpy_synonyms', true);
+					$tt_is_prefix			= get_post_meta( get_the_ID(), 'tltpy_is_prefix', true);
+					$tt_is_case_sensitive	= get_post_meta( get_the_ID(), 'tltpy_case_sensitive', true);
+					$tt_youtube_id		= get_post_meta( get_the_ID(), 'tltpy_youtube_id', true);
+					
+					$popup_classes = array(
+						'tooltipy-pop',
+						'tooltipy-pop-' . get_the_ID()
+					);
+					$tooltip_categories = wp_get_post_terms( get_the_ID(), Tooltipy::get_taxonomy(), array( "fields" => "ids" ) );
+					
+					foreach ($tooltip_categories as $key => $value) {
+						array_push( $popup_classes, "tooltipy-pop-cat-".$value );
+					}
+					if($tt_is_case_sensitive){
+						array_push( $popup_classes, 'tooltipy-pop-case-sensitive' );
+					}
 
-				if( !empty( trim( $tt_youtube_id ) ) ){
-					array_push( $popup_classes, 'tooltipy-pop-youtube' );
-				}
-				if( $tt_is_prefix ){
-					array_push( $popup_classes, 'tooltipy-pop-prefix' );
-				}
-				$popup_classes = apply_filters( 'tltpy_popup_classes', $popup_classes, get_the_ID() );
-				?>
-				<div id="tooltipy-pop-<?php echo get_the_ID(); ?>">
-					<div class="<?php echo implode( ' ', $popup_classes ); ?>">
-						<?php
-						/**
-						 * @Hook : tltpy_popup_sections
-						 * The popup_sections stack action hook by which you can add any content to the tooltip popup template
-						 * 
-						 * Hooked :
-						 * tltpy_popup_add_video_section	- 10
-						 * tltpy_popup_add_main_section 	- 10
-						 * tltpy_popup_add_synonyms_section - 10
-						 */
+					if( !empty( trim( $tt_youtube_id ) ) ){
+						array_push( $popup_classes, 'tooltipy-pop-youtube' );
+					}
+					if( $tt_is_prefix ){
+						array_push( $popup_classes, 'tooltipy-pop-prefix' );
+					}
+					$popup_classes = apply_filters( 'tltpy_popup_classes', $popup_classes, get_the_ID() );
+					?>
+					<div id="tooltipy-pop-<?php echo get_the_ID(); ?>">
+						<div class="<?php echo implode( ' ', $popup_classes ); ?>">
+							<?php
+							/**
+							 * @Hook : tltpy_popup_sections
+							 * The popup_sections stack action hook by which you can add any content to the tooltip popup template
+							 * 
+							 * Hooked :
+							 * tltpy_popup_add_video_section	- 10
+							 * tltpy_popup_add_main_section 	- 10
+							 * tltpy_popup_add_synonyms_section - 10
+							 */
 
-						do_action( 'tltpy_popup_sections' );
+							do_action( 'tltpy_popup_sections' );
 
-						?>
+							?>
+						</div>
 					</div>
-				</div>
-				<?php
-			endwhile;
-			wp_reset_postdata();
-		endif;
-		?>
+					<?php
+				endwhile;
+				wp_reset_postdata();
+			endif;
+			?>
 		</div>
 		<?php
 	}

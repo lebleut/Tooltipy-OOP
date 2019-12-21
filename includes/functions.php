@@ -233,3 +233,48 @@ function tooltipy_get_post_wiki_data( $post_id ){
 
 	return false;
 }
+
+
+/**
+ * tooltipy_get_related_posts
+ * Returns the list of related posts for the current tooltip
+ *
+ * @return void
+ */
+function tooltipy_get_related_posts(){
+	global $post;
+
+	$related_posts = [];
+
+	$args = array(
+		'post_type'		=> 'any',
+		'posts_per_page'	=> -1,
+		'post_status'	=> 'publish',
+	);
+	$all_posts = get_posts( $args );
+	if( count( $all_posts ) ){
+		foreach ($all_posts as $related_post){
+			$matched_tooltips = get_post_meta( $related_post->ID, 'tltpy_matched_tooltips', true );
+			$matched = false;
+
+			if( !is_array($matched_tooltips) ){
+				continue;
+			}
+			
+			foreach ($matched_tooltips as $ttp) {
+				if( $ttp['tooltip_id'] == $post->ID ){
+					$matched = true;
+					break;
+				}
+			}
+			if( $matched ){
+				array_push( $related_posts, array(
+					'id'        => $related_post->ID,
+					'title'     => $related_post->post_title,
+					'permalink' => get_the_permalink( $related_post ),
+				) );
+			}
+		}
+	}
+	return $related_posts;
+}

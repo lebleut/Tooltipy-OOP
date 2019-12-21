@@ -1,3 +1,15 @@
+<?php
+/**
+ * Tooltipy template file
+ * This template can be overridden by copying it to YOUR_THEME/tooltipy/tooltip-content.php
+ */
+
+ // If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php
 		// init
@@ -59,7 +71,7 @@
 	<!-- Content -->
 	<div class="tooltipy-pop__content">
 		<?php
-			echo $is_wiki ? $wiki_data->extract_html : get_the_content();
+			echo $is_wiki && isset($wiki_data->extract_html) ? $wiki_data->extract_html : get_the_content();
 		?>
 	</div><!-- .tooltipy-pop__content -->
 </article><!-- #post-## -->

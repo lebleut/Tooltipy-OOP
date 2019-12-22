@@ -183,7 +183,7 @@ class Tooltipy_Public {
 		$matched_tooltips 	= get_post_meta( get_the_id(), 'tltpy_matched_tooltips', true );
 		$exclude_tooltips	= get_post_meta( get_the_id(), 'tltpy_exclude_tooltips', true );
 
-		if( empty( $matched_tooltips || $exclude_me  ) ){
+		if( empty( $matched_tooltips ) || $exclude_me ){
 			return $content;
 		}
 

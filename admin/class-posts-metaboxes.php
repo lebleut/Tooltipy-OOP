@@ -118,7 +118,8 @@ class Posts_Metaboxes{
 	}
 
 	function save_metabox_field( $post_id, $meta_field_id, $sanitize_function = 'sanitize_text_field' ){
-		if( !isset($_POST[$meta_field_id]) ) return;
+		if( 'tltpy_exclude_me' !== $meta_field_id && !isset($_POST[$meta_field_id]) )
+			return;
 
 		$value = call_user_func( $sanitize_function, $_POST[$meta_field_id] );
 
@@ -201,7 +202,6 @@ class Posts_Metaboxes{
 					<?php echo ( $is_checked ); ?> 
 				/>
 			</label>
-			<div style="color:red;">NOT WORKING PROPERLY YET</div>
 		</p>
 		<?php
 	}

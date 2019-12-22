@@ -118,6 +118,8 @@ class Posts_Metaboxes{
 	}
 
 	function save_metabox_field( $post_id, $meta_field_id, $sanitize_function = 'sanitize_text_field' ){
+		if( !isset($_POST[$meta_field_id]) ) return;
+
 		$value = call_user_func( $sanitize_function, $_POST[$meta_field_id] );
 
 		// Filter hook before saving meta field

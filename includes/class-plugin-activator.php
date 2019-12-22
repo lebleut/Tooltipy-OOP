@@ -1,4 +1,5 @@
 <?php
+namespace Tooltipy;
 
 /**
  * Fired during plugin activation
@@ -20,7 +21,7 @@
  * @subpackage Tooltipy/includes
  * @author     Jamel Eddine Zarga <jamel.zarga@gmail.com>
  */
-class Tooltipy_Activator {
+class Plugin_Activator {
 
 	/**
 	 * Short Description. (use period)
@@ -32,10 +33,10 @@ class Tooltipy_Activator {
 	public static function activate() {
 
 		// Make Tooltipy aware of activation (use it after registering the new post type)
-		if( !get_option( 'tooltipy_activated_just_now',false ) ){
-			add_option('tooltipy_activated_just_now',true);
+		if( !tooltipy_get_option( 'activated_just_now',false ) ){
+			tooltipy_add_option( 'activated_just_now',true );
 		}else{
-			update_option('tooltipy_activated_just_now',true);
+			tooltipy_update_option( 'activated_just_now',true );
 		}
 
 		// flush_rewrite_rules to consider the tooltipy new rewrite rules (letter, ...)

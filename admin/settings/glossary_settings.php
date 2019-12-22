@@ -1,143 +1,130 @@
 <?php
-add_filter( 'tltpy_setting_fields', 'tltpy_add_glossary_settings' );
+use Tooltipy\Tooltipy;
 
-function tltpy_add_glossary_settings( $fields ){
-    $args = array(
-        'sort_order' => 'asc',
-        'sort_column' => 'post_title',
-        'post_type' => 'page',
-    );
+add_filter( 'tltpy_setting_fields', 'tltpy_get_glossary_settings' );
 
-    $pages = get_pages( $args );
+function tltpy_get_glossary_settings( $fields ){
+	$args = array(
+		'sort_order' => 'asc',
+		'sort_column' => 'post_title',
+		'post_type' => 'page',
+	);
 
-    $all_pages = array(
-        '' => __( 'Select a page', 'tooltipy-lang' )
-    );
-    foreach ($pages as $page) {
-        $all_pages[$page->ID] = $page->post_title;
-    }
+	$pages = get_pages( $args );
 
-    $settings = array(
-        array(
-            'section' 		=> 'general',
-            
-            'uid' 			=> 'glossary_page',
-            'type' 			=> 'select',
+	$all_pages = array(
+		'' => __tooltipy( 'Select a page' )
+	);
+	foreach ($pages as $page) {
+		$all_pages[$page->ID] = $page->post_title;
+	}
 
-            'label' 		=> __( 'Glossary page', 'tooltipy-lang' ),
-            'helper' 		=> __( 'Select the page on which the glossary will show up', 'tooltipy-lang' ),
+	$settings = array(
+		array(
+			'section' 		=> 'general',
+			
+			'uid' 			=> 'glossary_page',
+			'type' 			=> 'select',
 
-            'options' 		=> $all_pages,
-            'default' 		=> array( '' ),
-        ),
-        array(
-            'section' 		=> 'general',
-            
-            'uid' 			=> 'glossary_tooltips_per_page',
-            'type' 			=> 'number',
+			'label' 		=> __tooltipy( 'Glossary page' ),
+			'helper' 		=> __tooltipy( 'Select the page on which the glossary will show up' ),
 
-            'label' 		=> __( 'Tooltips per page', 'tooltipy-lang' ),
-            'placeholder' 	=> __( 'ALL', 'tooltipy-lang' ),
-            'helper' 		=> __( 'Keywords Per Page (leave blank for unlimited keywords per page)', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'labels',
-            
-            'uid' 			=> 'glossary_label_all',
-            'type' 			=> 'text',
+			'options' 		=> $all_pages,
+			'default' 		=> array( '' ),
+		),
+		array(
+			'section' 		=> 'general',
+			
+			'uid' 			=> 'glossary_tooltips_per_page',
+			'type' 			=> 'number',
 
-            'label' 		=> __( 'ALL label', 'tooltipy-lang' ),
-            'placeholder' 	=> __( 'ALL', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'labels',
-            
-            'uid' 			=> 'glossary_label_previous',
-            'type' 			=> 'text',
+			'label' 		=> __tooltipy( 'Tooltips per page' ),
 
-            'label' 		=> __( 'Previous label', 'tooltipy-lang' ),
-            'placeholder' 	=> __( 'Previous', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'labels',
-            
-            'uid' 			=> 'glossary_label_next',
-            'type' 			=> 'text',
+			'placeholder' 	=> __tooltipy( 'Default' ),
+			'helper' 		=> __tooltipy( 'Keywords per glossary page' ),
+			'default'		=> '',
+		),
+		array(
+			'section' 		=> 'labels',
+			
+			'uid' 			=> 'glossary_label_all',
+			'type' 			=> 'text',
 
-            'label' 		=> __( 'Next label', 'tooltipy-lang' ),
-            'placeholder' 	=> __( 'Next', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'labels',
-            
-            'uid' 			=> 'glossary_label_select_category',
-            'type' 			=> 'text',
+			'label' 		=> __tooltipy( 'ALL label' ),
+			'placeholder' 	=> __tooltipy( 'ALL' ),
+		),
+		array(
+			'section' 		=> 'labels',
+			
+			'uid' 			=> 'glossary_label_previous',
+			'type' 			=> 'text',
 
-            'label' 		=> __( 'Select a category label', 'tooltipy-lang' ),
-            'placeholder' 	=> __( 'Select a category', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'labels',
-            
-            'uid' 			=> 'glossary_label_all_categories',
-            'type' 			=> 'text',
+			'label' 		=> __tooltipy( 'Previous label' ),
+			'placeholder' 	=> __tooltipy( 'Previous' ),
+		),
+		array(
+			'section' 		=> 'labels',
+			
+			'uid' 			=> 'glossary_label_next',
+			'type' 			=> 'text',
 
-            'label' 		=> __( 'All categories label', 'tooltipy-lang' ),
-            'placeholder' 	=> __( 'All categories', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'page',
-            
-            'uid' 			=> 'add_glossary_link',
-            'type' 			=> 'checkbox',
+			'label' 		=> __tooltipy( 'Next label' ),
+			'placeholder' 	=> __tooltipy( 'Next' ),
+		),
+		array(
+			'section' 		=> 'labels',
+			
+			'uid' 			=> 'glossary_label_select_category',
+			'type' 			=> 'text',
 
-            'label' 		=> __( 'Add glossary link', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Select a category label' )
+								.'<div style="color:red;">Not yet implemented</div>',
+			'placeholder' 	=> __tooltipy( 'Select a category' ),
+		),
+		array(
+			'section' 		=> 'labels',
+			
+			'uid' 			=> 'glossary_label_all_categories',
+			'type' 			=> 'text',
 
-            'options' 		=> array(
-                'yes' 		=> __( 'Add glossary link page in the tooltips footer', 'tooltipy-lang' ),
-            ),
-        ),
-        array(
-            'section' 		=> 'page',
-            
-            'uid' 			=> 'glossary_link_label',
-            'type' 			=> 'text',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
+			'label' 		=> __tooltipy( 'All categories label' )
+								.'<div style="color:red;">Not yet implemented</div>',
+			'placeholder' 	=> __tooltipy( 'All categories' ),
+		),
 
-            'label' 		=> __( 'Glossary link label', 'tooltipy-lang' ),
-            'placeholder' 	=> __( 'View glossary', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'general',
-            
-            'uid' 			=> 'glossary_show_thumbnails',
-            'type' 			=> 'checkbox',
+		array(
+			'section' 		=> 'general',
+			
+			'uid' 			=> 'glossary_show_thumbnails',
+			'type' 			=> 'checkbox',
 
-            'label' 		=> __( 'Glossary thumbnails', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Glossary thumbnails' ),
 
-            'options' 		=> array(
-                'yes' 		=> __( 'Show thumbnails on the glossary page', 'tooltipy-lang' ),
-            ),
-        ),
-        array(
-            'section' 		=> 'general',
-            
-            'uid' 			=> 'glossary_link_titles',
-            'type' 			=> 'checkbox',
+			'options' 		=> array(
+				'yes' 		=> __tooltipy( 'Show thumbnails on the glossary page' ),
+			),
+		),
+		array(
+			'section' 		=> 'general',
+			
+			'uid' 			=> 'glossary_link_titles',
+			'type' 			=> 'checkbox',
 
-            'label' 		=> __( 'Titles', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Titles' ),
 
-            'options' 		=> array(
-                'yes' 		=> __( 'Add links to titles', 'tooltipy-lang' ),
-            ),
-        ),
-    );
-    
-    // Assign the GLOSSARY tab slug
-    foreach ( $settings as $key => $setting ) {
-        $settings[$key]["tab"] = "glossary";
-    }
-    
-    $fields = array_merge( $fields, $settings );
+			'options' 		=> array(
+				'yes' 		=> __tooltipy( 'Add links to titles' ),
+			),
+			'default'		=> array( 'yes' ),
+		),
+	);
+	
+	// Assign the GLOSSARY tab slug
+	foreach ( $settings as $key => $setting ) {
+		$settings[$key]["tab"] = "glossary";
+	}
+	
+	$fields = array_merge( $fields, $settings );
 
-    return $fields;
+	return $fields;
 }

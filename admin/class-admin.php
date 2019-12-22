@@ -1,4 +1,5 @@
 <?php
+namespace Tooltipy;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -20,7 +21,7 @@
  * @subpackage Tooltipy/admin
  * @author     Jamel Eddine Zarga <jamel.zarga@gmail.com>
  */
-class Tooltipy_Admin {
+class Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -60,14 +61,14 @@ class Tooltipy_Admin {
 		add_action( 'pre_get_posts', array($this, 'tooltips_orderby') );
 
 		// Settings
-		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-settings.php';
-		new Tooltipy_Settings();
+		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-settings.php';
+		new Settings();
 
 		// Meta boxe
-		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-tooltip-metaboxes.php';
-		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltipy-posts-metaboxes.php';
-		new Tooltipy_Tooltip_Metaboxes();
-		new Tooltipy_Posts_Metaboxes();
+		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltip-metaboxes.php';
+		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-posts-metaboxes.php';
+		new Tooltip_Metaboxes();
+		new Posts_Metaboxes();
 
 		// Script needed for edit page (quick edit& bulk edit ...)
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_edits_script' ) );
@@ -93,10 +94,10 @@ class Tooltipy_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Tooltipy_Loader as all of the hooks are defined
+		 * defined in Plugin_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Tooltipy_Loader will then create the relationship
+		 * The Plugin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -116,10 +117,10 @@ class Tooltipy_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Tooltipy_Loader as all of the hooks are defined
+		 * defined in Plugin_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Tooltipy_Loader will then create the relationship
+		 * The Plugin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -133,16 +134,18 @@ class Tooltipy_Admin {
 		$columns = array(
 			'cb' 						=> $columns['cb'],
 			'title' 					=> __( 'Title' ),
-			'tltpy_synonyms'			=> __( 'Synonyms', 'tooltipy-lang' ),
-			'tltpy_case_sensitive'	=> __( 'Case sensitive', 'tooltipy-lang' ),
-			'tltpy_is_prefix'			=> __( 'Prefix', 'tooltipy-lang' ),
-			'tltpy_youtube_id'			=> __( 'Youtube ID', 'tooltipy-lang' ),
+			'tltpy_synonyms'			=> __tooltipy( 'Synonyms' ),
+			'tltpy_wikipedia'			=> __tooltipy( 'Wikipedia' ),
+			'tltpy_case_sensitive'		=> __tooltipy( 'Case sensitive' ),
+			'tltpy_is_prefix'			=> __tooltipy( 'Prefix' ),
+			'tltpy_youtube_id'			=> __tooltipy( 'Youtube ID' ),
 			'image' 					=> __( 'Image' ),
 			'author' 					=> __( 'Author' ),
 			'date' 						=> __( 'Date' ),
 		  );
 		return $columns;
 	}
+
 	public function manage_column_content( $column, $post_id ){
 
 		switch ($column) {
@@ -165,6 +168,10 @@ class Tooltipy_Admin {
 			case 'image':
 				echo get_the_post_thumbnail( $post_id, array(80, 80) );
 				break;
+
+			case 'tltpy_wikipedia':
+				$this->column_wikipedia_content( $post_id );
+				break;
 			
 			default:
 				break;
@@ -178,7 +185,7 @@ class Tooltipy_Admin {
 		if( $synonyms ){
 			$synonyms_arr = explode( '|', $synonyms );
 			$synonyms_arr = array_map( 'trim', $synonyms_arr );
-			$syn_class = 'tltpy-cell-synonym';
+			$syn_class = 'tltpy-cell tltpy-cell-synonym';
 			echo "<span class='$syn_class'>".implode( "</span>&nbsp;<span class='$syn_class'>", $synonyms_arr )."</span>";
 		} 
 	}
@@ -188,17 +195,17 @@ class Tooltipy_Admin {
 		echo "<div class='data' style='display:none;'>" . $case_sensitive . "</div>";
 
 		if( $case_sensitive ){
-			$class = 'tltpy-cell-yes';
+			$class = 'tltpy-cell tltpy-cell-yes';
 			?>
 			<span class="<?php echo $class; ?>" >
-				<?php _e('is case sensitive', 'tooltipy-lang' ); ?>
+				<?php _e_tooltipy( 'is case sensitive' ); ?>
 			</span>
 			<?php
 		}else{
-			$class = 'tltpy-cell-no';
+			$class = 'tltpy-cell tltpy-cell-no';
 			?>
 			<span class="<?php echo $class; ?>" >
-				<?php _e('NOT case sensitive', 'tooltipy-lang' ); ?>
+				<?php _e_tooltipy( 'NOT case sensitive' ); ?>
 			</span>
 			<?php
 		}
@@ -209,17 +216,17 @@ class Tooltipy_Admin {
 		echo "<div class='data' style='display:none;'>" . $is_prefix . "</div>";
 
 		if( $is_prefix ){
-			$class = 'tltpy-cell-yes';
+			$class = 'tltpy-cell tltpy-cell-yes';
 			?>
 			<span class="<?php echo $class; ?>" >
-				<?php _e('is a prefix', 'tooltipy-lang' ); ?>
+				<?php _e_tooltipy( 'is a prefix' ); ?>
 			</span>
 			<?php
 		}else{
-			$class = 'tltpy-cell-no';
+			$class = 'tltpy-cell tltpy-cell-no';
 			?>
 			<span class="<?php echo $class; ?>" >
-				<?php _e('NOT prefix', 'tooltipy-lang' ); ?>
+				<?php _e_tooltipy( 'NOT prefix' ); ?>
 			</span>
 			<?php
 		}
@@ -234,6 +241,24 @@ class Tooltipy_Admin {
 			$youtube_icon_src = TOOLTIPY_PLUGIN_URL . 'assets/youtube_icon.png';
 			?>
 			<a href="<?php echo($link); ?>" target="_blank"><img src="<?php echo($youtube_icon_src);?>"> <?php echo($youtube_id); ?></a>
+			<?php
+		}
+	}
+
+	
+	/**
+	 * Shows the cell content if the term is Wiki
+	 *
+	 * @param  mixed $post_id
+	 *
+	 * @return void
+	 */
+	public function column_wikipedia_content( $post_id ){
+		$is_wiki = get_post_meta( $post_id, 'tltpy_is_wiki', true );
+
+		if( $is_wiki ){
+			?>
+			<span class="tltpy-cell tltpy-cell--wiki">Wiki</span>
 			<?php
 		}
 	}
@@ -277,7 +302,7 @@ class Tooltipy_Admin {
 							<div class="inline-edit-group wp-clearfix">';
 				?>
 							<label class="alignleft">
-								<span class="title"><?php _e( 'Synonyms', 'tooltipy-lang' ); ?></span>
+								<span class="title"><?php _e_tooltipy( 'Synonyms' ); ?></span>
 								<span class="input-text-wrap">
 									<input type="text" name="tltpy_synonyms" value="">
 								</span>
@@ -287,7 +312,7 @@ class Tooltipy_Admin {
 			case 'tltpy_case_sensitive':
 				?>
 						<label class="alignleft">
-							<span class="title"><?php _e( 'Case sensitive', 'tooltipy-lang' ); ?></span>
+							<span class="title"><?php _e_tooltipy( 'Case sensitive' ); ?></span>
 							<input type="checkbox" name="tltpy_case_sensitive" value="">
 						</label>
 				<?php
@@ -295,13 +320,13 @@ class Tooltipy_Admin {
 
 			case 'tltpy_is_prefix':
 				?>
-							<label class="alignleft">
-								<span class="title"><?php _e( 'Prefix', 'tooltipy-lang' ); ?></span>
-								<input type="checkbox" name="tltpy_is_prefix" value="">
-							</label>
+					<label class="alignleft">
+						<span class="title"><?php _e_tooltipy( 'Prefix' ); ?></span>
+						<input type="checkbox" name="tltpy_is_prefix" value="">
+					</label>
 				<?php
-						// for the LAST column only - closing the fieldset element
-						echo('</div></div></fieldset>');
+				// for the LAST column only - closing the fieldset element
+				echo('</div></div></fieldset>');
 				break;
 
 			default:
@@ -357,7 +382,7 @@ class Tooltipy_Admin {
 								<div class="inline-edit-group wp-clearfix">';
 				?>
 						<label class="alignleft">
-							<span class="title"><?php _e( 'Case sensitive', 'tooltipy-lang' ); ?></span>
+							<span class="title"><?php _e_tooltipy( 'Case sensitive' ); ?></span>
 							<select name="tltpy_case_sensitive">
 								<option value="-1">— <?php _e( 'No Change' ); ?> —</option>
 								<option value="yes"><?php _e( 'Yes' ); ?></option>
@@ -374,7 +399,7 @@ class Tooltipy_Admin {
 								<div class="inline-edit-group wp-clearfix">';
 				?>
 							<label class="alignleft">
-								<span class="title"><?php _e( 'Prefix', 'tooltipy-lang' ); ?></span>
+								<span class="title"><?php _e_tooltipy( 'Prefix' ); ?></span>
 								<select name="tltpy_is_prefix">
 									<option value="-1">— <?php _e( 'No Change' ); ?> —</option>
 									<option value="yes"><?php _e( 'Yes' ); ?></option>
@@ -441,7 +466,7 @@ class Tooltipy_Admin {
 
 			if( file_exists($debug_file_path) && ($debug_file = fopen($debug_file_path, "r"))!==false ){
 				if( filesize( $debug_file_path ) == 0 ){
-					echo '<div class="tooltipy-log--notice">' . __( 'The debug file is empty', 'tooltipy-lang' ) . '</div>';
+					echo '<div class="tooltipy-log--notice">' . __tooltipy( 'The debug file is empty' ) . '</div>';
 				}else{
 					$degug_file_content = fread( $debug_file, filesize( $debug_file_path ) );
 					fclose($debug_file);
@@ -459,14 +484,14 @@ class Tooltipy_Admin {
 						}
 																		
 						if( !$count ){
-							echo '<div class="tooltipy-log--notice">' . __( 'Debug file doesn\'t contain Tooltipy logs', 'tooltipy-lang' ) . '</div>';
+							echo '<div class="tooltipy-log--notice">' . __tooltipy( 'Debug file doesn\'t contain Tooltipy logs' ) . '</div>';
 						}
 						?>
 					</div>
 					<?php
 				}
 			}else{
-				echo '<div class="tooltipy-log--error">' . __( 'Debug file not found', 'tooltipy-lang' ) . '</div>';
+				echo '<div class="tooltipy-log--error">' . __tooltipy( 'Debug file not found' ) . '</div>';
 			}
 		}
 	}

@@ -1,103 +1,112 @@
 <?php
-add_filter( 'tltpy_setting_fields', 'tltpy_add_style_settings' );
+use Tooltipy\Tooltipy;
 
-function tltpy_add_style_settings( $fields ){
-    $settings = array(
-        array(
-            'section' 		=> 'general',
-            
-            'uid' 			=> 'tooltip_width',
-            'type' 			=> 'number',	
-            'helper' 		=> 'px',
-            'label' 		=> __( 'Tooltip width', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'general',
-            
-            'uid' 			=> 'description_font_size',
-            'type' 			=> 'number',
+add_filter( 'tltpy_setting_fields', 'tltpy_get_style_settings' );
 
-            'label' 		=> __( 'Description tooltip Font size', 'tooltipy-lang' ),
-            'helper' 		=> __( 'px', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'general',
-            
-            'uid' 			=> 'image_alt',
-            'type' 			=> 'checkbox',
+function tltpy_get_style_settings( $fields ){
+	$settings = array(
+		array(
+			'section' 		=> 'general',
+			
+			'uid' 			=> 'tooltip_max_width',
+			'type' 			=> 'number',	
+			'helper' 		=> 'px',
+			'label' 		=> __tooltipy( 'Tooltip max width' ),
+			'default'       => 350,
+		),
+		array(
+			'section' 		=> 'general',
+			
+			'uid' 			=> 'description_font_size',
+			'type' 			=> 'number',
 
-            'label' 		=> __('Activate tooltips for images ?','tooltipy-lang'),
+			'label' 		=> __tooltipy( 'Description tooltip Font size' ),
 
-            'options' 		=> array(
-                'yes' 		=> __( 'alt property of the images will be displayed as a tooltip', 'tooltipy-lang' ),
-            ),
-        ),
-        array(
-            'section' 		=> 'advanced',
-            
-            'uid' 			=> 'keyword_css_classes',
-            'type' 			=> 'text',
+			'helper' 		=> __tooltipy( 'px' ),
+		),
+		array(
+			'section' 		=> 'general',
+			
+			'uid' 			=> 'image_alt',
+			'type' 			=> 'checkbox',
 
-            'label' 		=> __( 'Custom CSS classes for inline keywords', 'tooltipy-lang' ),
-            'placeholder' 	=> __( 'Separated with spaces', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'advanced',
-            
-            'uid' 			=> 'tooltip_css_classes',
-            'type' 			=> 'text',
+			'label' 		=> __( 'Activate tooltips for images ?' )
+								.'<div style="color:red;">Not yet implemented</div>',
 
-            'label' 		=> __( 'Custom CSS classes for tooltips', 'tooltipy-lang' ),
-            'placeholder' 	=> __( 'Separated with spaces', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'advanced',
-            
-            'uid' 			=> 'custom_style',
-            'type' 			=> 'checkbox',
+			'options' 		=> array(
+				'yes' 		=> __tooltipy( 'alt property of the images will be displayed as a tooltip' ),
+			),
+		),
+		array(
+			'section' 		=> 'advanced',
+			
+			'uid' 			=> 'keyword_css_classes',
+			'type' 			=> 'text',
 
-            'label' 		=> __( 'Custom style', 'tooltipy-lang' ),
+			'label' 		=> __tooltipy( 'Custom CSS classes for inline keywords' ),
 
-            'options' 		=> array(
-                'yes' 		=> __( 'Apply custom style sheet', 'tooltipy-lang' ),
-            ),
-            'default' 		=> array( '' ),
+			'placeholder' 	=> __tooltipy( 'Separated with spaces' ),
+		),
+		array(
+			'section' 		=> 'advanced',
+			
+			'uid' 			=> 'tooltip_css_classes',
+			'type' 			=> 'text',
 
-        ),
-        array(
-            'section' 		=> 'advanced',
-            
-            'uid' 			=> 'custom_style_sheet_url',
-            'type' 			=> 'text',
+			'label' 		=> __tooltipy( 'Custom CSS classes for tooltips' ),
 
-            'label' 		=> __( 'Custom style sheet URL', 'tooltipy-lang' ),
-            'placeholder' 	=> __( 'CSS URL here', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'icon_mode',
-            
-            'uid' 			=> 'icon_background_color',
-            'type' 			=> 'text',
+			'placeholder' 	=> __tooltipy( 'Separated with spaces' ),
+		),
+		array(
+			'section' 		=> 'advanced',
+			
+			'uid' 			=> 'custom_style',
+			'type' 			=> 'checkbox',
 
-            'label' 		=> __( 'Icon background', 'tooltipy-lang' ),
-        ),
-        array(
-            'section' 		=> 'icon_mode',
-            
-            'uid' 			=> 'icon_text_color',
-            'type' 			=> 'text',
+			'label' 		=> __tooltipy( 'Custom style' )
+								.'<div style="color:red;">Not yet implemented</div>',
 
-            'label' 		=> __( 'Icon text color', 'tooltipy-lang' ),
-        ),
+			'options' 		=> array(
+				'yes' 		=> __tooltipy( 'Apply custom style sheet' ),
+			),
+			'default' 		=> array( '' ),
+		),
+		array(
+			'section' 		=> 'advanced',
+			
+			'uid' 			=> 'custom_style_sheet_url',
+			'type' 			=> 'text',
 
-    );
-        
-    // Assign the STYLE tab slug
-    foreach ( $settings as $key => $setting ) {
-        $settings[$key]["tab"] = "style";
-    }
+			'label' 		=> __tooltipy( 'Custom style sheet URL' )
+								.'<div style="color:red;">Not yet implemented</div>',
 
-    $fields = array_merge( $fields, $settings );
+			'placeholder' 	=> __tooltipy( 'CSS URL here' ),
+		),
+		array(
+			'section' 		=> 'icon_mode',
+			
+			'uid' 			=> 'icon_background_color',
+			'type' 			=> 'text',
 
-    return $fields;
+			'label' 		=> __tooltipy( 'Icon background' ),
+		),
+		array(
+			'section' 		=> 'icon_mode',
+			
+			'uid' 			=> 'icon_text_color',
+			'type' 			=> 'text',
+
+			'label' 		=> __tooltipy( 'Icon text color' ),
+		),
+
+	);
+		
+	// Assign the STYLE tab slug
+	foreach ( $settings as $key => $setting ) {
+		$settings[$key]["tab"] = "style";
+	}
+
+	$fields = array_merge( $fields, $settings );
+
+	return $fields;
 }

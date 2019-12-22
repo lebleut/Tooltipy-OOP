@@ -1,1 +1,0 @@
-<div><?php _e( 'No tooltips found yet', 'tooltipy-lang' ); ?></div>

@@ -1,4 +1,5 @@
 <?php
+namespace Tooltipy;
 
 /**
  * Register all actions and filters for the plugin
@@ -21,7 +22,7 @@
  * @subpackage Tooltipy/includes
  * @author     Jamel Eddine Zarga <jamel.zarga@gmail.com>
  */
-class Tooltipy_Loader {
+class Plugin_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

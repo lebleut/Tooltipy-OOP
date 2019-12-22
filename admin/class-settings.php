@@ -1,8 +1,10 @@
 <?php
+namespace Tooltipy;
+
 /**
- * Tooltipy_Settings : this class handles the Tooltipy settings page
+ * Tooltipy\Settings : this class handles the Tooltipy settings page
  */
-class Tooltipy_Settings {
+class Settings {
     public function __construct() {
     	// Hook into the admin menu
 		add_action( 'admin_menu', array( $this, 'create_plugin_settings_page' ) );
@@ -15,6 +17,7 @@ class Tooltipy_Settings {
 	
 	public function load_main_settings(){
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/general_settings.php';
+		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/wikipedia_settings.php';
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/style_settings.php';
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/glossary_settings.php';
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/scope_settings.php';
@@ -22,8 +25,8 @@ class Tooltipy_Settings {
 
     public function create_plugin_settings_page() {
 		// Add the menu item and page
-		$page_title = __('Tooltipy settings','tooltipy-lang');
-		$menu_title = __( 'Settings', 'tooltipy-lang' );
+		$page_title = __tooltipy( 'Tooltipy settings' );
+		$menu_title = __tooltipy( 'Settings' );
 		$capability = 'manage_options';
 		$slug = 'tooltipy_settings';
 		$callback = array( $this, 'plugin_settings_page_content' );
@@ -34,7 +37,7 @@ class Tooltipy_Settings {
 	
     public function plugin_settings_page_content() {?>
     	<div class="wrap">
-    		<h2><?php echo __('Tooltipy settings','tooltipy-lang'); ?></h2>
+    		<h2><?php echo __tooltipy( 'Tooltipy settings' ); ?></h2>
 			<?php
             if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] ){
                   $this->admin_notice();
@@ -146,13 +149,23 @@ class Tooltipy_Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-												'title' 		=> __('Tooltips options','tooltipy-lang'),
-						'description' 	=> __('General tooltips settings','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Tooltips options' ),
+						'description' 	=> __tooltipy( 'General tooltips settings' ),
 					),
 					array(
 						'id' 			=> 'advanced',
-						'title' 		=> __('Advanced','tooltipy-lang'),
-						'description' 	=> __('Advanced options','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Advanced' ),
+						'description' 	=> __tooltipy( 'Advanced options' ),
+					),
+				)
+			),
+			array(
+				'id' => 'wikipedia',
+				'sections' => array(
+					array(
+						'id' 			=> 'general',
+						'title' 		=> __tooltipy( 'Wikipedia' ),
+						'description' 	=> __tooltipy( 'Wikipedia API settings' ),
 					),
 				)
 			),
@@ -161,43 +174,43 @@ class Tooltipy_Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __('Customise the tooltip style :','tooltipy-lang'),
-						'description' 	=> __('Make your own style.','tooltipy-lang'),
+						'title' 		=> __( 'Customise the tooltip style :' ),
+						'description' 	=> __( 'Make your own style.' ),
 					),
 					array(
 						'id' 			=> 'advanced',
-						'title' 		=> __('Advanced style','tooltipy-lang'),
-						'description' 	=> __('Advanced style settings','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Advanced style' ),
+						'description' 	=> __tooltipy( 'Advanced style settings' ),
 					),
 					array(
 						'id' 			=> 'standard_mode',
 						'name' 			=> 'standard mode',
-						'title' 		=> __('Standard mode','tooltipy-lang'),
-						'description' 	=> __('Tooltip standard mode settings','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Standard mode' ),
+						'description' 	=> __tooltipy( 'Tooltip standard mode settings' ),
 					),
 					array(
 						'id' 			=> 'icon_mode',
 						'name' 			=> 'icon mode',
-						'title' 		=> __('Icon mode','tooltipy-lang'),
-						'description' 	=> __('Tooltip icon mode settings','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Icon mode' ),
+						'description' 	=> __tooltipy( 'Tooltip icon mode settings' ),
 					),
 					array(
 						'id' 			=> 'title_mode',
 						'name' 			=> 'title mode',
-						'title' 		=> __('Title mode','tooltipy-lang'),
-						'description' 	=> __('Tooltip title mode settings','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Title mode' ),
+						'description' 	=> __tooltipy( 'Tooltip title mode settings' ),
 					),
 					array(
 						'id' 			=> 'link_mode',
 						'name' 			=> 'link mode',
-						'title' 		=> __('Link mode','tooltipy-lang'),
-						'description' 	=> __('Tooltip link mode settings','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Link mode' ),
+						'description' 	=> __tooltipy( 'Tooltip link mode settings' ),
 					),
 					array(
 						'id' 			=> 'footnote_mode',
 						'name' 			=> 'Footnote mode',
-						'title' 		=> __('Footnote mode','tooltipy-lang'),
-						'description' 	=> __('Tooltip footnote mode settings','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Footnote mode' ),
+						'description' 	=> __tooltipy( 'Tooltip footnote mode settings' ),
 					),
 				)
 			),
@@ -206,33 +219,23 @@ class Tooltipy_Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __('Glossary settings :','tooltipy-lang'),
-						'description' 	=> __('Choose settings for your glossary.','tooltipy-lang'),
+						'title' 		=> __( 'Glossary settings :' ),
+						'description' 	=> __( 'Choose settings for your glossary.' ),
 					),
 					array(
 						'id' 			=> 'labels',
-						'title' 		=> __('Glossary page labels','tooltipy-lang'),
-						'description' 	=> __('','tooltipy-lang'),
-					),
-					array(
-						'id' 			=> 'page',
-						'title' 		=> __('Glossary link page','tooltipy-lang'),
-						'description' 	=> __('','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Glossary page labels' ),
+						'description' 	=> __tooltipy( '' ),
 					),
 				)
 			),
 			array(
-				'id' => 'cover',
+				'id' => 'exclude',
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __('Cover','tooltipy-lang'),
-						'description' 	=> __('Sections to cover','tooltipy-lang'),
-					),
-					array(
-						'id' 			=> 'exclude',
-						'title' 		=> __('Exclude','tooltipy-lang'),
-						'description' 	=> __('Sections to exclude','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Exclude' ),
+						'description' 	=> __tooltipy( 'Sections to exclude' ),
 					),
 				)
 			),
@@ -241,8 +244,8 @@ class Tooltipy_Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __('Log','tooltipy-lang'),
-						'description' 	=> __('Shows the log Tooltipy sections from the debug.log file','tooltipy-lang'),
+						'title' 		=> __tooltipy( 'Log' ),
+						'description' 	=> __( 'Shows the log Tooltipy sections from the debug.log file' ),
 					),
 				)
 			),
@@ -287,6 +290,40 @@ class Tooltipy_Settings {
 		}
 	}
 
+
+	/**
+	 * Returns the list of plugin option fields
+	 *
+	 * @return void
+	 */
+	public static function get_fields(){
+		$fields = array();
+
+		// Fields filter hook
+		$fields = apply_filters( 'tltpy_setting_fields', $fields);
+		
+		return $fields;
+	}
+
+	/**
+	 * get_field
+	 *
+	 * @param  mixed $field_id
+	 *
+	 * @return array|boolean
+	 */
+	public static function get_field( $field_id ){
+		$field = false;
+
+		foreach( self::get_fields() as $field ){
+			if( $field_id == $field['uid'] ){
+				return $field;
+			}
+		}
+
+		return $field;
+	}
+
 	public static function get_settings(){
         $fields = array(
 			/*
@@ -298,23 +335,23 @@ class Tooltipy_Settings {
 				'section' 		=> '',
 				
 				'uid' 			=> '',
-        		'type' 			=> '',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
+        		'type' 			=> '',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox or even 'custom'
 
-				'label' 		=> __( '______', 'tooltipy-lang' ),
-        		'placeholder' 	=> __( '______', 'tooltipy-lang' ),
-        		'helper' 		=> __( '______', 'tooltipy-lang' ),		// Text helper beside the field
-        		'description' 	=> __( '______', 'tooltipy-lang' ),		// Text description below the field
+				'label' 		=> __tooltipy( '______' ),
+        		'placeholder' 	=> __tooltipy( '______' ),
+        		'helper' 		=> __tooltipy( '______' ),		// Text helper beside the field
+        		'description' 	=> __tooltipy( '______' ),		// Text description below the field
 
 				'options' 		=> array(
-        			'option1' 		=> __( '______', 'tooltipy-lang' ),
+        			'option1' 		=> __tooltipy( '______' ),
         		),
-                'default' 		=> array( '' ), 	// String or array
+				'default' 		=> array( '' ), 	// String or array
+				'callback'		=> array( '' ),		// String or array : the function that will render the custom field
 			),
 			*/
 		);
 
-		// settings fields filter hook
-		$fields = apply_filters( 'tltpy_setting_fields', $fields);
+		$fields = self::get_fields();
 		
 		foreach( $fields as $key=>$field ){
 			$fields[$key]['uid'] = 'tltpy_' . $field['uid'];
@@ -342,7 +379,7 @@ class Tooltipy_Settings {
 	 * @return : (array) list of settings where setting having the $key is equal to $value
 	 */
 	public static function filter_settings( $key, $value ){
-		$tltpy_all_settings = Tooltipy_Settings::get_settings();
+		$tltpy_all_settings = Settings::get_settings();
 
 		$filtered = array();
 
@@ -381,8 +418,19 @@ class Tooltipy_Settings {
 		$type = !empty($arguments['type']) ? $arguments['type'] : '' ;
 		$placeholder = !empty($arguments['placeholder']) ? $arguments['placeholder'] : '' ;
 		
-		if( !$value ) {
+		if( false === $value ) {
             $value = $default;
+		}
+
+		// If custom field
+		if( 'custom' == $arguments['type'] ){
+			// Call the callback function to render the custom section field
+			if( !empty( $arguments[ 'callback' ] ) && function_exists( $arguments[ 'callback' ] ) ){
+				call_user_func( $arguments[ 'callback' ] );
+			}
+
+			// Important instruction
+			return;
 		}
 
         switch( $arguments['type'] ){
@@ -452,7 +500,10 @@ class Tooltipy_Settings {
                     }
                     printf( '<fieldset>%s</fieldset>', $options_markup );
                 }
-                break;
+				break;
+
+				default:
+				break;
 		}
 		
 		$helper = !empty($arguments['helper']) ? $arguments['helper'] : '';

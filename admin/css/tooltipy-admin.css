@@ -33,3 +33,13 @@
 	color:#ffffff;
 	background: gray;
 }
+
+.tltpy-matched{
+	color: #4CAF50;
+	font-weight: bold;
+}
+
+.tltpy-excluded{
+	color: #FF5722;
+	text-decoration: line-through;
+}

@@ -206,6 +206,11 @@ class Posts_Metaboxes{
 	
 	function matched_tooltips_field($meta_field_id){
 		$matched_tooltips = get_post_meta( get_the_id(), $meta_field_id, true );
+		$excluded_tooltips = get_post_meta( get_the_id(), 'tltpy_exclude_tooltips', true );
+		$excluded_tooltips = explode( ',', $excluded_tooltips );
+		$excluded_tooltips = array_map( 'strtolower', $excluded_tooltips );
+		$excluded_tooltips = array_map( 'trim', $excluded_tooltips );
+
 		?>
 		<h4><?php _e_tooltipy( 'Tooltips in this post' ); ?></h4>
 		<?php
@@ -219,8 +224,9 @@ class Posts_Metaboxes{
 		<ul style="padding: 0px 10px;">
 			<?php
 			foreach ($matched_tooltips as $tltp) {
+				$class = in_array( strtolower($tltp['tooltip_title']), $excluded_tooltips) ? "tltpy-excluded" : "tltpy-matched";
 			  ?>
-			  <li style="color:green;"><?php echo($tltp['tooltip_title']); ?></li>
+			  <li class="<?php echo $class; ?>"><?php echo($tltp['tooltip_title']); ?></li>
 			  <?php  
 			}
 			?>
@@ -235,7 +241,7 @@ class Posts_Metaboxes{
 		<input
 			type="text"
 			name="<?php echo($meta_field_id); ?>"
-			placeholder="tooltip..."
+			placeholder="tooltip 1, tooltip 2,..."
 			value="<?php echo( $excluded_tooltips ); ?>"
 		>
 		<?php

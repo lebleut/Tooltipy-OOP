@@ -253,7 +253,7 @@ class Tooltipy {
 		return $this->version;
 	}
 
-	public function get_tooltips(){
+	public static function get_tooltips(){
 		$args = array(
 			'posts_per_page' => -1,
 			'post_type'   =>  self::get_from_post_types()

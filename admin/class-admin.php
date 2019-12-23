@@ -70,6 +70,9 @@ class Admin {
 		new Tooltip_Metaboxes();
 		new Posts_Metaboxes();
 
+		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-metabox-manager.php';
+		new Metabox_Manager( Tooltipy::get_plugin_name(), 'jml_', 'Jamel box', 'jml_box' );
+
 		// Script needed for edit page (quick edit& bulk edit ...)
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_edits_script' ) );
 

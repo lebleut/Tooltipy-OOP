@@ -402,7 +402,7 @@ class Settings {
 			add_settings_field(
 				$field['uid'],
 				$field['label'],
-				array( $this, 'field_callback' ),
+				array( __CLASS__, 'field_callback' ),
 				'tooltipy_' . $section_id,
 				$section_id,
 				$field
@@ -411,8 +411,9 @@ class Settings {
     	}
 	}
 	
-    public function field_callback( $arguments ) {
-        $value = get_option( $arguments['uid'], false );
+    public static function field_callback( $arguments, $is_post_meta = false ) {
+		$value = $is_post_meta ? get_post_meta( $_GET['post'], $arguments['uid'], true ) : get_option( $arguments['uid'], false );
+
 		$uid = !empty($arguments['uid']) ? $arguments['uid'] : '' ;
 		$default = !empty($arguments['default']) || ( array_key_exists('default', $arguments) && is_array($arguments['default']) )  ? $arguments['default'] : '' ;
 		$type = !empty($arguments['type']) ? $arguments['type'] : '' ;

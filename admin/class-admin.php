@@ -80,6 +80,9 @@ class Admin {
 		// Bulk edit
 		add_action('bulk_edit_custom_box', array( $this, 'bulk_edit_add' ), 10, 2 );
 		add_action( 'wp_ajax_tltpy_bulk_save', array( $this, 'bulk_edit_save_hook' ) ); 
+
+		// Relationship table
+		add_action('current_screen', array( $this, 'add_relationship_table' ) );
 	
 	}
 
@@ -135,6 +138,7 @@ class Admin {
 			'cb' 						=> $columns['cb'],
 			'title' 					=> __( 'Title' ),
 			'tltpy_synonyms'			=> __tooltipy( 'Synonyms' ),
+			'tltpy_related'				=> __tooltipy( 'Related posts' ),
 			'tltpy_wikipedia'			=> __tooltipy( 'Wikipedia' ),
 			'tltpy_case_sensitive'		=> __tooltipy( 'Case sensitive' ),
 			'tltpy_is_prefix'			=> __tooltipy( 'Prefix' ),
@@ -147,6 +151,7 @@ class Admin {
 	}
 
 	public function manage_column_content( $column, $post_id ){
+		global $tooltipy_relationship;
 
 		switch ($column) {
 			case 'tltpy_synonyms':
@@ -173,6 +178,12 @@ class Admin {
 				$this->column_wikipedia_content( $post_id );
 				break;
 			
+			case 'tltpy_related':
+				if( isset($tooltipy_relationship[$post_id]) ){
+					echo count($tooltipy_relationship[$post_id]);
+				}
+				break;
+
 			default:
 				break;
 		}
@@ -492,6 +503,40 @@ class Admin {
 				}
 			}else{
 				echo '<div class="tooltipy-log--error">' . __tooltipy( 'Debug file not found' ) . '</div>';
+			}
+		}
+	}
+
+	/**
+	 * Assign the tooltis relationship in a variable to be used in the related posts colum
+	 */
+	function add_relationship_table(){
+		// Imporant to make this var global
+		global $tooltipy_relationship;
+		
+		$tooltipy_relationship = [];
+
+		$screen = get_current_screen();
+
+		if( $screen->id != 'edit-tooltipy' )
+			return false;
+		
+		$posts = get_posts([
+			'post_type' => Tooltipy::get_related_post_types(),
+			'posts_per_page' => -1
+		]);
+
+		foreach ($posts as $key => $post) {
+			$matched_tooltips = get_post_meta( $post->ID, 'tltpy_matched_tooltips', true);
+
+			if( is_array($matched_tooltips) ){
+				foreach( $matched_tooltips as $tooltip ){
+					if( isset( $tooltipy_relationship[$tooltip['tooltip_id']] ) ){
+						$tooltipy_relationship[$tooltip['tooltip_id']][] = $post->ID;
+					}else{
+						$tooltipy_relationship[$tooltip['tooltip_id']] = [ $post->ID ];
+					}
+				}
 			}
 		}
 	}

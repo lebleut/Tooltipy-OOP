@@ -223,7 +223,7 @@ class Tooltipy {
 		}
 		$post_types = apply_filters( 'tltpy_related_post_types', $post_types );
 
-		return $post_types;
+		return array_keys($post_types);
 	}
 
 	public static function get_taxonomy(){

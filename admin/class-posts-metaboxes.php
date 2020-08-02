@@ -9,6 +9,7 @@ class Posts_Metaboxes{
 		$this->filter_metabox_fields();
 
 		add_action('save_post', array( $this, 'save_metabox_fields' ) );
+		add_action('save_post', array( $this, 'regenerate_matched_tooltips' ) );
 
 		// Regenerate matched tooltips when restoring a post revision
 		add_action( 'wp_restore_post_revision', array( $this, 'regenerate_matched_tooltips'), 10 );
@@ -30,10 +31,20 @@ class Posts_Metaboxes{
 			return false;
 		}
 
-		$current_post = get_post( $post_id );
+		// Not for Tooltipy post type
+		if( !empty($_POST['post_type']) && $_POST['post_type'] == Tooltipy::get_plugin_name() ){
+			return false;
+		}
 
-		$new_value = $this->filter_matched_tooltips( null, $current_post->post_content );
-		update_post_meta( $post_id, 'tltpy_matched_tooltips', $new_value);
+		// editpost : to prevent bulk edit problems
+		if( !empty($_POST['action']) && $_POST['action'] == 'editpost' ){
+
+
+			$current_post = get_post( $post_id );
+
+			$new_value = $this->filter_matched_tooltips( null, $current_post->post_content );
+			update_post_meta( $post_id, 'tltpy_matched_tooltips', $new_value);
+		}
 	}
 
 	// Filter metabox fields before save if needed
@@ -110,6 +121,7 @@ class Posts_Metaboxes{
 		// editpost : to prevent bulk edit problems
 		if( !empty($_POST['action']) && $_POST['action'] == 'editpost' ){
 
+			// Save metabox fields
 			$metabox_fields = $this->get_metabox_fields();
 			foreach ( $metabox_fields as $field) {
 				$this->save_metabox_field( $post_id, $field['meta_field_id']);
@@ -118,7 +130,7 @@ class Posts_Metaboxes{
 	}
 
 	function save_metabox_field( $post_id, $meta_field_id, $sanitize_function = 'sanitize_text_field' ){
-		if( 'tltpy_exclude_me' !== $meta_field_id && !isset($_POST[$meta_field_id]) )
+		if( 'tltpy_exclude_me' !== $meta_field_id || !isset($_POST[$meta_field_id]) )
 			return;
 
 		$value = call_user_func( $sanitize_function, $_POST[$meta_field_id] );

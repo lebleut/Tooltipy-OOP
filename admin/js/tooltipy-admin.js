@@ -29,21 +29,29 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-})( jQuery );
+	/**
+	 * Handles the "Generate relationships" button
+	 */
+	window.tltpy_relationships_results = function(response, $button){
+		// Show results
+		if( response.result == "SUCCESS" ){
+			$button.hide()
+			$(response.message).insertAfter($button)
+		}else{
+			$('<span>Error while processing</span>').insertAfter($button)
+		}
 
-/**
- * Handles the "Generate relationships" button
- */
-function tltpy_relationships_results(response, $button){
-	$ = jQuery
-	
-	// Show results
-	if( response.result == "SUCCESS" ){
-		$button.hide()
-		$(response.message).insertAfter($button)
-	}else{
-		$('<span>Error while processing</span>').insertAfter($button)
+		console.log(response)
 	}
 
-	console.log(response)
-}
+	/**
+	 * Handles the "Migrate old options" button
+	 */
+	window.tltpy_old_options_results = function( response, $button ){
+		$button.hide()
+		$(response.message).insertAfter($button)
+
+		console.log(response)
+	}
+
+})( jQuery );

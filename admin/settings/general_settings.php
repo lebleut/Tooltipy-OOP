@@ -5,6 +5,9 @@ use Tooltipy\Posts_Metaboxes;
 add_filter( 'tltpy_setting_fields', 'tltpy_get_general_serttings' );
 
 function tltpy_get_general_serttings( $fields ){
+	// Needed to know if the plugin is active
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
 	// For animation field
 	$animations = array(
 		"none"              => __tooltipy( 'None' ),
@@ -187,13 +190,28 @@ function tltpy_get_general_serttings( $fields ){
 			
 			'uid' 			=> 'generate_relationships',
 			'type' 			=> 'button',
-			'action_callback'	=> 'tltpy_generate_relationships',
+			'action_callback'	=> 'tltpy_ajx_generate_relationships',
 			'js_callback'		=> 'tltpy_relationships_results',
 	
 			'label' 		=> __tooltipy( 'Generate relationships' ),
 			'description' 	=> __tooltipy( 'Allows to regenerate the relationships between keywords and all the posts' )
 								.'<br>'.__tooltipy( 'Useful when a lot of keywords are added/modified/deleted' )
 
+		),
+		array(
+			'section' 		=> 'advanced',
+			
+			'uid' 			=> 'migrate_old_options',
+			'type' 			=> 'button',
+			'action_callback'	=> 'tltpy_ajx_migrate_old_options',
+			'js_callback'		=> 'tltpy_old_options_results',
+			
+			'disabled'		=> !is_plugin_active( 'bluet-keywords-tooltip-generator/index.php' ),
+			'label' 		=> __tooltipy( 'Migrate old options' ),
+			'description' 	=>  '<span style="color:red;">' . __tooltipy( 'The old version of Tooltipy (KTTG) v5.2 or lower should be active so you can use it' ) . '</span>'
+								. '<br/>' . __tooltipy( 'This is the tool that allows old users of Tooltipy (KTTG) to migrate from the old version to this new one' )
+								. '<br/> - ' . __tooltipy( 'Migrates the Keywords' )
+								. '<br/> - ' . __tooltipy( 'Updates related post meta datas' )
 		),
 		array(
 			'section' 		=> 'advanced',
@@ -263,7 +281,7 @@ function tltpy_get_general_serttings( $fields ){
 	return $fields;
 }
 
-function tltpy_generate_relationships(){
+function tltpy_ajx_generate_relationships(){
 	$ret =[
 		'result' => 'SUCCESS',
 		'updated_posts' => 0,
@@ -292,6 +310,127 @@ function tltpy_generate_relationships(){
 	}else{
 		$ret['message'] = '<span style="color:#03a9f4;">All posts are already up to date</span>';
 	}
+
+	echo json_encode($ret);
+	die;
+}
+
+function tltpy_ajx_migrate_old_options(){
+	$ret =[
+		'success_migration' => [],
+		'failure_migration' => [],
+		'updated_posts' => [],
+		'message' => []
+	];
+
+	$old_keywords = get_posts( [
+		'posts_per_page' => -1,
+		'post_type' => 'my_keywords'
+	] );
+
+	// Post type migration
+	foreach( $old_keywords as $post ){
+		if(set_post_type( $post->ID, 'tooltipy' )){
+			$ret['success_migration'][] = $post->ID;
+
+			$metas = get_post_meta( $post->ID );
+
+			// Migrate metas (case sensitive, prefix, synonyms, youtube)
+			// case sensitive
+			if( isset( $metas['bluet_case_sensitive_word'] ) && count($metas['bluet_case_sensitive_word']) && $metas['bluet_case_sensitive_word'][0] == 'on' ){
+				if( update_post_meta( $post->ID, 'tltpy_case_sensitive', 'on' ) ){
+					delete_post_meta( $post->ID, 'bluet_case_sensitive_word' );
+				}
+			}
+			
+			// prefix
+			if( isset( $metas['bluet_prefix_keywords'] ) && count($metas['bluet_prefix_keywords']) && $metas['bluet_prefix_keywords'][0] == 'on' ){
+				if( update_post_meta( $post->ID, 'tltpy_is_prefix', 'on' ) ){
+					delete_post_meta( $post->ID, 'bluet_prefix_keywords' );
+				}
+			}
+			
+			// synonyms
+			if( isset( $metas['bluet_synonyms_keywords'] ) && count($metas['bluet_synonyms_keywords']) && !empty( trim($metas['bluet_synonyms_keywords'][0]) ) ){
+				if( update_post_meta( $post->ID, 'tltpy_synonyms', trim($metas['bluet_synonyms_keywords'][0]) ) ){
+					delete_post_meta( $post->ID, 'bluet_synonyms_keywords' );
+				}
+			}
+			
+			// youtube id
+			if( isset( $metas['bluet_youtube_video_id'] ) && count($metas['bluet_youtube_video_id']) && !empty( trim($metas['bluet_youtube_video_id'][0]) ) ){
+				if( update_post_meta( $post->ID, 'tltpy_youtube_id', trim($metas['bluet_youtube_video_id'][0]) ) ){
+					delete_post_meta( $post->ID, 'bluet_youtube_video_id' );
+				}
+			}
+
+		}else{
+			$ret['failure_migration'][] = $post->ID;
+		}
+	}
+	
+	$related_post_types = Tooltipy::get_related_post_types();
+
+	foreach( $related_post_types as $key => $pt ){
+		if( 'my_keywords' == $pt ){
+			unset( $related_post_types[$key] );
+		}
+	}
+
+	// Rlated posts metas updates
+	$related_posts = get_posts( [
+		'posts_per_page' => -1,
+		'post_type' => $related_post_types,
+		'meta_query' =>[
+			'compare' => 'OR',
+			[
+				'key' => 'bluet_exclude_post_from_matching',
+				'compare' => 'EXISTS'
+			],
+			[
+				'key' => 'bluet_exclude_keywords_from_matching',
+				'compare' => 'EXISTS'
+			]
+
+		]
+	] );
+
+	foreach( $related_posts as $post ){
+		$old_ex_post = get_post_meta( $post->ID, 'bluet_exclude_post_from_matching', true );
+		$new_ex_post = get_post_meta( $post->ID, 'tltpy_exclude_me', true );
+
+		$old_ex_keywords = get_post_meta( $post->ID, 'bluet_exclude_keywords_from_matching', true );
+		$new_ex_keywords = get_post_meta( $post->ID, 'tltpy_exclude_tooltips', true );
+
+		if( 
+			( !empty($old_ex_keywords) && !$new_ex_keywords )
+			|| ( !empty($old_ex_post) && !$new_ex_post )
+		){
+			update_post_meta( $post->ID, 'tltpy_exclude_me', $old_ex_post );
+			update_post_meta( $post->ID, 'tltpy_exclude_tooltips', $old_ex_keywords );
+
+			$ret['updated_posts'][] = $post->ID;
+		}
+	}
+
+	// Message
+	if( count($ret['success_migration']) ){
+		$ret['message'][] = count($ret['success_migration']) . ' Keywords migrated';
+	}
+	
+	if( count($ret['failure_migration']) ){
+		$ret['message'][] = count($ret['failure_migration']) . ' Keywords migration failure';
+	}
+
+	if( count($ret['updated_posts']) ){
+		$ret['message'][] = count($ret['updated_posts']) . ' updated posts';
+	}
+	
+	if( !count($ret['message']) ){
+		$ret['message'][] = 'Nothing changed!';
+	}
+
+	$ret['message'] = '<div>' . implode( '<br/>', $ret['message'] ) . '</div>';
 
 	echo json_encode($ret);
 	die;

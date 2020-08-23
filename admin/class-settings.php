@@ -511,50 +511,56 @@ class Settings {
 			break;
 
 			case 'button':
-				printf( '<input type="submit" name="%1$s" id="%1$s" value="%2$s" class="button button-secondary">', $uid, $arguments['label'] );
+				$is_disabled = isset($arguments['disabled']) && true === $arguments['disabled'] ? 'disabled' : '';
+
+				printf( '<input type="submit" name="%1$s" id="%1$s" value="%2$s" class="button button-secondary" %3$s >', $uid, $arguments['label'], $is_disabled );
 				?>
 				<script>
 				(function ($) {
 					$(document).ready(function () {
-						$button = $('#<?php echo $uid ?>')
-						$button.on('click', function(ev){
+						$('#<?php echo $uid ?>').on('click', function(ev){
+							$button = $('#<?php echo $uid ?>')
 							ev.preventDefault()
 							
-							// Wait please
-							$button.attr('disabled', true)
+							if( confirm( 'Are you sure you want to <?php echo $arguments['label'] ?> ?' ) ){
+								// Wait please
+								$button.attr('disabled', true)
 
-							let ajax_action = '<?php echo isset($arguments['uid'])
-								? $arguments['uid']
-								: '' ?>'
+								let ajax_action = '<?php echo isset($arguments['uid'])
+									? $arguments['uid']
+									: '' ?>'
 
-							if( '' == ajax_action.trim() ){
-								alert('No Ajax action assigned to this button!')
-								return
+								if( '' == ajax_action.trim() ){
+									alert('No Ajax action assigned to this button!')
+									return
+								}
+
+								$.ajax({
+									url: ajaxurl,
+									type: "POST",
+									data: {
+										'action': ajax_action,
+									}
+								}).done(function(response) {
+									response = JSON.parse(response)
+									$button.attr('disabled', false)
+
+									<?php if(isset($arguments['js_callback']) && !empty($arguments['js_callback'])): ?>
+										if( typeof <?php echo $arguments['js_callback'] ?> === "function" ){
+											<?php echo $arguments['js_callback'] ?>(response, $button)
+										}else{
+											alert('JS callback not defined, Check console for results')
+											console.log(response)
+										}
+									<? else: ?>
+										alert('No JS callback, Check console for results')
+										console.log(response)
+									<? endif; ?>
+									
+								});
 							}
 
-							$.ajax({
-								url: ajaxurl,
-								type: "POST",
-								data: {
-									'action': ajax_action,
-								}
-							}).done(function(response) {
-								response = JSON.parse(response)
-								$button.attr('disabled', false)
-
-								<?php if(isset($arguments['js_callback']) && !empty($arguments['js_callback'])): ?>
-									if( typeof <?php echo $arguments['js_callback'] ?> === "function" ){
-										<?php echo $arguments['js_callback'] ?>(response, $button)
-									}else{
-										alert('JS callback not defined, Check console for results')
-										console.log(response)
-									}
-								<? else: ?>
-									alert('No JS callback, Check console for results')
-									console.log(response)
-								<? endif; ?>
-								
-							});
+							
 						})
 					});
 				})(jQuery);

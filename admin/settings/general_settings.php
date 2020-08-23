@@ -187,7 +187,6 @@ function tltpy_get_general_serttings( $fields ){
 			
 			'uid' 			=> 'generate_relationships',
 			'type' 			=> 'button',
-			'ajax_action'	=> 'just_for_test',
 			'action_callback'	=> 'tltpy_generate_relationships',
 			'js_callback'		=> 'tltpy_relationships_results',
 	

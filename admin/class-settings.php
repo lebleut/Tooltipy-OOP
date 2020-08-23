@@ -523,8 +523,8 @@ class Settings {
 							// Wait please
 							$button.attr('disabled', true)
 
-							let ajax_action = '<?php echo isset($arguments['ajax_action'])
-								? 'tltpy_' . $arguments['ajax_action']
+							let ajax_action = '<?php echo isset($arguments['uid'])
+								? $arguments['uid']
 								: '' ?>'
 
 							if( '' == ajax_action.trim() ){

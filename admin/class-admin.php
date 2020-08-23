@@ -87,8 +87,8 @@ class Admin {
 		add_action('tltpy_setting_fields_assigned', function($fields){
 			// Admin buttons ajax process
 			foreach( $fields as $field ){
-				if( isset($field['type']) && $field['type'] == 'button' && isset($field['ajax_action']) && isset($field['action_callback']) ){
-					add_action( 'wp_ajax_tltpy_' . $field['ajax_action'], $field['action_callback'] );
+				if( isset($field['type']) && $field['type'] == 'button' && isset($field['uid']) && isset($field['action_callback']) ){
+					add_action( 'wp_ajax_tltpy_' . $field['uid'], $field['action_callback'] );
 				}
 			}
 		} );

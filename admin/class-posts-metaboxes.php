@@ -42,7 +42,8 @@ class Posts_Metaboxes{
 
 			$current_post = get_post( $post_id );
 
-			$new_value = $this->filter_matched_tooltips( null, $current_post->post_content );
+			$new_value = self::filter_matched_tooltips( $current_post->post_content );
+
 			update_post_meta( $post_id, 'tltpy_matched_tooltips', $new_value);
 		}
 	}
@@ -50,7 +51,7 @@ class Posts_Metaboxes{
 	// Filter metabox fields before save if needed
 	public function filter_metabox_fields(){
 		// Filter fields here
-		add_filter('tltpy_posts_metabox_field_before_save_' . 'tltpy_matched_tooltips', array($this, 'filter_matched_tooltips'), 10, 2 );
+		add_filter('tltpy_posts_metabox_field_before_save_' . 'tltpy_matched_tooltips', __CLASS__ . '::filter_matched_tooltips', 10, 1 );
 		add_filter('tltpy_posts_metabox_field_before_save_' . 'tltpy_exclude_tooltips', array($this, 'filter_exclude_tooltips'), 10, 2 );
 	}
 
@@ -71,7 +72,7 @@ class Posts_Metaboxes{
 		return $new_value;
 	}
 
-	function filter_matched_tooltips( $old_value, $data ){
+	public static function filter_matched_tooltips( $data ){
 		$content = $data;
 
 		if( is_array( $data ) ){

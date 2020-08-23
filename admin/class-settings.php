@@ -39,8 +39,8 @@ class Settings {
     	<div class="wrap">
     		<h2><?php echo __tooltipy( 'Tooltipy settings' ); ?></h2>
 			<?php
-            if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] ){
-                  $this->admin_notice();
+            if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == 'true' ){
+                  $this->admin_notice( __tooltipy( 'Your settings have been successfully updated') );
 			}
 
 			$tabs = $this->get_tabs();
@@ -136,9 +136,12 @@ class Settings {
     	</div> <?php
     }
     
-    public function admin_notice() { ?>
-        <div class="notice notice-success is-dismissible">
-            <p>Your settings have been updated!</p>
+    public function admin_notice( $msg, $type = 'success', $is_dismissible = true) {
+		$dismissible_cls = $is_dismissible ? 'is-dismissible' : '';
+		$type_cls = 'notice-' . $type;
+		?>
+        <div class="notice <?php echo $type_cls ?> <?php echo $dismissible_cls ?>">
+            <p><?php echo $msg ?></p>
         </div><?php
 	}
 
@@ -301,7 +304,9 @@ class Settings {
 
 		// Fields filter hook
 		$fields = apply_filters( 'tltpy_setting_fields', $fields);
-		
+
+		do_action( 'tltpy_setting_fields_assigned', $fields );
+
 		return $fields;
 	}
 
@@ -444,7 +449,8 @@ class Settings {
 					$placeholder,
 					$value
 				);
-                break;
+			break;
+			
             case 'textarea':
 				printf(
 					'<textarea name="%1$s" id="%1$s__id" placeholder="%2$s" rows="5" cols="50">%3$s</textarea>',
@@ -452,7 +458,8 @@ class Settings {
 					$placeholder,
 					$value
 				);
-                break;
+			break;
+			
             case 'select':
             case 'multiselect':
                 if( ! empty ( $arguments['options'] ) && is_array( $arguments['options'] ) ){
@@ -478,7 +485,8 @@ class Settings {
 						$options_markup
 					);
                 }
-                break;
+			break;
+			
             case 'radio':
             case 'checkbox':
                 if( ! empty ( $arguments['options'] ) && is_array( $arguments['options'] ) ){
@@ -500,10 +508,62 @@ class Settings {
                     }
                     printf( '<fieldset>%s</fieldset>', $options_markup );
                 }
-				break;
+			break;
 
-				default:
-				break;
+			case 'button':
+				printf( '<input type="submit" name="%1$s" id="%1$s" value="%2$s" class="button button-secondary">', $uid, $arguments['label'] );
+				?>
+				<script>
+				(function ($) {
+					$(document).ready(function () {
+						$button = $('#<?php echo $uid ?>')
+						$button.on('click', function(ev){
+							ev.preventDefault()
+							
+							// Wait please
+							$button.attr('disabled', true)
+
+							let ajax_action = '<?php echo isset($arguments['ajax_action'])
+								? 'tltpy_' . $arguments['ajax_action']
+								: '' ?>'
+
+							if( '' == ajax_action.trim() ){
+								alert('No Ajax action assigned to this button!')
+								return
+							}
+
+							$.ajax({
+								url: ajaxurl,
+								type: "POST",
+								data: {
+									'action': ajax_action,
+								}
+							}).done(function(response) {
+								response = JSON.parse(response)
+								$button.attr('disabled', false)
+
+								<?php if(isset($arguments['js_callback']) && !empty($arguments['js_callback'])): ?>
+									if( typeof <?php echo $arguments['js_callback'] ?> === "function" ){
+										<?php echo $arguments['js_callback'] ?>(response, $button)
+									}else{
+										alert('JS callback not defined, Check console for results')
+										console.log(response)
+									}
+								<? else: ?>
+									alert('No JS callback, Check console for results')
+									console.log(response)
+								<? endif; ?>
+								
+							});
+						})
+					});
+				})(jQuery);
+				</script>
+				<?php
+			break;
+
+			default:
+			break;
 		}
 		
 		$helper = !empty($arguments['helper']) ? $arguments['helper'] : '';

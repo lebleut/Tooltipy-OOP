@@ -1,5 +1,6 @@
 <?php
 use Tooltipy\Tooltipy;
+use Tooltipy\Posts_Metaboxes;
 
 add_filter( 'tltpy_setting_fields', 'tltpy_get_general_serttings' );
 
@@ -184,6 +185,20 @@ function tltpy_get_general_serttings( $fields ){
 		array(
 			'section' 		=> 'advanced',
 			
+			'uid' 			=> 'generate_relationships',
+			'type' 			=> 'button',
+			'ajax_action'	=> 'just_for_test',
+			'action_callback'	=> 'tltpy_generate_relationships',
+			'js_callback'		=> 'tltpy_relationships_results',
+	
+			'label' 		=> __tooltipy( 'Generate relationships' ),
+			'description' 	=> __tooltipy( 'Allows to regenerate the relationships between keywords and all the posts' )
+								.'<br>'.__tooltipy( 'Useful when a lot of keywords are added/modified/deleted' )
+
+		),
+		array(
+			'section' 		=> 'advanced',
+			
 			'uid' 			=> 'get_from_post_types',
 			'type' 			=> 'multiselect',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
 	
@@ -247,4 +262,38 @@ function tltpy_get_general_serttings( $fields ){
 	$fields = array_merge( $fields, $general_serttings );
 
 	return $fields;
+}
+
+function tltpy_generate_relationships(){
+	$ret =[
+		'result' => 'SUCCESS',
+		'updated_posts' => 0,
+		'message' => ''
+	];
+
+	$related_posttypes = Tooltipy::get_related_post_types();
+
+	$posts = get_posts( [
+		'post_type' => $related_posttypes,
+		'posts_per_page' => -1
+	] );
+
+	foreach( $posts as $post ){
+		$new_value = Posts_Metaboxes::filter_matched_tooltips( $post->post_content );
+
+		if( update_post_meta( $post->ID, 'tltpy_matched_tooltips', $new_value) ){
+			$ret['updated_posts'] += 1;
+		}
+	}
+
+	if( $ret['updated_posts'] > 1 ){
+		$ret['message'] = '<span style="color:green;">'.$ret['updated_posts'].' posts updated</span>';
+	}else if( $ret['updated_posts'] == 1 ){
+		$ret['message'] = '<span style="color:green;">Only one post updated</span>';
+	}else{
+		$ret['message'] = '<span style="color:#03a9f4;">All posts are already up to date</span>';
+	}
+
+	echo json_encode($ret);
+	die;
 }

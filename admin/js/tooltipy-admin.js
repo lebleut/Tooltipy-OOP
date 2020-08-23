@@ -30,3 +30,20 @@
 	 */
 
 })( jQuery );
+
+/**
+ * Handles the "Generate relationships" button
+ */
+function tltpy_relationships_results(response, $button){
+	$ = jQuery
+	
+	// Show results
+	if( response.result == "SUCCESS" ){
+		$button.hide()
+		$(response.message).insertAfter($button)
+	}else{
+		$('<span>Error while processing</span>').insertAfter($button)
+	}
+
+	console.log(response)
+}

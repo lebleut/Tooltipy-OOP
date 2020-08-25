@@ -2,6 +2,8 @@
 use Tooltipy\Tooltipy;
 use Tooltipy\Settings;
 
+require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-settings.php';
+
 function tooltipy_get_glossary_letters(){
 	$posts = get_posts( array(
 		'post_type' 	=> Tooltipy::get_plugin_name(),
@@ -277,4 +279,31 @@ function tooltipy_get_related_posts(){
 		}
 	}
 	return $related_posts;
+}
+
+/**
+ * Print a custom message in the ../wp-content/debug.log file if the debug_mode option is activated
+ * Note : you should set the 'WP_DEBUG_LOG' constant to true in the wp-config.php file :
+ * define( 'WP_DEBUG_LOG', true );
+ */
+function tooltipy_log( $msg ){
+	$debug_mode_setting = tooltipy_get_option( 'debug_mode' );
+
+	if( !$debug_mode_setting ){
+		return false;
+	}
+	
+	$backtrace = debug_backtrace();
+	$caller = array_shift( $backtrace );
+
+	$caller_file = preg_replace( '/.*\/wp-content\//', '.../wp-content/', $caller['file'] );
+	$caller_line = $caller['line'];
+
+	error_log( '--- TOOLTIPY ---' );
+	error_log( ' * File: ' .$caller_file );
+	error_log( ' * line : ' .$caller_line);
+
+	error_log( $msg );
+
+	error_log( '--------' );
 }

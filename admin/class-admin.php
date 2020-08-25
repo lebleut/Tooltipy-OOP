@@ -481,7 +481,7 @@ class Admin {
 
 	function log_content( $section_id ){
 		if( 'log__general' == $section_id ){
-			$debug_file_path = WP_CONTENT_DIR . "/debug.log";
+			$debug_file_path = WP_DEBUG_LOG == true ? WP_CONTENT_DIR . "/debug.log" : WP_DEBUG_LOG;
 
 			if( file_exists($debug_file_path) && ($debug_file = fopen($debug_file_path, "r"))!==false ){
 				if( filesize( $debug_file_path ) == 0 ){

@@ -598,8 +598,8 @@ class Tooltipy_Public {
 		if( in_array( $tooltip_mode, array( 'standard', 'icon' ) ) ){
 			
 			//Tippy CDN version (require popper)
-			wp_enqueue_script( 'popper-script', 'https://unpkg.com/popper.js@1', array(), $this->version, true );
-			wp_enqueue_script( 'tippy-script', 'https://unpkg.com/tippy.js@5', array('popper-script'), $this->version, true );
+			wp_enqueue_script( 'popper-script', 'https://unpkg.com/@popperjs/core@2', array(), $this->version, true );
+			wp_enqueue_script( 'tippy-script', 'https://unpkg.com/tippy.js@6', array('popper-script'), $this->version, true );
 
 			wp_enqueue_script( 'tippy-handler', TOOLTIPY_PLUGIN_URL . 'public/js/tippy-handler.js', array(), $this->version, true );
 

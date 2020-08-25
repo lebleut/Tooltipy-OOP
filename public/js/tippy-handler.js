@@ -24,12 +24,17 @@
 					maxWidth: parseInt(wpTooltipy.tooltip_max_width),
 
 					onMount: function(instance) {
-						const {tooltip} = instance.popperChildren;
+						const box = instance.popper.firstElementChild;
 
 						requestAnimationFrame(() => {
-						  tooltip.classList.add('animated');
-						  tooltip.classList.add( animation );
-						  tooltip.classList.add( animation_speed );
+
+							box.classList.add('animated');
+							if( animation != '' ){
+								box.classList.add( animation );
+							}
+							if( animation_speed != '' ){
+								box.classList.add( animation_speed );
+							}
 						});
 
 						// Add custom classes to tooltip popup
@@ -38,16 +43,20 @@
 						if( customClasses ){
 							customClasses.split( ' ' ).forEach( cls => {
 								if( cls.trim() != '' ){
-									tooltip.classList.add( cls.trim() )
+									box.classList.add( cls.trim() )
 								}
 							});
 						}
 					},
 					onHidden: function(instance) {
-						const {tooltip} = instance.popperChildren;
-						tooltip.classList.remove('animated');
-						tooltip.classList.remove( animation );
-						tooltip.classList.remove( animation_speed );
+						const box = instance.popper.firstElementChild;
+						box.classList.remove('animated');
+						if( animation != '' ){
+							box.classList.remove( animation );
+						}
+						if( animation_speed != '' ){
+							box.classList.remove( animation_speed );
+						}
 					},
 				}
 			tippy( elem, options );

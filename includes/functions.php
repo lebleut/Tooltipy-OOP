@@ -303,7 +303,7 @@ function tooltipy_log( $msg ){
 	error_log( ' * File: ' .$caller_file );
 	error_log( ' * line : ' .$caller_line);
 
-	error_log( $msg );
+	error_log( '<pre>' . print_r( $msg, true ) . '</pre>' );
 
 	error_log( '--------' );
 }

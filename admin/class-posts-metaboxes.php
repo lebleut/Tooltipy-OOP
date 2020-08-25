@@ -131,10 +131,14 @@ class Posts_Metaboxes{
 	}
 
 	function save_metabox_field( $post_id, $meta_field_id, $sanitize_function = 'sanitize_text_field' ){
-		if( 'tltpy_exclude_me' !== $meta_field_id || !isset($_POST[$meta_field_id]) )
+		if( !in_array( $meta_field_id, [ 'tltpy_exclude_me', 'tltpy_exclude_tooltips' ] ) )
 			return;
 
-		$value = call_user_func( $sanitize_function, $_POST[$meta_field_id] );
+		if(  !isset($_POST[$meta_field_id]) ){
+			$value = call_user_func( $sanitize_function, '' );
+		}else{
+			$value = call_user_func( $sanitize_function, $_POST[$meta_field_id] );
+		}
 
 		// Filter hook before saving meta field
 		$value = apply_filters( 'tltpy_posts_metabox_field_before_save_' . $meta_field_id, $value, $_POST);

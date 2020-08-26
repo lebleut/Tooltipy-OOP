@@ -103,6 +103,22 @@ function tltpy_get_general_serttings( $fields ){
 		array(
 			'section' 		=> 'general',
 			
+			'uid' 			=> 'tooltip_theme',
+			'type' 			=> 'select',
+	
+			'label' 		=> __tooltipy( 'Tooltip theme' ),
+
+			'options' 		=> array(
+				'light' 		=> __tooltipy( 'Light' ),
+				'light-border' 	=> __tooltipy( 'Light border' ),
+				'material' 		=> __tooltipy( 'Material' ),
+				'translucent' 	=> __tooltipy( 'Translucent' ),
+			),
+			'default' 		=> array( 'light' ),
+		),
+		array(
+			'section' 		=> 'general',
+			
 			'uid' 			=> 'tooltip_trigger',
 			'type' 			=> 'radio',
 			

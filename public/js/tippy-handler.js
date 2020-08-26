@@ -22,7 +22,9 @@
 					trigger: wpTooltipy.tooltip_trigger,
 					placement: wpTooltipy.tooltip_position + '-start',
 					zIndex: 9999,
-					//theme: 'custom', // Check https://atomiks.github.io/tippyjs/themes/#creating-a-theme
+
+					theme: wpTooltipy.tooltip_theme, // Check https://atomiks.github.io/tippyjs/v6/themes/
+
 					maxWidth: parseInt(wpTooltipy.tooltip_max_width),
 
 					onMount: function(instance) {

@@ -535,7 +535,11 @@ class Tooltipy_Public {
 
 		if( in_array( $tooltip_mode, array( 'standard', 'icon' ) ) ){
 			// Tippy library style CDN version
-			wp_enqueue_style( 'tippy-style', 'https://unpkg.com/tippy.js@5/dist/backdrop.css', array(), $this->version, 'all' );
+			wp_enqueue_style( 'tippy-style', 'https://unpkg.com/tippy.js@6/dist/backdrop.css', array(), $this->version, 'all' );
+			wp_enqueue_style( 'tippy-style-light', 'https://unpkg.com/tippy.js@6/themes/light.css', array(), $this->version, 'all' );
+			wp_enqueue_style( 'tippy-style-light-border', 'https://unpkg.com/tippy.js@6/themes/light-border.css', array(), $this->version, 'all' );
+			wp_enqueue_style( 'tippy-style-material', 'https://unpkg.com/tippy.js@6/themes/material.css', array(), $this->version, 'all' );
+			wp_enqueue_style( 'tippy-style-translucent', 'https://unpkg.com/tippy.js@6/themes/translucent.css', array(), $this->version, 'all' );
 		}
 
 		$this->inline_style();

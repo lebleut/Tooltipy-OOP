@@ -1,17 +1,19 @@
 (function( $ ) {
 	'use strict';
 
-	 jQuery( document ).ready(function(){
+	 $( document ).ready(function(){
 		// Attach popups
-		jQuery(".tooltipy-kw").each(function(index, elem){
+		$(".tooltipy-kw").each(function(index, elem){
 
-			var tooltip_id = jQuery(elem).attr("data-tooltip")
-			var animation = wpTooltipy.tooltip_animation
-			var animation_speed = wpTooltipy.tooltip_animation_speed
+			const tooltip_id = $(elem).attr("data-tooltip")
+			const animation = wpTooltipy.tooltip_animation
 
-			var HTMLcontent = jQuery( "#tooltipy-pop-" + tooltip_id ).clone().get(0)
+			const animation_speed = wpTooltipy.tooltip_animation_speed
 
-			var options = {
+			const $container_elem = $( "#tooltipy-popups-wrapper" ).find("[data-tooltipy-id=" + tooltip_id + "]" )
+			const HTMLcontent = $container_elem.find(".tooltipy-inner" ).clone().get(0)
+
+			const options = {
 					content: HTMLcontent,
 
 					animation: false, // To use custom animation below
@@ -25,6 +27,16 @@
 
 					onMount: function(instance) {
 						const box = instance.popper.firstElementChild;
+						
+						box.classList.add( 'tooltipy-pop' )
+						box.classList.add( 'tooltipy-pop-' + tooltip_id )
+
+						// Add metadata classes
+						if( $container_elem.attr('class') && $container_elem.attr('class').trim() != '' ){
+							$container_elem.attr('class').trim().split(' ').forEach( (cls) => {
+								box.classList.add( cls )
+							})
+						}
 
 						requestAnimationFrame(() => {
 
@@ -38,7 +50,7 @@
 						});
 
 						// Add custom classes to tooltip popup
-						var customClasses = wpTooltipy.tooltip_css_classes.trim()
+						const customClasses = wpTooltipy.tooltip_css_classes.trim()
 
 						if( customClasses ){
 							customClasses.split( ' ' ).forEach( cls => {

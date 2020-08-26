@@ -119,10 +119,7 @@ class Tooltipy_Public {
 					$tt_is_case_sensitive	= get_post_meta( get_the_ID(), 'tltpy_case_sensitive', true);
 					$tt_youtube_id		= get_post_meta( get_the_ID(), 'tltpy_youtube_id', true);
 					
-					$popup_classes = array(
-						'tooltipy-pop',
-						'tooltipy-pop-' . get_the_ID()
-					);
+					$popup_classes = [];
 					$tooltip_categories = wp_get_post_terms( get_the_ID(), Tooltipy::get_taxonomy(), array( "fields" => "ids" ) );
 					
 					foreach ($tooltip_categories as $key => $value) {
@@ -140,8 +137,11 @@ class Tooltipy_Public {
 					}
 					$popup_classes = apply_filters( 'tltpy_popup_classes', $popup_classes, get_the_ID() );
 					?>
-					<div id="tooltipy-pop-<?php echo get_the_ID(); ?>">
-						<div class="<?php echo implode( ' ', $popup_classes ); ?>">
+					<div
+						data-tooltipy-id="<?php echo get_the_ID(); ?>"
+						class="<?php echo implode(' ', $popup_classes) ?>"
+					>
+						<div class="tooltipy-inner">
 							<?php
 							/**
 							 * @Hook : tltpy_popup_sections

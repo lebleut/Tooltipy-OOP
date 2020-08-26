@@ -10,7 +10,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article <?php post_class(); ?>>
 	<?php
 		// init
 		global $tooltipy_is_glossary_page;

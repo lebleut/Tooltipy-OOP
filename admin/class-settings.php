@@ -438,6 +438,7 @@ class Settings {
 			return;
 		}
 
+		echo '<span class="tltpy_option_wrap tltpy_option_wrap--' . str_replace( 'tltpy_', '', $uid ) . ' tltpy_option_wrap--type-' . $arguments['type'] . '">';
         switch( $arguments['type'] ){
             case 'text':
             case 'password':
@@ -571,6 +572,7 @@ class Settings {
 			default:
 			break;
 		}
+		echo '</span>';
 		
 		$helper = !empty($arguments['helper']) ? $arguments['helper'] : '';
 		$field_description = !empty($arguments['description']) ? $arguments['description'] : '';

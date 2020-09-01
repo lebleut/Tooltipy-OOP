@@ -43,3 +43,19 @@
 	color: #FF5722;
 	text-decoration: line-through;
 }
+
+.tltpy_option_wrap--icon_image br,
+.tltpy_option_wrap--icon_image input{
+    display: none;
+}
+.tltpy_option_wrap--icon_image label {
+    padding: 0px 15px;
+}
+.tltpy_option_wrap--icon_image input + .dashicons {
+	color: #ccc;
+	font-size: 2rem;
+}
+.tltpy_option_wrap--icon_image input + .dashicons:hover,
+.tltpy_option_wrap--icon_image input:checked + .dashicons{
+	color: #444;
+}

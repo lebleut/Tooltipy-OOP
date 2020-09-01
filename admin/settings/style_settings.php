@@ -85,10 +85,26 @@ function tltpy_get_style_settings( $fields ){
 		array(
 			'section' 		=> 'icon_mode',
 			
-			'uid' 			=> 'icon_background_color',
-			'type' 			=> 'text',
-
-			'label' 		=> __tooltipy( 'Icon background' ),
+			'uid' 			=> 'icon_image',
+			'type' 			=> 'radio',
+			'options'		=>[
+				'dashicons-editor-help'		=> '<span class="dashicons dashicons-editor-help"></span>',
+				'dashicons-search'			=> '<span class="dashicons dashicons-search"></span>',
+				'dashicons-admin-customizer'=> '<span class="dashicons dashicons-admin-customizer"></span>',
+				'dashicons-admin-comments'	=> '<span class="dashicons dashicons-admin-comments"></span>',
+				'dashicons-admin-links'		=> '<span class="dashicons dashicons-admin-links"></span>',
+				'dashicons-format-status'	=> '<span class="dashicons dashicons-format-status"></span>',
+				'dashicons-format-quote'	=> '<span class="dashicons dashicons-format-quote"></span>',
+				'dashicons-visibility'		=> '<span class="dashicons dashicons-visibility"></span>',
+				'dashicons-info'			=> '<span class="dashicons dashicons-info"></span>',
+				'dashicons-warning'			=> '<span class="dashicons dashicons-warning"></span>',
+				'dashicons-search'			=> '<span class="dashicons dashicons-search"></span>',
+				'dashicons-testimonial'		=> '<span class="dashicons dashicons-testimonial"></span>',
+				'dashicons-lightbulb'		=> '<span class="dashicons dashicons-lightbulb"></span>',
+				'dashicons-paperclip'		=> '<span class="dashicons dashicons-paperclip"></span>',
+			],
+			'default'		=> ['dashicons-editor-help'],
+			'label' 		=> __tooltipy( 'Icon' ),
 		),
 		array(
 			'section' 		=> 'icon_mode',
@@ -97,6 +113,14 @@ function tltpy_get_style_settings( $fields ){
 			'type' 			=> 'text',
 
 			'label' 		=> __tooltipy( 'Icon text color' ),
+		),
+		array(
+			'section' 		=> 'icon_mode',
+			
+			'uid' 			=> 'icon_background_color',
+			'type' 			=> 'text',
+
+			'label' 		=> __tooltipy( 'Icon background' ),
 		),
 
 	);

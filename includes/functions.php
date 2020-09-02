@@ -11,8 +11,8 @@ function tooltipy_get_glossary_letters(){
 	));
 	$letters = array();
 	foreach ($posts as $key => $current_post) {
-		$char = substr( $current_post->post_title, 0, 1);
-		$char = strtolower( $char );
+		$chars = tooltipy_str_split_unicode( $current_post->post_title);
+		$char = strtolower( reset($chars) );
 		//...
 		if( !in_array( $char, $letters ) ){
 			array_push( $letters, $char );
@@ -54,15 +54,18 @@ function tooltipy_get_posts_id_start_with( $first_letter ){
 	$postids = array();
 
 	if( !empty( $first_letter ) ){
-		$postids = $wpdb->get_col(
-				$wpdb->prepare("
-					SELECT      ID
-					FROM        $wpdb->posts
-					WHERE       SUBSTR($wpdb->posts.post_title,1,1) = %s
-					ORDER BY    $wpdb->posts.post_title",
-					$first_letter
-				)
-			); 
+		$posts = get_posts([
+			'posts_per_page'	=> -1,
+			'post_type'			=> Tooltipy::get_plugin_name()
+		]);
+
+		foreach( $posts as $post ){
+			$chars = tooltipy_str_split_unicode( $post->post_title );
+
+			if( strtolower( reset( $chars ) ) == strtolower( $first_letter ) ){
+				array_push( $postids, $post->ID );
+			}
+		}
 	}
 	return $postids;
 }
@@ -306,4 +309,8 @@ function tooltipy_log( $msg ){
 	error_log( '<pre>' . print_r( $msg, true ) . '</pre>' );
 
 	error_log( '--------' );
+}
+
+function tooltipy_str_split_unicode($str, $l = 0){
+    return preg_split('/(.{'.$l.'})/us', $str, -1, PREG_SPLIT_NO_EMPTY|PREG_SPLIT_DELIM_CAPTURE);
 }

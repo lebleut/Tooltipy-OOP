@@ -13,7 +13,7 @@ global $wp_query, $tooltipy_is_glossary_page;
 $tooltipy_is_glossary_page = true;
 
 $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-$first_letter = get_query_var( 'letter' );
+$first_letter = isset($_GET['letter']) ? $_GET['letter'] : '';
 
 $postids = tooltipy_get_posts_id_start_with( $first_letter );
 

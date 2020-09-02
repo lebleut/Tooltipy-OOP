@@ -13,7 +13,7 @@ use Tooltipy\Tooltipy;
 		$letter_link = Tooltipy::get_glossary_page_link();
 
 		if( !empty($letter[ "value" ]) ){
-			$letter_link = Tooltipy::get_glossary_page_link() . "letter/" . $letter["value"];
+			$letter_link = Tooltipy::get_glossary_page_link() . "?letter=" . $letter["value"];
 		}
 		
 		?>

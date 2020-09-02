@@ -190,7 +190,6 @@ class Tooltipy {
 
 		// Rewrite rules
 		$this->loader->add_action( 'init', $plugin_public, 'rewrite_rules' );
-		$this->loader->add_filter( 'query_vars', $plugin_public, 'register_query_var' );
 	}
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.

@@ -872,11 +872,4 @@ class Tooltipy_Public {
 		// Consider the letter query var for glossary pages
 		add_rewrite_rule( '([^/]+)/letter/([^/])', 'index.php?pagename=$matches[1]&letter=$matches[2]', 'top' );
 	}
-
-	public function register_query_var( $vars ) {
-		$vars[] = 'letter';
-
-		return $vars;
-	}
-
 }

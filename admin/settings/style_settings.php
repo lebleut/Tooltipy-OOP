@@ -58,31 +58,6 @@ function tltpy_get_style_settings( $fields ){
 			'placeholder' 	=> __tooltipy( 'Separated with spaces' ),
 		),
 		array(
-			'section' 		=> 'advanced',
-			
-			'uid' 			=> 'custom_style',
-			'type' 			=> 'checkbox',
-
-			'label' 		=> __tooltipy( 'Custom style' )
-								.'<div style="color:red;">Not yet implemented</div>',
-
-			'options' 		=> array(
-				'yes' 		=> __tooltipy( 'Apply custom style sheet' ),
-			),
-			'default' 		=> array( '' ),
-		),
-		array(
-			'section' 		=> 'advanced',
-			
-			'uid' 			=> 'custom_style_sheet_url',
-			'type' 			=> 'text',
-
-			'label' 		=> __tooltipy( 'Custom style sheet URL' )
-								.'<div style="color:red;">Not yet implemented</div>',
-
-			'placeholder' 	=> __tooltipy( 'CSS URL here' ),
-		),
-		array(
 			'section' 		=> 'icon_mode',
 			
 			'uid' 			=> 'icon_image',

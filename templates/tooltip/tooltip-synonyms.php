@@ -24,7 +24,7 @@ if(
 	?>
 	<?php if( count( $synonyms_arr ) ): ?>
 		<div class="tooltipy-synonyms">
-			<h2>Synonyms</h2>
+			<h4>Synonyms</h4>
 				<ul>
 					<?php foreach( $synonyms_arr as $synonym ): ?>
 						<li><?php echo $synonym; ?></li>

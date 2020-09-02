@@ -35,6 +35,7 @@
 }
 .tooltipy-synonyms ul {
 	list-style: none;
+	margin: 0;
 }
 .tooltipy-synonyms li {
 	display: inline-block;

@@ -10,7 +10,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 ?>
-<article <?php post_class(); ?>>
+<article>
 	<?php
 		// init
 		global $tooltipy_is_glossary_page;
@@ -22,8 +22,8 @@ if ( ! defined( 'WPINC' ) ) {
 	<!-- Title -->
 	<?php
 	if( is_array( $add_to_popup ) && in_array( 'title', $add_to_popup ) ){
-		$before_title = '<h1 class="entry-title">';
-		$after_title = '</h1>';
+		$before_title = '<h3>';
+		$after_title = '</h3>';
 
 		if( $tooltipy_is_glossary_page ){
 			$add_glossary_link_titles = tooltipy_get_option( 'glossary_link_titles', false );
@@ -34,9 +34,9 @@ if ( ! defined( 'WPINC' ) ) {
 			}
 		}
 		?>
-		<header class="tooltipy-pop__title">
+		<div class="tooltipy-pop__title">
 			<?php the_title( $before_title, $after_title ); ?>
-		</header>
+		</div>
 		<?php
 	}
 	?>

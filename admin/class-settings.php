@@ -240,6 +240,12 @@ class Settings {
 						'title' 		=> __tooltipy( 'Exclude' ),
 						'description' 	=> __tooltipy( 'Sections to exclude' ),
 					),
+					array(
+						'id' 			=> 'excluded_posts',
+						'name' 			=> 'excluded posts',
+						'title' 		=> __tooltipy( 'Excluded posts' ),
+						'description' 	=> __tooltipy( 'Manage the list of excluded posts' ),
+					),
 				)
 			),
 			array(

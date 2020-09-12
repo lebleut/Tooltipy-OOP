@@ -53,8 +53,13 @@ class Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 		
-		add_filter( 'manage_' . Tooltipy::get_plugin_name() . '_posts_columns', array($this, 'manage_columns') );
-		add_filter( 'manage_' . Tooltipy::get_plugin_name() . '_posts_custom_column', array($this, 'manage_column_content'), 10, 2 );
+		add_filter( 'manage_' . Tooltipy::get_plugin_name() . '_posts_columns', array($this, 'manage_tooltip_columns') );
+		add_action( 'manage_' . Tooltipy::get_plugin_name() . '_posts_custom_column', array($this, 'manage_tooltip_column_content'), 10, 2 );
+
+		foreach( Tooltipy::get_related_post_types() as $pt_name ){
+			add_filter( 'manage_' . $pt_name . '_posts_columns', array($this, 'manage_post_columns') );
+			add_action( 'manage_' . $pt_name . '_posts_custom_column', array($this, 'manage_post_column_content'), 10, 2 );
+		}
 
 		// Make sortable prefix & case sensitive
 		add_filter( 'manage_edit-' . Tooltipy::get_plugin_name() . '_sortable_columns', array($this, 'sortable_columns') );
@@ -140,7 +145,7 @@ class Admin {
 
 	}
 
-	public function manage_columns( $columns ){
+	public function manage_tooltip_columns( $columns ){
 
 		$columns = array(
 			'cb' 						=> $columns['cb'],
@@ -157,8 +162,12 @@ class Admin {
 		  );
 		return $columns;
 	}
+	public function manage_post_columns( $columns ){
+		$columns['tltpy_is_prefix'] = __( 'Tooltips' );
+		return $columns;
+	}
 
-	public function manage_column_content( $column, $post_id ){
+	public function manage_tooltip_column_content( $column, $post_id ){
 		global $tooltipy_relationship;
 
 		switch ($column) {
@@ -194,6 +203,15 @@ class Admin {
 
 			default:
 				break;
+		}
+	}
+
+	public function manage_post_column_content( $column, $post_id ){
+		if( 'tltpy_is_prefix' == $column ){
+			$matched_tooltips = get_post_meta( $post_id, 'tltpy_matched_tooltips', true );
+			if( !empty($matched_tooltips) ){
+				echo count($matched_tooltips);
+			}
 		}
 	}
 

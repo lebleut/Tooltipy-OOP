@@ -83,17 +83,27 @@ class Posts_Metaboxes{
 
 		$matched_tooltips = array();
 		foreach($tooltips as $tltp){
-			$synonyms = array( $tltp->post_title );
+			$keywords = array( $tltp->post_title );
 			$syn_meta = get_post_meta( $tltp->ID, 'tltpy_synonyms', true );
+			$is_prefix = get_post_meta( $tltp->ID, 'tltpy_is_prefix', true );
+			$is_case = get_post_meta( $tltp->ID, 'tltpy_case_sensitive', true );
 
 			if( $syn_meta ){
-				$synonyms = array_merge( $synonyms, explode( '|', $syn_meta ) );
+				$keywords = array_merge( $keywords, explode( '|', $syn_meta ) );
 			}
 
 			// Quote regular expression characters
-			$synonyms = array_map( 'preg_quote', $synonyms );
+			$keywords = array_map( 'preg_quote', $keywords );
 
-			$pattern = '/'. implode( '|', $synonyms ) .'/i';
+			if( $is_prefix ){
+				$keywords = array_map(function( $kw ){ return $kw."\w*"; }, $keywords );
+			}
+
+			$pattern = '/(\W|^)'.'('. implode( '|', $keywords ) .')'.'(\W|$)/';
+			
+			if( !$is_case || $is_case != 'on' ){
+				$pattern = $pattern . 'i';
+			}
 
 			preg_match( $pattern, $content, $matches);
 

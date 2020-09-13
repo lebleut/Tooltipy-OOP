@@ -163,7 +163,7 @@ class Admin {
 		return $columns;
 	}
 	public function manage_post_columns( $columns ){
-		$columns['tltpy_is_prefix'] = __( 'Tooltips' );
+		$columns['tltpy_tooltips_nbr'] = __( 'Tooltips' );
 		return $columns;
 	}
 
@@ -207,10 +207,22 @@ class Admin {
 	}
 
 	public function manage_post_column_content( $column, $post_id ){
-		if( 'tltpy_is_prefix' == $column ){
+		if( 'tltpy_tooltips_nbr' == $column ){
 			$matched_tooltips = get_post_meta( $post_id, 'tltpy_matched_tooltips', true );
 			if( !empty($matched_tooltips) ){
-				echo count($matched_tooltips);
+				$nbr = count($matched_tooltips);
+				
+				$three_tltps = array_slice($matched_tooltips, 0, 3);
+				$three_tltps = array_map( function( $keyword ){
+					$id = $keyword['tooltip_id'];
+					$title = $keyword['tooltip_title'];
+					return '<a href="' . get_post_permalink( $id ) . '">' . $title . '</a>';
+				}, $three_tltps );
+
+				echo implode( ', ', $three_tltps );
+				if( $nbr > 3 ){
+					echo ' and ' . ($nbr-3) , ' other tooltips';
+				}
 			}
 		}
 	}

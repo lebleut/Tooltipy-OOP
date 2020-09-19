@@ -141,7 +141,8 @@ class Posts_Metaboxes{
 	}
 
 	function save_metabox_field( $post_id, $meta_field_id, $sanitize_function = 'sanitize_text_field' ){
-		if( !in_array( $meta_field_id, [ 'tltpy_exclude_me', 'tltpy_exclude_tooltips' ] ) )
+		// Don't save these meta fields
+		if( in_array( $meta_field_id, [ 'tltpy_matched_tooltips' ] ) )
 			return;
 
 		if(  !isset($_POST[$meta_field_id]) ){
@@ -167,7 +168,7 @@ class Posts_Metaboxes{
 		foreach($all_post_types as $screen) {
 			add_meta_box(
 				'tltpy_posts_metabox',
-				__tooltipy( 'Related tooltips settings' ),
+				__tooltipy( 'Tooltipy' ),
 				array( $this, 'metabox_render' ) ,
 				$screen,
 				'side',

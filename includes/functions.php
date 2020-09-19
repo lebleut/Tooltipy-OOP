@@ -249,14 +249,20 @@ function tooltipy_get_post_wiki_data( $post_id ){
 function tooltipy_get_related_posts(){
 	global $post;
 
+	$tooltip_post = $post;
+
 	$related_posts = [];
 
 	$args = array(
-		'post_type'		=> 'any',
+		'post_type'			=> Tooltipy::get_related_post_types(),
 		'posts_per_page'	=> -1,
-		'post_status'	=> 'publish',
+		'post_status'		=> 'publish',
+		'meta_key' 			=> 'tltpy_exclude_me',
+		'meta_value' 		=> 'on',
+		'meta_compare'		=> '!=',
 	);
 	$all_posts = get_posts( $args );
+
 	if( count( $all_posts ) ){
 		foreach ($all_posts as $related_post){
 			$matched_tooltips = get_post_meta( $related_post->ID, 'tltpy_matched_tooltips', true );
@@ -267,7 +273,7 @@ function tooltipy_get_related_posts(){
 			}
 			
 			foreach ($matched_tooltips as $ttp) {
-				if( $ttp['tooltip_id'] == $post->ID ){
+				if( $ttp['tooltip_id'] == $tooltip_post->ID ){
 					$matched = true;
 					break;
 				}

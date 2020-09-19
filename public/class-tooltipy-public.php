@@ -62,14 +62,6 @@ class Tooltipy_Public {
 		if( Tooltipy::get_plugin_name() == $post_type ){
 			return false;
 		}
-		// Tooltipy settings
-		$tooltip_mode = tooltipy_get_option( 'tooltip_mode' );
-
-		// Don't load popups if 'title' or 'link' tooltip mode are picked from the settings
-		// Load only for 'standard' & 'icon' modes
-		if( in_array( $tooltip_mode, array( 'title', 'link' ) ) ){
-			return false;
-		}
 		
 		// Current post meta data
 		$exclude_me 		= get_post_meta( get_the_id(), 'tltpy_exclude_me', true );
@@ -101,6 +93,15 @@ class Tooltipy_Public {
 	 * Renders the required tooltips to be related to the keyword
 	 */
 	public function tooltips_section(){
+
+		// Tooltipy settings
+		$tooltip_mode = tooltipy_get_option( 'tooltip_mode' );
+
+		// Don't load popups if 'title' or 'link' tooltip mode are picked from the settings
+		// Load only for 'standard' & 'icon' modes
+		if( in_array( $tooltip_mode, array( 'title', 'link' ) ) ){
+			return false;
+		}
 
 		$matched_tooltips = self::get_active_matched_tooltips();
 

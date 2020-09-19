@@ -156,6 +156,7 @@ class Admin {
 			'tltpy_case_sensitive'		=> __tooltipy( 'Case sensitive' ),
 			'tltpy_is_prefix'			=> __tooltipy( 'Prefix' ),
 			'tltpy_youtube_id'			=> __tooltipy( 'Youtube ID' ),
+			'taxonomy-tooltip_cat'		=> __tooltipy( 'Categories' ),
 			'image' 					=> __( 'Image' ),
 			'author' 					=> __( 'Author' ),
 			'date' 						=> __( 'Date' ),

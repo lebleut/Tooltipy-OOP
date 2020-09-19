@@ -56,10 +56,7 @@ class Tooltipy_Public {
 		add_filter( 'the_content', array($this, 'filter_content') );
 	}
 
-	/**
-	 * Renders the required tooltips to be related to the keyword
-	 */
-	public function tooltips_section(){
+	public static function get_active_matched_tooltips(){
 		global $post_type;
 
 		if( Tooltipy::get_plugin_name() == $post_type ){
@@ -78,6 +75,7 @@ class Tooltipy_Public {
 		$exclude_me 		= get_post_meta( get_the_id(), 'tltpy_exclude_me', true );
 		$matched_tooltips 	= get_post_meta( get_the_id(), 'tltpy_matched_tooltips', true );
 		$exclude_tooltips	= get_post_meta( get_the_id(), 'tltpy_exclude_tooltips', true );
+		$exclude_cats		= get_post_meta( get_the_id(), 'tltpy_exclude_cats', true );
 
 		$exclude_tooltips = explode( ',', $exclude_tooltips );
 		$exclude_tooltips = array_map( 'trim', $exclude_tooltips );
@@ -87,10 +85,24 @@ class Tooltipy_Public {
 			return false;
 		}
 		foreach ( $matched_tooltips as $key => $tooltip ) {
-			if( in_array( strtolower($tooltip['tooltip_title']), $exclude_tooltips ) ){
+			if(
+				in_array( strtolower($tooltip['tooltip_title']), $exclude_tooltips )
+				||
+				( !empty($exclude_cats) && has_term( $exclude_cats, 'tooltip_cat', $tooltip['tooltip_id'] ) )
+			){
 				unset( $matched_tooltips[$key] );
 			}
 		}
+
+		return $matched_tooltips;
+	}
+
+	/**
+	 * Renders the required tooltips to be related to the keyword
+	 */
+	public function tooltips_section(){
+
+		$matched_tooltips = self::get_active_matched_tooltips();
 
 		if( empty( $matched_tooltips ) ){
 			return false;
@@ -171,34 +183,16 @@ class Tooltipy_Public {
 	 *  The main filtering content of Tooltipy
 	 */
 	public function filter_content( $content ){
-		global $post_type, $post;
+		global $post_type;
 
-		// Don't filter Tooltipy post types them selves
 		if( Tooltipy::get_plugin_name() == $post_type ){
 			return $content;
 		}
 
-		// Current post meta data
-		$exclude_me 		= get_post_meta( get_the_id(), 'tltpy_exclude_me', true );
-		$matched_tooltips 	= get_post_meta( get_the_id(), 'tltpy_matched_tooltips', true );
-		$exclude_tooltips	= get_post_meta( get_the_id(), 'tltpy_exclude_tooltips', true );
-
-		if( empty( $matched_tooltips ) || $exclude_me ){
-			return $content;
-		}
-
-		$exclude_tooltips = explode( ',', $exclude_tooltips );
-		$exclude_tooltips = array_map( 'trim', $exclude_tooltips );
-		$exclude_tooltips = array_map( 'strtolower', $exclude_tooltips );
+		$matched_tooltips = self::get_active_matched_tooltips();
 
 		$patterns = array();
 		$replacements = array();
-
-		foreach ($matched_tooltips as $num => $tooltip) {
-			if( in_array( strtolower($tooltip['tooltip_title']), $exclude_tooltips ) ){
-				unset( $matched_tooltips[$num]);
-			}
-		}
 
 		if( empty( $matched_tooltips ) ){
 			return $content;
@@ -777,12 +771,19 @@ class Tooltipy_Public {
 				$meta_val = get_post_meta(get_the_ID(), $field['meta_field_id'], true );
 
 				$meta_str = '';
-				if( is_array($meta_val) ){
+				if( 'tltpy_matched_tooltips' == $field['meta_field_id'] && is_array($meta_val) ){
 					$meta_str = array();
 					foreach ($meta_val as $val) {
 						 array_push( $meta_str, $val['tooltip_title'].' ('.$val['tooltip_id'].')' );
 					}
 					$meta_str = implode( ', ', $meta_str );
+				}elseif( 'tltpy_exclude_cats' == $field['meta_field_id'] && is_array($meta_val) ){
+					$meta_val = array_map(function($term_id){
+						$term = get_term( $term_id );
+						return $term->name;
+					}, $meta_val);
+
+					$meta_str = implode( ', ', $meta_val );
 				}else{
 					$meta_str = $meta_val;
 				}
@@ -827,26 +828,14 @@ class Tooltipy_Public {
 	public function footnote_section( $content ){
 		global $post_type;
 
+		$matched_tooltips = self::get_active_matched_tooltips();
+
 		$tooltip_mode = tooltipy_get_option( 'tooltip_mode' );
 		
 		if( $tooltip_mode != 'footnote' || Tooltipy::get_plugin_name() == $post_type ){
 			return $content;
 		}
 		
-		$matched_tooltips 	= get_post_meta( get_the_id(), 'tltpy_matched_tooltips', true );
-		$exclude_me			= get_post_meta( get_the_id(), 'tltpy_exclude_me', true );
-		$exclude_tooltips	= get_post_meta( get_the_id(), 'tltpy_exclude_tooltips', true );
-
-		$exclude_tooltips = explode( ',', $exclude_tooltips );
-		$exclude_tooltips = array_map( 'trim', $exclude_tooltips );
-		$exclude_tooltips = array_map( 'strtolower', $exclude_tooltips );
-
-		foreach ($matched_tooltips as $num => $tooltip) {
-			if( in_array( strtolower($tooltip['tooltip_title']), $exclude_tooltips ) ){
-				unset( $matched_tooltips[$num]);
-			}
-		}
-
 		if( empty( $matched_tooltips ) || $exclude_me ){
 			return $content;
 		}

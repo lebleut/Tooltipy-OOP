@@ -148,7 +148,11 @@ class Posts_Metaboxes{
 		if(  !isset($_POST[$meta_field_id]) ){
 			$value = call_user_func( $sanitize_function, '' );
 		}else{
-			$value = call_user_func( $sanitize_function, $_POST[$meta_field_id] );
+			if( is_array($_POST[$meta_field_id]) ){
+				$value = $_POST[$meta_field_id];
+			}else{
+				$value = call_user_func( $sanitize_function, $_POST[$meta_field_id] );
+			}
 		}
 
 		// Filter hook before saving meta field
@@ -190,6 +194,10 @@ class Posts_Metaboxes{
 			array(
 				'meta_field_id' => 'exclude_tooltips',
 				'callback'      => array( __CLASS__, 'exclude_tooltips_field' )
+			),
+			array(
+				'meta_field_id' => 'exclude_cats',
+				'callback'      => array( __CLASS__, 'exclude_tooltip_cats_field' )
 			),
 		);
 		
@@ -274,6 +282,51 @@ class Posts_Metaboxes{
 			placeholder="tooltip 1, tooltip 2,..."
 			value="<?php echo( $excluded_tooltips ); ?>"
 		>
+		<?php
+	}
+	function exclude_tooltip_cats_field($meta_field_id){
+		$tooltip_cats = get_terms( 'tooltip_cat' );
+
+		$excluded_tooltip_cats = get_post_meta( get_the_id(), $meta_field_id, true );
+		?>
+		<h4><?php _e_tooltipy( 'Categories to exclude' ); ?></h4>
+		
+		<?php
+			require_once TOOLTIPY_BASE_DIR . '/admin/walkers/class-exclude-cats-walker.php';
+			$selected_cats = get_post_meta( get_the_id(), 'tltpy_exclude_cats', true );
+			
+			if( !is_array( $selected_cats ) ){
+				$selected_cats = [];
+			}
+
+			$args = array(
+				'descendants_and_self'  => 0,
+				'selected_cats'         => $selected_cats,
+				'popular_cats'          => false,
+				'walker'                => new Exclude_Cats_Walker,
+				'taxonomy'              => 'tooltip_cat',
+				'checked_ontop'         => true
+			);
+		?>
+	
+		<div class="tltpy-exclude-cats">
+			<?php wp_terms_checklist( 0, $args ); ?>
+		</div>
+
+		<style>
+			.tltpy-exclude-cats {
+				height: 100px;
+				overflow-y: auto;
+				border: 1px solid lightgrey;
+				padding: 0.5rem;
+			}
+			.tltpy-exclude-cats li{
+				list-style: none;
+			}
+			.tltpy-exclude-cats ul.children li{
+				margin-left: 2rem;
+			}
+		</style>
 		<?php
 	}
 }

@@ -105,7 +105,7 @@ class Posts_Metaboxes{
 				$pattern = $pattern . 'i';
 			}
 
-			preg_match( $pattern, $content, $matches);
+			preg_match( $pattern, $content, $matches, PREG_OFFSET_CAPTURE);
 
 			if( is_array($matches) && count($matches) == 1 && empty($matches[0]) ){
 				$matches = array();
@@ -114,11 +114,20 @@ class Posts_Metaboxes{
 			if( !empty($matches) ){
 				$tltp_vector = array(
 					'tooltip_id'    => $tltp->ID,
-					'tooltip_title' => $tltp->post_title
+					'tooltip_title' => $tltp->post_title,
+					'tooltip_offset'=> $matches[0][1]
 				);
 				array_push($matched_tooltips, $tltp_vector );
 			}
 		}
+
+		// Sort matched tooltips according to tooltip offset
+		usort( $matched_tooltips, function( $a, $b ){
+			if ($a['tooltip_offset'] == $b['tooltip_offset']) {
+				return 0;
+			}
+			return ($a['tooltip_offset'] < $b['tooltip_offset']) ? -1 : 1; 
+		} );
 
 		return $matched_tooltips;
 	}

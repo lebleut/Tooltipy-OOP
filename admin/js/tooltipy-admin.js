@@ -54,4 +54,39 @@
 		console.log(response)
 	}
 
+
+	$(document).ready(function(){
+		const  $checkboxes = $('.tltpy-exclude-cats').find('input[type=checkbox]')
+
+		// Fill tltpy_excluded_cats_nbr
+		showExcludedCatsNbr()
+
+		function showExcludedCatsNbr(){
+			let excluded_cats = $checkboxes.filter( (index, elem) => $(elem).prop('checked') == true ).length
+			$('.tltpy_excluded_cats_nbr').text( '(' + excluded_cats + '/' + $checkboxes.length + ')' )
+		}
+
+		$(document).on( 'change', '#tltpy-check-all-cats', function(){
+			if( $(this).prop('checked') ){
+				$checkboxes.prop('checked',true)
+			}else{
+				$checkboxes.prop('checked',false)
+			}
+
+			showExcludedCatsNbr()
+		})
+
+		$(document).on( 'change', '.tltpy-exclude-cats', function(){
+			let allChecked = true
+			$checkboxes.each( (index, elem) => {
+				if( $(elem).prop('checked') == false ){
+					allChecked = false
+				}
+			});
+
+			$('#tltpy-check-all-cats').prop( 'checked', allChecked )
+
+			showExcludedCatsNbr()
+		})
+	})
 })( jQuery );

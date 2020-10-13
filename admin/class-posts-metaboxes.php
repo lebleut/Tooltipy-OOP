@@ -299,6 +299,14 @@ class Posts_Metaboxes{
 		$excluded_tooltip_cats = get_post_meta( get_the_id(), $meta_field_id, true );
 		?>
 		<h4><?php _e_tooltipy( 'Categories to exclude' ); ?></h4>
+
+		<div class="tltpy_check_all_cats_wrap">
+			<label>
+				<input type="checkbox" id="tltpy-check-all-cats">
+				Exclude all
+			</label>
+			<span class="tltpy_excluded_cats_nbr" ></span>
+		</div>
 		
 		<?php
 			require_once TOOLTIPY_BASE_DIR . '/admin/walkers/class-exclude-cats-walker.php';
@@ -314,7 +322,7 @@ class Posts_Metaboxes{
 				'popular_cats'          => false,
 				'walker'                => new Exclude_Cats_Walker,
 				'taxonomy'              => 'tooltip_cat',
-				'checked_ontop'         => true
+				'checked_ontop'         => false
 			);
 		?>
 	

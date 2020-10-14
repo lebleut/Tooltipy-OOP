@@ -56,18 +56,19 @@ class Tooltipy_Public {
 		add_filter( 'the_content', array($this, 'filter_content') );
 	}
 
-	public static function get_active_matched_tooltips(){
-		global $post_type;
+	public static function get_active_matched_tooltips( $post_id = null ){
+		global $post, $post_type;
+		$post_id = $post_id === null ? $post->ID : $post_id;
 
 		if( Tooltipy::get_plugin_name() == $post_type ){
 			return false;
 		}
 		
 		// Current post meta data
-		$exclude_me 		= get_post_meta( get_the_id(), 'tltpy_exclude_me', true );
-		$matched_tooltips 	= get_post_meta( get_the_id(), 'tltpy_matched_tooltips', true );
-		$exclude_tooltips	= get_post_meta( get_the_id(), 'tltpy_exclude_tooltips', true );
-		$exclude_cats		= get_post_meta( get_the_id(), 'tltpy_exclude_cats', true );
+		$exclude_me 		= get_post_meta( $post_id, 'tltpy_exclude_me', true );
+		$matched_tooltips 	= get_post_meta( $post_id, 'tltpy_matched_tooltips', true );
+		$exclude_tooltips	= get_post_meta( $post_id, 'tltpy_exclude_tooltips', true );
+		$exclude_cats		= get_post_meta( $post_id, 'tltpy_exclude_cats', true );
 
 		$exclude_tooltips = explode( ',', $exclude_tooltips );
 		$exclude_tooltips = array_map( 'trim', $exclude_tooltips );
@@ -861,5 +862,9 @@ class Tooltipy_Public {
 	public function rewrite_rules() {
 		// Consider the letter query var for glossary pages
 		add_rewrite_rule( '([^/]+)/letter/([^/])', 'index.php?pagename=$matches[1]&letter=$matches[2]', 'top' );
+	}
+
+	public function register_widgets(){
+		register_widget( Widgets\PostKeywords::class );
 	}
 }

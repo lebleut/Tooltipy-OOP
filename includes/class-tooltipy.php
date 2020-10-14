@@ -190,6 +190,9 @@ class Tooltipy {
 
 		// Rewrite rules
 		$this->loader->add_action( 'init', $plugin_public, 'rewrite_rules' );
+
+		// Widget
+		$this->loader->add_action( 'widgets_init', $plugin_public, 'register_widgets' );
 	}
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.

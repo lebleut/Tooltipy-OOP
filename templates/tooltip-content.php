@@ -14,8 +14,11 @@ if ( ! defined( 'WPINC' ) ) {
 	<?php
 		// init
 		global $tooltipy_is_glossary_page;
-		$wiki_data = tooltipy_get_post_wiki_data( get_the_id() );
 		$is_wiki = get_post_meta( get_the_ID(), 'tltpy_is_wiki', true );
+		$wiki_data = false;
+		if( $is_wiki ){
+			$wiki_data = tooltipy_get_post_wiki_data( get_the_id() );
+		}
 	?>
 	<?php $add_to_popup = tooltipy_get_option( 'add_to_popup', false, false ); ?>
 
@@ -50,7 +53,7 @@ if ( ! defined( 'WPINC' ) ) {
 			||
 			$tooltipy_is_glossary_page !== true
 		){
-			if( $is_wiki && isset($wiki_data->thumbnail) && isset($wiki_data->thumbnail->source) ){
+			if( $is_wiki && $wiki_data && isset($wiki_data->thumbnail) && isset($wiki_data->thumbnail->source) ){
 				// Wiki thumbnail
 				?>
 				<div class="tooltipy-pop__thumbnail tooltipy-pop__thumbnail--wiki">
@@ -71,7 +74,7 @@ if ( ! defined( 'WPINC' ) ) {
 	<!-- Content -->
 	<div class="tooltipy-pop__content">
 		<?php
-			echo $is_wiki && isset($wiki_data->extract_html) ? $wiki_data->extract_html : get_the_content();
+			echo $is_wiki && $wiki_data && isset($wiki_data->extract_html) ? $wiki_data->extract_html : get_the_content();
 		?>
 	</div><!-- .tooltipy-pop__content -->
 </article><!-- #post-## -->

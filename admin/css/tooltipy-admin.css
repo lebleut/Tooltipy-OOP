@@ -68,3 +68,11 @@ table.tltpy_excluded_posts td{
 .tltpy_check_all_cats_wrap{
 	margin-bottom: 1rem;
 }
+
+#wiki-term-wrapper{
+	overflow: auto;
+}
+#wiki-term-wrapper img{
+	float: right;
+    margin-left: 1rem;
+}

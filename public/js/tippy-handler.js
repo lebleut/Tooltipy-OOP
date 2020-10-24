@@ -27,6 +27,12 @@
 
 					maxWidth: parseInt(wpTooltipy.tooltip_max_width),
 
+					onCreate(instance) {
+						instance._isFetching = false
+						instance._error = false
+						instance._hasContent = false
+					},
+
 					onMount: function(instance) {
 						const box = instance.popper.firstElementChild;
 						
@@ -71,8 +77,52 @@
 						if( animation_speed != '' ){
 							box.classList.remove( animation_speed );
 						}
+
+						// Unset these properties so new network requests can be initiated
+						instance._error = null;
+						instance._isFetching = false
 					},
+			}
+
+			const current_tooltip = wpTooltipy.keywords.filter( kw => kw.id == tooltip_id )[0]
+			const tooltip_keyword = current_tooltip.title
+			const is_wiki = current_tooltip.is_wiki
+			const wiki_term = current_tooltip.wiki_term
+			
+			if( is_wiki.trim().length ){
+				options.content = 'Loading'
+				options.onShow = function(instance) {
+					if (instance._isFetching || instance._error || instance._hasContent) {
+					  return;
+					}
+					instance._isFetching = true;
+				
+					fetch('https://'+wpTooltipy.wikipedia_lang+'.wikipedia.org/api/rest_v1/page/summary/'+wiki_term)
+						.then((response) => response.json() )
+						.then((json) => {
+							var elem = document.createElement('div');
+							elem.innerHTML = ''
+
+							if( json.thumbnail !== undefined ){
+								elem.innerHTML += '<img src="'+json.thumbnail.source+'" >';
+							}
+
+							elem.innerHTML += json.extract_html;
+					
+							instance.setContent( elem )
+						})
+						.catch((error) => {
+							instance._error = error;
+							instance.setContent(`Request failed. ${error}`);
+							instance._hasContent = false
+						})
+						.finally(() => {
+							instance._isFetching = false;
+							instance._hasContent = true
+						});
 				}
+			}
+
 			tippy( elem, options );
 		});
 	 });

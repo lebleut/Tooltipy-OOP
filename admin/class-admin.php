@@ -1,6 +1,7 @@
 <?php
 namespace Tooltipy;
 
+use Tooltipy\Settings;
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -141,8 +142,22 @@ class Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tooltipy-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name . '_admin', plugin_dir_url( __FILE__ ) . 'js/tooltipy-admin.js', array( 'jquery' ), $this->version, false );
+		
+		$options = array();
+			
+		foreach( Settings::get_fields() as $field ){
+			$options[$field['uid']] = tooltipy_get_option( $field['uid'] );
+		}
 
+		// Wiki language
+		$options['wikipedia_lang'] = tooltipy_get_option( 'wikipedia_lang', 'en' );
+
+		wp_localize_script(
+			$this->plugin_name . '_admin',
+			'wpTooltipy',
+			$options
+		); 
 	}
 
 	public function manage_tooltip_columns( $columns ){

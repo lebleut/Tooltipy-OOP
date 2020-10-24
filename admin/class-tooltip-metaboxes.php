@@ -245,11 +245,8 @@ class Tooltip_Metaboxes{
 				/>
 			</label>
 		</p>
+		<div id="wiki-term-wrapper">
+		</div>
 		<?php
-		$wiki_data = tooltipy_get_post_wiki_data( get_the_id() );
-
-		if( $wiki_data ){
-			echo $wiki_data->extract_html;
-		}
 	}
 }

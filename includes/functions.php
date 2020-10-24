@@ -186,61 +186,6 @@ function tooltipy_debug( $var ){
 }
 
 /**
- * Returns the wikipedia data depending on the wiki term of the post
- *
- * @param  mixed $post_id
- *
- * @return void
- */
-function tooltipy_get_post_wiki_data( $post_id ){
-	$wiki_term = get_post_meta( $post_id, 'tltpy_wiki_term', true );
-	$wiki_lang = tooltipy_get_option( 'wikipedia_lang', 'en' );
-
-	if( !$wiki_term || '' == trim($wiki_term) ){
-		$wiki_term = get_the_title( $post_id );
-	}
-
-	$wiki_term = trim( $wiki_term );
-	
-	// remove spaces and add underscores
-	$wiki_term_arr = explode( ' ', str_replace( '_', ' ', $wiki_term ) );
-
-	$wiki_term = implode( '_', array_map( function($word){
-		return ucfirst( strtolower( trim($word) ) );
-	}, $wiki_term_arr ) );
-
-	$url = 'https://' . $wiki_lang . '.wikipedia.org/api/rest_v1/page/summary/' . $wiki_term;
-	$headers = get_headers($url);
-
-	$http_response_code = substr($headers[0], 9, 3);
-	
-	// if redirection
-	if( in_array( $http_response_code, array( '301','302' ) ) ){
-		if( '301' == $http_response_code ){
-			$url = 'https://' . $wiki_lang . '.wikipedia.org/api/rest_v1/page/summary/'. substr($headers[1], 10 );
-		}
-		
-		if( '302' == $http_response_code ){
-			$url = 'https://' . $wiki_lang . '.wikipedia.org/api/rest_v1/page/summary/'. substr($headers[2], 10 );
-		}
-
-		$headers = get_headers($url);
-
-		$http_response_code = substr($headers[0], 9, 3);
-	}
-
-	if( in_array( $http_response_code, array( "200", "304" )) ){
-		$json = file_get_contents($url);
-		$obj = json_decode($json);
-
-		return $obj;
-	}
-
-	return false;
-}
-
-
-/**
  * tooltipy_get_related_posts
  * Returns the list of related posts for the current tooltip
  *

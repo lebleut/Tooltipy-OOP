@@ -54,8 +54,41 @@
 		console.log(response)
 	}
 
+	// Loads the admin side wiki data
+	window.tltpy_load_wiki_data = function(){
+		if(
+			$('[name="tltpy_is_wiki"]').prop('checked')
+			&& $('[name="tltpy_wiki_term"]').val().trim() != ""
+		){
+			// ajx to fill '#wiki-term-wrapper'
+			const $wiki_wrapper = $('#wiki-term-wrapper')
+			const tooltip_keyword = $('[name="tltpy_wiki_term"]').val().trim()
+
+			fetch('https://'+wpTooltipy.wikipedia_lang+'.wikipedia.org/api/rest_v1/page/summary/'+tooltip_keyword)
+				.then((response) => response.json() )
+				.then((json) => {
+		
+					let html = ''
+
+					if( json.thumbnail !== undefined ){
+						html += '<img src="'+json.thumbnail.source+'" >';
+					}
+
+					html += json.extract_html;
+			
+					$wiki_wrapper.html( html )
+				})
+				.catch((error) => {
+					$wiki_wrapper.html( `Request failed. <span style="color:red;">${error}</span>`);
+				})
+		}
+	}
+
 
 	$(document).ready(function(){
+
+		tltpy_load_wiki_data()
+
 		const  $checkboxes = $('.tltpy-exclude-cats').find('input[type=checkbox]')
 
 		// Fill tltpy_excluded_cats_nbr

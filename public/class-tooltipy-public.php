@@ -227,6 +227,7 @@ class Tooltipy_Public {
 			// Tooltips meta data
 			$tt_synonyms			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_synonyms', true);
 			$tt_is_prefix			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_is_prefix', true);
+			$tt_is_wiki				= get_post_meta( $tooltip['tooltip_id'], 'tltpy_is_wiki', true);
 			$tt_is_case_sensitive	= get_post_meta( $tooltip['tooltip_id'], 'tltpy_case_sensitive', true);
 			$tt_youtube_id			= get_post_meta( $tooltip['tooltip_id'], 'tltpy_youtube_id', true);
 
@@ -257,6 +258,10 @@ class Tooltipy_Public {
 				$inner_after = '\w*';
 
 				array_push( $keyword_classes, 'tooltipy-kw-prefix' );
+			}
+			// If is wiki
+			if( $tt_is_wiki ){
+				array_push( $keyword_classes, 'tooltipy-kw-wiki' );
 			}
 
 			$keyword_classes = apply_filters( 'tltpy_keyword_classes', $keyword_classes, $tooltip[ 'tooltip_id' ] );
@@ -590,7 +595,29 @@ class Tooltipy_Public {
 			foreach( Settings::get_fields() as $field ){
 				$options[$field['uid']] = tooltipy_get_option( $field['uid'] );
 			}
-			
+
+			// Wiki language
+			$options['wikipedia_lang'] = tooltipy_get_option( 'wikipedia_lang', 'en' );
+
+			// Add related tooltips to options
+			global $post;
+			$matched_tooltips = Tooltipy_Public::get_active_matched_tooltips( $post->ID );
+			$options['keywords'] = [];
+			foreach( $matched_tooltips as $tooltip ){
+				$tooltip_id = $tooltip['tooltip_id'];
+				$options['keywords'][] = [
+					'id' 				=> $tooltip_id,
+					'title' 			=> $tooltip['tooltip_title'],
+					'offset' 			=> $tooltip['tooltip_offset'],
+					'synonyms' 			=> get_post_meta( $tooltip_id, 'tltpy_synonyms', true ),
+					'case_sensitive' 	=> get_post_meta( $tooltip_id, 'tltpy_case_sensitive', true ),
+					'is_prefix' 		=> get_post_meta( $tooltip_id, 'tltpy_is_prefix', true ),
+					'is_wiki' 			=> get_post_meta( $tooltip_id, 'tltpy_is_wiki', true ),
+					'wiki_term'			=> get_post_meta( $tooltip_id, 'tltpy_wiki_term', true ),
+					'youtube_id' 		=> get_post_meta( $tooltip_id, 'tltpy_youtube_id', true ),
+				];
+			}
+
 			wp_localize_script(
 				'tippy-handler',
 				'wpTooltipy',

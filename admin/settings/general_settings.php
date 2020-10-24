@@ -167,6 +167,7 @@ function tltpy_get_general_serttings( $fields ){
 			'label' 		=> __tooltipy( 'Tooltip position' ),
 	
 			'options' 		=> array(
+				'auto' 		=> __tooltipy( 'Auto' ),
 				'top' 		=> __tooltipy( 'Top' ),
 				'bottom' 	=> __tooltipy( 'Bottom' ),
 				'right' 	=> __tooltipy( 'Right' ),

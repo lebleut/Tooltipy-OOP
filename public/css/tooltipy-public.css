@@ -74,3 +74,13 @@
 .tooltipy-pop__thumbnail{
 	text-align: center;
 }
+
+.tooltipy-loading{
+	position: absolute;
+    top: 89px;
+    left: 50%;
+    width: 200px;
+    text-align: center;
+    background: #eeeeee7a;
+    padding: 2rem;
+}

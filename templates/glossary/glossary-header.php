@@ -15,8 +15,14 @@ use Tooltipy\Tooltipy;
 		if( !empty($letter[ "value" ]) ){
 			$letter_link = Tooltipy::get_glossary_page_link() . "?letter=" . $letter["value"];
 		}
-		
+
 		?>
-		<li><a href="<?php echo $letter_link; ?>" ><?php echo $letter["label"]; ?></a></li>
+		<li>
+			<a
+				href="<?php echo $letter_link; ?>"
+				class="tltpy-glossary-header-letter"
+				data-letter="<?php echo $letter[ "value" ]; ?>"
+			><?php echo $letter["label"]; ?></a>
+		</li>
 	<?php endforeach; ?>
 </ul>

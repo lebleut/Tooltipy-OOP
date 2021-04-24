@@ -8,6 +8,7 @@ function tooltipy_get_glossary_letters(){
 	$posts = get_posts( array(
 		'post_type' 	=> Tooltipy::get_plugin_name(),
 		'post_status' 	=> 'publish',
+		'posts_per_page' => -1,
 	));
 	$letters = array();
 	foreach ($posts as $key => $current_post) {

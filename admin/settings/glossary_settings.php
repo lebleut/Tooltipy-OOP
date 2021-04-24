@@ -117,6 +117,19 @@ function tltpy_get_glossary_settings( $fields ){
 			),
 			'default'		=> array( 'yes' ),
 		),
+		array(
+			'section' 		=> 'general',
+			
+			'uid' 			=> 'glossary_ajax',
+			'type' 			=> 'checkbox',
+
+			'label' 		=> __tooltipy( 'Ajax' ),
+
+			'options' 		=> array(
+				'yes' 		=> __tooltipy( 'Load glossary with Ajax' ),
+			),
+			'default'		=> array( 'yes' ),
+		),
 	);
 	
 	// Assign the GLOSSARY tab slug

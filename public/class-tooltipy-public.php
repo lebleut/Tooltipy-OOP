@@ -52,12 +52,19 @@ class Tooltipy_Public {
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version = time(); // TODO to be switched to the var : $version
 		add_filter( 'the_content', array($this, 'filter_content') );
+		add_action( 'wp_ajax_tltpy_load_glossary', array( $this, 'ajax_load_glossary' ) );
+		add_action( 'wp_ajax_nopriv_tltpy_load_glossary', array( $this, 'ajax_load_glossary' ) );
 	}
 
 	public static function get_active_matched_tooltips( $post_id = null ){
 		global $post, $post_type;
+		
+		if( !isset($post->ID) ){
+			return false;
+		}
+
 		$post_id = $post_id === null ? $post->ID : $post_id;
 
 		if( Tooltipy::get_plugin_name() == $post_type ){
@@ -187,7 +194,7 @@ class Tooltipy_Public {
 	public function filter_content( $content ){
 		global $post_type;
 
-		if( Tooltipy::get_plugin_name() == $post_type ){
+		if( Tooltipy::get_plugin_name() == get_post_type() ){
 			return $content;
 		}
 
@@ -601,29 +608,38 @@ class Tooltipy_Public {
 
 			// Add related tooltips to options
 			global $post;
-			$matched_tooltips = Tooltipy_Public::get_active_matched_tooltips( $post->ID );
-			$options['keywords'] = [];
-			foreach( $matched_tooltips as $tooltip ){
-				$tooltip_id = $tooltip['tooltip_id'];
-				$options['keywords'][] = [
-					'id' 				=> $tooltip_id,
-					'title' 			=> $tooltip['tooltip_title'],
-					'offset' 			=> $tooltip['tooltip_offset'],
-					'synonyms' 			=> get_post_meta( $tooltip_id, 'tltpy_synonyms', true ),
-					'case_sensitive' 	=> get_post_meta( $tooltip_id, 'tltpy_case_sensitive', true ),
-					'is_prefix' 		=> get_post_meta( $tooltip_id, 'tltpy_is_prefix', true ),
-					'is_wiki' 			=> get_post_meta( $tooltip_id, 'tltpy_is_wiki', true ),
-					'wiki_term'			=> get_post_meta( $tooltip_id, 'tltpy_wiki_term', true ),
-					'youtube_id' 		=> get_post_meta( $tooltip_id, 'tltpy_youtube_id', true ),
-				];
+
+			if( !isset($post->ID) ){
+				return;
 			}
 
-			wp_localize_script(
-				'tippy-handler',
-				'wpTooltipy',
-				$options
-			); 
+			$matched_tooltips = Tooltipy_Public::get_active_matched_tooltips( $post->ID );
+			$options['keywords'] = [];
+			if( is_array($matched_tooltips) ){
+				foreach( $matched_tooltips as $tooltip ){
+					$tooltip_id = $tooltip['tooltip_id'];
+					$options['keywords'][] = [
+						'id' 				=> $tooltip_id,
+						'title' 			=> $tooltip['tooltip_title'],
+						'offset' 			=> $tooltip['tooltip_offset'],
+						'synonyms' 			=> get_post_meta( $tooltip_id, 'tltpy_synonyms', true ),
+						'case_sensitive' 	=> get_post_meta( $tooltip_id, 'tltpy_case_sensitive', true ),
+						'is_prefix' 		=> get_post_meta( $tooltip_id, 'tltpy_is_prefix', true ),
+						'is_wiki' 			=> get_post_meta( $tooltip_id, 'tltpy_is_wiki', true ),
+						'wiki_term'			=> get_post_meta( $tooltip_id, 'tltpy_wiki_term', true ),
+						'youtube_id' 		=> get_post_meta( $tooltip_id, 'tltpy_youtube_id', true ),
+					];
+				}
+			}
+
 		}
+		$options['ajaxurl'] = admin_url( 'admin-ajax.php' );
+
+		wp_localize_script(
+			$this->plugin_name,
+			'wpTooltipy',
+			$options
+		); 
 	}
 
 	// Register Tooltipy Post Type
@@ -671,7 +687,7 @@ class Tooltipy_Public {
 			'label'                 => __tooltipy( 'Tooltip' ),
 			'description'           => __( 'Post type to create keywords to generate tooltips in the frontend.' ),
 			'labels'                => $labels,
-			'supports'              => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'page-attributes', ),
+			'supports'              => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'page-attributes', 'comments' ),
 			'taxonomies'            => array( 'tooltip_cat' ),
 			'hierarchical'          => false,
 			'public'                => true,
@@ -893,5 +909,21 @@ class Tooltipy_Public {
 
 	public function register_widgets(){
 		register_widget( Widgets\PostKeywords::class );
+	}
+
+	public function ajax_load_glossary(){
+		$first_letter = isset($_POST['letter']) ? $_POST['letter'] : '';
+		
+		ob_start();
+			tooltipy_main_glossary_template( $first_letter );
+		$html = ob_get_clean();
+
+		$data = [
+			'message' => 'good',
+			'html' => $html
+		];
+
+		echo json_encode( $data );
+		die();
 	}
 }

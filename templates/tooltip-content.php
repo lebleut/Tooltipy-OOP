@@ -70,7 +70,11 @@ if ( ! defined( 'WPINC' ) ) {
 	<!-- Content -->
 	<div class="tooltipy-pop__content">
 		<?php
-			echo $is_wiki ? __tooltipy('Loading...') : get_the_content();
+		if( $is_wiki ){
+			echo __tooltipy('Loading...');
+		}else{
+			the_content();
+		}
 		?>
 	</div><!-- .tooltipy-pop__content -->
 </article><!-- #post-## -->

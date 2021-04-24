@@ -705,6 +705,13 @@ class Tooltipy_Public {
 			'show_in_rest'          => true,
 		);
 
+		$rewrite_slug = tooltipy_get_option( 'rewrite_slug', false );
+		$rewrite_slug = trim( $rewrite_slug );
+
+		if( !empty($rewrite_slug) ){
+			$args['rewrite'] = [ 'slug' => $rewrite_slug ];
+		}
+
 		register_post_type( Tooltipy::get_plugin_name(), $args );
 
 		// Tooltips category taxonomy
@@ -724,9 +731,9 @@ class Tooltipy_Public {
 		);
 		
 		// Flush permalinks to consider new tooltipy post type rewrite rule if activated now
-		if( tooltipy_get_option( 'activated_just_now',false ) ){
+		if( tooltipy_get_option( 'flush_rewrite_rules',false, true, false ) ){
 			flush_rewrite_rules();
-			delete_option( 'tltpy_activated_just_now');
+			delete_option( 'tltpy_flush_rewrite_rules');
 		}
 	}
 

@@ -80,11 +80,15 @@ function tooltipy_get_posts_id_start_with( $first_letter ){
  *
  * @return void
  */
-function tooltipy_get_option( $field_id, $default = false, $unique_option = true ){
+function tooltipy_get_option( $field_id, $default = false, $unique_option = true, $in_settings = true ){
 
 	$option_id = 'tltpy_' . $field_id;
 
 	$option_value = get_option( $option_id, $default );
+
+	if( !$in_settings ){
+		return $option_value;
+	}
 
 	$field = Settings::get_field( $field_id );
 

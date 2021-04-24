@@ -21,6 +21,7 @@ class Settings {
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/style_settings.php';
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/glossary_settings.php';
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/scope_settings.php';
+		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/seo_settings.php';
 	}
 
     public function create_plugin_settings_page() {
@@ -245,6 +246,16 @@ class Settings {
 						'name' 			=> 'excluded posts',
 						'title' 		=> __tooltipy( 'Excluded posts' ),
 						'description' 	=> __tooltipy( 'Manage the list of excluded posts' ),
+					),
+				)
+			),
+			array(
+				'id' => 'seo',
+				'sections' => array(
+					array(
+						'id' 			=> 'general',
+						'title' 		=> __tooltipy( 'SEO' ),
+						'description' 	=> __( 'Advanced SEO options' ),
 					),
 				)
 			),

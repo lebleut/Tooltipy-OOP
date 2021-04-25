@@ -69,6 +69,10 @@ function tooltipy_main_glossary_template( $first_letter = '', $paged = '' ){
 	$tooltipy_is_glossary_page = true;
 
 	$postids = tooltipy_get_posts_id_start_with( $first_letter );
+	
+	if( empty($postids) && trim($first_letter) != '' ){
+		$postids = [0];
+	}
 
 	$args = array(
 		'post_type' 	=> Tooltipy::get_plugin_name(),

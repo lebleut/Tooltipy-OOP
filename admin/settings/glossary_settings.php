@@ -141,3 +141,15 @@ function tltpy_get_glossary_settings( $fields ){
 
 	return $fields;
 }
+
+add_action( 'updated_option', 'tltpy_updated_glossary_serttings', 10, 3 );
+
+function tltpy_updated_glossary_serttings( $option, $old_value, $value ){
+	// Need to flush the rewrite rules if glossary page changed
+    if(
+		$option == 'tltpy_' . 'glossary_page'
+		&& serialize($value) != serialize($old_value)
+	){
+        add_option( 'tltpy_' . 'flush_rewrite_rules',true);
+    }
+}

@@ -25,6 +25,12 @@
 
 				$('.tooltipy-glossary-wrap').empty()
 				$('.tooltipy-glossary-wrap').replaceWith( $(data.html) )
+
+				// Add active letter button class
+				$('.tltpy-glossary-header-letter').removeClass('tltpy-glossary-header-letter--active')
+				let $letterButton = $('.tooltipy-glossary-wrap').find('.tltpy-glossary-header-letter[data-letter='+letter+']')
+				$letterButton.addClass('tltpy-glossary-header-letter--active')
+
 				tooltipy_add_letter_listener()
 			});
 		})

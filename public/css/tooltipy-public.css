@@ -58,10 +58,17 @@
 	display: inline-block;
 }
 
-.tltpy-glossary-header-list li a{
+.tltpy-glossary-header-letter{
 	margin: auto 2px;
 	padding: 10px;
 	background-color: #eee;
+}
+
+.tltpy-glossary-header-letter--active,
+.tltpy-glossary-header-letter--active:hover{
+	background-color: black;
+    color: white;
+    font-weight: bold;
 }
 
 .tippy-tooltip a{

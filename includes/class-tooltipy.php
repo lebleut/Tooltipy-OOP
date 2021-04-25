@@ -188,9 +188,6 @@ class Tooltipy {
 		// if footnote mode load the footnotes section under the content
 		$this->loader->add_filter( 'the_content', $plugin_public, 'footnote_section' );
 
-		// Rewrite rules
-		$this->loader->add_action( 'init', $plugin_public, 'rewrite_rules' );
-
 		// Widget
 		$this->loader->add_action( 'widgets_init', $plugin_public, 'register_widgets' );
 	}

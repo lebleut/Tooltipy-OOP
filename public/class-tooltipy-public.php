@@ -56,6 +56,8 @@ class Tooltipy_Public {
 		add_filter( 'the_content', array($this, 'filter_content') );
 		add_action( 'wp_ajax_tltpy_load_glossary', array( $this, 'ajax_load_glossary' ) );
 		add_action( 'wp_ajax_nopriv_tltpy_load_glossary', array( $this, 'ajax_load_glossary' ) );
+		add_action( 'init', array( $this, 'rewrite_rules' ) );
+		add_filter( 'query_vars', array( $this, 'add_query_vars' ) );
 	}
 
 	public static function get_active_matched_tooltips( $post_id = null ){
@@ -910,19 +912,35 @@ class Tooltipy_Public {
 	}
 
 	public function rewrite_rules() {
-		// Consider the letter query var for glossary pages
-		add_rewrite_rule( '([^/]+)/letter/([^/])', 'index.php?pagename=$matches[1]&letter=$matches[2]', 'top' );
-	}
+		$glossary_page_id = tooltipy_get_option( 'glossary_page' );
 
+		if( !empty($glossary_page_id) ){
+			$glossary_page = get_post( $glossary_page_id );
+			$slug = $glossary_page->post_name;
+			
+			// Consider the letter query var for glossary pages
+			add_rewrite_rule(
+				'^'.$slug.'/letter/([^/]+)$',
+				'index.php?page_id='.$glossary_page_id.'&letter=$matches[1]',
+				'top'
+			);
+		}
+
+	}
+	function add_query_vars( $vars )
+	{
+		$vars[] = 'letter';
+		return $vars;
+	}
 	public function register_widgets(){
 		register_widget( Widgets\PostKeywords::class );
 	}
 
 	public function ajax_load_glossary(){
-		$first_letter = isset($_POST['letter']) ? $_POST['letter'] : '';
+		$glossary_first_letter = isset($_POST['letter']) ? $_POST['letter'] : '';
 		
 		ob_start();
-			tooltipy_main_glossary_template( $first_letter );
+			tooltipy_main_glossary_template( $glossary_first_letter );
 		$html = ob_get_clean();
 
 		$data = [

@@ -3,8 +3,6 @@ namespace Tooltipy;
 
 class Tooltip_Metaboxes{
 	public function __construct() {
-		// Hook after the Tooltipy edit title
-		add_action( 'edit_form_after_title', array( $this, 'meta_box_after_title' ) );
 		
 		add_action( 'do_meta_boxes', array( $this, 'add_meta_boxes' ), 10, 3 );
 
@@ -28,27 +26,21 @@ class Tooltip_Metaboxes{
 
 		return $syn_value;
 	}
-	
-	public function meta_box_after_title(){
-		do_meta_boxes(
-			Tooltipy::get_plugin_name(),
-			'tooltipy_after_title',
-			'' 
-		);
-	}
 
 	function add_meta_boxes( $post_type, $context, $post ){
 		// Only for Tooltipy
 		if( Tooltipy::get_plugin_name() != $post_type ){
 			return false;
 		}
+		$context = null;
 
 		add_meta_box(
 			'tltpy_tooltip_metabox',
 			__tooltipy( 'Tooltip settings' ),
 			array( $this, 'metabox_render' ) ,
 			null,
-			'tooltipy_after_title'
+			'side',
+			'high'
 		);
 	}
 

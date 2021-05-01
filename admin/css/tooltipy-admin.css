@@ -76,3 +76,8 @@ table.tltpy_excluded_posts td{
 	float: right;
     margin-left: 1rem;
 }
+.tltpy_loading_img{
+	width: 25px;
+    margin-left: 10px;
+	display: none;
+}

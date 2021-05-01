@@ -532,6 +532,7 @@ class Settings {
 				$is_disabled = isset($arguments['disabled']) && true === $arguments['disabled'] ? 'disabled' : '';
 
 				printf( '<input type="submit" name="%1$s" id="%1$s" value="%2$s" class="button button-secondary" %3$s >', $uid, $arguments['label'], $is_disabled );
+				printf( '<img src="%1$s" class="tltpy_loading_img" />', TOOLTIPY_PLUGIN_URL . '/assets/loading.gif' );
 				?>
 				<script>
 				(function ($) {
@@ -543,6 +544,8 @@ class Settings {
 							if( confirm( 'Are you sure you want to <?php echo $arguments['label'] ?> ?' ) ){
 								// Wait please
 								$button.attr('disabled', true)
+								
+								$button.parent().find('.tltpy_loading_img').show()
 
 								let ajax_action = '<?php echo isset($arguments['uid'])
 									? $arguments['uid']
@@ -562,6 +565,8 @@ class Settings {
 								}).done(function(response) {
 									response = JSON.parse(response)
 									$button.attr('disabled', false)
+									
+									$button.parent().find('.tltpy_loading_img').hide()
 
 									<?php if(isset($arguments['js_callback']) && !empty($arguments['js_callback'])): ?>
 										if( typeof <?php echo $arguments['js_callback'] ?> === "function" ){

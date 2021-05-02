@@ -1,130 +1,123 @@
 (function( $ ) {
 	'use strict';
 
-	 $( document ).ready(function(){
+	$( document ).ready(function(){
 		// Attach popups
 		$(".tooltipy-kw").each(function(index, elem){
+			if( !$(this).hasClass('tooltipy-kw-wiki') ){
+				fill_tooltip( elem )
+			}
+		});
 
-			const tooltip_id = $(elem).attr("data-tooltip")
-			const animation = wpTooltipy.tooltip_animation
+		// Tooltip post single page
+		$(".tooltipy-post--wiki").each(function(index, elem){
+			const $current_wiki = $(this)
+			const $thumb_wrapper = $current_wiki.find('.tooltipy-pop__thumbnail')
+			const $content_wrapper = $current_wiki.find('.tooltipy-pop__content')
 
-			const animation_speed = wpTooltipy.tooltip_animation_speed
+			const tooltip_id = $current_wiki.attr('data-tooltip')
+			const is_wiki = $current_wiki.attr('data-is_wiki')
+			const wiki_term = $current_wiki.attr('data-wiki_term')
 
-			const $container_elem = $( "#tooltipy-popups-wrapper" ).find("[data-tooltipy-id=" + tooltip_id + "]" )
-			const HTMLcontent = $container_elem.find(".tooltipy-inner" ).clone().get(0)
+			if( is_wiki.trim().length ){
+				fetch('https://'+wpTooltipy.wikipedia_lang+'.wikipedia.org/api/rest_v1/page/summary/'+wiki_term)
+					.then((response) => response.json() )
+					.then((json) => {
+						$thumb_wrapper.html( $('<img src="'+json.thumbnail.source+'" >') )
+						$content_wrapper.html( $(json.extract_html) )
+					})
+					.catch((error) => {
+						$thumb_wrapper.html('')
+						$content_wrapper.html( 'Not found' )
+					})
+					.finally(() => {
+						fill_tooltip( $('.tooltipy-kw-' + tooltip_id).get() )
+					});
+			}
+		})
+	});
 
-			const options = {
-					content: HTMLcontent,
+	function fill_tooltip( elem ){
 
-					animation: false, // To use custom animation below
-					arrow: true,
-					interactive: true,
-					trigger: wpTooltipy.tooltip_trigger,
-					placement: wpTooltipy.tooltip_position + '-start',
-					zIndex: 9999,
+		const tooltip_id = $(elem).attr("data-tooltip")
+		const animation = wpTooltipy.tooltip_animation
 
-					theme: wpTooltipy.tooltip_theme, // Check https://atomiks.github.io/tippyjs/v6/themes/
+		const animation_speed = wpTooltipy.tooltip_animation_speed
 
-					maxWidth: parseInt(wpTooltipy.tooltip_max_width),
+		const $container_elem = $( "#tooltipy-popups-wrapper" ).find("[data-tooltipy-id=" + tooltip_id + "]" )
+		const HTMLcontent = $container_elem.find(".tooltipy-inner" ).clone().get(0)
 
-					onCreate(instance) {
-						instance._isFetching = false
-						instance._error = false
-						instance._hasContent = false
-					},
+		const options = {
+				content: HTMLcontent,
 
-					onMount: function(instance) {
-						const box = instance.popper.firstElementChild;
-						
-						box.classList.add( 'tooltipy-pop' )
-						box.classList.add( 'tooltipy-pop-' + tooltip_id )
+				animation: false, // To use custom animation below
+				arrow: true,
+				interactive: true,
+				trigger: wpTooltipy.tooltip_trigger,
+				placement: wpTooltipy.tooltip_position + '-start',
+				zIndex: 9999,
 
-						// Add metadata classes
-						if( $container_elem.attr('class') && $container_elem.attr('class').trim() != '' ){
-							$container_elem.attr('class').trim().split(' ').forEach( (cls) => {
-								box.classList.add( cls )
-							})
-						}
+				theme: wpTooltipy.tooltip_theme, // Check https://atomiks.github.io/tippyjs/v6/themes/
 
-						requestAnimationFrame(() => {
+				maxWidth: parseInt(wpTooltipy.tooltip_max_width),
 
-							box.classList.add('animated');
-							if( animation != '' ){
-								box.classList.add( animation );
-							}
-							if( animation_speed != '' ){
-								box.classList.add( animation_speed );
-							}
-						});
+				onCreate(instance) {
+					instance._isFetching = false
+					instance._error = false
+					instance._hasContent = false
+				},
 
-						// Add custom classes to tooltip popup
-						const customClasses = wpTooltipy.tooltip_css_classes.trim()
+				onMount: function(instance) {
+					const box = instance.popper.firstElementChild;
+					
+					box.classList.add( 'tooltipy-pop' )
+					box.classList.add( 'tooltipy-pop-' + tooltip_id )
 
-						if( customClasses ){
-							customClasses.split( ' ' ).forEach( cls => {
-								if( cls.trim() != '' ){
-									box.classList.add( cls.trim() )
-								}
-							});
-						}
-					},
-					onHidden: function(instance) {
-						const box = instance.popper.firstElementChild;
-						box.classList.remove('animated');
+					// Add metadata classes
+					if( $container_elem.attr('class') && $container_elem.attr('class').trim() != '' ){
+						$container_elem.attr('class').trim().split(' ').forEach( (cls) => {
+							box.classList.add( cls )
+						})
+					}
+
+					requestAnimationFrame(() => {
+
+						box.classList.add('animated');
 						if( animation != '' ){
-							box.classList.remove( animation );
+							box.classList.add( animation );
 						}
 						if( animation_speed != '' ){
-							box.classList.remove( animation_speed );
+							box.classList.add( animation_speed );
 						}
+					});
 
-						// Unset these properties so new network requests can be initiated
-						instance._error = null;
-						instance._isFetching = false
-					},
-			}
+					// Add custom classes to tooltip popup
+					const customClasses = wpTooltipy.tooltip_css_classes.trim()
 
-			const current_tooltip = wpTooltipy.keywords.filter( kw => kw.id == tooltip_id )[0]
-			const tooltip_keyword = current_tooltip.title
-			const is_wiki = current_tooltip.is_wiki
-			const wiki_term = current_tooltip.wiki_term
-			
-			if( is_wiki.trim().length ){
-				options.content = 'Loading'
-				options.onShow = function(instance) {
-					if (instance._isFetching || instance._error || instance._hasContent) {
-					  return;
-					}
-					instance._isFetching = true;
-				
-					fetch('https://'+wpTooltipy.wikipedia_lang+'.wikipedia.org/api/rest_v1/page/summary/'+wiki_term)
-						.then((response) => response.json() )
-						.then((json) => {
-							var elem = document.createElement('div');
-							elem.innerHTML = ''
-
-							if( json.thumbnail !== undefined ){
-								elem.innerHTML += '<img src="'+json.thumbnail.source+'" >';
+					if( customClasses ){
+						customClasses.split( ' ' ).forEach( cls => {
+							if( cls.trim() != '' ){
+								box.classList.add( cls.trim() )
 							}
-
-							elem.innerHTML += json.extract_html;
-					
-							instance.setContent( elem )
-						})
-						.catch((error) => {
-							instance._error = error;
-							instance.setContent(`Request failed. ${error}`);
-							instance._hasContent = false
-						})
-						.finally(() => {
-							instance._isFetching = false;
-							instance._hasContent = true
 						});
-				}
-			}
+					}
+				},
+				onHidden: function(instance) {
+					const box = instance.popper.firstElementChild;
+					box.classList.remove('animated');
+					if( animation != '' ){
+						box.classList.remove( animation );
+					}
+					if( animation_speed != '' ){
+						box.classList.remove( animation_speed );
+					}
 
-			tippy( elem, options );
-		});
-	 });
+					// Unset these properties so new network requests can be initiated
+					instance._error = null;
+					instance._isFetching = false
+				},
+		}
 
+		tippy( elem, options );
+	}
 })( jQuery );

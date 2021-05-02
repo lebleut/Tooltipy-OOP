@@ -573,6 +573,7 @@ class Tooltipy_Public {
 	 * @since    4.0.0
 	 */
 	public function enqueue_scripts() {
+		global $post_type;
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -631,6 +632,15 @@ class Tooltipy_Public {
 						'wiki_term'			=> get_post_meta( $tooltip_id, 'tltpy_wiki_term', true ),
 						'youtube_id' 		=> get_post_meta( $tooltip_id, 'tltpy_youtube_id', true ),
 					];
+				}
+			}
+
+			if( Tooltipy::get_plugin_name() == $post_type ){
+				$tooltip_metabox_fields = Tooltip_Metaboxes::get_metabox_fields();
+				$options['meta'] = [];
+
+				foreach ($tooltip_metabox_fields as $field) {
+					$options['meta'][$field['meta_field_id']] = get_post_meta(get_the_ID(), $field['meta_field_id'], true );
 				}
 			}
 

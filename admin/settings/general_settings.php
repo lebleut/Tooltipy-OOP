@@ -347,7 +347,24 @@ function tltpy_ajx_migrate_old_options(){
 
 	// Post type migration
 	foreach( $old_keywords as $post ){
-		if(set_post_type( $post->ID, 'tooltipy' )){
+		// Don't duplicate if the post slug already exists then
+		$exist_post = get_posts( [
+			'title'		=> $post->post_title,
+			'post_type' => Tooltipy::get_plugin_name(),
+			'post_status' => 'publish',
+			'posts_per_page' => 1
+		]);
+		if( !empty($exist_post) ){
+			$ret['exist_migration'][] = $post->ID;
+			continue;
+		}
+
+		$post_toduplicate = (array)get_post( $post->ID );
+		unset($post_toduplicate['ID']); // Remove id, wp will create new post if not set.
+
+		$new_post_id = wp_insert_post($post_toduplicate);
+
+		if( $new_post_id && set_post_type( $new_post_id, 'tooltipy' )){
 			$ret['success_migration'][] = $post->ID;
 
 			$metas = get_post_meta( $post->ID );
@@ -355,34 +372,34 @@ function tltpy_ajx_migrate_old_options(){
 			// Migrate metas (case sensitive, prefix, synonyms, youtube)
 			// case sensitive
 			if( isset( $metas['bluet_case_sensitive_word'] ) && count($metas['bluet_case_sensitive_word']) && $metas['bluet_case_sensitive_word'][0] == 'on' ){
-				if( update_post_meta( $post->ID, 'tltpy_case_sensitive', 'on' ) ){
-					delete_post_meta( $post->ID, 'bluet_case_sensitive_word' );
+				if( update_post_meta( $new_post_id, 'tltpy_case_sensitive', 'on' ) ){
+					delete_post_meta( $new_post_id, 'bluet_case_sensitive_word' );
 				}
 			}
 			
 			// prefix
 			if( isset( $metas['bluet_prefix_keywords'] ) && count($metas['bluet_prefix_keywords']) && $metas['bluet_prefix_keywords'][0] == 'on' ){
-				if( update_post_meta( $post->ID, 'tltpy_is_prefix', 'on' ) ){
-					delete_post_meta( $post->ID, 'bluet_prefix_keywords' );
+				if( update_post_meta( $new_post_id, 'tltpy_is_prefix', 'on' ) ){
+					delete_post_meta( $new_post_id, 'bluet_prefix_keywords' );
 				}
 			}
 			
 			// synonyms
 			if( isset( $metas['bluet_synonyms_keywords'] ) && count($metas['bluet_synonyms_keywords']) && !empty( trim($metas['bluet_synonyms_keywords'][0]) ) ){
-				if( update_post_meta( $post->ID, 'tltpy_synonyms', trim($metas['bluet_synonyms_keywords'][0]) ) ){
-					delete_post_meta( $post->ID, 'bluet_synonyms_keywords' );
+				if( update_post_meta( $new_post_id, 'tltpy_synonyms', trim($metas['bluet_synonyms_keywords'][0]) ) ){
+					delete_post_meta( $new_post_id, 'bluet_synonyms_keywords' );
 				}
 			}
 			
 			// youtube id
 			if( isset( $metas['bluet_youtube_video_id'] ) && count($metas['bluet_youtube_video_id']) && !empty( trim($metas['bluet_youtube_video_id'][0]) ) ){
-				if( update_post_meta( $post->ID, 'tltpy_youtube_id', trim($metas['bluet_youtube_video_id'][0]) ) ){
-					delete_post_meta( $post->ID, 'bluet_youtube_video_id' );
+				if( update_post_meta( $new_post_id, 'tltpy_youtube_id', trim($metas['bluet_youtube_video_id'][0]) ) ){
+					delete_post_meta( $new_post_id, 'bluet_youtube_video_id' );
 				}
 			}
 
 		}else{
-			$ret['failure_migration'][] = $post->ID;
+			$ret['failure_migration'][] = $new_post_id;
 		}
 	}
 	
@@ -433,6 +450,10 @@ function tltpy_ajx_migrate_old_options(){
 	// Message
 	if( count($ret['success_migration']) ){
 		$ret['message'][] = count($ret['success_migration']) . ' Keywords migrated';
+	}
+	
+	if( count($ret['exist_migration']) ){
+		$ret['message'][] = count($ret['exist_migration']) . ' Keywords already exist';
 	}
 	
 	if( count($ret['failure_migration']) ){

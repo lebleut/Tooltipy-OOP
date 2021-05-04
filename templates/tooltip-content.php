@@ -75,6 +75,7 @@ if( $tt_is_case_sensitive ){
 			||
 			$tooltipy_is_glossary_page !== true
 		){
+			$thumb = '';
 			if( $tt_is_wiki ){
 				$thumb = __tooltipy('Loading image...');
 			}else if( has_post_thumbnail( get_the_ID() ) ):

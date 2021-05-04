@@ -9,14 +9,26 @@ function tltpy_get_seo_serttings( $fields ){
 		array(
 			'section' 		=> 'general',
 			
-			'uid' 			=> 'rewrite_slug',
+			'uid' 			=> 'rewrite_tooltip',
 			'type' 			=> 'text',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
 
-			'label' 		=> __tooltipy( 'Rewrite slug' ),
+			'label' 		=> __tooltipy( 'Tooltip slug' ),
 			'placeholder' 	=> Tooltipy::get_plugin_name(),
 
 			'default' 	=> Tooltipy::get_plugin_name(),
 			'description'   => __( 'The slug that will show up in the tooltips URLs' )
+		),
+		array(
+			'section' 		=> 'general',
+			
+			'uid' 			=> 'rewrite_cat',
+			'type' 			=> 'text',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
+
+			'label' 		=> __tooltipy( 'Category slug' ),
+			'placeholder' 	=> Tooltipy::get_plugin_name(),
+
+			'default' 	=> 'tooltips',
+			'description'   => __( 'The slug that will show up in the tooltip categories URLs' )
 		),
 	);
 
@@ -33,7 +45,7 @@ function tltpy_get_seo_serttings( $fields ){
 add_action( 'updated_option', 'tltpy_updated_seo_serttings', 10, 3 );
 
 function tltpy_updated_seo_serttings( $option, $old_value, $value ){
-    if( $option == 'tltpy_' . 'rewrite_slug' && trim($value) != trim($old_value) ){
+    if( $option == 'tltpy_' . 'rewrite_tooltip' && trim($value) != trim($old_value) ){
         add_option( 'tltpy_' . 'flush_rewrite_rules',true);
     }
 }

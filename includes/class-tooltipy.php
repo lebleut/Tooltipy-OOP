@@ -226,9 +226,8 @@ class Tooltipy {
 	}
 
 	public static function get_taxonomy(){
-		$taxonomy = 'tooltip_cat';
 		
-		$taxonomy = apply_filters( 'tltpy_taxonomy', $taxonomy );
+		$taxonomy = apply_filters( 'tltpy_taxonomy', 'tooltip_cat' );
 
 		return $taxonomy;
 	}

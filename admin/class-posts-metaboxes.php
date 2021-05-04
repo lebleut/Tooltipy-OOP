@@ -294,7 +294,7 @@ class Posts_Metaboxes{
 		<?php
 	}
 	function exclude_tooltip_cats_field($meta_field_id){
-		$tooltip_cats = get_terms( 'tooltip_cat' );
+		$tooltip_cats = get_terms( Tooltipy::get_taxonomy() );
 
 		$excluded_tooltip_cats = get_post_meta( get_the_id(), $meta_field_id, true );
 		?>
@@ -321,7 +321,7 @@ class Posts_Metaboxes{
 				'selected_cats'         => $selected_cats,
 				'popular_cats'          => false,
 				'walker'                => new Exclude_Cats_Walker,
-				'taxonomy'              => 'tooltip_cat',
+				'taxonomy'              => Tooltipy::get_taxonomy(),
 				'checked_ontop'         => false
 			);
 		?>

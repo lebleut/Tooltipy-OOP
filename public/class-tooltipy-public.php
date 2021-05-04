@@ -90,7 +90,7 @@ class Tooltipy_Public {
 			if(
 				in_array( strtolower($tooltip['tooltip_title']), $exclude_tooltips )
 				||
-				( !empty($exclude_cats) && has_term( $exclude_cats, 'tooltip_cat', $tooltip['tooltip_id'] ) )
+				( !empty($exclude_cats) && has_term( $exclude_cats, Tooltipy::get_taxonomy(), $tooltip['tooltip_id'] ) )
 			){
 				unset( $matched_tooltips[$key] );
 			}
@@ -700,7 +700,7 @@ class Tooltipy_Public {
 			'description'           => __( 'Post type to create keywords to generate tooltips in the frontend.' ),
 			'labels'                => $labels,
 			'supports'              => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'page-attributes', 'comments' ),
-			'taxonomies'            => array( 'tooltip_cat' ),
+			'taxonomies'            => array( Tooltipy::get_taxonomy() ),
 			'hierarchical'          => false,
 			'public'                => true,
 			'show_ui'               => true,
@@ -731,7 +731,8 @@ class Tooltipy_Public {
 			'labels' => array(
 				'name' => __tooltipy( 'Categories' )
 			),
-			'hierarchical' => true,			
+			'hierarchical' => true,
+			'show_in_rest' => true,
     		'show_ui' => 'radio',
 			'show_admin_column' => true,
 		);

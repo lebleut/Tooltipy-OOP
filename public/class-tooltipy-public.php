@@ -726,6 +726,7 @@ class Tooltipy_Public {
 
 		register_post_type( Tooltipy::get_plugin_name(), $args );
 
+		$rewrite_slug = apply_filters( 'tltpy_taxonomy_rewrite', 'tooltips' );
 		// Tooltips category taxonomy
 		$cat_args = array(
 			'labels' => array(
@@ -735,6 +736,9 @@ class Tooltipy_Public {
 			'show_in_rest' => true,
     		'show_ui' => 'radio',
 			'show_admin_column' => true,
+			'rewrite' => [
+				'slug' => $rewrite_slug
+			]
 		);
 
 		register_taxonomy(

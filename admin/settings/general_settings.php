@@ -334,6 +334,7 @@ function tltpy_ajx_migrate_old_options(){
 	$ret =[
 		'success_migration' => [],
 		'failure_migration' => [],
+		'exist_migration' => [],
 		'updated_posts' => [],
 		'message' => []
 	];
@@ -364,6 +365,16 @@ function tltpy_ajx_migrate_old_options(){
 
 		if( $new_post_id && set_post_type( $new_post_id, 'tooltipy' )){
 			$ret['success_migration'][] = $post->ID;
+
+			// categories
+			$terms = get_the_terms( $post->ID, Tooltipy::get_taxonomy() );
+			if( !empty($terms) ){
+				$term_ids = array_map(function($term){
+					return $term->term_id;
+				}, $terms );
+
+				wp_set_post_terms( $new_post_id, $term_ids, Tooltipy::get_taxonomy() );
+			}
 
 			// Thumbnail
 			$thumbnail_id = get_post_thumbnail_id( $post->ID );
@@ -400,12 +411,6 @@ function tltpy_ajx_migrate_old_options(){
 	}
 	
 	$related_post_types = Tooltipy::get_related_post_types();
-
-	foreach( $related_post_types as $key => $pt ){
-		if( 'my_keywords' == $pt ){
-			unset( $related_post_types[$key] );
-		}
-	}
 
 	// Rlated posts metas updates
 	$related_posts = get_posts( [

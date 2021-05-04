@@ -161,7 +161,7 @@ class Admin {
 	}
 
 	public function manage_tooltip_columns( $columns ){
-
+		$tax = Tooltipy::get_taxonomy();
 		$columns = array(
 			'cb' 						=> $columns['cb'],
 			'title' 					=> __( 'Title' ),
@@ -171,7 +171,7 @@ class Admin {
 			'tltpy_case_sensitive'		=> __tooltipy( 'Case sensitive' ),
 			'tltpy_is_prefix'			=> __tooltipy( 'Prefix' ),
 			'tltpy_youtube_id'			=> __tooltipy( 'Youtube ID' ),
-			'taxonomy-tooltip_cat'		=> __tooltipy( 'Categories' ),
+			'taxonomy-' . $tax			=> __tooltipy( 'Categories' ),
 			'image' 					=> __( 'Image' ),
 			'author' 					=> __( 'Author' ),
 			'date' 						=> __( 'Date' ),
@@ -401,16 +401,16 @@ class Admin {
 
 	function quick_edit_save( $post_id ){
 	
-		// check user capabilities
-		if ( !current_user_can( 'edit_post', $post_id ) ) {
-			return;
-		}
-	
 		// check nonce
 		if ( empty($_POST['tooltipy_nonce']) || !wp_verify_nonce( $_POST['tooltipy_nonce'], 'tltpy_quick_edit_nonce' ) ) {
 			return;
 		}
 	
+		// check user capabilities
+		if ( !current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+
 		// update the synonyms
 		if ( isset( $_POST['tltpy_synonyms'] ) ) {
 			$synonyms = $_POST['tltpy_synonyms'];

@@ -223,10 +223,8 @@ function tltpy_get_general_serttings( $fields ){
 			'action_callback'	=> 'tltpy_ajx_migrate_old_options',
 			'js_callback'		=> 'tltpy_old_options_results',
 			
-			'disabled'		=> !is_plugin_active( 'bluet-keywords-tooltip-generator/index.php' ),
 			'label' 		=> __tooltipy( 'Migrate old options' ),
-			'description' 	=>  '<span style="color:red;">' . __tooltipy( 'The old version of Tooltipy (KTTG) v5.2 or lower should be active so you can use it' ) . '</span>'
-								. '<br/>' . __tooltipy( 'This is the tool that allows old users of Tooltipy (KTTG) to migrate from the old version to this new one' )
+			'description' 	=> __tooltipy( 'This is the tool that allows old users of Tooltipy (KTTG) to migrate from the old version to this new one' )
 								. '<br/> - ' . __tooltipy( 'Migrates the Keywords' )
 								. '<br/> - ' . __tooltipy( 'Updates related post meta datas' )
 		),
@@ -367,35 +365,33 @@ function tltpy_ajx_migrate_old_options(){
 		if( $new_post_id && set_post_type( $new_post_id, 'tooltipy' )){
 			$ret['success_migration'][] = $post->ID;
 
+			// Thumbnail
+			$thumbnail_id = get_post_thumbnail_id( $post->ID );
+			if( $thumbnail_id ){
+				set_post_thumbnail( $new_post_id, $thumbnail_id );
+			}
+
 			$metas = get_post_meta( $post->ID );
 
 			// Migrate metas (case sensitive, prefix, synonyms, youtube)
 			// case sensitive
 			if( isset( $metas['bluet_case_sensitive_word'] ) && count($metas['bluet_case_sensitive_word']) && $metas['bluet_case_sensitive_word'][0] == 'on' ){
-				if( update_post_meta( $new_post_id, 'tltpy_case_sensitive', 'on' ) ){
-					delete_post_meta( $new_post_id, 'bluet_case_sensitive_word' );
-				}
+				update_post_meta( $new_post_id, 'tltpy_case_sensitive', 'on' );
 			}
 			
 			// prefix
 			if( isset( $metas['bluet_prefix_keywords'] ) && count($metas['bluet_prefix_keywords']) && $metas['bluet_prefix_keywords'][0] == 'on' ){
-				if( update_post_meta( $new_post_id, 'tltpy_is_prefix', 'on' ) ){
-					delete_post_meta( $new_post_id, 'bluet_prefix_keywords' );
-				}
+				update_post_meta( $new_post_id, 'tltpy_is_prefix', 'on' );
 			}
 			
 			// synonyms
 			if( isset( $metas['bluet_synonyms_keywords'] ) && count($metas['bluet_synonyms_keywords']) && !empty( trim($metas['bluet_synonyms_keywords'][0]) ) ){
-				if( update_post_meta( $new_post_id, 'tltpy_synonyms', trim($metas['bluet_synonyms_keywords'][0]) ) ){
-					delete_post_meta( $new_post_id, 'bluet_synonyms_keywords' );
-				}
+				update_post_meta( $new_post_id, 'tltpy_synonyms', trim($metas['bluet_synonyms_keywords'][0]) );
 			}
 			
 			// youtube id
 			if( isset( $metas['bluet_youtube_video_id'] ) && count($metas['bluet_youtube_video_id']) && !empty( trim($metas['bluet_youtube_video_id'][0]) ) ){
-				if( update_post_meta( $new_post_id, 'tltpy_youtube_id', trim($metas['bluet_youtube_video_id'][0]) ) ){
-					delete_post_meta( $new_post_id, 'bluet_youtube_video_id' );
-				}
+				update_post_meta( $new_post_id, 'tltpy_youtube_id', trim($metas['bluet_youtube_video_id'][0]) );
 			}
 
 		}else{

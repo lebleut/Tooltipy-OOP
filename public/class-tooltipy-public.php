@@ -131,7 +131,8 @@ class Tooltipy_Public {
 			$query = new \WP_Query(
 				array(
 				'post_type' => $get_from_post_types,
-				'post__in' => $matched_ids
+				'post__in' => $matched_ids,
+				'posts_per_page' => -1
 				)
 			);
 			if ( $query->have_posts() ) :

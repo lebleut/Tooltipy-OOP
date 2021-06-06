@@ -531,7 +531,12 @@ class Settings {
 			case 'button':
 				$is_disabled = isset($arguments['disabled']) && true === $arguments['disabled'] ? 'disabled' : '';
 
-				printf( '<input type="submit" name="%1$s" id="%1$s" value="%2$s" class="button button-secondary" %3$s >', $uid, $arguments['label'], $is_disabled );
+				$ajx_args = '';
+				if( isset($arguments['ajx_args']) ){
+					$ajx_args = 'data-ajax-args="'. htmlentities( wp_json_encode( $arguments['ajx_args'] ), ENT_QUOTES, 'UTF-8') .'"';
+				}
+
+				printf( '<input type="submit" name="%1$s" id="%1$s" value="%2$s" class="button button-secondary" %3$s %4$s >', $uid, $arguments['label'], $is_disabled, $ajx_args );
 				printf( '<img src="%1$s" class="tltpy_loading_img" />', TOOLTIPY_PLUGIN_URL . '/assets/loading.gif' );
 				?>
 				<script>
@@ -540,8 +545,13 @@ class Settings {
 						$('#<?php echo $uid ?>').on('click', function(ev){
 							$button = $('#<?php echo $uid ?>')
 							ev.preventDefault()
-							
-							if( confirm( 'Are you sure you want to <?php echo $arguments['label'] ?> ?' ) ){
+
+							need_confirm = $button.attr('data-confirm') && $button.attr('data-confirm') == 'no' ? false : true
+							$confirmed = true
+							if( need_confirm ){
+								$confirmed = confirm( 'Are you sure you want to <?php echo $arguments['label'] ?> ?' )
+							}
+							if( $confirmed ){
 								// Wait please
 								$button.attr('disabled', true)
 								
@@ -555,13 +565,19 @@ class Settings {
 									alert('No Ajax action assigned to this button!')
 									return
 								}
-
+								data = { 'action': ajax_action }
+								// Ajax arguments if existing
+								if( $button.attr('data-ajax-args') ){
+									args = JSON.parse( $button.attr('data-ajax-args') )
+									keys = Object.keys( args )
+									keys.forEach(function(index){
+										data[index] = args[index]
+									})
+								}
 								$.ajax({
 									url: ajaxurl,
 									type: "POST",
-									data: {
-										'action': ajax_action,
-									}
+									data: data
 								}).done(function(response) {
 									response = JSON.parse(response)
 									$button.attr('disabled', false)
@@ -572,18 +588,15 @@ class Settings {
 										if( typeof <?php echo $arguments['js_callback'] ?> === "function" ){
 											<?php echo $arguments['js_callback'] ?>(response, $button)
 										}else{
-											alert('JS callback not defined, Check console for results')
+											alert('JS callback not a function, Check console for results')
 											console.log(response)
 										}
 									<? else: ?>
 										alert('No JS callback, Check console for results')
 										console.log(response)
 									<? endif; ?>
-									
 								});
 							}
-
-							
 						})
 					});
 				})(jQuery);

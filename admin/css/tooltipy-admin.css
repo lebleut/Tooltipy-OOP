@@ -81,3 +81,20 @@ table.tltpy_excluded_posts td{
     margin-left: 10px;
 	display: none;
 }
+
+#tltpy-migration-percentage {
+    background: white;
+    padding: 5px;
+}
+
+#tltpy-migration-percentage .done{
+    background: #768076;
+    padding: 6px 0px;
+    width: 0%;
+	display: inline-block;
+}
+#tltpy-migration-percentage .done:hover {
+    opacity: 60%;
+    border: 1px solid #ffffff;
+    margin: -1px;
+}

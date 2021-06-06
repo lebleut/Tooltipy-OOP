@@ -222,6 +222,9 @@ function tltpy_get_general_serttings( $fields ){
 			'type' 			=> 'button',
 			'action_callback'	=> 'tltpy_ajx_migrate_old_options',
 			'js_callback'		=> 'tltpy_old_options_results',
+			'ajx_args'			=> [
+				'last_done_id' => '0'
+			],
 			
 			'label' 		=> __tooltipy( 'Migrate old options' ),
 			'description' 	=> __tooltipy( 'This is the tool that allows old users of Tooltipy (KTTG) to migrate from the old version to this new one' )
@@ -331,21 +334,67 @@ function tltpy_ajx_generate_relationships(){
 }
 
 function tltpy_ajx_migrate_old_options(){
+	global $wpdb;
+
 	$ret =[
 		'success_migration' => [],
 		'failure_migration' => [],
 		'exist_migration' => [],
 		'updated_posts' => [],
-		'message' => []
+		'message' => [],
+		'last_queried' => 0,
+		'queried' => 0,
+		'to_be_done' => 0,
 	];
 
-	$old_keywords = get_posts( [
-		'posts_per_page' => -1,
-		'post_type' => 'my_keywords'
-	] );
+	$posts_per_page = 5;
+
+	$done_id = 0;
+	if( isset($_POST['last_done_id']) && !empty($_POST['last_done_id']) ){
+		$done_id = intval($_POST['last_done_id']);
+	}
+
+	$post_ids = [];
+	$count_sql = $wpdb->prepare(
+		"
+			SELECT ID
+			FROM {$wpdb->posts}
+			WHERE post_type = %s AND post_status = 'publish'
+		",
+		'my_keywords'
+	);
+	$count_results = $wpdb->get_results( $count_sql );
+	$ret['to_be_done'] = count($count_results);
+
+	// Get all the IDs you want to choose from
+	$sql = $wpdb->prepare(
+			"
+				SELECT ID
+				FROM {$wpdb->posts}
+				WHERE post_type = %s
+					AND ID > %d
+					AND post_status = 'publish'
+				LIMIT %d
+			",
+			'my_keywords',
+			$done_id,
+			$posts_per_page
+		);
+
+	$results = $wpdb->get_results( $sql );
+
+	$ret['queried'] = count($results);
+
+	// Convert the IDs from row objects to an array of IDs
+	foreach ( $results as $row ) {
+		array_push( $post_ids, $row->ID );
+	}
 
 	// Post type migration
-	foreach( $old_keywords as $post ){
+	foreach( $post_ids as $post_id ){
+		$ret['last_queried'] = $post_id;
+		$post = get_post( $post_id );
+
 		// Don't duplicate if the post slug already exists then
 		$exist_post = get_posts( [
 			'title'		=> $post->post_title,
@@ -469,7 +518,7 @@ function tltpy_ajx_migrate_old_options(){
 		$ret['message'][] = 'Nothing changed!';
 	}
 
-	$ret['message'] = '<div>' . implode( '<br/>', $ret['message'] ) . '</div>';
+	$ret['message'] = implode( ', ', $ret['message'] );
 
 	echo json_encode($ret);
 	die;

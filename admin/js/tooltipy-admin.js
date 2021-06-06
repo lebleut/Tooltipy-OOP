@@ -49,9 +49,62 @@
 	 */
 	window.tltpy_old_options_results = function( response, $button ){
 		$button.hide()
-		$(response.message).insertAfter($button)
+		//$(response.message).insertAfter($button)
 
-		console.log(response)
+		// TODO : to be removed
+		const max_id = 50000
+
+		if( response.last_queried && response.last_queried > 0 && response.last_queried < max_id ){
+			if( response.queried && response.to_be_done ){
+				const queried = response.queried
+				const done = $button.attr('data-queried') ? parseInt($button.attr('data-queried')) + response.queried : response.queried
+				const to_be_done =  response.to_be_done
+
+				$button.attr('data-queried', done)
+				$button.attr('data-to_be_done', to_be_done)
+
+				let percentage = (parseInt(done)*100)/parseInt(to_be_done)
+				percentage = percentage.toFixed(2) + '%'
+				
+				let segment_percentage = (parseInt(queried)*100)/parseInt(to_be_done)
+				segment_percentage = segment_percentage + '%'
+
+				let $percentage_div = null
+
+				if( $('#tltpy-migration-percentage').length == 0 ){
+					$percentage_div = $('<div id="tltpy-migration-percentage" />')
+					$percentage_div.append( $('<div class="text" />') )
+					$percentage_div.insertAfter($button)
+				}else{
+					$percentage_div = $('#tltpy-migration-percentage')
+				}
+
+				$percentage_div.find('.text').text( percentage )
+				let $segment = $('<div class="done" />')
+				$segment.css( 'width', segment_percentage )
+
+				let bg_color = '#4CAF50' // Green
+				if( response.exist_migration.length && response.success_migration.length ){
+					bg_color = 'orange' // Dark Orange
+				}else if( response.exist_migration.length ){
+					bg_color = '#efecec' // grey
+				}else if( response.failure_migration.length ){
+					bg_color = '#d63638' // Red
+				}
+
+				$segment.css( 'background', bg_color )
+				$segment.attr('title', response.message )
+				$percentage_div.append( $segment )
+			}
+
+			if( $button.attr('data-ajax-args') ){
+				let args = JSON.parse( $button.attr('data-ajax-args') )
+				args.last_done_id = response.last_queried
+				$button.attr('data-ajax-args', JSON.stringify( args ) )
+				$button.attr('data-confirm', 'no')
+				$button.trigger('click')
+			}
+		}
 	}
 
 	// Loads the admin side wiki data

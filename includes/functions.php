@@ -21,6 +21,8 @@ function tooltipy_get_glossary_letters(){
 	}
 	
 	if( count($letters ) ){
+		sort( $letters );
+		
 		foreach ($letters as $key => $letter) {
 			$letters[$key] = array(
 				"label" => $letter, "value" => $letter

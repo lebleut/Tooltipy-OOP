@@ -270,6 +270,7 @@ function tltpy_get_general_serttings( $fields ){
 			'options' 		=> array(
 				'title' 		=> __tooltipy( 'Title' ),
 				'synonyms' 		=> __tooltipy( 'Synonyms section' ),
+				'readmore' 		=> __tooltipy( 'Add read more link' ),
 				'glossary' 		=> __tooltipy( 'Add glossary link page in the tooltips footer' ),
 			),
 

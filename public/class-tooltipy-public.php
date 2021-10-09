@@ -175,6 +175,7 @@ class Tooltipy_Public {
 							 * tltpy_popup_add_video_section	- 10
 							 * tltpy_popup_add_main_section 	- 10
 							 * tltpy_popup_add_synonyms_section - 10
+							 * tltpy_popup_add_glossary_link_section - 10
 							 */
 
 							do_action( 'tltpy_popup_sections' );

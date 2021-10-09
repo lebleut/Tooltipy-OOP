@@ -62,6 +62,13 @@ function tltpy_popup_add_glossary_link_section(){
 }
 
 /**
+ * Adds read more link section to the popup content
+ */
+function tltpy_popup_add_readmore_section(){
+	tooltipy_template_part( 'tooltip/tooltip', 'readmore' );
+}
+
+/**
  * Prepare the main template of the glossary and display it
  */
 function tooltipy_main_glossary_template( $first_letter = '', $paged = '' ){

@@ -280,7 +280,7 @@ class Tooltipy_Public {
 			foreach ($tt_synonyms_arr as $synonym) {
 				if( !empty( $synonym ) ){
 
-					$data_tooltip_attr 	= 'data-tooltip="'.$tooltip['tooltip_id'].'"';
+					$data_tooltip_attr 	= 'data-tltpy="'.$tooltip['tooltip_id'].'"';
 
 					array_push($patterns, '/' . $before . '('.$synonym . $inner_after . ')' . $after . '/'.$case_sensitive_modifier);
 

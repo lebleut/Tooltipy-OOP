@@ -31,7 +31,7 @@ if( $tt_is_case_sensitive ){
 ?>
 <article
 	class="<?php echo implode(' ', $post_cls);?>"
-	data-tooltip="<?php the_ID(); ?>"
+	data-tltpy="<?php the_ID(); ?>"
 	data-synonyms="<?php echo $tt_synonyms?>"
 	data-is_prefix="<?php echo $tt_is_prefix?>"
 	data-is_wiki="<?php echo $tt_is_wiki?>"

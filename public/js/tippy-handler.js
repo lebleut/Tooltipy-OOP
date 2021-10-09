@@ -15,7 +15,7 @@
 			const $thumb_wrapper = $current_wiki.find('.tooltipy-pop__thumbnail')
 			const $content_wrapper = $current_wiki.find('.tooltipy-pop__content')
 
-			const tooltip_id = $current_wiki.attr('data-tooltip')
+			const tooltip_id = $current_wiki.attr('data-tltpy')
 			const is_wiki = $current_wiki.attr('data-is_wiki')
 			const wiki_term = $current_wiki.attr('data-wiki_term')
 
@@ -39,7 +39,7 @@
 
 	function fill_tooltip( elem ){
 
-		const tooltip_id = $(elem).attr("data-tooltip")
+		const tooltip_id = $(elem).attr("data-tltpy")
 		const animation = wpTooltipy.tooltip_animation
 
 		const animation_speed = wpTooltipy.tooltip_animation_speed

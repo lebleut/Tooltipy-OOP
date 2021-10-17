@@ -8,22 +8,47 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+global $tooltipy_is_glossary_page;
+$tt_synonyms			= get_post_meta( get_the_ID(), 'tltpy_synonyms', true);
+$tt_is_prefix			= get_post_meta( get_the_ID(), 'tltpy_is_prefix', true);
+$tt_is_wiki				= get_post_meta( get_the_ID(), 'tltpy_is_wiki', true);
+$tt_is_case_sensitive	= get_post_meta( get_the_ID(), 'tltpy_case_sensitive', true);
+$tt_wiki_term 			= get_post_meta( get_the_ID(), 'tltpy_wiki_term', true );
+$tt_youtube_id			= get_post_meta( get_the_ID(), 'tltpy_youtube_id', true);
+
+$post_cls = ['tooltipy-post'];
+
+if( $tt_is_prefix ){
+	$post_cls[] = 'tooltipy-post--prefix';
+}
+if( $tt_is_wiki ){
+	$post_cls[] = 'tooltipy-post--wiki';
+}
+if( $tt_is_case_sensitive ){
+	$post_cls[] = 'tooltipy-post--case-sensitive';
+}
 
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article
+	class="<?php echo implode(' ', $post_cls);?>"
+	data-tltpy="<?php the_ID(); ?>"
+	data-synonyms="<?php echo $tt_synonyms?>"
+	data-is_prefix="<?php echo $tt_is_prefix?>"
+	data-is_wiki="<?php echo $tt_is_wiki?>"
+	data-is_case_sensitive="<?php echo $tt_is_case_sensitive?>"
+	data-wiki_term="<?php echo $tt_wiki_term?>"
+	data-youtube_id="<?php echo $tt_youtube_id?>"
+>
 	<?php
 		// init
-		global $tooltipy_is_glossary_page;
-		$wiki_data = tooltipy_get_post_wiki_data( get_the_id() );
-		$is_wiki = get_post_meta( get_the_ID(), 'tltpy_is_wiki', true );
 	?>
 	<?php $add_to_popup = tooltipy_get_option( 'add_to_popup', false, false ); ?>
 
 	<!-- Title -->
 	<?php
 	if( is_array( $add_to_popup ) && in_array( 'title', $add_to_popup ) ){
-		$before_title = '<h1 class="entry-title">';
-		$after_title = '</h1>';
+		$before_title = '<h3>';
+		$after_title = '</h3>';
 
 		if( $tooltipy_is_glossary_page ){
 			$add_glossary_link_titles = tooltipy_get_option( 'glossary_link_titles', false );
@@ -34,9 +59,9 @@ if ( ! defined( 'WPINC' ) ) {
 			}
 		}
 		?>
-		<header class="tooltipy-pop__title">
+		<div class="tooltipy-pop__title">
 			<?php the_title( $before_title, $after_title ); ?>
-		</header>
+		</div>
 		<?php
 	}
 	?>
@@ -50,28 +75,31 @@ if ( ! defined( 'WPINC' ) ) {
 			||
 			$tooltipy_is_glossary_page !== true
 		){
-			if( $is_wiki && isset($wiki_data->thumbnail) && isset($wiki_data->thumbnail->source) ){
-				// Wiki thumbnail
-				?>
-				<div class="tooltipy-pop__thumbnail tooltipy-pop__thumbnail--wiki">
-					<img src="<?php echo $wiki_data->thumbnail->source; ?>">
-				</div>
-				<?php
+			$thumb = '';
+			if( $tt_is_wiki ){
+				$thumb = __tooltipy('Loading image...');
 			}else if( has_post_thumbnail( get_the_ID() ) ):
-				// Post thumbnail
-				?>
-				<div class="tooltipy-pop__thumbnail">
-					<?php the_post_thumbnail( 'medium' ); ?>                    
-				</div>
-				<?php
+				$thumb = get_the_post_thumbnail( get_the_ID(), 'medium' );
 			endif;
+			?>
+			<div class="tooltipy-pop__thumbnail">
+				<?php echo $thumb; ?>                    
+			</div>
+			<?php
 		}
 	?>
 
 	<!-- Content -->
+	<?php
+	if( $tt_is_wiki ){
+		$content = __tooltipy('Loading...');
+	}else{
+		$content = get_the_content();
+	}
+	?>
 	<div class="tooltipy-pop__content">
-		<?php
-			echo $is_wiki && isset($wiki_data->extract_html) ? $wiki_data->extract_html : get_the_content();
-		?>
-	</div><!-- .tooltipy-pop__content -->
+		<?php echo $content; ?>
+	</div>
+	<?php
+	?>
 </article><!-- #post-## -->

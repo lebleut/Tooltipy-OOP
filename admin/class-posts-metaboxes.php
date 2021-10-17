@@ -9,6 +9,7 @@ class Posts_Metaboxes{
 		$this->filter_metabox_fields();
 
 		add_action('save_post', array( $this, 'save_metabox_fields' ) );
+		add_action('save_post', array( $this, 'regenerate_matched_tooltips' ) );
 
 		// Regenerate matched tooltips when restoring a post revision
 		add_action( 'wp_restore_post_revision', array( $this, 'regenerate_matched_tooltips'), 10 );
@@ -30,16 +31,27 @@ class Posts_Metaboxes{
 			return false;
 		}
 
-		$current_post = get_post( $post_id );
+		// Not for Tooltipy post type
+		if( !empty($_POST['post_type']) && $_POST['post_type'] == Tooltipy::get_plugin_name() ){
+			return false;
+		}
 
-		$new_value = $this->filter_matched_tooltips( null, $current_post->post_content );
-		update_post_meta( $post_id, 'tltpy_matched_tooltips', $new_value);
+		// editpost : to prevent bulk edit problems
+		if( !empty($_POST['action']) && $_POST['action'] == 'editpost' ){
+
+
+			$current_post = get_post( $post_id );
+
+			$new_value = self::filter_matched_tooltips( $current_post->post_content );
+
+			update_post_meta( $post_id, 'tltpy_matched_tooltips', $new_value);
+		}
 	}
 
 	// Filter metabox fields before save if needed
 	public function filter_metabox_fields(){
 		// Filter fields here
-		add_filter('tltpy_posts_metabox_field_before_save_' . 'tltpy_matched_tooltips', array($this, 'filter_matched_tooltips'), 10, 2 );
+		add_filter('tltpy_posts_metabox_field_before_save_' . 'tltpy_matched_tooltips', __CLASS__ . '::filter_matched_tooltips', 10, 1 );
 		add_filter('tltpy_posts_metabox_field_before_save_' . 'tltpy_exclude_tooltips', array($this, 'filter_exclude_tooltips'), 10, 2 );
 	}
 
@@ -60,7 +72,7 @@ class Posts_Metaboxes{
 		return $new_value;
 	}
 
-	function filter_matched_tooltips( $old_value, $data ){
+	public static function filter_matched_tooltips( $data ){
 		$content = $data;
 
 		if( is_array( $data ) ){
@@ -71,19 +83,29 @@ class Posts_Metaboxes{
 
 		$matched_tooltips = array();
 		foreach($tooltips as $tltp){
-			$synonyms = array( $tltp->post_title );
+			$keywords = array( $tltp->post_title );
 			$syn_meta = get_post_meta( $tltp->ID, 'tltpy_synonyms', true );
+			$is_prefix = get_post_meta( $tltp->ID, 'tltpy_is_prefix', true );
+			$is_case = get_post_meta( $tltp->ID, 'tltpy_case_sensitive', true );
 
 			if( $syn_meta ){
-				$synonyms = array_merge( $synonyms, explode( '|', $syn_meta ) );
+				$keywords = array_merge( $keywords, explode( '|', $syn_meta ) );
 			}
 
 			// Quote regular expression characters
-			$synonyms = array_map( 'preg_quote', $synonyms );
+			$keywords = array_map( 'preg_quote', $keywords );
 
-			$pattern = '/'. implode( '|', $synonyms ) .'/i';
+			if( $is_prefix ){
+				$keywords = array_map(function( $kw ){ return $kw."\w*"; }, $keywords );
+			}
 
-			preg_match( $pattern, $content, $matches);
+			$pattern = '/(\W|^)'.'('. implode( '|', $keywords ) .')'.'(\W|$)/';
+			
+			if( !$is_case || $is_case != 'on' ){
+				$pattern = $pattern . 'i';
+			}
+
+			preg_match( $pattern, $content, $matches, PREG_OFFSET_CAPTURE);
 
 			if( is_array($matches) && count($matches) == 1 && empty($matches[0]) ){
 				$matches = array();
@@ -92,11 +114,20 @@ class Posts_Metaboxes{
 			if( !empty($matches) ){
 				$tltp_vector = array(
 					'tooltip_id'    => $tltp->ID,
-					'tooltip_title' => $tltp->post_title
+					'tooltip_title' => $tltp->post_title,
+					'tooltip_offset'=> $matches[0][1]
 				);
 				array_push($matched_tooltips, $tltp_vector );
 			}
 		}
+
+		// Sort matched tooltips according to tooltip offset
+		usort( $matched_tooltips, function( $a, $b ){
+			if ($a['tooltip_offset'] == $b['tooltip_offset']) {
+				return 0;
+			}
+			return ($a['tooltip_offset'] < $b['tooltip_offset']) ? -1 : 1; 
+		} );
 
 		return $matched_tooltips;
 	}
@@ -110,6 +141,7 @@ class Posts_Metaboxes{
 		// editpost : to prevent bulk edit problems
 		if( !empty($_POST['action']) && $_POST['action'] == 'editpost' ){
 
+			// Save metabox fields
 			$metabox_fields = $this->get_metabox_fields();
 			foreach ( $metabox_fields as $field) {
 				$this->save_metabox_field( $post_id, $field['meta_field_id']);
@@ -118,10 +150,19 @@ class Posts_Metaboxes{
 	}
 
 	function save_metabox_field( $post_id, $meta_field_id, $sanitize_function = 'sanitize_text_field' ){
-		if( 'tltpy_exclude_me' !== $meta_field_id && !isset($_POST[$meta_field_id]) )
+		// Don't save these meta fields
+		if( in_array( $meta_field_id, [ 'tltpy_matched_tooltips' ] ) )
 			return;
 
-		$value = call_user_func( $sanitize_function, $_POST[$meta_field_id] );
+		if(  !isset($_POST[$meta_field_id]) ){
+			$value = call_user_func( $sanitize_function, '' );
+		}else{
+			if( is_array($_POST[$meta_field_id]) ){
+				$value = $_POST[$meta_field_id];
+			}else{
+				$value = call_user_func( $sanitize_function, $_POST[$meta_field_id] );
+			}
+		}
 
 		// Filter hook before saving meta field
 		$value = apply_filters( 'tltpy_posts_metabox_field_before_save_' . $meta_field_id, $value, $_POST);
@@ -140,7 +181,7 @@ class Posts_Metaboxes{
 		foreach($all_post_types as $screen) {
 			add_meta_box(
 				'tltpy_posts_metabox',
-				__tooltipy( 'Related tooltips settings' ),
+				__tooltipy( 'Tooltipy' ),
 				array( $this, 'metabox_render' ) ,
 				$screen,
 				'side',
@@ -162,6 +203,10 @@ class Posts_Metaboxes{
 			array(
 				'meta_field_id' => 'exclude_tooltips',
 				'callback'      => array( __CLASS__, 'exclude_tooltips_field' )
+			),
+			array(
+				'meta_field_id' => 'exclude_cats',
+				'callback'      => array( __CLASS__, 'exclude_tooltip_cats_field' )
 			),
 		);
 		
@@ -246,6 +291,59 @@ class Posts_Metaboxes{
 			placeholder="tooltip 1, tooltip 2,..."
 			value="<?php echo( $excluded_tooltips ); ?>"
 		>
+		<?php
+	}
+	function exclude_tooltip_cats_field($meta_field_id){
+		$tooltip_cats = get_terms( Tooltipy::get_taxonomy() );
+
+		$excluded_tooltip_cats = get_post_meta( get_the_id(), $meta_field_id, true );
+		?>
+		<h4><?php _e_tooltipy( 'Categories to exclude' ); ?></h4>
+
+		<div class="tltpy_check_all_cats_wrap">
+			<label>
+				<input type="checkbox" id="tltpy-check-all-cats">
+				Exclude all
+			</label>
+			<span class="tltpy_excluded_cats_nbr" ></span>
+		</div>
+		
+		<?php
+			require_once TOOLTIPY_BASE_DIR . '/admin/walkers/class-exclude-cats-walker.php';
+			$selected_cats = get_post_meta( get_the_id(), 'tltpy_exclude_cats', true );
+			
+			if( !is_array( $selected_cats ) ){
+				$selected_cats = [];
+			}
+
+			$args = array(
+				'descendants_and_self'  => 0,
+				'selected_cats'         => $selected_cats,
+				'popular_cats'          => false,
+				'walker'                => new Exclude_Cats_Walker,
+				'taxonomy'              => Tooltipy::get_taxonomy(),
+				'checked_ontop'         => false
+			);
+		?>
+	
+		<div class="tltpy-exclude-cats">
+			<?php wp_terms_checklist( 0, $args ); ?>
+		</div>
+
+		<style>
+			.tltpy-exclude-cats {
+				height: 100px;
+				overflow-y: auto;
+				border: 1px solid lightgrey;
+				padding: 0.5rem;
+			}
+			.tltpy-exclude-cats li{
+				list-style: none;
+			}
+			.tltpy-exclude-cats ul.children li{
+				margin-left: 2rem;
+			}
+		</style>
 		<?php
 	}
 }

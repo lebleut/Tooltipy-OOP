@@ -69,7 +69,7 @@ class Tooltipy {
 	 */
 	public function __construct() {
 
-		$this->version = '4.0.0';
+		$this->version = '4.0.1';
 
 		$this->load_dependencies();
 		$this->set_locale();

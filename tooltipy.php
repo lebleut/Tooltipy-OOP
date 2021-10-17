@@ -56,6 +56,9 @@ include TOOLTIPY_PLUGIN_DIR . 'includes/template-functions.php';
 // Template hooks
 include TOOLTIPY_PLUGIN_DIR . 'includes/template-hooks.php';
 
+// Widgets
+include TOOLTIPY_PLUGIN_DIR . 'includes/widgets/class-post-keywords.php';
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-plugin-activator.php

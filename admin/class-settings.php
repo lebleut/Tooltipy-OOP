@@ -21,6 +21,7 @@ class Settings {
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/style_settings.php';
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/glossary_settings.php';
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/scope_settings.php';
+		require_once TOOLTIPY_PLUGIN_DIR . 'admin/settings/seo_settings.php';
 	}
 
     public function create_plugin_settings_page() {
@@ -39,8 +40,8 @@ class Settings {
     	<div class="wrap">
     		<h2><?php echo __tooltipy( 'Tooltipy settings' ); ?></h2>
 			<?php
-            if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] ){
-                  $this->admin_notice();
+            if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == 'true' ){
+                  $this->admin_notice( __tooltipy( 'Your settings have been successfully updated') );
 			}
 
 			$tabs = $this->get_tabs();
@@ -136,9 +137,12 @@ class Settings {
     	</div> <?php
     }
     
-    public function admin_notice() { ?>
-        <div class="notice notice-success is-dismissible">
-            <p>Your settings have been updated!</p>
+    public function admin_notice( $msg, $type = 'success', $is_dismissible = true) {
+		$dismissible_cls = $is_dismissible ? 'is-dismissible' : '';
+		$type_cls = 'notice-' . $type;
+		?>
+        <div class="notice <?php echo $type_cls ?> <?php echo $dismissible_cls ?>">
+            <p><?php echo $msg ?></p>
         </div><?php
 	}
 
@@ -237,6 +241,22 @@ class Settings {
 						'title' 		=> __tooltipy( 'Exclude' ),
 						'description' 	=> __tooltipy( 'Sections to exclude' ),
 					),
+					array(
+						'id' 			=> 'excluded_posts',
+						'name' 			=> 'excluded posts',
+						'title' 		=> __tooltipy( 'Excluded posts' ),
+						'description' 	=> __tooltipy( 'Manage the list of excluded posts' ),
+					),
+				)
+			),
+			array(
+				'id' => 'seo',
+				'sections' => array(
+					array(
+						'id' 			=> 'general',
+						'title' 		=> __tooltipy( 'SEO' ),
+						'description' 	=> __( 'Advanced SEO options' ),
+					),
 				)
 			),
 			array(
@@ -301,7 +321,9 @@ class Settings {
 
 		// Fields filter hook
 		$fields = apply_filters( 'tltpy_setting_fields', $fields);
-		
+
+		do_action( 'tltpy_setting_fields_assigned', $fields );
+
 		return $fields;
 	}
 
@@ -433,6 +455,7 @@ class Settings {
 			return;
 		}
 
+		echo '<span class="tltpy_option_wrap tltpy_option_wrap--' . str_replace( 'tltpy_', '', $uid ) . ' tltpy_option_wrap--type-' . $arguments['type'] . '">';
         switch( $arguments['type'] ){
             case 'text':
             case 'password':
@@ -444,7 +467,8 @@ class Settings {
 					$placeholder,
 					$value
 				);
-                break;
+			break;
+			
             case 'textarea':
 				printf(
 					'<textarea name="%1$s" id="%1$s__id" placeholder="%2$s" rows="5" cols="50">%3$s</textarea>',
@@ -452,7 +476,8 @@ class Settings {
 					$placeholder,
 					$value
 				);
-                break;
+			break;
+			
             case 'select':
             case 'multiselect':
                 if( ! empty ( $arguments['options'] ) && is_array( $arguments['options'] ) ){
@@ -478,7 +503,8 @@ class Settings {
 						$options_markup
 					);
                 }
-                break;
+			break;
+			
             case 'radio':
             case 'checkbox':
                 if( ! empty ( $arguments['options'] ) && is_array( $arguments['options'] ) ){
@@ -500,11 +526,88 @@ class Settings {
                     }
                     printf( '<fieldset>%s</fieldset>', $options_markup );
                 }
-				break;
+			break;
 
-				default:
-				break;
+			case 'button':
+				$is_disabled = isset($arguments['disabled']) && true === $arguments['disabled'] ? 'disabled' : '';
+
+				$ajx_args = '';
+				if( isset($arguments['ajx_args']) ){
+					$ajx_args = 'data-ajax-args="'. htmlentities( wp_json_encode( $arguments['ajx_args'] ), ENT_QUOTES, 'UTF-8') .'"';
+				}
+
+				printf( '<input type="submit" name="%1$s" id="%1$s" value="%2$s" class="button button-secondary" %3$s %4$s >', $uid, $arguments['label'], $is_disabled, $ajx_args );
+				printf( '<img src="%1$s" class="tltpy_loading_img" />', TOOLTIPY_PLUGIN_URL . '/assets/loading.gif' );
+				?>
+				<script>
+				(function ($) {
+					$(document).ready(function () {
+						$('#<?php echo $uid ?>').on('click', function(ev){
+							$button = $('#<?php echo $uid ?>')
+							ev.preventDefault()
+
+							need_confirm = $button.attr('data-confirm') && $button.attr('data-confirm') == 'no' ? false : true
+							$confirmed = true
+							if( need_confirm ){
+								$confirmed = confirm( 'Are you sure you want to <?php echo $arguments['label'] ?> ?' )
+							}
+							if( $confirmed ){
+								// Wait please
+								$button.attr('disabled', true)
+								
+								$button.parent().find('.tltpy_loading_img').show()
+
+								let ajax_action = '<?php echo isset($arguments['uid'])
+									? $arguments['uid']
+									: '' ?>'
+
+								if( '' == ajax_action.trim() ){
+									alert('No Ajax action assigned to this button!')
+									return
+								}
+								data = { 'action': ajax_action }
+								// Ajax arguments if existing
+								if( $button.attr('data-ajax-args') ){
+									args = JSON.parse( $button.attr('data-ajax-args') )
+									keys = Object.keys( args )
+									keys.forEach(function(index){
+										data[index] = args[index]
+									})
+								}
+								$.ajax({
+									url: ajaxurl,
+									type: "POST",
+									data: data
+								}).done(function(response) {
+									response = JSON.parse(response)
+									$button.attr('disabled', false)
+									
+									$button.parent().find('.tltpy_loading_img').hide()
+
+									<?php if(isset($arguments['js_callback']) && !empty($arguments['js_callback'])): ?>
+										if( typeof <?php echo $arguments['js_callback'] ?> === "function" ){
+											<?php echo $arguments['js_callback'] ?>(response, $button)
+										}else{
+											alert('JS callback not a function, Check console for results')
+											console.log(response)
+										}
+									<? else: ?>
+										alert('No JS callback, Check console for results')
+										console.log(response)
+									<? endif; ?>
+								});
+							}
+						})
+					});
+				})(jQuery);
+				</script>
+				<?php
+			break;
+
+			default:
+			break;
 		}
+		echo '</span>';
 		
 		$helper = !empty($arguments['helper']) ? $arguments['helper'] : '';
 		$field_description = !empty($arguments['description']) ? $arguments['description'] : '';

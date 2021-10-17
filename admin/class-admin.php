@@ -1,6 +1,7 @@
 <?php
 namespace Tooltipy;
 
+use Tooltipy\Settings;
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -53,8 +54,13 @@ class Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 		
-		add_filter( 'manage_' . Tooltipy::get_plugin_name() . '_posts_columns', array($this, 'manage_columns') );
-		add_filter( 'manage_' . Tooltipy::get_plugin_name() . '_posts_custom_column', array($this, 'manage_column_content'), 10, 2 );
+		add_filter( 'manage_' . Tooltipy::get_plugin_name() . '_posts_columns', array($this, 'manage_tooltip_columns') );
+		add_action( 'manage_' . Tooltipy::get_plugin_name() . '_posts_custom_column', array($this, 'manage_tooltip_column_content'), 10, 2 );
+
+		foreach( Tooltipy::get_related_post_types() as $pt_name ){
+			add_filter( 'manage_' . $pt_name . '_posts_columns', array($this, 'manage_post_columns') );
+			add_action( 'manage_' . $pt_name . '_posts_custom_column', array($this, 'manage_post_column_content'), 10, 2 );
+		}
 
 		// Make sortable prefix & case sensitive
 		add_filter( 'manage_edit-' . Tooltipy::get_plugin_name() . '_sortable_columns', array($this, 'sortable_columns') );
@@ -62,7 +68,7 @@ class Admin {
 
 		// Settings
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-settings.php';
-		new Settings();
+		$tooltipy_settings = new Settings();
 
 		// Meta boxe
 		require_once TOOLTIPY_PLUGIN_DIR . 'admin/class-tooltip-metaboxes.php';
@@ -80,7 +86,18 @@ class Admin {
 		// Bulk edit
 		add_action('bulk_edit_custom_box', array( $this, 'bulk_edit_add' ), 10, 2 );
 		add_action( 'wp_ajax_tltpy_bulk_save', array( $this, 'bulk_edit_save_hook' ) ); 
-	
+
+		// Relationship table
+		add_action('current_screen', array( $this, 'add_relationship_table' ) );
+
+		add_action('tltpy_setting_fields_assigned', function($fields){
+			// Admin buttons ajax process
+			foreach( $fields as $field ){
+				if( isset($field['type']) && $field['type'] == 'button' && isset($field['uid']) && isset($field['action_callback']) ){
+					add_action( 'wp_ajax_tltpy_' . $field['uid'], $field['action_callback'] );
+				}
+			}
+		} );
 	}
 
 	/**
@@ -125,28 +142,49 @@ class Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tooltipy-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name . '_admin', plugin_dir_url( __FILE__ ) . 'js/tooltipy-admin.js', array( 'jquery' ), $this->version, false );
+		
+		$options = array();
+			
+		foreach( Settings::get_fields() as $field ){
+			$options[$field['uid']] = tooltipy_get_option( $field['uid'] );
+		}
 
+		// Wiki language
+		$options['wikipedia_lang'] = tooltipy_get_option( 'wikipedia_lang', 'en' );
+
+		wp_localize_script(
+			$this->plugin_name . '_admin',
+			'wpTooltipy',
+			$options
+		); 
 	}
 
-	public function manage_columns( $columns ){
-
+	public function manage_tooltip_columns( $columns ){
+		$tax = Tooltipy::get_taxonomy();
 		$columns = array(
 			'cb' 						=> $columns['cb'],
 			'title' 					=> __( 'Title' ),
 			'tltpy_synonyms'			=> __tooltipy( 'Synonyms' ),
+			'tltpy_related'				=> __tooltipy( 'Related posts' ),
 			'tltpy_wikipedia'			=> __tooltipy( 'Wikipedia' ),
 			'tltpy_case_sensitive'		=> __tooltipy( 'Case sensitive' ),
 			'tltpy_is_prefix'			=> __tooltipy( 'Prefix' ),
 			'tltpy_youtube_id'			=> __tooltipy( 'Youtube ID' ),
+			'taxonomy-' . $tax			=> __tooltipy( 'Categories' ),
 			'image' 					=> __( 'Image' ),
 			'author' 					=> __( 'Author' ),
 			'date' 						=> __( 'Date' ),
 		  );
 		return $columns;
 	}
+	public function manage_post_columns( $columns ){
+		$columns['tltpy_tooltips_nbr'] = __( 'Tooltips' );
+		return $columns;
+	}
 
-	public function manage_column_content( $column, $post_id ){
+	public function manage_tooltip_column_content( $column, $post_id ){
+		global $tooltipy_relationship;
 
 		switch ($column) {
 			case 'tltpy_synonyms':
@@ -173,8 +211,35 @@ class Admin {
 				$this->column_wikipedia_content( $post_id );
 				break;
 			
+			case 'tltpy_related':
+				if( isset($tooltipy_relationship[$post_id]) ){
+					echo count($tooltipy_relationship[$post_id]);
+				}
+				break;
+
 			default:
 				break;
+		}
+	}
+
+	public function manage_post_column_content( $column, $post_id ){
+		if( 'tltpy_tooltips_nbr' == $column ){
+			$matched_tooltips = get_post_meta( $post_id, 'tltpy_matched_tooltips', true );
+			if( !empty($matched_tooltips) ){
+				$nbr = count($matched_tooltips);
+				
+				$three_tltps = array_slice($matched_tooltips, 0, 3);
+				$three_tltps = array_map( function( $keyword ){
+					$id = $keyword['tooltip_id'];
+					$title = $keyword['tooltip_title'];
+					return '<a href="' . get_post_permalink( $id ) . '">' . $title . '</a>';
+				}, $three_tltps );
+
+				echo implode( ', ', $three_tltps );
+				if( $nbr > 3 ){
+					echo ' and ' . ($nbr-3) , ' other tooltips';
+				}
+			}
 		}
 	}
 
@@ -336,16 +401,16 @@ class Admin {
 
 	function quick_edit_save( $post_id ){
 	
-		// check user capabilities
-		if ( !current_user_can( 'edit_post', $post_id ) ) {
-			return;
-		}
-	
 		// check nonce
 		if ( empty($_POST['tooltipy_nonce']) || !wp_verify_nonce( $_POST['tooltipy_nonce'], 'tltpy_quick_edit_nonce' ) ) {
 			return;
 		}
 	
+		// check user capabilities
+		if ( !current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+
 		// update the synonyms
 		if ( isset( $_POST['tltpy_synonyms'] ) ) {
 			$synonyms = $_POST['tltpy_synonyms'];
@@ -462,7 +527,7 @@ class Admin {
 
 	function log_content( $section_id ){
 		if( 'log__general' == $section_id ){
-			$debug_file_path = WP_CONTENT_DIR . "/debug.log";
+			$debug_file_path = WP_DEBUG_LOG == true ? WP_CONTENT_DIR . "/debug.log" : WP_DEBUG_LOG;
 
 			if( file_exists($debug_file_path) && ($debug_file = fopen($debug_file_path, "r"))!==false ){
 				if( filesize( $debug_file_path ) == 0 ){
@@ -492,6 +557,40 @@ class Admin {
 				}
 			}else{
 				echo '<div class="tooltipy-log--error">' . __tooltipy( 'Debug file not found' ) . '</div>';
+			}
+		}
+	}
+
+	/**
+	 * Assign the tooltis relationship in a variable to be used in the related posts colum
+	 */
+	function add_relationship_table(){
+		// Imporant to make this var global
+		global $tooltipy_relationship;
+		
+		$tooltipy_relationship = [];
+
+		$screen = get_current_screen();
+
+		if( $screen->id != 'edit-tooltipy' )
+			return false;
+		
+		$posts = get_posts([
+			'post_type' => Tooltipy::get_related_post_types(),
+			'posts_per_page' => -1
+		]);
+
+		foreach ($posts as $key => $post) {
+			$matched_tooltips = get_post_meta( $post->ID, 'tltpy_matched_tooltips', true);
+
+			if( is_array($matched_tooltips) ){
+				foreach( $matched_tooltips as $tooltip ){
+					if( isset( $tooltipy_relationship[$tooltip['tooltip_id']] ) ){
+						$tooltipy_relationship[$tooltip['tooltip_id']][] = $post->ID;
+					}else{
+						$tooltipy_relationship[$tooltip['tooltip_id']] = [ $post->ID ];
+					}
+				}
 			}
 		}
 	}

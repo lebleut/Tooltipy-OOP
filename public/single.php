@@ -16,6 +16,7 @@ get_header(); ?>
 				tooltipy_template_part( 'tooltip', 'content' );
 				tooltipy_template_part( 'tooltip/tooltip', 'synonyms' );
 				tooltipy_template_part( 'tooltip/tooltip', 'related' );
+				tooltipy_template_part( 'tooltip/tooltip', 'categories' );
 
 				// End of the loop.
 			endwhile;

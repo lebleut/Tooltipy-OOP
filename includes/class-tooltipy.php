@@ -69,7 +69,7 @@ class Tooltipy {
 	 */
 	public function __construct() {
 
-		$this->version = '4.0.0';
+		$this->version = '4.0.1';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -188,9 +188,8 @@ class Tooltipy {
 		// if footnote mode load the footnotes section under the content
 		$this->loader->add_filter( 'the_content', $plugin_public, 'footnote_section' );
 
-		// Rewrite rules
-		$this->loader->add_action( 'init', $plugin_public, 'rewrite_rules' );
-		$this->loader->add_filter( 'query_vars', $plugin_public, 'register_query_var' );
+		// Widget
+		$this->loader->add_action( 'widgets_init', $plugin_public, 'register_widgets' );
 	}
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
@@ -223,13 +222,12 @@ class Tooltipy {
 		}
 		$post_types = apply_filters( 'tltpy_related_post_types', $post_types );
 
-		return $post_types;
+		return array_keys($post_types);
 	}
 
 	public static function get_taxonomy(){
-		$taxonomy = 'tooltip_cat';
 		
-		$taxonomy = apply_filters( 'tltpy_taxonomy', $taxonomy );
+		$taxonomy = apply_filters( 'tltpy_taxonomy', 'keywords_family' );
 
 		return $taxonomy;
 	}
@@ -253,7 +251,7 @@ class Tooltipy {
 		return $this->version;
 	}
 
-	public function get_tooltips(){
+	public static function get_tooltips(){
 		$args = array(
 			'posts_per_page' => -1,
 			'post_type'   =>  self::get_from_post_types()
@@ -279,33 +277,6 @@ class Tooltipy {
 		}
 
 		return $pts;
-	}
-
-	/**
-	 * Print a custom message in the ../wp-content/debug.log file if the debug_mode option is activated
-	 * Note : you should set the 'WP_DEBUG_LOG' constant to true in the wp-config.php file :
-	 * define( 'WP_DEBUG_LOG', true );
-	 */
-	public static function log( $msg ){
-		$debug_mode_setting = tooltipy_get_option( 'debug_mode' );
-
-		if( !$debug_mode_setting ){
-			return false;
-		}
-		
-		$backtrace = debug_backtrace();
-		$caller = array_shift( $backtrace );
-
-		$caller_file = preg_replace( '/.*\/wp-content\//', '.../wp-content/', $caller['file'] );
-		$caller_line = $caller['line'];
-
-		error_log( '--- TOOLTIPY ---' );
-		error_log( ' * File: ' .$caller_file );
-		error_log( ' * line : ' .$caller_line);
-
-		error_log( $msg );
-
-		error_log( '--------' );
 	}
 
 	public static function get_glossary_page_id(){

@@ -33,3 +33,68 @@
 	color:#ffffff;
 	background: gray;
 }
+
+.tltpy-matched{
+	color: #4CAF50;
+	font-weight: bold;
+}
+
+.tltpy-excluded{
+	color: #FF5722;
+	text-decoration: line-through;
+}
+
+.tltpy_option_wrap--icon_image br,
+.tltpy_option_wrap--icon_image input{
+    display: none;
+}
+.tltpy_option_wrap--icon_image label {
+    padding: 0px 15px;
+}
+.tltpy_option_wrap--icon_image input + .dashicons {
+	color: #ccc;
+	font-size: 2rem;
+}
+.tltpy_option_wrap--icon_image input + .dashicons:hover,
+.tltpy_option_wrap--icon_image input:checked + .dashicons{
+	color: #444;
+}
+
+table.tltpy_excluded_posts td{
+	padding: 0px;
+	padding-right: 20px;
+}
+
+.tltpy_check_all_cats_wrap{
+	margin-bottom: 1rem;
+}
+
+#wiki-term-wrapper{
+	overflow: auto;
+}
+#wiki-term-wrapper img{
+	float: right;
+    margin-left: 1rem;
+}
+.tltpy_loading_img{
+	width: 25px;
+    margin-left: 10px;
+	display: none;
+}
+
+#tltpy-migration-percentage {
+    background: white;
+    padding: 5px;
+}
+
+#tltpy-migration-percentage .done{
+    background: #768076;
+    padding: 6px 0px;
+    width: 0%;
+	display: inline-block;
+}
+#tltpy-migration-percentage .done:hover {
+    opacity: 60%;
+    border: 1px solid #ffffff;
+    margin: -1px;
+}

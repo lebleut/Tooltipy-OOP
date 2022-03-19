@@ -382,6 +382,11 @@ class Tooltipy_Public {
 		include_once( TOOLTIPY_BASE_DIR . '/includes/libraries/simple-html-dom/simple_html_dom.php');
 
 		$html_obj = str_get_html( $content );
+
+		if( is_bool( $html_obj ) || !property_exists( $html_obj, 'find' ) ){
+			return $content;
+		}
+
 		$text_nodes = $html_obj->find('text');
 		
 		foreach( $patterns as $key => $pat ){

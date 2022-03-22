@@ -383,7 +383,7 @@ class Tooltipy_Public {
 
 		$html_obj = str_get_html( $content );
 
-		if( is_bool( $html_obj ) || !property_exists( $html_obj, 'find' ) ){
+		if( is_bool( $html_obj ) || !method_exists( $html_obj, 'find' ) ){
 			return $content;
 		}
 

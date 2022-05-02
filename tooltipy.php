@@ -84,7 +84,11 @@ register_deactivation_hook( __FILE__, 'deactivate_tooltipy' );
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-tooltipy.php';
+require TOOLTIPY_PLUGIN_DIR . 'includes/class-tooltipy.php';
+
+require TOOLTIPY_PLUGIN_DIR . 'includes/class-tooltipy-db.php';
+require TOOLTIPY_PLUGIN_DIR . 'includes/tooltipy-db-functions.php';
+
 
 /**
  * Begins execution of the plugin.

@@ -128,7 +128,7 @@ class Tooltip_Metaboxes{
 				<input type="text" 
 					name="<? echo( $meta_field_id ); ?>" 
 					value="<?php echo( get_post_meta( get_the_id(), $meta_field_id, true ) ); ?>" 
-					placeholder = "<?php _e("Type here the tooltip's synonyms separated with '|'", "tooltipy-lang" ); ?>" 
+					placeholder = "<?php _e("Synonyms separated with '|'", "tooltipy-lang" ); ?>" 
 					style="width:100%;" 
 				/>
 			</label>

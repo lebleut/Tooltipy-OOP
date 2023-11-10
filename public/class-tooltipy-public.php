@@ -789,7 +789,7 @@ class Tooltipy_Public {
 
 		?>
 		<h2>Tooltipy settings :</h2>
-		<ul>
+		<table>
 		<?php
 			foreach($all_settings as $setting){
 				$setting_id = $setting['uid'];
@@ -806,40 +806,40 @@ class Tooltipy_Public {
 					$setting_vals = '<span style="color:blue;">'.$setting_vals.'</span>';
 				}
 				?>
-					<li>
-						<b><?php echo($setting_id); ?></b>
-						<span>( <?php echo( $setting_vals ); ?> )</span>
-					</li>
+					<tr>
+						<td><b><?php echo($setting_id); ?></b></td>
+						<td><?php echo( $setting_vals ); ?></td>
+					</tr>
 				<?php
 			}
 		?>
-		</ul>
+		</table>
 		<?php
 	}
 
 	public function debug_tooltip_meta(){
 		?>
 			<h2>Current Tooltip metadata :</h2>
-			<ul>
+			<table>
 				<?php
 					$tooltip_metabox_fields = Tooltip_Metaboxes::get_metabox_fields();
 					foreach ($tooltip_metabox_fields as $field) {
 						?>
-						<li>
-							<b><?php echo($field['meta_field_id']); ?></b>
-							<span>( <?php echo( get_post_meta(get_the_ID(), $field['meta_field_id'], true ) ); ?> )</span>
-						</li>
+						<tr>
+							<td><b><?php echo($field['meta_field_id']); ?></b></td>
+							<td><?php echo( get_post_meta(get_the_ID(), $field['meta_field_id'], true ) ); ?></td>
+						</tr>
 						<?php
 					}
 				?>
-			</ul>
+			</table>
 		<?php
 	}
 
 	public function debug_posts_meta(){
 		?>
 		<h2>Current post metadata :</h2>
-		<ul>
+		<table>
 		<?php
 			$posts_metabox_fields = Posts_Metaboxes::get_metabox_fields();
 			foreach ($posts_metabox_fields as $field) {
@@ -863,14 +863,14 @@ class Tooltipy_Public {
 					$meta_str = $meta_val;
 				}
 				?>
-				<li>
-					<b><?php echo($field['meta_field_id']); ?></b>
-					<span>( <?php echo( $meta_str ); ?> )</span>
-				</li>
+				<tr>
+					<td><b><?php echo($field['meta_field_id']); ?></b></td>
+					<td><?php echo( $meta_str ); ?></td>
+				</tr>
 				<?php
 			}
 		?>
-		</ul>
+		</table>
 		<?php
 	}
 	
@@ -889,6 +889,7 @@ class Tooltipy_Public {
 	
 	public function glossary_template( $page_template ){
 		global $wp_query, $post;
+
 		$tooltipy_glossary_page_id = tooltipy_get_option( 'glossary_page' );
 		if( is_array($tooltipy_glossary_page_id) ){
 			$tooltipy_glossary_page_id = $tooltipy_glossary_page_id[0];
@@ -901,12 +902,13 @@ class Tooltipy_Public {
 	}
 
 	public function footnote_section( $content ){
-		global $post_type;
+		global $post, $post_type;
 
 		$matched_tooltips = self::get_active_matched_tooltips();
 
 		$tooltip_mode = tooltipy_get_option( 'tooltip_mode' );
-		
+		$exclude_me = get_post_meta( $post->ID, 'tltpy_exclude_me', true );
+
 		if( $tooltip_mode != 'footnote' || Tooltipy::get_plugin_name() == $post_type ){
 			return $content;
 		}

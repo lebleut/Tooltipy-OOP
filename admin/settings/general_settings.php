@@ -227,9 +227,9 @@ function tltpy_get_general_serttings( $fields ){
 			],
 			
 			'label' 		=> __tooltipy( 'Migrate old options' ),
-			'description' 	=> __tooltipy( 'This is the tool that allows old users of Tooltipy (KTTG) to migrate from the old version to this new one' )
+			'description' 	=> __tooltipy( 'This tool allows old users of Tooltipy (KTTG) to migrate from the old version to this new one' )
 								. '<br/> - ' . __tooltipy( 'Migrates the Keywords' )
-								. '<br/> - ' . __tooltipy( 'Updates related post meta datas' )
+								. '<br/> - ' . __tooltipy( 'Updates related post meta data' )
 		),
 		array(
 			'section' 		=> 'advanced',

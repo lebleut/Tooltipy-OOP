@@ -266,7 +266,7 @@ msgid "If you leave it blank the whole page will be affected"
 msgstr ""
 
 #: advanced/settings-page.php:292
-msgid "Choose CSS classes to exclude"
+msgid "Choose CSS classes to exclude that should be nested only in the post content"
 msgstr ""
 
 #: settings-glossary.php:9

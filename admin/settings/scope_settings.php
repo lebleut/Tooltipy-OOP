@@ -13,7 +13,7 @@ function tltpy_get_scope_settings( $fields ){
 
 			'label' 		=> __tooltipy( 'Exclude CSS classes' ),
 			'placeholder' 	=> __( 'Class ...' ),
-			'helper' 		=> __tooltipy( 'Choose CSS classes to exclude' ),
+			'helper' 		=> __tooltipy( 'Choose CSS classes to exclude that should be nested only in the post content' ),
 		],
 		[
 			'section' 		=> 'general',

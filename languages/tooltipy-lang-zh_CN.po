@@ -267,7 +267,7 @@ msgid "If you leave it blank the whole page will be affected"
 msgstr "留空的话会作用于整个页面"
 
 #: advanced/settings-page.php:292
-msgid "Choose CSS classes to exclude"
+msgid "Choose CSS classes to exclude that should be nested only in the post content"
 msgstr "选择排除的CSS类"
 
 #: settings-glossary.php:9

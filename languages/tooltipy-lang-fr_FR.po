@@ -484,7 +484,7 @@ msgid "If you leave it blank the whole page will be affected"
 msgstr "Si vous la laissez vide vide toute la page sera couverte"
 
 #: ../advanced/settings-page.php:292
-msgid "Choose CSS classes to exclude"
+msgid "Choose CSS classes to exclude that should be nested only in the post content"
 msgstr "Choisissez les classes CSS à éviter"
 
 #: ../templates/admin/exclude.php:6

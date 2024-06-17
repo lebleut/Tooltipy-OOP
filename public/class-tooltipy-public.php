@@ -397,11 +397,27 @@ class Tooltipy_Public {
 					continue;
 				}
 
-				$line->innertext = preg_replace( $patterns[$key], $replacements[$key], $line->innertext, $limit, $count);
+				$sub_html_obj = str_get_html( $line->innertext );
 
-				if( $limit == 1 && $count > 0){
-					break;
+				if( is_bool( $sub_html_obj ) || !method_exists( $sub_html_obj, 'find' ) ){
+					$line->innertext = preg_replace( $patterns[$key], $replacements[$key], $line->innertext, $limit, $count);
+					
+					if( $limit == 1 && $count > 0){
+						break;
+					}
+				}else{
+					$sub_text_nodes = $sub_html_obj->find('text');
+					foreach($sub_text_nodes as $sub_line) {
+						$sub_line->innertext = preg_replace( [$patterns[$key]], [$replacements[$key]], $sub_line->innertext, $limit, $sub_count);
+						
+						if( $limit == 1 && $sub_count > 0){
+							break;
+						}
+					}
+					
+					$line->innertext = $sub_html_obj;
 				}
+
 			}
 			$content = $html_obj;
 		}				

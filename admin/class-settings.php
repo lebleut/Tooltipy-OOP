@@ -485,6 +485,8 @@ class Settings {
                     $attributes = '';
                     $options_markup = '';
                     foreach( $arguments['options'] as $key => $label ){
+						$value = gettype( $value ) !== 'array' ? [$value] : $value;
+
 						$is_selected = !empty($value) ? selected( $value[ array_search( $key, $value, true ) ], $key, false ) : '';
 
 						$options_markup .= sprintf(

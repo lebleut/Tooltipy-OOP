@@ -255,7 +255,8 @@ class Settings {
 					array(
 						'id' 			=> 'general',
 						'title' 		=> __tooltipy( 'SEO' ),
-						'description' 	=> __( 'Advanced SEO options' ),
+						'description' 	=> __( 'Advanced SEO options' )
+										.'<p style="color:red;">' . __( 'Be careful before changing these options, keep in mind that it may affect your links and your site SEO as a result' ) . '</p>',
 					),
 				)
 			),

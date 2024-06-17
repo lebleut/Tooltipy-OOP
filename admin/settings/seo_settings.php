@@ -16,7 +16,7 @@ function tltpy_get_seo_serttings( $fields ){
 			'placeholder' 	=> Tooltipy::get_plugin_name(),
 
 			'default' 	=> Tooltipy::get_plugin_name(),
-			'description'   => __( 'The slug that will show up in the tooltips URLs' )
+			'description'   => __( 'The slug that will show up in a single tooltip URL' )
 		),
 		array(
 			'section' 		=> 'general',
@@ -28,7 +28,7 @@ function tltpy_get_seo_serttings( $fields ){
 			'placeholder' 	=> Tooltipy::get_plugin_name(),
 
 			'default' 	=> 'tooltips',
-			'description'   => __( 'The slug that will show up in the tooltip categories URLs' )
+			'description'   => __( 'The slug that will show up in the tooltip category URL' )
 		),
 	);
 

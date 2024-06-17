@@ -15,7 +15,7 @@
  * Plugin Name:       Tooltipy OOP
  * Plugin URI:        www.tooltipy.com
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           6.0.0
+ * version:           6.0.1
  * Author:            Jamel Eddine Zarga
  * Author URI:        https://www.linkedin.com/in/jamel-eddine-zarga-56336485
  * License:           GPL-2.0+

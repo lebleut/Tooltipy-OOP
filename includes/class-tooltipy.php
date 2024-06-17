@@ -68,8 +68,15 @@ class Tooltipy {
 	 * @since    4.0.0
 	 */
 	public function __construct() {
+		// Include the WordPress plugin.php file
+		if ( ! function_exists( 'get_plugin_data' ) ) {
+			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		}
 
-		$this->version = '4.0.1';
+		// Get the plugin data
+		$plugin_data = get_plugin_data( TOOLTIPY_BASE_FILE );
+
+		$this->version = $plugin_data['Version'];
 
 		$this->load_dependencies();
 		$this->set_locale();

@@ -1,419 +1,1089 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: translate Bluet KW\n"
-"POT-Creation-Date: 2015-04-29 01:05+0100\n"
-"PO-Revision-Date: 2015-04-29 01:05+0100\n"
+"POT-Creation-Date: 2024-08-08 22:32+0100\n"
+"PO-Revision-Date: 2024-08-08 22:32+0100\n"
 "Last-Translator: Jamel Zarga <jamel.zarga@gmail.com>\n"
 "Language-Team: leBleut\n"
 "Language: kw_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-KeywordsList: __;gettext;gettext_noop;_e\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: ..\n"
-"X-Poedit-SearchPath-1: ..\\..\\tltpy_pro_addon\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: ../functions.php:28
-msgid "View glossary"
-msgstr "Ver glosario"
-
-#: ../glossary-shortcode.php:23
-msgid "ALL"
-msgstr "TODO"
-
-#: ../glossary-shortcode.php:104
-msgid "Previous"
-msgstr "Anterior"
-
-#: ../glossary-shortcode.php:105
-msgid "Next"
-msgstr "Siguiente"
-
-#: ../glossary-shortcode.php:111
-msgid "Sorry, no posts matched your criteria."
-msgstr "Disculpe, no hay post que corresponden con su criterio."
-
-#: ../importer.php:6
-msgid "KeyWords Tooltip Generator Converter"
-msgstr "KeyWords Tooltip Generator Converter"
-
-#: ../importer.php:7
-msgid "KTTG Converter"
-msgstr "KTTG Converter"
-
-#: ../importer.php:17
-msgid "Begin converting my keywords"
-msgstr "Comenzar a convertir mis palabras claves"
-
-#: ../importer.php:31
-msgid "Convert from"
-msgstr "Convertir desde"
-
-#: ../importer.php:84
-msgid "keywords converted"
-msgstr "palabras claves convertidas"
-
-#: ../importer.php:88
-msgid "These posts were not converted (Duplicated)"
-msgstr "Estos posts no fueron convertidos (Duplicado)"
-
-#: ../importer.php:94
-msgid ""
-"if you want to re-convert them, you have to delete them from My Keywords."
-msgstr ""
-"si usted  desea re convertirlos, tiene que borrarlos desde Mis Palabras "
-"Claves"
-
-#: ../importer.php:104
-msgid "No posts found"
-msgstr " No se encontraron posts"
-
-#: ../keyword-posttype.php:24
-msgid "KeyWords"
-msgstr "Palabras Claves"
-
-#: ../keyword-posttype.php:25
-msgid "KeyWord"
-msgstr "Palabra Clave"
-
-#: ../keyword-posttype.php:26 ../keyword-posttype.php:27
-msgid "My KeyWords"
-msgstr "Mis Palabras Claves"
-
-#: ../keyword-posttype.php:28
-msgid "All my KeyWords"
-msgstr "Todas mis Palabras Claves"
-
-#: ../keyword-posttype.php:29
-msgid "Add new one"
-msgstr "Adicionar una nueva"
-
-#: ../keyword-posttype.php:30 ../keyword-posttype.php:32
-msgid "New KeyWord"
-msgstr "Nueva Palabra Clave"
-
-#: ../keyword-posttype.php:31
-msgid "Edit KeyWord"
-msgstr "Editar Palabra Clave"
-
-#: ../keyword-posttype.php:33
-msgid "View KeyWord"
-msgstr "Ver Palabra Clave"
-
-#: ../keyword-posttype.php:34
-msgid "Search for KeyWords"
-msgstr "Buscar Palabras Claves"
-
-#: ../keyword-posttype.php:35
-msgid "KeyWords not found"
-msgstr "Palabras Claves no encontradas"
-
-#: ../keyword-posttype.php:36
-msgid "KeyWords not found in trash"
-msgstr "Palabras Claves no encontradas en la papelera"
-
-#: ../keyword-posttype.php:37
-msgid "Parent KeyWords colon"
-msgstr "Punto de Palabras Claves Padre"
-
-#: ../keyword-posttype.php:65
-msgid "Picture"
-msgstr "Imagen"
-
-#: ../keyword-posttype.php:66
-msgid "Is Prefix ?"
-msgstr "¿Es Prefijo?"
-
-#: ../keyword-posttype.php:67
-msgid "Video tooltip"
+#: admin/class-admin.php:167 admin/settings/general_settings.php:271
+msgid "Title"
 msgstr ""
 
-#: ../meta-boxes.php:18
-msgid "Keyword Settings"
-msgstr "Ajustes de Palabra Clave"
-
-#: ../meta-boxes.php:28 ../meta-boxes.php:38 ../meta-boxes.php:97
-#: ..\..\tltpy_pro_addon/index.php:43
-msgid "Keywords related"
-msgstr "Palabras Claves relacionadas"
-
-#: ../meta-boxes.php:49
+#: admin/class-admin.php:168 admin/class-admin.php:370
+#: admin/class-tooltip-metaboxes.php:127
 msgid "Synonyms"
 msgstr "Sinónimos"
 
-#: ../meta-boxes.php:49
-msgid "Type here the keyword's Synonyms separated with '|'"
-msgstr "Escribir aquí los Sinónimos de palabras claves con '|' "
+#: admin/class-admin.php:169
+#, fuzzy
+#| msgid "Excluded posts"
+msgid "Related posts"
+msgstr "Posts excluidos"
 
-#: ../meta-boxes.php:53
-msgid "Make this keyword <b>Case Sensitive</b>"
-msgstr "Hacer esta palabra clave <b>Distintiva entre Mayúscula y Minúscula</b>"
+#: admin/class-admin.php:170 admin/class-settings.php:171
+msgid "Wikipedia"
+msgstr ""
 
-#: ../meta-boxes.php:75
+#: admin/class-admin.php:171 admin/class-admin.php:380
+#: admin/class-admin.php:450
+msgid "Case sensitive"
+msgstr ""
+
+#: admin/class-admin.php:172 admin/class-admin.php:389
+#: admin/class-admin.php:467
+msgid "Prefix"
+msgstr "Prefijo"
+
+#: admin/class-admin.php:173
+msgid "Youtube ID"
+msgstr ""
+
+#: admin/class-admin.php:174 public/class-tooltipy-public.php:755
+msgid "Categories"
+msgstr ""
+
+#: admin/class-admin.php:175
+msgid "Image"
+msgstr ""
+
+#: admin/class-admin.php:176
+msgid "Author"
+msgstr ""
+
+#: admin/class-admin.php:177
+msgid "Date"
+msgstr ""
+
+#: admin/class-admin.php:182
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltips"
+msgstr "Título del mensaje de ayuda"
+
+#: admin/class-admin.php:266
+msgid "is case sensitive"
+msgstr ""
+
+#: admin/class-admin.php:273
+msgid "NOT case sensitive"
+msgstr ""
+
+#: admin/class-admin.php:287
+#, fuzzy
+#| msgid "Is Prefix ?"
+msgid "is a prefix"
+msgstr "¿Es Prefijo?"
+
+#: admin/class-admin.php:294
+#, fuzzy
+#| msgid "Prefix"
+msgid "NOT prefix"
+msgstr "Prefijo"
+
+#: admin/class-admin.php:452 admin/class-admin.php:469
+msgid "No Change"
+msgstr ""
+
+#: admin/class-admin.php:453 admin/class-admin.php:470
+#: admin/settings/scope_settings.php:27
+msgid "Yes"
+msgstr ""
+
+#: admin/class-admin.php:454 admin/class-admin.php:471
+msgid "No"
+msgstr "No"
+
+#: admin/class-admin.php:534
+msgid "The debug file is empty"
+msgstr ""
+
+#: admin/class-admin.php:552
+msgid "Debug file doesn't contain Tooltipy logs"
+msgstr ""
+
+#: admin/class-admin.php:559
+msgid "Debug file not found"
+msgstr ""
+
+#: admin/class-posts-metaboxes.php:184
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltipy"
+msgstr "Título del mensaje de ayuda"
+
+#: admin/class-posts-metaboxes.php:243
 msgid "Exclude this post from being matched"
 msgstr "Excluir este post de ser incluído"
 
-#: ../meta-boxes.php:77
-msgid "Exclude this post"
+#: admin/class-posts-metaboxes.php:244
+#, fuzzy
+#| msgid "Exclude this post"
+msgid "Exclude this "
 msgstr "Excluir este post"
 
-#: ../meta-boxes.php:105
-msgid "No KeyWords found for this post"
-msgstr "No se encontraron Palabras Claves en este post"
-
-#: ../meta-boxes.php:109
-msgid "Manage KeyWords"
-msgstr "Gestionar Palabras Claves"
-
-#: ../settings-page.php:59
-msgid "Post Types in concern :"
-msgstr "Tipos de Post de interés:"
-
-#: ../settings-page.php:67
-msgid "Customise the tooltip style :"
-msgstr "Personalizar el estilo del mensaje de ayuda:"
-
-#: ../settings-page.php:78
-msgid "Posts / Pages"
-msgstr "Posts/Páginas"
-
-#: ../settings-page.php:87
-msgid "Match once or all occurrences"
-msgstr "Incluir una o todas las ocurrencias"
-
-#: ../settings-page.php:96
-msgid "Tooltip title"
-msgstr "Título del mensaje de ayuda"
-
-#: ../settings-page.php:105
-msgid "Tooltip position"
+#: admin/class-posts-metaboxes.php:262
+#, fuzzy
+#| msgid "Tooltip position"
+msgid "Tooltips in this post"
 msgstr "Posición del mensaje de ayuda"
 
-#: ../settings-page.php:114
-msgid "Glossary page"
+#: admin/class-posts-metaboxes.php:266
+msgid "No tooltips matched yet"
 msgstr ""
 
-#: ../settings-page.php:123
-msgid "Keyword style"
-msgstr "Estilo de Palabra Clave"
+#: admin/class-posts-metaboxes.php:287
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltips to exclude"
+msgstr "Título del mensaje de ayuda"
 
-#: ../settings-page.php:131
-msgid "Description tooltip style"
-msgstr "Estilo del mensaje de ayuda de la descripción"
-
-#: ../settings-page.php:139
-msgid "Tooltip width"
+#: admin/class-posts-metaboxes.php:301
+msgid "Categories to exclude"
 msgstr ""
 
-#: ../settings-page.php:147
-msgid "Description tooltip Font size"
-msgstr "Tamaño de la Letra del mensaje de ayuda de la descripción"
+#: admin/class-settings.php:29 admin/class-settings.php:41
+#, fuzzy
+#| msgid "Tooltip position"
+msgid "Tooltipy settings"
+msgstr "Posición del mensaje de ayuda"
 
-#: ../settings-page.php:155
-msgid "Activate tooltips for images ?"
-msgstr "¿Activar mensaje de ayuda para las imágenes?"
-
-#: ../settings-page.php:181 ../settings-page.php:302
-msgid "KeyWords Settings"
-msgstr "Ajustes de Palabras Claves"
-
-#: ../settings-page.php:182 ../settings-page.php:307
+#: admin/class-settings.php:30
 msgid "Settings"
 msgstr "Ajustes"
 
-#: ../settings-page.php:207
+#: admin/class-settings.php:44
+msgid "Your settings have been successfully updated"
+msgstr ""
+
+#: admin/class-settings.php:156
+#, fuzzy
+#| msgid "Tooltip position"
+msgid "Tooltips options"
+msgstr "Posición del mensaje de ayuda"
+
+#: admin/class-settings.php:157
+msgid "General tooltips settings"
+msgstr ""
+
+#: admin/class-settings.php:161
+msgid "Advanced"
+msgstr "Avanzado"
+
+#: admin/class-settings.php:162
+#, fuzzy
+#| msgid "Advanced space"
+msgid "Advanced options"
+msgstr "Espacio avanzado"
+
+#: admin/class-settings.php:172
+msgid "Wikipedia API settings"
+msgstr ""
+
+#: admin/class-settings.php:181
+msgid "Customise the tooltip style :"
+msgstr "Personalizar el estilo del mensaje de ayuda:"
+
+#: admin/class-settings.php:182
+msgid "Make your own style."
+msgstr "Haga su propio estilo."
+
+#: admin/class-settings.php:186
+#, fuzzy
+#| msgid "Advanced space"
+msgid "Advanced style"
+msgstr "Espacio avanzado"
+
+#: admin/class-settings.php:187
+msgid "Advanced style settings"
+msgstr ""
+
+#: admin/class-settings.php:192 admin/settings/general_settings.php:95
+msgid "Standard mode"
+msgstr ""
+
+#: admin/class-settings.php:193
+msgid "Tooltip standard mode settings"
+msgstr ""
+
+#: admin/class-settings.php:198 admin/settings/general_settings.php:96
+msgid "Icon mode"
+msgstr ""
+
+#: admin/class-settings.php:199
+#, fuzzy
+#| msgid "Tooltip position"
+msgid "Tooltip icon mode settings"
+msgstr "Posición del mensaje de ayuda"
+
+#: admin/class-settings.php:204
+msgid "Title mode"
+msgstr ""
+
+#: admin/class-settings.php:205
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltip title mode settings"
+msgstr "Título del mensaje de ayuda"
+
+#: admin/class-settings.php:210 admin/settings/general_settings.php:98
+msgid "Link mode"
+msgstr ""
+
+#: admin/class-settings.php:211
+#, fuzzy
+#| msgid "Tooltip position"
+msgid "Tooltip link mode settings"
+msgstr "Posición del mensaje de ayuda"
+
+#: admin/class-settings.php:216 admin/settings/general_settings.php:99
+msgid "Footnote mode"
+msgstr ""
+
+#: admin/class-settings.php:217
+msgid "Tooltip footnote mode settings"
+msgstr ""
+
+#: admin/class-settings.php:226
+msgid "Glossary settings :"
+msgstr ""
+
+#: admin/class-settings.php:227
+msgid "Choose settings for your glossary."
+msgstr ""
+
+#: admin/class-settings.php:231
+msgid "Glossary page labels"
+msgstr ""
+
+#: admin/class-settings.php:241
+#, fuzzy
+#| msgid "Excluded posts"
+msgid "Exclude"
+msgstr "Posts excluidos"
+
+#: admin/class-settings.php:242
+msgid "Sections to exclude"
+msgstr ""
+
+#: admin/class-settings.php:247
+msgid "Excluded posts"
+msgstr "Posts excluidos"
+
+#: admin/class-settings.php:248
+msgid "Manage the list of excluded posts"
+msgstr ""
+
+#: admin/class-settings.php:257
+msgid "SEO"
+msgstr ""
+
+#: admin/class-settings.php:258
+msgid "Advanced SEO options"
+msgstr ""
+
+#: admin/class-settings.php:259
+msgid ""
+"Be careful before changing these options, keep in mind that it may affect "
+"your links and your site SEO as a result"
+msgstr ""
+
+#: admin/class-settings.php:268
+msgid "Log"
+msgstr ""
+
+#: admin/class-settings.php:269
+msgid "Shows the log Tooltipy sections from the debug.log file"
+msgstr ""
+
+#: admin/class-tooltip-metaboxes.php:39
+#, fuzzy
+#| msgid "Tooltip position"
+msgid "Tooltip settings"
+msgstr "Posición del mensaje de ayuda"
+
+#: admin/class-tooltip-metaboxes.php:131
+#, fuzzy
+#| msgid "Type here the keyword's Synonyms separated with '|'"
+msgid "Synonyms separated with '|'"
+msgstr "Escribir aquí los Sinónimos de palabras claves con '|' "
+
+#: admin/class-tooltip-metaboxes.php:143
+msgid "Make this keyword <b>Case Sensitive</b>"
+msgstr "Hacer esta palabra clave <b>Distintiva entre Mayúscula y Minúscula</b>"
+
+#: admin/class-tooltip-metaboxes.php:157
+msgid "This Keyword is a <b>Prefix</b>"
+msgstr "Esta Palabra Clave es un <b>Prefijo</b>"
+
+#: admin/class-tooltip-metaboxes.php:173
+msgid "Youtube video ID"
+msgstr ""
+
+#: admin/class-tooltip-metaboxes.php:204
+#, fuzzy
+#| msgid "This Keyword is a <b>Prefix</b>"
+msgid "This is a <b>Wikipedia term</b>"
+msgstr "Esta Palabra Clave es un <b>Prefijo</b>"
+
+#: admin/class-tooltip-metaboxes.php:232
+msgid "Wikipedia term"
+msgstr ""
+
+#: admin/settings/general_settings.php:13
+msgid "None"
+msgstr ""
+
+#: admin/settings/general_settings.php:80
+#: admin/settings/general_settings.php:81
+#: admin/settings/general_settings.php:82
+#: admin/settings/general_settings.php:83
+#: admin/settings/general_settings.php:84
+msgid "Style"
+msgstr "Estilo"
+
+#: admin/settings/general_settings.php:93
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltip mode"
+msgstr "Título del mensaje de ayuda"
+
+#: admin/settings/general_settings.php:97
+msgid "Title attrib mode"
+msgstr ""
+
+#: admin/settings/general_settings.php:109
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltip theme"
+msgstr "Título del mensaje de ayuda"
+
+#: admin/settings/general_settings.php:112
+#, fuzzy
+#| msgid "Right"
+msgid "Light"
+msgstr "Derecha"
+
+#: admin/settings/general_settings.php:113
+msgid "Light border"
+msgstr ""
+
+#: admin/settings/general_settings.php:114
+msgid "Material"
+msgstr ""
+
+#: admin/settings/general_settings.php:115
+msgid "Translucent"
+msgstr ""
+
+#: admin/settings/general_settings.php:125
+msgid "Trigger on"
+msgstr ""
+
+#: admin/settings/general_settings.php:127
+msgid "On hover"
+msgstr ""
+
+#: admin/settings/general_settings.php:128
+#, fuzzy
+#| msgid "Click"
+msgid "On click"
+msgstr "Haga clic"
+
+#: admin/settings/general_settings.php:138
+msgid "Mouse cursor"
+msgstr ""
+
+#: admin/settings/general_settings.php:140
+#: admin/settings/general_settings.php:170
+msgid "Auto"
+msgstr ""
+
+#: admin/settings/general_settings.php:141
+msgid "Pointer"
+msgstr ""
+
+#: admin/settings/general_settings.php:142
+msgid "Zoom In"
+msgstr ""
+
+#: admin/settings/general_settings.php:143
+#, fuzzy
+#| msgid "Help ?"
+msgid "Help"
+msgstr "¿Ayuda?"
+
+#: admin/settings/general_settings.php:144
+msgid "Context Menu"
+msgstr ""
+
+#: admin/settings/general_settings.php:155
+msgid "Match all occurrences"
+msgstr "Incluir todas las ocurrencias"
+
+#: admin/settings/general_settings.php:158 includes/functions.php:32
+msgid "All"
+msgstr ""
+
+#: admin/settings/general_settings.php:167
+msgid "Tooltip position"
+msgstr "Posición del mensaje de ayuda"
+
+#: admin/settings/general_settings.php:171
+msgid "Top"
+msgstr "Arriba"
+
+#: admin/settings/general_settings.php:172
+msgid "Bottom"
+msgstr "Abajo"
+
+#: admin/settings/general_settings.php:173
+msgid "Right"
+msgstr "Derecha"
+
+#: admin/settings/general_settings.php:174
+msgid "Left"
+msgstr "Izquierda"
+
+#: admin/settings/general_settings.php:184
+msgid "Animation"
+msgstr ""
+
+#: admin/settings/general_settings.php:195
+msgid "Animation speed"
+msgstr ""
+
+#: admin/settings/general_settings.php:198
+msgid "Fast"
+msgstr ""
+
+#: admin/settings/general_settings.php:199
+msgid "Faster"
+msgstr ""
+
+#: admin/settings/general_settings.php:200
+msgid "Normal"
+msgstr ""
+
+#: admin/settings/general_settings.php:201
+msgid "Slow"
+msgstr ""
+
+#: admin/settings/general_settings.php:202
+msgid "Slower"
+msgstr ""
+
+#: admin/settings/general_settings.php:213
+msgid "Generate relationships"
+msgstr ""
+
+#: admin/settings/general_settings.php:214
+msgid ""
+"Allows to regenerate the relationships between keywords and all the posts"
+msgstr ""
+
+#: admin/settings/general_settings.php:215
+msgid "Useful when a lot of keywords are added/modified/deleted"
+msgstr ""
+
+#: admin/settings/general_settings.php:229
+msgid "Migrate old options"
+msgstr ""
+
+#: admin/settings/general_settings.php:230
+msgid ""
+"This tool allows old users of Tooltipy (KTTG) to migrate from the old "
+"version to this new one"
+msgstr ""
+
+#: admin/settings/general_settings.php:231
+#, fuzzy
+#| msgid "Manage KeyWords"
+msgid "Migrates the Keywords"
+msgstr "Gestionar Palabras Claves"
+
+#: admin/settings/general_settings.php:232
+msgid "Updates related post meta data"
+msgstr ""
+
+#: admin/settings/general_settings.php:240
+#, fuzzy
+#| msgid "Hide the tooltips title"
+msgid "Get tooltips from"
+msgstr "Ocultar el título de los mensajes de ayuda"
+
+#: admin/settings/general_settings.php:241
+msgid "Select post types from which you want to get tooltips"
+msgstr ""
+
+#: admin/settings/general_settings.php:252
+msgid "Activate the debug mode"
+msgstr ""
+
+#: admin/settings/general_settings.php:253
+msgid ""
+"Shows debug in the footer of each page if you are administrator and add the "
+"Tooltipy log in the ../wp-content/debug.log file"
+msgstr ""
+
+#: admin/settings/general_settings.php:254
+msgid ""
+"Note : You should set the WP_DEBUG_LOG & WP_DEBUG constants to true in the "
+"wp-config.php file to see the error_log messages."
+msgstr ""
+
+#: admin/settings/general_settings.php:257
+msgid "Debug mode"
+msgstr ""
+
+#: admin/settings/general_settings.php:268
+msgid "Add to tooltip popup"
+msgstr ""
+
+#: admin/settings/general_settings.php:272
+#, fuzzy
+#| msgid "Synonyms"
+msgid "Synonyms section"
+msgstr "Sinónimos"
+
+#: admin/settings/general_settings.php:273
+msgid "Add glossary link page in the tooltips footer"
+msgstr ""
+
+#: admin/settings/general_settings.php:285
+msgid "Glossary link label"
+msgstr ""
+
+#: admin/settings/general_settings.php:286
+#: admin/settings/general_settings.php:288
+msgid "View glossary"
+msgstr "Ver glosario"
+
+#: admin/settings/glossary_settings.php:16
+msgid "Select a page"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:29
+msgid "Glossary page"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:30
+msgid "Select the page on which the glossary will show up"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:41
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltips per page"
+msgstr "Título del mensaje de ayuda"
+
+#: admin/settings/glossary_settings.php:43
+msgid "Default"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:44
+#, fuzzy
+#| msgid "Keywords related"
+msgid "Keywords per glossary page"
+msgstr "Palabras Claves relacionadas"
+
+#: admin/settings/glossary_settings.php:53
+msgid "ALL label"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:54
+msgid "ALL"
+msgstr "TODO"
+
+#: admin/settings/glossary_settings.php:62
+#, fuzzy
+#| msgid "Previous"
+msgid "Previous label"
+msgstr "Anterior"
+
+#: admin/settings/glossary_settings.php:63
+msgid "Previous"
+msgstr "Anterior"
+
+#: admin/settings/glossary_settings.php:71
+msgid "Next label"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:72
+msgid "Next"
+msgstr "Siguiente"
+
+#: admin/settings/glossary_settings.php:80
+msgid "Select a category label"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:82
+msgid "Select a category"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:90
+msgid "All categories label"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:92
+msgid "All categories"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:101
+msgid "Glossary thumbnails"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:104
+msgid "Show thumbnails on the glossary page"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:113
+msgid "Titles"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:116
+msgid "Add links to titles"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:126
+msgid "Ajax"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:129
+msgid "Load glossary with Ajax"
+msgstr ""
+
+#: admin/settings/scope_settings.php:14
+#, fuzzy
+#| msgid "Excluded posts"
+msgid "Exclude CSS classes"
+msgstr "Posts excluidos"
+
+#: admin/settings/scope_settings.php:15
+msgid "Class ..."
+msgstr ""
+
+#: admin/settings/scope_settings.php:16
+msgid ""
+"Choose CSS classes to exclude that should be nested only in the post content"
+msgstr ""
+
+#: admin/settings/scope_settings.php:24
+#, fuzzy
+#| msgid "Exclude this post"
+msgid "Exclude links ?"
+msgstr "Excluir este post"
+
+#: admin/settings/scope_settings.php:36
+#, fuzzy
+#| msgid "Exclude this post"
+msgid "Exclude Headings ?"
+msgstr "Excluir este post"
+
+#: admin/settings/scope_settings.php:53
+msgid "Exclude Common Tags ?"
+msgstr ""
+
+#: admin/settings/scope_settings.php:73
+#, fuzzy
+#| msgid "Excluded posts"
+msgid "Excluded post list"
+msgstr "Posts excluidos"
+
+#: admin/settings/scope_settings.php:135
+#, fuzzy
+#| msgid "No posts or pages are excluded"
+msgid "No posts excluded"
+msgstr "No se han excluidos páginas o posts"
+
+#: admin/settings/seo_settings.php:15
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltip slug"
+msgstr "Título del mensaje de ayuda"
+
+#: admin/settings/seo_settings.php:19
+msgid "The slug that will show up in a single tooltip URL"
+msgstr ""
+
+#: admin/settings/seo_settings.php:27
+msgid "Category slug"
+msgstr ""
+
+#: admin/settings/seo_settings.php:31
+msgid "The slug that will show up in the tooltip category URL"
+msgstr ""
+
+#: admin/settings/style_settings.php:14
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltip max width"
+msgstr "Título del mensaje de ayuda"
+
+#: admin/settings/style_settings.php:23
+msgid "Description tooltip Font size"
+msgstr "Tamaño de la Letra del mensaje de ayuda de la descripción"
+
+#: admin/settings/style_settings.php:33
+msgid "Activate tooltips for images ?"
+msgstr "¿Activar mensaje de ayuda para las imágenes?"
+
+#: admin/settings/style_settings.php:37
 msgid "alt property of the images will be displayed as a tooltip"
 msgstr ""
 "la propiedad alt de las imágenes será mostrada como un mensaje de ayuda"
 
-#: ../settings-page.php:220
-msgid "Description Background Colour"
-msgstr "Color de Fondo de la Descripción"
+#: admin/settings/style_settings.php:46
+msgid "Custom CSS classes for inline keywords"
+msgstr ""
 
-#: ../settings-page.php:222
-msgid "Description font Colour"
-msgstr "Color de la letra de la descripción"
+#: admin/settings/style_settings.php:48 admin/settings/style_settings.php:58
+msgid "Separated with spaces"
+msgstr ""
 
-#: ../settings-page.php:231
-msgid "Background Colour"
-msgstr "Color de Fondo"
+#: admin/settings/style_settings.php:56
+#, fuzzy
+#| msgid "Customise the tooltip style :"
+msgid "Custom CSS classes for tooltips"
+msgstr "Personalizar el estilo del mensaje de ayuda:"
 
-#: ../settings-page.php:231
-msgid "No background (Dotted style)"
-msgstr "Sin Fondo (Estilo de Punto)"
+#: admin/settings/style_settings.php:82
+msgid "Icon"
+msgstr ""
 
-#: ../settings-page.php:232
-msgid "Font Colour"
-msgstr "Color de Letra"
+#: admin/settings/style_settings.php:90
+msgid "Icon text color"
+msgstr ""
 
-#: ../settings-page.php:238
-msgid "Choose either Posts or/and Pages in concern"
-msgstr "Escoger entre Posts y/o Páginas de interés"
+#: admin/settings/style_settings.php:98
+msgid "Icon background"
+msgstr ""
 
-#: ../settings-page.php:241
-msgid "Make your own style."
-msgstr "Haga su propio estilo."
+#: admin/settings/wikipedia_settings.php:16
+msgid "Wikipedia language"
+msgstr ""
 
-#: ../settings-page.php:247
-msgid "Posts"
-msgstr "Posts"
+#: admin/settings/wikipedia_settings.php:19
+msgid "English"
+msgstr ""
 
-#: ../settings-page.php:249
-msgid "Pages"
-msgstr "Páginas"
+#: admin/settings/wikipedia_settings.php:20
+msgid "French"
+msgstr ""
 
-#: ../settings-page.php:258
-msgid "Match all occurrences"
-msgstr "Incluir todas las ocurrencias"
+#: admin/settings/wikipedia_settings.php:21
+msgid "Arabic"
+msgstr ""
 
-#: ../settings-page.php:267
-msgid "Hide the tooltips title"
+#: public/class-tooltipy-public.php:685
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltipy OOP"
+msgstr "Título del mensaje de ayuda"
+
+#: public/class-tooltipy-public.php:686 public/class-tooltipy-public.php:721
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltip"
+msgstr "Título del mensaje de ayuda"
+
+#: public/class-tooltipy-public.php:687
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltips archive"
+msgstr "Título del mensaje de ayuda"
+
+#: public/class-tooltipy-public.php:688
+msgid "Parent tooltip:"
+msgstr ""
+
+#: public/class-tooltipy-public.php:689
+msgid "All Tooltips"
+msgstr ""
+
+#: public/class-tooltipy-public.php:690
+#, fuzzy
+#| msgid "Add new one"
+msgid "Add New Tooltip"
+msgstr "Adicionar una nueva"
+
+#: public/class-tooltipy-public.php:691
+#, fuzzy
+#| msgid "Add new one"
+msgid "Add New"
+msgstr "Adicionar una nueva"
+
+#: public/class-tooltipy-public.php:692
+msgid "New Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:693
+msgid "Edit Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:694
+msgid "Update Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:695
+msgid "View Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:696
+msgid "Search Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:697
+#, fuzzy
+#| msgid "No posts found"
+msgid "No Tooltips found"
+msgstr " No se encontraron posts"
+
+#: public/class-tooltipy-public.php:698
+#, fuzzy
+#| msgid "KeyWords not found in trash"
+msgid "No Tooltips found in Trash"
+msgstr "Palabras Claves no encontradas en la papelera"
+
+#: public/class-tooltipy-public.php:699
+msgid "Featured Image"
+msgstr ""
+
+#: public/class-tooltipy-public.php:700
+msgid "Set featured image"
+msgstr ""
+
+#: public/class-tooltipy-public.php:701
+msgid "Remove featured image"
+msgstr ""
+
+#: public/class-tooltipy-public.php:702
+msgid "Use as featured image"
+msgstr ""
+
+#: public/class-tooltipy-public.php:703
+msgid "Insert into Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:704
+msgid "Uploaded to this Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:705
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltips list"
+msgstr "Título del mensaje de ayuda"
+
+#: public/class-tooltipy-public.php:706
+#, fuzzy
+#| msgid "Tooltip position"
+msgid "Tooltips list navigation"
+msgstr "Posición del mensaje de ayuda"
+
+#: public/class-tooltipy-public.php:707
+#, fuzzy
+#| msgid "Hide the tooltips title"
+msgid "Filter Tooltips list"
 msgstr "Ocultar el título de los mensajes de ayuda"
 
-#: ../settings-page.php:276
-msgid "Add glossary page link in the tooltip footer"
+#: public/class-tooltipy-public.php:722
+msgid "Post type to create keywords to generate tooltips in the frontend."
 msgstr ""
 
-#: ../settings-page.php:285
-msgid "Top"
-msgstr "Arriba"
+#: templates/glossary.php:38
+#, fuzzy
+#| msgid "Previous"
+msgid "Previous page"
+msgstr "Anterior"
 
-#: ../settings-page.php:286
-msgid "Bottom"
-msgstr "Abajo"
+#: templates/glossary.php:39
+#, fuzzy
+#| msgid "Next"
+msgid "Next page"
+msgstr "Siguiente"
 
-#: ../settings-page.php:287
-msgid "Right"
-msgstr "Derecha"
+#: templates/glossary.php:47
+#, fuzzy
+#| msgid "Pages"
+msgid "Page"
+msgstr "Páginas"
 
-#: ../settings-page.php:288
-msgid "Left"
-msgstr "Izquierda"
+#: templates/glossary/glossary-none.php:13
+#, fuzzy
+#| msgid "No posts found"
+msgid "No tooltips found"
+msgstr " No se encontraron posts"
 
-#: ../settings-page.php:306
-msgid "Style"
-msgstr "Estilo"
-
-#: ../settings-page.php:308 ../settings-page.php:363
-msgid "Excluded posts"
-msgstr "Posts excluidos"
-
-#: ../settings-page.php:309
-msgid "Help ?"
-msgstr "¿Ayuda?"
-
-#: ../settings-page.php:310
-msgid "Get the Pro AddOn"
+#: templates/tooltip-content.php:80
+msgid "Loading image..."
 msgstr ""
 
-#: ../settings-page.php:311
-msgid "Donate"
-msgstr "Donar"
-
-#: ../settings-page.php:330
-msgid ""
-"this plugin allows you easely create tooltips for your technical keywords."
-msgstr ""
-"este plugin le permite crear fácilmente mensajes de ayuda para sus palabras "
-"claves técnicas."
-
-#: ../settings-page.php:332
-msgid "Click"
-msgstr "Haga clic"
-
-#: ../settings-page.php:334
-msgid "Here"
-msgstr "Aquí"
-
-#: ../settings-page.php:336
-msgid "to rate our plugin if you appreciate it"
-msgstr "para puntuar nuestro plugin si lo aprecia"
-
-#: ../settings-page.php:352
-msgid "Preview"
-msgstr "Vista Previa"
-
-#: ../settings-page.php:353
-msgid "Pass your mouse over the word"
-msgstr "Mueva su mouse sobre la palabra"
-
-#: ../settings-page.php:354
-msgid "to test the tooltip layout."
-msgstr "para probar el diseño del mensaje de ayuda."
-
-#: ../settings-page.php:364
-msgid "Posts which are excluded from being matched"
-msgstr "Los posts que no son incluidos"
-
-#: ../settings-page.php:370
-msgid "No posts or pages are excluded"
-msgstr "No se han excluidos páginas o posts"
-
-#: ../settings-page.php:389 ..\..\tltpy_pro_addon/settings-page.php:99
-msgid "Save Settings"
-msgstr "Salvar Ajustes"
-
-#: ../widget.php:99
-msgid "no terms found for this post"
-msgstr "no se encontraron términos para este post"
-
-#: ..\..\tltpy_pro_addon/functions.php:174
-msgid "Youtube video ID"
+#: templates/tooltip-content.php:95
+msgid "Loading..."
 msgstr ""
 
-#: ..\..\tltpy_pro_addon/functions.php:191
-msgid "Video :"
+#: templates/tooltip/tooltip-categories.php:28
+#, fuzzy
+#| msgid "No KeyWords found for this post"
+msgid "No categories for this tooltip."
+msgstr "No se encontraron Palabras Claves en este post"
+
+#: templates/tooltip/tooltip-related.php:27
+msgid "No related posts for this tooltip."
 msgstr ""
 
-#: ..\..\tltpy_pro_addon/functions.php:194
-msgid "-"
-msgstr ""
+#~ msgid "Sorry, no posts matched your criteria."
+#~ msgstr "Disculpe, no hay post que corresponden con su criterio."
 
-#: ..\..\tltpy_pro_addon/functions.php:216
-msgid "This Keyword is a <b>Prefix</b>"
-msgstr "Esta Palabra Clave es un <b>Prefijo</b>"
+#~ msgid "KeyWords Tooltip Generator Converter"
+#~ msgstr "KeyWords Tooltip Generator Converter"
 
-#: ..\..\tltpy_pro_addon/functions.php:230
-msgid "Prefix"
-msgstr "Prefijo"
+#~ msgid "KTTG Converter"
+#~ msgstr "KTTG Converter"
 
-#: ..\..\tltpy_pro_addon/functions.php:233
-msgid "No"
-msgstr "No"
+#~ msgid "Begin converting my keywords"
+#~ msgstr "Comenzar a convertir mis palabras claves"
 
-#: ..\..\tltpy_pro_addon/settings-page.php:14
-msgid "KTTG Advanced"
-msgstr "KTTG Avanzado"
+#~ msgid "Convert from"
+#~ msgstr "Convertir desde"
 
-#: ..\..\tltpy_pro_addon/settings-page.php:15
-msgid "Advanced"
-msgstr "Avanzado"
+#~ msgid "keywords converted"
+#~ msgstr "palabras claves convertidas"
 
-#: ..\..\tltpy_pro_addon/settings-page.php:30
-msgid "Advance settings for KTTG :"
-msgstr ""
+#~ msgid "These posts were not converted (Duplicated)"
+#~ msgstr "Estos posts no fueron convertidos (Duplicado)"
 
-#: ..\..\tltpy_pro_addon/settings-page.php:40
-msgid "Supported Plugins"
-msgstr ""
+#~ msgid ""
+#~ "if you want to re-convert them, you have to delete them from My Keywords."
+#~ msgstr ""
+#~ "si usted  desea re convertirlos, tiene que borrarlos desde Mis Palabras "
+#~ "Claves"
 
-#: ..\..\tltpy_pro_addon/settings-page.php:51
-msgid "Advanced Style"
-msgstr ""
+#~ msgid "KeyWords"
+#~ msgstr "Palabras Claves"
 
-#: ..\..\tltpy_pro_addon/settings-page.php:60
-msgid "Match custom-fields"
-msgstr "Incluir campos personalizados:"
+#~ msgid "KeyWord"
+#~ msgstr "Palabra Clave"
 
-#: ..\..\tltpy_pro_addon/settings-page.php:85
-msgid "KeyWords Avanced"
-msgstr "Palabras Claves Avanzado"
+#~ msgid "My KeyWords"
+#~ msgstr "Mis Palabras Claves"
 
-#: ..\..\tltpy_pro_addon/settings-page.php:108
-msgid "Advanced space"
-msgstr "Espacio avanzado"
+#~ msgid "All my KeyWords"
+#~ msgstr "Todas mis Palabras Claves"
+
+#~ msgid "New KeyWord"
+#~ msgstr "Nueva Palabra Clave"
+
+#~ msgid "Edit KeyWord"
+#~ msgstr "Editar Palabra Clave"
+
+#~ msgid "View KeyWord"
+#~ msgstr "Ver Palabra Clave"
+
+#~ msgid "Search for KeyWords"
+#~ msgstr "Buscar Palabras Claves"
+
+#~ msgid "KeyWords not found"
+#~ msgstr "Palabras Claves no encontradas"
+
+#~ msgid "Parent KeyWords colon"
+#~ msgstr "Punto de Palabras Claves Padre"
+
+#~ msgid "Picture"
+#~ msgstr "Imagen"
+
+#~ msgid "Keyword Settings"
+#~ msgstr "Ajustes de Palabra Clave"
+
+#~ msgid "Post Types in concern :"
+#~ msgstr "Tipos de Post de interés:"
+
+#~ msgid "Posts / Pages"
+#~ msgstr "Posts/Páginas"
+
+#~ msgid "Match once or all occurrences"
+#~ msgstr "Incluir una o todas las ocurrencias"
+
+#~ msgid "Keyword style"
+#~ msgstr "Estilo de Palabra Clave"
+
+#~ msgid "Description tooltip style"
+#~ msgstr "Estilo del mensaje de ayuda de la descripción"
+
+#~ msgid "KeyWords Settings"
+#~ msgstr "Ajustes de Palabras Claves"
+
+#~ msgid "Description Background Colour"
+#~ msgstr "Color de Fondo de la Descripción"
+
+#~ msgid "Description font Colour"
+#~ msgstr "Color de la letra de la descripción"
+
+#~ msgid "Background Colour"
+#~ msgstr "Color de Fondo"
+
+#~ msgid "No background (Dotted style)"
+#~ msgstr "Sin Fondo (Estilo de Punto)"
+
+#~ msgid "Font Colour"
+#~ msgstr "Color de Letra"
+
+#~ msgid "Choose either Posts or/and Pages in concern"
+#~ msgstr "Escoger entre Posts y/o Páginas de interés"
+
+#~ msgid "Posts"
+#~ msgstr "Posts"
+
+#~ msgid "Donate"
+#~ msgstr "Donar"
+
+#~ msgid ""
+#~ "this plugin allows you easely create tooltips for your technical keywords."
+#~ msgstr ""
+#~ "este plugin le permite crear fácilmente mensajes de ayuda para sus "
+#~ "palabras claves técnicas."
+
+#~ msgid "Here"
+#~ msgstr "Aquí"
+
+#~ msgid "to rate our plugin if you appreciate it"
+#~ msgstr "para puntuar nuestro plugin si lo aprecia"
+
+#~ msgid "Preview"
+#~ msgstr "Vista Previa"
+
+#~ msgid "Pass your mouse over the word"
+#~ msgstr "Mueva su mouse sobre la palabra"
+
+#~ msgid "to test the tooltip layout."
+#~ msgstr "para probar el diseño del mensaje de ayuda."
+
+#~ msgid "Posts which are excluded from being matched"
+#~ msgstr "Los posts que no son incluidos"
+
+#~ msgid "Save Settings"
+#~ msgstr "Salvar Ajustes"
+
+#~ msgid "no terms found for this post"
+#~ msgstr "no se encontraron términos para este post"
+
+#~ msgid "KTTG Advanced"
+#~ msgstr "KTTG Avanzado"
+
+#~ msgid "Match custom-fields"
+#~ msgstr "Incluir campos personalizados:"
+
+#~ msgid "KeyWords Avanced"
+#~ msgstr "Palabras Claves Avanzado"
 
 #~ msgid "Posts related"
 #~ msgstr "Posts relacionados"

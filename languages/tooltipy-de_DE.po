@@ -1,390 +1,1132 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: translate Bluet KW\n"
-"POT-Creation-Date: 2015-04-15 12:29+0100\n"
-"PO-Revision-Date: 2015-06-18 09:16+0100\n"
+"POT-Creation-Date: 2024-08-08 22:29+0100\n"
+"PO-Revision-Date: 2024-08-08 22:29+0100\n"
 "Last-Translator: Mischlis Padillis <wpdos@zwilla.de>\n"
 "Language-Team: Kees Hessels <kees.hessels@outlook.com>\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.1\n"
-"X-Poedit-KeywordsList: __;gettext;gettext_noop;_e\n"
-"X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: de_DE\n"
-"X-Poedit-SearchPath-0: ..\n"
+"X-Generator: Poedit 3.4.4\n"
+"X-Poedit-KeywordsList: __;gettext;gettext_noop;_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: ../functions.php:28
-msgid "View glossary"
-msgstr "Glossar"
-
-#: ../glossary-shortcode.php:23
-msgid "ALL"
-msgstr "ALLE"
-
-#: ../glossary-shortcode.php:98
-msgid "Previous"
-msgstr "Zurück"
-
-#: ../glossary-shortcode.php:99
-msgid "Next"
-msgstr "weiter"
-
-#: ../glossary-shortcode.php:105
-msgid "Sorry, no posts matched your criteria."
-msgstr "Keine Übereinstimmung der Beiträge mit den Kriterien"
-
-#: ../importer.php:6
-msgid "KeyWords Tooltip Generator Converter"
-msgstr "KeyWord Tooltip Generator Konverter"
-
-#: ../importer.php:7
-msgid "KTTG Converter"
-msgstr "KTTG Converter"
-
-#: ../importer.php:17
-msgid "Begin converting my keywords"
-msgstr "Starte die Konvertierung meiner Schlagworte"
-
-#: ../importer.php:31
-msgid "Convert from"
-msgstr "Umwandlung von"
-
-#: ../importer.php:84
-msgid "keywords converted"
-msgstr "Schlagwörter sind umgewandelt"
-
-#: ../importer.php:88
-msgid "These posts were not converted (Duplicated)"
-msgstr "Diese Beiträge wurden nicht umgewandelt"
-
-#: ../importer.php:94
-msgid ""
-"if you want to re-convert them, you have to delete them from My Keywords."
+#: admin/class-admin.php:167 admin/settings/general_settings.php:271
+msgid "Title"
 msgstr ""
-"Wenn du es noch mal umwandeln möchtest, dann musst du unter „Meine "
-"Schlagworte“ diese löschen!"
 
-#: ../importer.php:104
-msgid "No posts found"
-msgstr "Keine Beiträge gefunden"
-
-#: ../keyword-posttype.php:24
-msgid "KeyWords"
-msgstr "Schlagwörter"
-
-#: ../keyword-posttype.php:25
-msgid "KeyWord"
-msgstr "Schlagworte"
-
-#: ../keyword-posttype.php:26 ../keyword-posttype.php:27
-msgid "My KeyWords"
-msgstr "Meine ToolTips"
-
-#: ../keyword-posttype.php:28
-msgid "All my KeyWords"
-msgstr "Alle Schlagwörter"
-
-#: ../keyword-posttype.php:29
-msgid "Add new one"
-msgstr "Neue hinzufügen"
-
-#: ../keyword-posttype.php:30 ../keyword-posttype.php:32
-msgid "New KeyWord"
-msgstr "Neues Schlagwort"
-
-#: ../keyword-posttype.php:31
-msgid "Edit KeyWord"
-msgstr "Bearbeite Schlagwort"
-
-#: ../keyword-posttype.php:33
-msgid "View KeyWord"
-msgstr "Schlagwort anzeigen"
-
-#: ../keyword-posttype.php:34
-msgid "Search for KeyWords"
-msgstr "Schlagwort-Suche"
-
-#: ../keyword-posttype.php:35
-msgid "KeyWords not found"
-msgstr "Schlagwort(e) nicht gefunden"
-
-#: ../keyword-posttype.php:36
-msgid "KeyWords not found in trash"
-msgstr "Schlagwort(e) auch nicht im Papierkorb"
-
-#: ../keyword-posttype.php:37
-msgid "Parent KeyWords colon"
-msgstr "übergeordnetes Schlagwort"
-
-#: ../keyword-posttype.php:65
-msgid "Picture"
-msgstr "Bilder"
-
-#: ../keyword-posttype.php:66
-msgid "Is Prefix ?"
-msgstr "Hat eine Prefix ?"
-
-#: ../keyword-posttype.php:67
-msgid "Video tooltip"
-msgstr "Video Tooltip"
-
-#: ../meta-boxes.php:18
-msgid "Keyword Settings"
-msgstr "Schlagwörter Einstellungen"
-
-#: ../meta-boxes.php:28 ../meta-boxes.php:38 ../meta-boxes.php:93
-msgid "Keywords related"
-msgstr "Schlagworte zutreffend"
-
-#: ../meta-boxes.php:49
+#: admin/class-admin.php:168 admin/class-admin.php:370
+#: admin/class-tooltip-metaboxes.php:127
 msgid "Synonyms"
 msgstr "Synonyme"
 
-#: ../meta-boxes.php:49
-msgid "Type here the keyword's Synonyms separated with '|'"
-msgstr "Gebe hier die Schlagwort Synonyme ein, getrennt mit ‚|‘ "
+#: admin/class-admin.php:169
+#, fuzzy
+#| msgid "Excluded posts"
+msgid "Related posts"
+msgstr "Beiträge ausschließen "
 
-#: ../meta-boxes.php:53
-msgid "Make this keyword <b>Case Sensitive</b>"
-msgstr "Schlagwörter klein schreiben! (besser)"
+#: admin/class-admin.php:170 admin/class-settings.php:171
+msgid "Wikipedia"
+msgstr ""
 
-#: ../meta-boxes.php:74
+#: admin/class-admin.php:171 admin/class-admin.php:380
+#: admin/class-admin.php:450
+msgid "Case sensitive"
+msgstr ""
+
+#: admin/class-admin.php:172 admin/class-admin.php:389
+#: admin/class-admin.php:467
+#, fuzzy
+#| msgid "Is Prefix ?"
+msgid "Prefix"
+msgstr "Hat eine Prefix ?"
+
+#: admin/class-admin.php:173
+msgid "Youtube ID"
+msgstr ""
+
+#: admin/class-admin.php:174 public/class-tooltipy-public.php:755
+msgid "Categories"
+msgstr ""
+
+#: admin/class-admin.php:175
+msgid "Image"
+msgstr ""
+
+#: admin/class-admin.php:176
+msgid "Author"
+msgstr ""
+
+#: admin/class-admin.php:177
+msgid "Date"
+msgstr ""
+
+#: admin/class-admin.php:182
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltips"
+msgstr "Titel des Tooltip"
+
+#: admin/class-admin.php:266
+msgid "is case sensitive"
+msgstr ""
+
+#: admin/class-admin.php:273
+msgid "NOT case sensitive"
+msgstr ""
+
+#: admin/class-admin.php:287
+#, fuzzy
+#| msgid "Is Prefix ?"
+msgid "is a prefix"
+msgstr "Hat eine Prefix ?"
+
+#: admin/class-admin.php:294
+msgid "NOT prefix"
+msgstr ""
+
+#: admin/class-admin.php:452 admin/class-admin.php:469
+msgid "No Change"
+msgstr ""
+
+#: admin/class-admin.php:453 admin/class-admin.php:470
+#: admin/settings/scope_settings.php:27
+msgid "Yes"
+msgstr ""
+
+#: admin/class-admin.php:454 admin/class-admin.php:471
+msgid "No"
+msgstr ""
+
+#: admin/class-admin.php:534
+msgid "The debug file is empty"
+msgstr ""
+
+#: admin/class-admin.php:552
+msgid "Debug file doesn't contain Tooltipy logs"
+msgstr ""
+
+#: admin/class-admin.php:559
+msgid "Debug file not found"
+msgstr ""
+
+#: admin/class-posts-metaboxes.php:184
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltipy"
+msgstr "Titel des Tooltip"
+
+#: admin/class-posts-metaboxes.php:243
 msgid "Exclude this post from being matched"
 msgstr "Diesen Beitrag ausschließen (keine Tooltips)"
 
-#: ../meta-boxes.php:76
-msgid "Exclude this post"
+#: admin/class-posts-metaboxes.php:244
+#, fuzzy
+#| msgid "Exclude this post"
+msgid "Exclude this "
 msgstr "Beitrag ausschliessen"
 
-#: ../meta-boxes.php:101
-msgid "No KeyWords found for this post"
-msgstr "Keine ToolTip Schlagworte gefunden im Beitrag!"
-
-#: ../meta-boxes.php:105
-msgid "Manage KeyWords"
-msgstr "Schlagwort - Manager"
-
-#: ../settings-page.php:59
-msgid "Post Types in concern :"
-msgstr "Beitragstypen einbeziehen :"
-
-#: ../settings-page.php:67
-msgid "Customise the tooltip style :"
-msgstr "Style des Tooltip-Fensters bearbeiten :"
-
-#: ../settings-page.php:78
-msgid "Posts / Pages"
-msgstr "Beiträge / Seiten"
-
-#: ../settings-page.php:87
-msgid "Match once or all occurrences"
-msgstr ""
-"‚Einmal anwenden’ oder auf ‚alle im Text vorkommenden Schlagworte "
-"anwenden‚"
-
-#: ../settings-page.php:96
-msgid "Tooltip title"
-msgstr "Titel des Tooltip"
-
-#: ../settings-page.php:105
-msgid "Tooltip position"
+#: admin/class-posts-metaboxes.php:262
+#, fuzzy
+#| msgid "Tooltip position"
+msgid "Tooltips in this post"
 msgstr "Position des Tooltip"
 
-#: ../settings-page.php:114
-msgid "Glossary page"
-msgstr "Glossar Seite"
+#: admin/class-posts-metaboxes.php:266
+msgid "No tooltips matched yet"
+msgstr ""
 
-#: ../settings-page.php:123
-msgid "Keyword style"
-msgstr "Schlagwort Style"
+#: admin/class-posts-metaboxes.php:287
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltips to exclude"
+msgstr "Titel des Tooltip"
 
-#: ../settings-page.php:131
-msgid "Description tooltip style"
-msgstr "Beschreibung des Tooltip Style"
+#: admin/class-posts-metaboxes.php:301
+msgid "Categories to exclude"
+msgstr ""
 
-#: ../settings-page.php:139
-msgid "Description tooltip Font size"
-msgstr "Beschreibung des ToolTip (Schriftgröße)"
+#: admin/class-settings.php:29 admin/class-settings.php:41
+#, fuzzy
+#| msgid "Tooltip position"
+msgid "Tooltipy settings"
+msgstr "Position des Tooltip"
 
-#: ../settings-page.php:147
-msgid "Activate tooltips for images ?"
-msgstr "Aktivierung der Tooltips für Bilder?"
-
-#: ../settings-page.php:172 ../settings-page.php:286
-msgid "KeyWords Settings"
-msgstr "Schlagwort Einstellungen"
-
-#: ../settings-page.php:173 ../settings-page.php:291
+#: admin/class-settings.php:30
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: ../settings-page.php:191
-msgid "alt property of the images will be displayed as a tooltip"
+#: admin/class-settings.php:44
+msgid "Your settings have been successfully updated"
 msgstr ""
-"Die alternative Beschreibung ‚alt‘ des Bildes wird als Tooltipp genutzt."
 
-#: ../settings-page.php:204
-msgid "Description Background Colour"
-msgstr "Hintergrundfarbe: Beschreibung"
+#: admin/class-settings.php:156
+#, fuzzy
+#| msgid "Tooltip position"
+msgid "Tooltips options"
+msgstr "Position des Tooltip"
 
-#: ../settings-page.php:206
-msgid "Description font Colour"
-msgstr "Textfarbe: Beschreibung"
+#: admin/class-settings.php:157
+msgid "General tooltips settings"
+msgstr ""
 
-#: ../settings-page.php:215
-msgid "Background Colour"
-msgstr "Hintergrundfarbe"
+#: admin/class-settings.php:161
+msgid "Advanced"
+msgstr ""
 
-#: ../settings-page.php:215
-msgid "No background (Dotted style)"
-msgstr "Kein Hintergrund (gepunkteter Style)"
+#: admin/class-settings.php:162
+msgid "Advanced options"
+msgstr ""
 
-#: ../settings-page.php:216
-msgid "Font Colour"
-msgstr "Schriftfarbe"
+#: admin/class-settings.php:172
+msgid "Wikipedia API settings"
+msgstr ""
 
-#: ../settings-page.php:222
-msgid "Choose either Posts or/and Pages in concern"
-msgstr "Wähle aus: Beiträge, Seiten, einzeln oder beides."
+#: admin/class-settings.php:181
+msgid "Customise the tooltip style :"
+msgstr "Style des Tooltip-Fensters bearbeiten :"
 
-#: ../settings-page.php:225
+#: admin/class-settings.php:182
 msgid "Make your own style."
 msgstr "Erstelle deinen eigenen Style."
 
-#: ../settings-page.php:231
-msgid "Posts"
-msgstr "Beiträge"
+#: admin/class-settings.php:186
+msgid "Advanced style"
+msgstr ""
 
-#: ../settings-page.php:233
-msgid "Pages"
-msgstr "Seiten"
+#: admin/class-settings.php:187
+msgid "Advanced style settings"
+msgstr ""
 
-#: ../settings-page.php:242
+#: admin/class-settings.php:192 admin/settings/general_settings.php:95
+msgid "Standard mode"
+msgstr ""
+
+#: admin/class-settings.php:193
+msgid "Tooltip standard mode settings"
+msgstr ""
+
+#: admin/class-settings.php:198 admin/settings/general_settings.php:96
+msgid "Icon mode"
+msgstr ""
+
+#: admin/class-settings.php:199
+#, fuzzy
+#| msgid "Tooltip position"
+msgid "Tooltip icon mode settings"
+msgstr "Position des Tooltip"
+
+#: admin/class-settings.php:204
+msgid "Title mode"
+msgstr ""
+
+#: admin/class-settings.php:205
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltip title mode settings"
+msgstr "Titel des Tooltip"
+
+#: admin/class-settings.php:210 admin/settings/general_settings.php:98
+msgid "Link mode"
+msgstr ""
+
+#: admin/class-settings.php:211
+#, fuzzy
+#| msgid "Tooltip position"
+msgid "Tooltip link mode settings"
+msgstr "Position des Tooltip"
+
+#: admin/class-settings.php:216 admin/settings/general_settings.php:99
+msgid "Footnote mode"
+msgstr ""
+
+#: admin/class-settings.php:217
+msgid "Tooltip footnote mode settings"
+msgstr ""
+
+#: admin/class-settings.php:226
+#, fuzzy
+#| msgid "Glossary page"
+msgid "Glossary settings :"
+msgstr "Glossar Seite"
+
+#: admin/class-settings.php:227
+msgid "Choose settings for your glossary."
+msgstr ""
+
+#: admin/class-settings.php:231
+#, fuzzy
+#| msgid "Glossary page"
+msgid "Glossary page labels"
+msgstr "Glossar Seite"
+
+#: admin/class-settings.php:241
+#, fuzzy
+#| msgid "Excluded posts"
+msgid "Exclude"
+msgstr "Beiträge ausschließen "
+
+#: admin/class-settings.php:242
+msgid "Sections to exclude"
+msgstr ""
+
+#: admin/class-settings.php:247
+msgid "Excluded posts"
+msgstr "Beiträge ausschließen "
+
+#: admin/class-settings.php:248
+msgid "Manage the list of excluded posts"
+msgstr ""
+
+#: admin/class-settings.php:257
+msgid "SEO"
+msgstr ""
+
+#: admin/class-settings.php:258
+msgid "Advanced SEO options"
+msgstr ""
+
+#: admin/class-settings.php:259
+msgid ""
+"Be careful before changing these options, keep in mind that it may affect "
+"your links and your site SEO as a result"
+msgstr ""
+
+#: admin/class-settings.php:268
+msgid "Log"
+msgstr ""
+
+#: admin/class-settings.php:269
+msgid "Shows the log Tooltipy sections from the debug.log file"
+msgstr ""
+
+#: admin/class-tooltip-metaboxes.php:39
+#, fuzzy
+#| msgid "Tooltip position"
+msgid "Tooltip settings"
+msgstr "Position des Tooltip"
+
+#: admin/class-tooltip-metaboxes.php:131
+#, fuzzy
+#| msgid "Type here the keyword's Synonyms separated with '|'"
+msgid "Synonyms separated with '|'"
+msgstr "Gebe hier die Schlagwort Synonyme ein, getrennt mit ‚|‘ "
+
+#: admin/class-tooltip-metaboxes.php:143
+msgid "Make this keyword <b>Case Sensitive</b>"
+msgstr "Schlagwörter klein schreiben! (besser)"
+
+#: admin/class-tooltip-metaboxes.php:157
+msgid "This Keyword is a <b>Prefix</b>"
+msgstr ""
+
+#: admin/class-tooltip-metaboxes.php:173
+msgid "Youtube video ID"
+msgstr ""
+
+#: admin/class-tooltip-metaboxes.php:204
+msgid "This is a <b>Wikipedia term</b>"
+msgstr ""
+
+#: admin/class-tooltip-metaboxes.php:232
+msgid "Wikipedia term"
+msgstr ""
+
+#: admin/settings/general_settings.php:13
+msgid "None"
+msgstr ""
+
+#: admin/settings/general_settings.php:80
+#: admin/settings/general_settings.php:81
+#: admin/settings/general_settings.php:82
+#: admin/settings/general_settings.php:83
+#: admin/settings/general_settings.php:84
+msgid "Style"
+msgstr "Style"
+
+#: admin/settings/general_settings.php:93
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltip mode"
+msgstr "Titel des Tooltip"
+
+#: admin/settings/general_settings.php:97
+msgid "Title attrib mode"
+msgstr ""
+
+#: admin/settings/general_settings.php:109
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltip theme"
+msgstr "Titel des Tooltip"
+
+#: admin/settings/general_settings.php:112
+#, fuzzy
+#| msgid "Right"
+msgid "Light"
+msgstr "Rechts"
+
+#: admin/settings/general_settings.php:113
+msgid "Light border"
+msgstr ""
+
+#: admin/settings/general_settings.php:114
+msgid "Material"
+msgstr ""
+
+#: admin/settings/general_settings.php:115
+msgid "Translucent"
+msgstr ""
+
+#: admin/settings/general_settings.php:125
+msgid "Trigger on"
+msgstr ""
+
+#: admin/settings/general_settings.php:127
+msgid "On hover"
+msgstr ""
+
+#: admin/settings/general_settings.php:128
+#, fuzzy
+#| msgid "Click"
+msgid "On click"
+msgstr "Klick"
+
+#: admin/settings/general_settings.php:138
+msgid "Mouse cursor"
+msgstr ""
+
+#: admin/settings/general_settings.php:140
+#: admin/settings/general_settings.php:170
+msgid "Auto"
+msgstr ""
+
+#: admin/settings/general_settings.php:141
+msgid "Pointer"
+msgstr ""
+
+#: admin/settings/general_settings.php:142
+msgid "Zoom In"
+msgstr ""
+
+#: admin/settings/general_settings.php:143
+#, fuzzy
+#| msgid "Help ?"
+msgid "Help"
+msgstr "Hilfe ?"
+
+#: admin/settings/general_settings.php:144
+msgid "Context Menu"
+msgstr ""
+
+#: admin/settings/general_settings.php:155
 msgid "Match all occurrences"
 msgstr "auf alle anwenden"
 
-#: ../settings-page.php:251
-msgid "Hide the tooltips title"
+#: admin/settings/general_settings.php:158 includes/functions.php:32
+msgid "All"
+msgstr ""
+
+#: admin/settings/general_settings.php:167
+msgid "Tooltip position"
+msgstr "Position des Tooltip"
+
+#: admin/settings/general_settings.php:171
+msgid "Top"
+msgstr "Oben"
+
+#: admin/settings/general_settings.php:172
+msgid "Bottom"
+msgstr "Unten"
+
+#: admin/settings/general_settings.php:173
+msgid "Right"
+msgstr "Rechts"
+
+#: admin/settings/general_settings.php:174
+msgid "Left"
+msgstr "Links"
+
+#: admin/settings/general_settings.php:184
+msgid "Animation"
+msgstr ""
+
+#: admin/settings/general_settings.php:195
+msgid "Animation speed"
+msgstr ""
+
+#: admin/settings/general_settings.php:198
+msgid "Fast"
+msgstr ""
+
+#: admin/settings/general_settings.php:199
+msgid "Faster"
+msgstr ""
+
+#: admin/settings/general_settings.php:200
+msgid "Normal"
+msgstr ""
+
+#: admin/settings/general_settings.php:201
+msgid "Slow"
+msgstr ""
+
+#: admin/settings/general_settings.php:202
+msgid "Slower"
+msgstr ""
+
+#: admin/settings/general_settings.php:213
+msgid "Generate relationships"
+msgstr ""
+
+#: admin/settings/general_settings.php:214
+msgid ""
+"Allows to regenerate the relationships between keywords and all the posts"
+msgstr ""
+
+#: admin/settings/general_settings.php:215
+msgid "Useful when a lot of keywords are added/modified/deleted"
+msgstr ""
+
+#: admin/settings/general_settings.php:229
+msgid "Migrate old options"
+msgstr ""
+
+#: admin/settings/general_settings.php:230
+msgid ""
+"This tool allows old users of Tooltipy (KTTG) to migrate from the old "
+"version to this new one"
+msgstr ""
+
+#: admin/settings/general_settings.php:231
+#, fuzzy
+#| msgid "Manage KeyWords"
+msgid "Migrates the Keywords"
+msgstr "Schlagwort - Manager"
+
+#: admin/settings/general_settings.php:232
+msgid "Updates related post meta data"
+msgstr ""
+
+#: admin/settings/general_settings.php:240
+#, fuzzy
+#| msgid "Hide the tooltips title"
+msgid "Get tooltips from"
 msgstr "Tooltip Titel nicht anzeigen"
 
-#: ../settings-page.php:260
-msgid "Add glossary page link in the tooltip footer"
+#: admin/settings/general_settings.php:241
+msgid "Select post types from which you want to get tooltips"
+msgstr ""
+
+#: admin/settings/general_settings.php:252
+msgid "Activate the debug mode"
+msgstr ""
+
+#: admin/settings/general_settings.php:253
+msgid ""
+"Shows debug in the footer of each page if you are administrator and add the "
+"Tooltipy log in the ../wp-content/debug.log file"
+msgstr ""
+
+#: admin/settings/general_settings.php:254
+msgid ""
+"Note : You should set the WP_DEBUG_LOG & WP_DEBUG constants to true in the "
+"wp-config.php file to see the error_log messages."
+msgstr ""
+
+#: admin/settings/general_settings.php:257
+msgid "Debug mode"
+msgstr ""
+
+#: admin/settings/general_settings.php:268
+#, fuzzy
+#| msgid "Video tooltip"
+msgid "Add to tooltip popup"
+msgstr "Video Tooltip"
+
+#: admin/settings/general_settings.php:272
+#, fuzzy
+#| msgid "Synonyms"
+msgid "Synonyms section"
+msgstr "Synonyme"
+
+#: admin/settings/general_settings.php:273
+#, fuzzy
+#| msgid "Add glossary page link in the tooltip footer"
+msgid "Add glossary link page in the tooltips footer"
 msgstr ""
 "In den Fußbereich des Tooltip-Fensters einen Link auf die Glossar-Seite "
 "einbinden."
 
-#: ../settings-page.php:269
-msgid "Top"
-msgstr "Oben"
+#: admin/settings/general_settings.php:285
+#, fuzzy
+#| msgid "Glossary page"
+msgid "Glossary link label"
+msgstr "Glossar Seite"
 
-#: ../settings-page.php:270
-msgid "Bottom"
-msgstr "Unten"
+#: admin/settings/general_settings.php:286
+#: admin/settings/general_settings.php:288
+msgid "View glossary"
+msgstr "Glossar"
 
-#: ../settings-page.php:271
-msgid "Right"
-msgstr "Rechts"
+#: admin/settings/glossary_settings.php:16
+msgid "Select a page"
+msgstr ""
 
-#: ../settings-page.php:272
-msgid "Left"
-msgstr "Links"
+#: admin/settings/glossary_settings.php:29
+msgid "Glossary page"
+msgstr "Glossar Seite"
 
-#: ../settings-page.php:290
-msgid "Style"
-msgstr "Style"
+#: admin/settings/glossary_settings.php:30
+msgid "Select the page on which the glossary will show up"
+msgstr ""
 
-#: ../settings-page.php:292 ../settings-page.php:347
-msgid "Excluded posts"
+#: admin/settings/glossary_settings.php:41
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltips per page"
+msgstr "Titel des Tooltip"
+
+#: admin/settings/glossary_settings.php:43
+msgid "Default"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:44
+#, fuzzy
+#| msgid "Keywords related"
+msgid "Keywords per glossary page"
+msgstr "Schlagworte zutreffend"
+
+#: admin/settings/glossary_settings.php:53
+msgid "ALL label"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:54
+msgid "ALL"
+msgstr "ALLE"
+
+#: admin/settings/glossary_settings.php:62
+#, fuzzy
+#| msgid "Previous"
+msgid "Previous label"
+msgstr "Zurück"
+
+#: admin/settings/glossary_settings.php:63
+msgid "Previous"
+msgstr "Zurück"
+
+#: admin/settings/glossary_settings.php:71
+msgid "Next label"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:72
+msgid "Next"
+msgstr "weiter"
+
+#: admin/settings/glossary_settings.php:80
+msgid "Select a category label"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:82
+msgid "Select a category"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:90
+msgid "All categories label"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:92
+msgid "All categories"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:101
+#, fuzzy
+#| msgid "Glossary page"
+msgid "Glossary thumbnails"
+msgstr "Glossar Seite"
+
+#: admin/settings/glossary_settings.php:104
+msgid "Show thumbnails on the glossary page"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:113
+msgid "Titles"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:116
+msgid "Add links to titles"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:126
+msgid "Ajax"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:129
+msgid "Load glossary with Ajax"
+msgstr ""
+
+#: admin/settings/scope_settings.php:14
+#, fuzzy
+#| msgid "Excluded posts"
+msgid "Exclude CSS classes"
 msgstr "Beiträge ausschließen "
 
-#: ../settings-page.php:293
-msgid "Help ?"
-msgstr "Hilfe ?"
+#: admin/settings/scope_settings.php:15
+msgid "Class ..."
+msgstr ""
 
-#: ../settings-page.php:294
-msgid "Get the Pro AddOn"
-msgstr "Lade das Pro AddOn"
-
-#: ../settings-page.php:295
-msgid "Donate"
-msgstr "Spenden"
-
-#: ../settings-page.php:314
+#: admin/settings/scope_settings.php:16
 msgid ""
-"this plugin allows you easely create tooltips for your technical keywords."
+"Choose CSS classes to exclude that should be nested only in the post content"
 msgstr ""
-"Dieses PlugIn hilft dir auf einfachste Art und Weise, Tooltipps für deine "
-"Schlagwärter einzubauen, das Fenster lässt sich individualisieren, mit "
-"Bildern, Links, Videos und vieles mehr. Animationen wie es eingeblendet "
-"wird, wo es angezeigt werden soll, wie oft es auf einer Seite erscheint, "
-"und so vieles mehr."
 
-#: ../settings-page.php:316
-msgid "Click"
-msgstr "Klick"
+#: admin/settings/scope_settings.php:24
+#, fuzzy
+#| msgid "Exclude this post"
+msgid "Exclude links ?"
+msgstr "Beitrag ausschliessen"
 
-#: ../settings-page.php:318
-msgid "Here"
-msgstr "Hier"
+#: admin/settings/scope_settings.php:36
+#, fuzzy
+#| msgid "Exclude this post"
+msgid "Exclude Headings ?"
+msgstr "Beitrag ausschliessen"
 
-#: ../settings-page.php:320
-msgid "to rate our plugin if you appreciate it"
+#: admin/settings/scope_settings.php:53
+msgid "Exclude Common Tags ?"
 msgstr ""
-"Bitte gebe uns eine Stimme, wenn es dir Spaß bereitet mit dem Plugin zu "
-"arbeiten."
 
-#: ../settings-page.php:336
-msgid "Preview"
-msgstr "Vorschau"
+#: admin/settings/scope_settings.php:73
+#, fuzzy
+#| msgid "Excluded posts"
+msgid "Excluded post list"
+msgstr "Beiträge ausschließen "
 
-#: ../settings-page.php:337
-msgid "Pass your mouse over the word"
-msgstr "Bewege deinen Mauszeiger auf das Wort hier"
-
-#: ../settings-page.php:338
-msgid "to test the tooltip layout."
-msgstr "um das Layout zu testen."
-
-#: ../settings-page.php:348
-msgid "Posts which are excluded from being matched"
-msgstr ""
-"Beiträge in denen deine Schlagworte zutreffen, aber von dir "
-"ausgeschlossen wurden"
-
-#: ../settings-page.php:354
-msgid "No posts or pages are excluded"
+#: admin/settings/scope_settings.php:135
+#, fuzzy
+#| msgid "No posts or pages are excluded"
+msgid "No posts excluded"
 msgstr ""
 "Keine Beiträge oder Seiten wurden bisher ausgeschlossen. Weniger ist oft "
 "mehr, schaue dir mal die Funktion -einmal finden- oder -auf alle im Text "
 "anwenden- an."
 
-#: ../settings-page.php:373
-msgid "Save Settings"
-msgstr "Speichern der Einstellungen"
+#: admin/settings/seo_settings.php:15
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltip slug"
+msgstr "Titel des Tooltip"
 
-#: ../widget.php:99
-msgid "no terms found for this post"
-msgstr "Keine Bedingungen für diesen Beitrag gefunden"
+#: admin/settings/seo_settings.php:19
+msgid "The slug that will show up in a single tooltip URL"
+msgstr ""
 
-msgid "Posts related"
-msgstr "Zugehörige Seiten/Beiträge"
+#: admin/settings/seo_settings.php:27
+msgid "Category slug"
+msgstr ""
 
-msgid "Posts in concern"
-msgstr "Ähnliche Seiten/Beiträge"
+#: admin/settings/seo_settings.php:31
+msgid "The slug that will show up in the tooltip category URL"
+msgstr ""
 
-msgid "Specify keywords to match"
-msgstr "Welche Schlagworte sollen zutreffen"
+#: admin/settings/style_settings.php:14
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltip max width"
+msgstr "Titel des Tooltip"
 
-msgid "Notice : if you leave them all unchecked they will be ALL matched"
-msgstr "Achtung: ohne Bearbeitung werden ALLE als zutreffend markiert "
+#: admin/settings/style_settings.php:23
+msgid "Description tooltip Font size"
+msgstr "Beschreibung des ToolTip (Schriftgröße)"
 
-msgid "Premium Add-Ons"
-msgstr "Premium Erweiterungen:"
+#: admin/settings/style_settings.php:33
+msgid "Activate tooltips for images ?"
+msgstr "Aktivierung der Tooltips für Bilder?"
 
-msgid "Match excerpts"
-msgstr "Treffer Auszug "
+#: admin/settings/style_settings.php:37
+msgid "alt property of the images will be displayed as a tooltip"
+msgstr ""
+"Die alternative Beschreibung ‚alt‘ des Bildes wird als Tooltipp genutzt."
 
-msgid "Keywords Related"
-msgstr "ähnliche Schlagworte "
+#: admin/settings/style_settings.php:46
+msgid "Custom CSS classes for inline keywords"
+msgstr ""
+
+#: admin/settings/style_settings.php:48 admin/settings/style_settings.php:58
+msgid "Separated with spaces"
+msgstr ""
+
+#: admin/settings/style_settings.php:56
+#, fuzzy
+#| msgid "Customise the tooltip style :"
+msgid "Custom CSS classes for tooltips"
+msgstr "Style des Tooltip-Fensters bearbeiten :"
+
+#: admin/settings/style_settings.php:82
+msgid "Icon"
+msgstr ""
+
+#: admin/settings/style_settings.php:90
+msgid "Icon text color"
+msgstr ""
+
+#: admin/settings/style_settings.php:98
+msgid "Icon background"
+msgstr ""
+
+#: admin/settings/wikipedia_settings.php:16
+msgid "Wikipedia language"
+msgstr ""
+
+#: admin/settings/wikipedia_settings.php:19
+msgid "English"
+msgstr ""
+
+#: admin/settings/wikipedia_settings.php:20
+msgid "French"
+msgstr ""
+
+#: admin/settings/wikipedia_settings.php:21
+msgid "Arabic"
+msgstr ""
+
+#: public/class-tooltipy-public.php:685
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltipy OOP"
+msgstr "Titel des Tooltip"
+
+#: public/class-tooltipy-public.php:686 public/class-tooltipy-public.php:721
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltip"
+msgstr "Titel des Tooltip"
+
+#: public/class-tooltipy-public.php:687
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltips archive"
+msgstr "Titel des Tooltip"
+
+#: public/class-tooltipy-public.php:688
+#, fuzzy
+#| msgid "Video tooltip"
+msgid "Parent tooltip:"
+msgstr "Video Tooltip"
+
+#: public/class-tooltipy-public.php:689
+msgid "All Tooltips"
+msgstr ""
+
+#: public/class-tooltipy-public.php:690
+#, fuzzy
+#| msgid "Video tooltip"
+msgid "Add New Tooltip"
+msgstr "Video Tooltip"
+
+#: public/class-tooltipy-public.php:691
+#, fuzzy
+#| msgid "Add new one"
+msgid "Add New"
+msgstr "Neue hinzufügen"
+
+#: public/class-tooltipy-public.php:692
+#, fuzzy
+#| msgid "Video tooltip"
+msgid "New Tooltip"
+msgstr "Video Tooltip"
+
+#: public/class-tooltipy-public.php:693
+#, fuzzy
+#| msgid "Video tooltip"
+msgid "Edit Tooltip"
+msgstr "Video Tooltip"
+
+#: public/class-tooltipy-public.php:694
+#, fuzzy
+#| msgid "Video tooltip"
+msgid "Update Tooltip"
+msgstr "Video Tooltip"
+
+#: public/class-tooltipy-public.php:695
+#, fuzzy
+#| msgid "Video tooltip"
+msgid "View Tooltip"
+msgstr "Video Tooltip"
+
+#: public/class-tooltipy-public.php:696
+msgid "Search Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:697
+#, fuzzy
+#| msgid "No posts found"
+msgid "No Tooltips found"
+msgstr "Keine Beiträge gefunden"
+
+#: public/class-tooltipy-public.php:698
+#, fuzzy
+#| msgid "KeyWords not found in trash"
+msgid "No Tooltips found in Trash"
+msgstr "Schlagwort(e) auch nicht im Papierkorb"
+
+#: public/class-tooltipy-public.php:699
+msgid "Featured Image"
+msgstr ""
+
+#: public/class-tooltipy-public.php:700
+msgid "Set featured image"
+msgstr ""
+
+#: public/class-tooltipy-public.php:701
+msgid "Remove featured image"
+msgstr ""
+
+#: public/class-tooltipy-public.php:702
+msgid "Use as featured image"
+msgstr ""
+
+#: public/class-tooltipy-public.php:703
+msgid "Insert into Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:704
+msgid "Uploaded to this Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:705
+#, fuzzy
+#| msgid "Tooltip title"
+msgid "Tooltips list"
+msgstr "Titel des Tooltip"
+
+#: public/class-tooltipy-public.php:706
+#, fuzzy
+#| msgid "Tooltip position"
+msgid "Tooltips list navigation"
+msgstr "Position des Tooltip"
+
+#: public/class-tooltipy-public.php:707
+#, fuzzy
+#| msgid "Hide the tooltips title"
+msgid "Filter Tooltips list"
+msgstr "Tooltip Titel nicht anzeigen"
+
+#: public/class-tooltipy-public.php:722
+msgid "Post type to create keywords to generate tooltips in the frontend."
+msgstr ""
+
+#: templates/glossary.php:38
+#, fuzzy
+#| msgid "Previous"
+msgid "Previous page"
+msgstr "Zurück"
+
+#: templates/glossary.php:39
+#, fuzzy
+#| msgid "Next"
+msgid "Next page"
+msgstr "weiter"
+
+#: templates/glossary.php:47
+#, fuzzy
+#| msgid "Pages"
+msgid "Page"
+msgstr "Seiten"
+
+#: templates/glossary/glossary-none.php:13
+#, fuzzy
+#| msgid "No posts found"
+msgid "No tooltips found"
+msgstr "Keine Beiträge gefunden"
+
+#: templates/tooltip-content.php:80
+msgid "Loading image..."
+msgstr ""
+
+#: templates/tooltip-content.php:95
+msgid "Loading..."
+msgstr ""
+
+#: templates/tooltip/tooltip-categories.php:28
+#, fuzzy
+#| msgid "No KeyWords found for this post"
+msgid "No categories for this tooltip."
+msgstr "Keine ToolTip Schlagworte gefunden im Beitrag!"
+
+#: templates/tooltip/tooltip-related.php:27
+msgid "No related posts for this tooltip."
+msgstr ""
+
+#~ msgid "Sorry, no posts matched your criteria."
+#~ msgstr "Keine Übereinstimmung der Beiträge mit den Kriterien"
+
+#~ msgid "KeyWords Tooltip Generator Converter"
+#~ msgstr "KeyWord Tooltip Generator Konverter"
+
+#~ msgid "KTTG Converter"
+#~ msgstr "KTTG Converter"
+
+#~ msgid "Begin converting my keywords"
+#~ msgstr "Starte die Konvertierung meiner Schlagworte"
+
+#~ msgid "Convert from"
+#~ msgstr "Umwandlung von"
+
+#~ msgid "keywords converted"
+#~ msgstr "Schlagwörter sind umgewandelt"
+
+#~ msgid "These posts were not converted (Duplicated)"
+#~ msgstr "Diese Beiträge wurden nicht umgewandelt"
+
+#~ msgid ""
+#~ "if you want to re-convert them, you have to delete them from My Keywords."
+#~ msgstr ""
+#~ "Wenn du es noch mal umwandeln möchtest, dann musst du unter „Meine "
+#~ "Schlagworte“ diese löschen!"
+
+#~ msgid "KeyWords"
+#~ msgstr "Schlagwörter"
+
+#~ msgid "KeyWord"
+#~ msgstr "Schlagworte"
+
+#~ msgid "My KeyWords"
+#~ msgstr "Meine ToolTips"
+
+#~ msgid "All my KeyWords"
+#~ msgstr "Alle Schlagwörter"
+
+#~ msgid "New KeyWord"
+#~ msgstr "Neues Schlagwort"
+
+#~ msgid "Edit KeyWord"
+#~ msgstr "Bearbeite Schlagwort"
+
+#~ msgid "View KeyWord"
+#~ msgstr "Schlagwort anzeigen"
+
+#~ msgid "Search for KeyWords"
+#~ msgstr "Schlagwort-Suche"
+
+#~ msgid "KeyWords not found"
+#~ msgstr "Schlagwort(e) nicht gefunden"
+
+#~ msgid "Parent KeyWords colon"
+#~ msgstr "übergeordnetes Schlagwort"
+
+#~ msgid "Picture"
+#~ msgstr "Bilder"
+
+#~ msgid "Keyword Settings"
+#~ msgstr "Schlagwörter Einstellungen"
+
+#~ msgid "Post Types in concern :"
+#~ msgstr "Beitragstypen einbeziehen :"
+
+#~ msgid "Posts / Pages"
+#~ msgstr "Beiträge / Seiten"
+
+#~ msgid "Match once or all occurrences"
+#~ msgstr ""
+#~ "‚Einmal anwenden’ oder auf ‚alle im Text vorkommenden Schlagworte "
+#~ "anwenden‚"
+
+#~ msgid "Keyword style"
+#~ msgstr "Schlagwort Style"
+
+#~ msgid "Description tooltip style"
+#~ msgstr "Beschreibung des Tooltip Style"
+
+#~ msgid "KeyWords Settings"
+#~ msgstr "Schlagwort Einstellungen"
+
+#~ msgid "Description Background Colour"
+#~ msgstr "Hintergrundfarbe: Beschreibung"
+
+#~ msgid "Description font Colour"
+#~ msgstr "Textfarbe: Beschreibung"
+
+#~ msgid "Background Colour"
+#~ msgstr "Hintergrundfarbe"
+
+#~ msgid "No background (Dotted style)"
+#~ msgstr "Kein Hintergrund (gepunkteter Style)"
+
+#~ msgid "Font Colour"
+#~ msgstr "Schriftfarbe"
+
+#~ msgid "Choose either Posts or/and Pages in concern"
+#~ msgstr "Wähle aus: Beiträge, Seiten, einzeln oder beides."
+
+#~ msgid "Posts"
+#~ msgstr "Beiträge"
+
+#~ msgid "Get the Pro AddOn"
+#~ msgstr "Lade das Pro AddOn"
+
+#~ msgid "Donate"
+#~ msgstr "Spenden"
+
+#~ msgid ""
+#~ "this plugin allows you easely create tooltips for your technical keywords."
+#~ msgstr ""
+#~ "Dieses PlugIn hilft dir auf einfachste Art und Weise, Tooltipps für deine "
+#~ "Schlagwärter einzubauen, das Fenster lässt sich individualisieren, mit "
+#~ "Bildern, Links, Videos und vieles mehr. Animationen wie es eingeblendet "
+#~ "wird, wo es angezeigt werden soll, wie oft es auf einer Seite erscheint, "
+#~ "und so vieles mehr."
+
+#~ msgid "Here"
+#~ msgstr "Hier"
+
+#~ msgid "to rate our plugin if you appreciate it"
+#~ msgstr ""
+#~ "Bitte gebe uns eine Stimme, wenn es dir Spaß bereitet mit dem Plugin zu "
+#~ "arbeiten."
+
+#~ msgid "Preview"
+#~ msgstr "Vorschau"
+
+#~ msgid "Pass your mouse over the word"
+#~ msgstr "Bewege deinen Mauszeiger auf das Wort hier"
+
+#~ msgid "to test the tooltip layout."
+#~ msgstr "um das Layout zu testen."
+
+#~ msgid "Posts which are excluded from being matched"
+#~ msgstr ""
+#~ "Beiträge in denen deine Schlagworte zutreffen, aber von dir "
+#~ "ausgeschlossen wurden"
+
+#~ msgid "Save Settings"
+#~ msgstr "Speichern der Einstellungen"
+
+#~ msgid "no terms found for this post"
+#~ msgstr "Keine Bedingungen für diesen Beitrag gefunden"
+
+#~ msgid "Posts related"
+#~ msgstr "Zugehörige Seiten/Beiträge"
+
+#~ msgid "Posts in concern"
+#~ msgstr "Ähnliche Seiten/Beiträge"
+
+#~ msgid "Specify keywords to match"
+#~ msgstr "Welche Schlagworte sollen zutreffen"
+
+#~ msgid "Notice : if you leave them all unchecked they will be ALL matched"
+#~ msgstr "Achtung: ohne Bearbeitung werden ALLE als zutreffend markiert "
+
+#~ msgid "Premium Add-Ons"
+#~ msgstr "Premium Erweiterungen:"
+
+#~ msgid "Match excerpts"
+#~ msgstr "Treffer Auszug "
+
+#~ msgid "Keywords Related"
+#~ msgstr "ähnliche Schlagworte "

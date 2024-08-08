@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: translate Bluet KW\n"
 "POT-Creation-Date: 2024-08-08 22:28+0100\n"
-"PO-Revision-Date: 2024-08-08 22:32+0100\n"
+"PO-Revision-Date: 2024-08-08 22:38+0100\n"
 "Last-Translator: Jamel Zarga <jamel.zarga@gmail.com>\n"
 "Language-Team: leBleut\n"
 "Language: fr_FR\n"
@@ -176,7 +176,7 @@ msgstr "Position du tooltip"
 
 #: admin/class-settings.php:157
 msgid "General tooltips settings"
-msgstr "Garametres générales des tooltips"
+msgstr "Parametres générales des tooltips"
 
 #: admin/class-settings.php:161
 msgid "Advanced"

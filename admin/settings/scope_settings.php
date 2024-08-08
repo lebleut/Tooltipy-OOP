@@ -11,9 +11,9 @@ function tltpy_get_scope_settings( $fields ){
 			'uid' 			=> 'exclude_classes',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'Exclude CSS classes' ),
-			'placeholder' 	=> __( 'Class ...' ),
-			'helper' 		=> __tooltipy( 'Choose CSS classes to exclude that should be nested only in the post content' ),
+			'label' 		=> __( 'Exclude CSS classes', 'tooltipy' ),
+			'placeholder' 	=> __( 'Class ...', 'tooltipy' ),
+			'helper' 		=> __( 'Choose CSS classes to exclude that should be nested only in the post content', 'tooltipy' ),
 		],
 		[
 			'section' 		=> 'general',
@@ -21,10 +21,10 @@ function tltpy_get_scope_settings( $fields ){
 			'uid' 			=> 'exclude_links',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __( 'Exclude links ?' ),
+			'label' 		=> __( 'Exclude links ?', 'tooltipy' ),
 
 			'options' 		=> [
-				'yes' 		=> __tooltipy( 'Yes' ),
+				'yes' 		=> __( 'Yes', 'tooltipy' ),
 			],
 		],
 		[
@@ -33,7 +33,7 @@ function tltpy_get_scope_settings( $fields ){
 			'uid' 			=> 'exclude_heading_tags',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __( 'Exclude Headings ?' ),
+			'label' 		=> __( 'Exclude Headings ?', 'tooltipy' ),
 
 			'options' 		=> [
 				'h1' 		=> 'H1',
@@ -50,7 +50,7 @@ function tltpy_get_scope_settings( $fields ){
 			'uid' 			=> 'exclude_common_tags',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __( 'Exclude Common Tags ?' ),
+			'label' 		=> __( 'Exclude Common Tags ?', 'tooltipy' ),
 
 			'options' 		=> [
 				'strong' 		=> '<&zwnj;strong &zwnj;/>',
@@ -70,7 +70,7 @@ function tltpy_get_scope_settings( $fields ){
 			'uid' 			=> 'excluded_list',
 			'type' 			=> 'custom',
 	
-			'label' 		=> __tooltipy( 'Excluded post list' ),
+			'label' 		=> __( 'Excluded post list', 'tooltipy' ),
 
 			'callback'		=> 'tltpy_excluded_posts_list'
 		]
@@ -132,6 +132,6 @@ function tltpy_excluded_posts_list(){
 			<?php endforeach;
 		echo '</table>';
 	}else{
-		_e_tooltipy('No posts excluded');
+		_e('No posts excluded', 'tooltipy');
 	}
 }

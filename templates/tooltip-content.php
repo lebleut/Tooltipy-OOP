@@ -77,7 +77,7 @@ if( $tt_is_case_sensitive ){
 		){
 			$thumb = '';
 			if( $tt_is_wiki ){
-				$thumb = __tooltipy('Loading image...');
+				$thumb = __('Loading image...', 'tooltipy');
 			}else if( has_post_thumbnail( get_the_ID() ) ):
 				$thumb = get_the_post_thumbnail( get_the_ID(), 'medium' );
 			endif;
@@ -92,7 +92,7 @@ if( $tt_is_case_sensitive ){
 	<!-- Content -->
 	<?php
 	if( $tt_is_wiki ){
-		$content = __tooltipy('Loading...');
+		$content = __('Loading...', 'tooltipy');
 	}else{
 		$content = get_the_content();
 	}

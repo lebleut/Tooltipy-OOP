@@ -91,3 +91,21 @@
     background: #eeeeee7a;
     padding: 2rem;
 }
+
+/* if mobile view needs to be considered
+[data-tippy-root] {
+    position: fixed !important;
+    inset: auto !important;
+    bottom: 55px !important;
+    width: 95vw;
+    max-height: 44vh !important;
+    transform: none !important;
+}
+
+.tooltipy-pop{
+    width: 100%;
+    max-width: 100% !important;
+    max-height: 100%;
+    overflow-y: auto;
+}
+*/

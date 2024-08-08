@@ -29,7 +29,7 @@ function tooltipy_get_glossary_letters(){
 			);
 		}
 
-		$all_label = __tooltipy( 'All' );
+		$all_label = __( 'All', 'tooltipy' );
 		$all_option_lab = tooltipy_get_option( 'glossary_label_all', false );
 
 		if( $all_option_lab && '' != trim( $all_option_lab ) ){
@@ -155,30 +155,6 @@ function tooltipy_add_option( $option, $value = '', $deprecated = '', $autoload 
  */
 function tooltipy_update_option( $option, $value, $autoload = null ){
 	return update_option( 'tltpy_' . $option, $value, $autoload = null );
-}
-
-/**
- * __tooltipy()
- * Returns the internationalized message according to tooltipy
- *
- * @param  mixed $msg
- *
- * @return string
- */
-function __tooltipy( $msg ){
-	return __( $msg, 'tooltipy-lang' );
-}
-
-/**
- * _e_tooltipy
- * Echo out the internationalized message according to tooltipy
- * 
- * @param  mixed $msg
- *
- * @return void
- */
-function _e_tooltipy( $msg ){
-	echo __tooltipy( $msg );
 }
 
 /**

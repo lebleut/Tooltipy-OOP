@@ -35,8 +35,8 @@ use Tooltipy\Tooltipy;
                 $prev_opt = tooltipy_get_option( 'glossary_label_previous' );
                 $next_opt = tooltipy_get_option( 'glossary_label_next' );
 
-                $prev_label = $prev_opt && '' !== trim( $prev_opt ) ? trim( $prev_opt ) : __tooltipy( 'Previous page' );
-                $next_label = $next_opt && '' !== trim( $next_opt ) ? trim( $next_opt ) : __tooltipy( 'Next page' );
+                $prev_label = $prev_opt && '' !== trim( $prev_opt ) ? trim( $prev_opt ) : __( 'Previous page', 'tooltipy' );
+                $next_label = $next_opt && '' !== trim( $next_opt ) ? trim( $next_opt ) : __( 'Next page', 'tooltipy' );
 
                 // Previous/next page navigation.
                 the_posts_pagination(
@@ -44,7 +44,7 @@ use Tooltipy\Tooltipy;
                         'base'               => Tooltipy::get_glossary_page_link() . '%_%',
                         'prev_text'          => $prev_label,
                         'next_text'          => $next_label,
-                        'before_page_number' => '<span class="meta-nav screen-reader-text">' . __tooltipy( 'Page' ) . ' </span>',
+                        'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'tooltipy' ) . ' </span>',
                     )
                 );
                 // If no content, include the "No posts found" template.

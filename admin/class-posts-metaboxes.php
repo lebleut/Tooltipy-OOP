@@ -181,7 +181,7 @@ class Posts_Metaboxes{
 		foreach($all_post_types as $screen) {
 			add_meta_box(
 				'tltpy_posts_metabox',
-				__tooltipy( 'Tooltipy' ),
+				__( 'Tooltipy' ),
 				array( $this, 'metabox_render' ) ,
 				$screen,
 				'side',
@@ -240,8 +240,8 @@ class Posts_Metaboxes{
 		$is_checked = get_post_meta( get_the_id(), $meta_field_id ,true) ? 'checked' : '';
 		?>
 		<p>
-			<h4><?php _e_tooltipy( 'Exclude this post from being matched' ); ?></h4>
-			<Label><?php echo( __tooltipy( 'Exclude this ' ) . '<b>' . strtolower($post_type_label) . '</b>' ); ?>
+			<h4><?php _e( 'Exclude this post from being matched', 'tooltipy' ); ?></h4>
+			<Label><?php echo( __( 'Exclude this ', 'tooltipy' ) . '<b>' . strtolower($post_type_label) . '</b>' ); ?>
 				<input type="checkbox" 
 					name="<? echo( $meta_field_id ); ?>" 
 					<?php echo ( $is_checked ); ?> 
@@ -259,11 +259,11 @@ class Posts_Metaboxes{
 		$excluded_tooltips = array_map( 'trim', $excluded_tooltips );
 
 		?>
-		<h4><?php _e_tooltipy( 'Tooltips in this post' ); ?></h4>
+		<h4><?php _e( 'Tooltips in this post', 'tooltipy' ); ?></h4>
 		<?php
 		if( empty($matched_tooltips) ){
 			?>
-			<p style="color:red;"><?php _e_tooltipy( 'No tooltips matched yet' ); ?></p>
+			<p style="color:red;"><?php _e( 'No tooltips matched yet', 'tooltipy' ); ?></p>
 			<?php
 			return false;
 		}
@@ -284,7 +284,7 @@ class Posts_Metaboxes{
 	function exclude_tooltips_field($meta_field_id){
 		$excluded_tooltips = get_post_meta( get_the_id(), $meta_field_id, true );
 		?>
-		<h4><?php _e_tooltipy( 'Tooltips to exclude' ); ?></h4>
+		<h4><?php _e( 'Tooltips to exclude', 'tooltipy' ); ?></h4>
 		<input
 			type="text"
 			name="<?php echo($meta_field_id); ?>"
@@ -298,7 +298,7 @@ class Posts_Metaboxes{
 
 		$excluded_tooltip_cats = get_post_meta( get_the_id(), $meta_field_id, true );
 		?>
-		<h4><?php _e_tooltipy( 'Categories to exclude' ); ?></h4>
+		<h4><?php _e( 'Categories to exclude', 'tooltipy' ); ?></h4>
 
 		<div class="tltpy_check_all_cats_wrap">
 			<label>

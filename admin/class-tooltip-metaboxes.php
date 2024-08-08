@@ -36,7 +36,7 @@ class Tooltip_Metaboxes{
 
 		add_meta_box(
 			'tltpy_tooltip_metabox',
-			__tooltipy( 'Tooltip settings' ),
+			__( 'Tooltip settings' ),
 			array( $this, 'metabox_render' ) ,
 			null,
 			'side',
@@ -124,11 +124,11 @@ class Tooltip_Metaboxes{
 	function synonyms_field( $meta_field_id ){
 		?>
 		<p>
-			<Label><?php _e_tooltipy( 'Synonyms' );?>
+			<Label><?php _e( 'Synonyms', 'tooltipy' );?>
 				<input type="text" 
 					name="<? echo( $meta_field_id ); ?>" 
 					value="<?php echo( get_post_meta( get_the_id(), $meta_field_id, true ) ); ?>" 
-					placeholder = "<?php _e("Synonyms separated with '|'", "tooltipy-lang" ); ?>" 
+					placeholder = "<?php _e("Synonyms separated with '|'", "tooltipy" ); ?>" 
 					style="width:100%;" 
 				/>
 			</label>
@@ -140,7 +140,7 @@ class Tooltip_Metaboxes{
 		$is_checked = get_post_meta( get_the_id(), $meta_field_id ,true) ? 'checked' : '';
 		?>
 		<p>
-			<label><?php _e_tooltipy( 'Make this keyword <b>Case Sensitive</b>' );?>
+			<label><?php _e( 'Make this keyword <b>Case Sensitive</b>' );?>
 				<input type="checkbox" 
 					name="<? echo( $meta_field_id ); ?>"
 					<?php echo ( $is_checked ); ?> 
@@ -154,7 +154,7 @@ class Tooltip_Metaboxes{
 		$is_checked = get_post_meta( get_the_id(), $meta_field_id, true) ? 'checked' : '';
 		?>
 		<p>
-			<label><?php _e_tooltipy( 'This Keyword is a <b>Prefix</b>' );?>
+			<label><?php _e( 'This Keyword is a <b>Prefix</b>', 'tooltipy' );?>
 				<input
 					name="<? echo( $meta_field_id ); ?>"
 					type="checkbox"
@@ -170,7 +170,7 @@ class Tooltip_Metaboxes{
 		?>
 		<p>
 			<label>
-				<b><?php _e_tooltipy( 'Youtube video ID' );?></b><br>
+				<b><?php _e( 'Youtube video ID', 'tooltipy' );?></b><br>
 				www.youtube.com/watch?v=
 				<input
 					name="<? echo( $meta_field_id ); ?>"
@@ -201,7 +201,7 @@ class Tooltip_Metaboxes{
 		$is_checked = get_post_meta( get_the_id(), $meta_field_id, true) ? 'checked' : '';
 		?>
 		<p>
-			<label><?php _e_tooltipy( 'This is a <b>Wikipedia term</b>' );?>
+			<label><?php _e( 'This is a <b>Wikipedia term</b>', 'tooltipy' );?>
 				<input
 					name="<? echo( $meta_field_id ); ?>"
 					type="checkbox"
@@ -229,7 +229,7 @@ class Tooltip_Metaboxes{
 		?>
 		<p>
 			<label>
-				<b><?php _e_tooltipy( 'Wikipedia term' );?></b><br>
+				<b><?php _e( 'Wikipedia term', 'tooltipy' );?></b><br>
 				<input
 					name="<? echo( $meta_field_id ); ?>"
 					type="text"

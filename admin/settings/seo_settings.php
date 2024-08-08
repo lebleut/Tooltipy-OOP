@@ -12,11 +12,11 @@ function tltpy_get_seo_serttings( $fields ){
 			'uid' 			=> 'rewrite_tooltip',
 			'type' 			=> 'text',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
 
-			'label' 		=> __tooltipy( 'Tooltip slug' ),
+			'label' 		=> __( 'Tooltip slug', 'tooltipy' ),
 			'placeholder' 	=> Tooltipy::get_plugin_name(),
 
 			'default' 	=> Tooltipy::get_plugin_name(),
-			'description'   => __( 'The slug that will show up in a single tooltip URL' )
+			'description'   => __( 'The slug that will show up in a single tooltip URL', 'tooltipy' )
 		),
 		array(
 			'section' 		=> 'general',
@@ -24,11 +24,11 @@ function tltpy_get_seo_serttings( $fields ){
 			'uid' 			=> 'rewrite_cat',
 			'type' 			=> 'text',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
 
-			'label' 		=> __tooltipy( 'Category slug' ),
+			'label' 		=> __( 'Category slug', 'tooltipy' ),
 			'placeholder' 	=> Tooltipy::get_plugin_name(),
 
 			'default' 	=> 'tooltips',
-			'description'   => __( 'The slug that will show up in the tooltip category URL' )
+			'description'   => __( 'The slug that will show up in the tooltip category URL', 'tooltipy' )
 		),
 	);
 

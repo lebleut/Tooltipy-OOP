@@ -11,7 +11,7 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'tooltip_max_width',
 			'type' 			=> 'number',	
 			'helper' 		=> 'px',
-			'label' 		=> __tooltipy( 'Tooltip max width' ),
+			'label' 		=> __( 'Tooltip max width', 'tooltipy' ),
 			'default'       => 350,
 		),
 		array(
@@ -20,9 +20,9 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'description_font_size',
 			'type' 			=> 'number',
 
-			'label' 		=> __tooltipy( 'Description tooltip Font size' ),
+			'label' 		=> __( 'Description tooltip Font size', 'tooltipy' ),
 
-			'helper' 		=> __tooltipy( 'px' ),
+			'helper' 		=> 'px',
 		),
 		array(
 			'section' 		=> 'general',
@@ -30,11 +30,11 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'image_alt',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __( 'Activate tooltips for images ?' )
+			'label' 		=> __( 'Activate tooltips for images ?', 'tooltipy' )
 								.'<div style="color:red;">Not yet implemented</div>',
 
 			'options' 		=> array(
-				'yes' 		=> __tooltipy( 'alt property of the images will be displayed as a tooltip' ),
+				'yes' 		=> __( 'alt property of the images will be displayed as a tooltip', 'tooltipy' ),
 			),
 		),
 		array(
@@ -43,9 +43,9 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'keyword_css_classes',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'Custom CSS classes for inline keywords' ),
+			'label' 		=> __( 'Custom CSS classes for inline keywords', 'tooltipy' ),
 
-			'placeholder' 	=> __tooltipy( 'Separated with spaces' ),
+			'placeholder' 	=> __( 'Separated with spaces', 'tooltipy' ),
 		),
 		array(
 			'section' 		=> 'advanced',
@@ -53,9 +53,9 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'tooltip_css_classes',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'Custom CSS classes for tooltips' ),
+			'label' 		=> __( 'Custom CSS classes for tooltips', 'tooltipy' ),
 
-			'placeholder' 	=> __tooltipy( 'Separated with spaces' ),
+			'placeholder' 	=> __( 'Separated with spaces', 'tooltipy' ),
 		),
 		array(
 			'section' 		=> 'icon_mode',
@@ -79,7 +79,7 @@ function tltpy_get_style_settings( $fields ){
 				'dashicons-paperclip'		=> '<span class="dashicons dashicons-paperclip"></span>',
 			],
 			'default'		=> ['dashicons-editor-help'],
-			'label' 		=> __tooltipy( 'Icon' ),
+			'label' 		=> __( 'Icon', 'tooltipy' ),
 		),
 		array(
 			'section' 		=> 'icon_mode',
@@ -87,7 +87,7 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'icon_text_color',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'Icon text color' ),
+			'label' 		=> __( 'Icon text color', 'tooltipy' ),
 		),
 		array(
 			'section' 		=> 'icon_mode',
@@ -95,7 +95,7 @@ function tltpy_get_style_settings( $fields ){
 			'uid' 			=> 'icon_background_color',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'Icon background' ),
+			'label' 		=> __( 'Icon background', 'tooltipy' ),
 		),
 
 	);

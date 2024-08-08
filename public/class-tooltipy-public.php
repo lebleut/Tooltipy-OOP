@@ -680,31 +680,31 @@ class Tooltipy_Public {
 	public function tooltipy_post_type() {
 
 		$labels = array(
-			'name'                  => _x( 'Tooltips', 'Post Type General Name', 'tooltipy-lang' ),
-			'singular_name'         => _x( 'Tooltip', 'Post Type Singular Name', 'tooltipy-lang' ),
-			'menu_name'             => __tooltipy( 'Tooltipy OOP' ),
-			'name_admin_bar'        => __tooltipy( 'Tooltip' ),
-			'archives'              => __tooltipy( 'Tooltips archive' ),
-			'parent_item_colon'     => __( 'Parent tooltip:' ),
-			'all_items'             => __tooltipy( 'All Tooltips' ),
-			'add_new_item'          => __tooltipy( 'Add New Tooltip' ),
-			'add_new'               => __tooltipy( 'Add New' ),
-			'new_item'              => __tooltipy( 'New Tooltip' ),
-			'edit_item'             => __tooltipy( 'Edit Tooltip' ),
-			'update_item'           => __tooltipy( 'Update Tooltip' ),
-			'view_item'             => __tooltipy( 'View Tooltip' ),
-			'search_items'          => __tooltipy( 'Search Tooltip' ),
-			'not_found'             => __tooltipy( 'No Tooltips found' ),
-			'not_found_in_trash'    => __tooltipy( 'No Tooltips found in Trash' ),
-			'featured_image'        => __tooltipy( 'Featured Image' ),
-			'set_featured_image'    => __tooltipy( 'Set featured image' ),
-			'remove_featured_image' => __tooltipy( 'Remove featured image' ),
-			'use_featured_image'    => __tooltipy( 'Use as featured image' ),
-			'insert_into_item'      => __tooltipy( 'Insert into Tooltip' ),
-			'uploaded_to_this_item' => __tooltipy( 'Uploaded to this Tooltip' ),
-			'items_list'            => __tooltipy( 'Tooltips list' ),
-			'items_list_navigation' => __tooltipy( 'Tooltips list navigation' ),
-			'filter_items_list'     => __tooltipy( 'Filter Tooltips list' ),
+			'name'                  => _x( 'Tooltips', 'Post Type General Name', 'tooltipy' ),
+			'singular_name'         => _x( 'Tooltip', 'Post Type Singular Name', 'tooltipy' ),
+			'menu_name'             => __( 'Tooltipy OOP', 'tooltipy' ),
+			'name_admin_bar'        => __( 'Tooltip', 'tooltipy' ),
+			'archives'              => __( 'Tooltips archive', 'tooltipy' ),
+			'parent_item_colon'     => __( 'Parent tooltip:', 'tooltipy' ),
+			'all_items'             => __( 'All Tooltips', 'tooltipy' ),
+			'add_new_item'          => __( 'Add New Tooltip', 'tooltipy' ),
+			'add_new'               => __( 'Add New', 'tooltipy' ),
+			'new_item'              => __( 'New Tooltip', 'tooltipy' ),
+			'edit_item'             => __( 'Edit Tooltip', 'tooltipy' ),
+			'update_item'           => __( 'Update Tooltip', 'tooltipy' ),
+			'view_item'             => __( 'View Tooltip', 'tooltipy' ),
+			'search_items'          => __( 'Search Tooltip', 'tooltipy' ),
+			'not_found'             => __( 'No Tooltips found', 'tooltipy' ),
+			'not_found_in_trash'    => __( 'No Tooltips found in Trash', 'tooltipy' ),
+			'featured_image'        => __( 'Featured Image', 'tooltipy' ),
+			'set_featured_image'    => __( 'Set featured image', 'tooltipy' ),
+			'remove_featured_image' => __( 'Remove featured image', 'tooltipy' ),
+			'use_featured_image'    => __( 'Use as featured image', 'tooltipy' ),
+			'insert_into_item'      => __( 'Insert into Tooltip', 'tooltipy' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this Tooltip', 'tooltipy' ),
+			'items_list'            => __( 'Tooltips list', 'tooltipy' ),
+			'items_list_navigation' => __( 'Tooltips list navigation', 'tooltipy' ),
+			'filter_items_list'     => __( 'Filter Tooltips list', 'tooltipy' ),
 		);
 
 		/*$capabilities = array(
@@ -718,8 +718,8 @@ class Tooltipy_Public {
 		);*/
 
 		$args = array(
-			'label'                 => __tooltipy( 'Tooltip' ),
-			'description'           => __( 'Post type to create keywords to generate tooltips in the frontend.' ),
+			'label'                 => __( 'Tooltip', 'tooltipy' ),
+			'description'           => __( 'Post type to create keywords to generate tooltips in the frontend.', 'tooltipy' ),
 			'labels'                => $labels,
 			'supports'              => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'page-attributes', 'comments' ),
 			'taxonomies'            => array( Tooltipy::get_taxonomy() ),
@@ -752,7 +752,7 @@ class Tooltipy_Public {
 		// Tooltips category taxonomy
 		$cat_args = array(
 			'labels' => array(
-				'name' => __tooltipy( 'Categories' )
+				'name' => __( 'Categories', 'tooltipy' )
 			),
 			'hierarchical' => true,
 			'show_in_rest' => true,

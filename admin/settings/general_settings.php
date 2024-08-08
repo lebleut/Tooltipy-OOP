@@ -10,7 +10,7 @@ function tltpy_get_general_serttings( $fields ){
 
 	// For animation field
 	$animations = array(
-		"none"              => __tooltipy( 'None' ),
+		"none"              => __( 'None', 'tooltipy' ),
 		
 		"bounce"            => "bounce",
 		"bounceIn"          => "bounceIn",
@@ -77,11 +77,11 @@ function tltpy_get_general_serttings( $fields ){
 		'tab'       => 'style'
 	), admin_url() . '/edit.php' );
 	
-	$standard_style_link    = '<a href="' . add_query_arg( 'section', 'standard_mode' , $style_tab ) . '">' . __( 'Style' ) . '</a>';
-	$icon_style_link        = '<a href="' . add_query_arg( 'section', 'icon_mode' , $style_tab ) . '">' . __( 'Style' ) . '</a>';
-	$title_style_link       = '<a href="' . add_query_arg( 'section', 'title_mode' , $style_tab ) . '">' . __( 'Style' ) . '</a>';
-	$link_style_link        = '<a href="' . add_query_arg( 'section', 'link_mode' , $style_tab ) . '">' . __( 'Style' ) . '</a>';
-	$footnote_style_link    = '<a href="' . add_query_arg( 'section', 'footnote_mode' , $style_tab ) . '">' . __( 'Style' ) . '</a>';
+	$standard_style_link    = '<a href="' . add_query_arg( 'section', 'standard_mode' , $style_tab ) . '">' . __( 'Style', 'tooltipy' ) . '</a>';
+	$icon_style_link        = '<a href="' . add_query_arg( 'section', 'icon_mode' , $style_tab ) . '">' . __( 'Style', 'tooltipy' ) . '</a>';
+	$title_style_link       = '<a href="' . add_query_arg( 'section', 'title_mode' , $style_tab ) . '">' . __( 'Style', 'tooltipy' ) . '</a>';
+	$link_style_link        = '<a href="' . add_query_arg( 'section', 'link_mode' , $style_tab ) . '">' . __( 'Style', 'tooltipy' ) . '</a>';
+	$footnote_style_link    = '<a href="' . add_query_arg( 'section', 'footnote_mode' , $style_tab ) . '">' . __( 'Style', 'tooltipy' ) . '</a>';
 
 	$general_serttings = array(
 		array(
@@ -90,13 +90,13 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'tooltip_mode',
 			'type' 			=> 'radio',
 			
-			'label' 		=> __tooltipy( 'Tooltip mode' ),
+			'label' 		=> __( 'Tooltip mode', 'tooltipy' ),
 			'options' 		=> array(
-				'standard' 	=> __tooltipy( 'Standard mode' ) .' ' . $standard_style_link,
-				'icon'		=> __tooltipy( 'Icon mode' ) .' ' . $icon_style_link,
-				'title' 	=> __tooltipy( 'Title attrib mode' ) .' ' . $title_style_link,
-				'link' 	    => __tooltipy( 'Link mode' ) .' ' . $link_style_link,
-				'footnote' 	    => __tooltipy( 'Footnote mode' ) .' ' . $footnote_style_link,
+				'standard' 	=> __( 'Standard mode', 'tooltipy' ) .' ' . $standard_style_link,
+				'icon'		=> __( 'Icon mode', 'tooltipy' ) .' ' . $icon_style_link,
+				'title' 	=> __( 'Title attrib mode', 'tooltipy' ) .' ' . $title_style_link,
+				'link' 	    => __( 'Link mode', 'tooltipy' ) .' ' . $link_style_link,
+				'footnote' 	    => __( 'Footnote mode', 'tooltipy' ) .' ' . $footnote_style_link,
 			),
 			'default' 		=> array('standard'),
 		),
@@ -106,15 +106,15 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'tooltip_theme',
 			'type' 			=> 'select',
 	
-			'label' 		=> __tooltipy( 'Tooltip theme' ),
+			'label' 		=> __( 'Tooltip theme', 'tooltipy' ),
 
 			'options' 		=> array(
-				'light' 		=> __tooltipy( 'Light' ),
-				'light-border' 	=> __tooltipy( 'Light border' ),
-				'material' 		=> __tooltipy( 'Material' ),
-				'translucent' 	=> __tooltipy( 'Translucent' ),
+				'light' 		=> __( 'Light', 'tooltipy' ),
+				'light-border' 	=> __( 'Light border', 'tooltipy' ),
+				'material' 		=> __( 'Material', 'tooltipy' ),
+				'translucent' 	=> __( 'Translucent', 'tooltipy' ),
 			),
-			'default' 		=> array( 'light' ),
+			'default' 		=> array( 'light', 'tooltipy' ),
 		),
 		array(
 			'section' 		=> 'general',
@@ -122,10 +122,10 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'tooltip_trigger',
 			'type' 			=> 'radio',
 			
-			'label' 		=> __tooltipy( 'Trigger on' ),
+			'label' 		=> __( 'Trigger on', 'tooltipy' ),
 			'options' 		=> array(
-				'mouseenter' 	=> __tooltipy( 'On hover' ),
-				'click'			=> __tooltipy( 'On click' ),
+				'mouseenter' 	=> __( 'On hover', 'tooltipy' ),
+				'click'			=> __( 'On click', 'tooltipy' ),
 			),
 			'default' 		=> array('mouseenter'),
 		),
@@ -135,13 +135,13 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'tooltip_cursor',
 			'type' 			=> 'radio',
 			
-			'label' 		=> __tooltipy( 'Mouse cursor' ),
+			'label' 		=> __( 'Mouse cursor', 'tooltipy' ),
 			'options' 		=> array(
-				'auto' 			=> __tooltipy( 'Auto' ),
-				'pointer' 		=> __tooltipy( 'Pointer' ),
-				'zoom-in'		=> __tooltipy( 'Zoom In' ),
-				'help' 			=> __tooltipy( 'Help' ),
-				'context-menu'	=> __tooltipy( 'Context Menu' ),
+				'auto' 			=> __( 'Auto', 'tooltipy' ),
+				'pointer' 		=> __( 'Pointer', 'tooltipy' ),
+				'zoom-in'		=> __( 'Zoom In', 'tooltipy' ),
+				'help' 			=> __( 'Help', 'tooltipy' ),
+				'context-menu'	=> __( 'Context Menu', 'tooltipy' ),
 			),
 			
 			'default' 		=> array('pointer'),
@@ -152,10 +152,10 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'match_all_occurrences',
 			'type' 			=> 'checkbox',
 	
-			'label' 		=> __tooltipy( 'Match all occurrences' ),
+			'label' 		=> __( 'Match all occurrences', 'tooltipy' ),
 	
 			'options' 		=> array(
-				'yes' 		=> __tooltipy( 'All' ),
+				'yes' 		=> __( 'All', 'tooltipy' ),
 			),
 		),
 		array(
@@ -164,14 +164,14 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'tooltip_position',
 			'type' 			=> 'select',
 	
-			'label' 		=> __tooltipy( 'Tooltip position' ),
+			'label' 		=> __( 'Tooltip position', 'tooltipy' ),
 	
 			'options' 		=> array(
-				'auto' 		=> __tooltipy( 'Auto' ),
-				'top' 		=> __tooltipy( 'Top' ),
-				'bottom' 	=> __tooltipy( 'Bottom' ),
-				'right' 	=> __tooltipy( 'Right' ),
-				'left' 		=> __tooltipy( 'Left' ),
+				'auto' 		=> __( 'Auto', 'tooltipy' ),
+				'top' 		=> __( 'Top', 'tooltipy' ),
+				'bottom' 	=> __( 'Bottom', 'tooltipy' ),
+				'right' 	=> __( 'Right', 'tooltipy' ),
+				'left' 		=> __( 'Left', 'tooltipy' ),
 			),
 			'default' 		=> array( 'bottom' ),
 		),
@@ -181,7 +181,7 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'tooltip_animation',
 			'type' 			=> 'select',
 	
-			'label' 		=> __tooltipy( 'Animation' ),
+			'label' 		=> __( 'Animation', 'tooltipy' ),
 	
 			'options' 		=> $animations,
 			'default'       => array( 'fadeIn' ),
@@ -192,14 +192,14 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'tooltip_animation_speed',
 			'type' 			=> 'select',
 	
-			'label' 		=> __tooltipy( 'Animation speed' ),
+			'label' 		=> __( 'Animation speed', 'tooltipy' ),
 	
 			'options' 		=> array(
-				'fast'			=> __tooltipy( 'Fast' ),
-				'faster'		=> __tooltipy( 'Faster' ),
-				'normal'		=> __tooltipy( 'Normal' ),
-				'slow'			=> __tooltipy( 'Slow' ),
-				'slower'		=> __tooltipy( 'Slower' ),
+				'fast'			=> __( 'Fast', 'tooltipy' ),
+				'faster'		=> __( 'Faster', 'tooltipy' ),
+				'normal'		=> __( 'Normal', 'tooltipy' ),
+				'slow'			=> __( 'Slow', 'tooltipy' ),
+				'slower'		=> __( 'Slower', 'tooltipy' ),
 			),
 		),
 		array(
@@ -210,9 +210,9 @@ function tltpy_get_general_serttings( $fields ){
 			'action_callback'	=> 'tltpy_ajx_generate_relationships',
 			'js_callback'		=> 'tltpy_relationships_results',
 	
-			'label' 		=> __tooltipy( 'Generate relationships' ),
-			'description' 	=> __tooltipy( 'Allows to regenerate the relationships between keywords and all the posts' )
-								.'<br>'.__tooltipy( 'Useful when a lot of keywords are added/modified/deleted' )
+			'label' 		=> __( 'Generate relationships', 'tooltipy' ),
+			'description' 	=> __( 'Allows to regenerate the relationships between keywords and all the posts', 'tooltipy' )
+								.'<br>'.__( 'Useful when a lot of keywords are added/modified/deleted', 'tooltipy' )
 
 		),
 		array(
@@ -226,10 +226,10 @@ function tltpy_get_general_serttings( $fields ){
 				'last_done_id' => '0'
 			],
 			
-			'label' 		=> __tooltipy( 'Migrate old options' ),
-			'description' 	=> __tooltipy( 'This tool allows old users of Tooltipy (KTTG) to migrate from the old version to this new one' )
-								. '<br/> - ' . __tooltipy( 'Migrates the Keywords' )
-								. '<br/> - ' . __tooltipy( 'Updates related post meta data' )
+			'label' 		=> __( 'Migrate old options', 'tooltipy' ),
+			'description' 	=> __( 'This tool allows old users of Tooltipy (KTTG) to migrate from the old version to this new one', 'tooltipy' )
+								. '<br/> - ' . __( 'Migrates the Keywords', 'tooltipy' )
+								. '<br/> - ' . __( 'Updates related post meta data', 'tooltipy' )
 		),
 		array(
 			'section' 		=> 'advanced',
@@ -237,8 +237,8 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'get_from_post_types',
 			'type' 			=> 'multiselect',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
 	
-			'label' 		=> __tooltipy( 'Get tooltips from' ),
-			'description' 	=> __tooltipy( 'Select post types from which you want to get tooltips' )		// Text description below the field
+			'label' 		=> __( 'Get tooltips from', 'tooltipy' ),
+			'description' 	=> __( 'Select post types from which you want to get tooltips', 'tooltipy' )		// Text description below the field
 								. '<div style="color:red;">TODO: consider to tell the user that he should recalculate matched tooltips if this option is changed</div>',
 	
 			'options' 		=> $get_from_post_types_arr,
@@ -249,12 +249,12 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'debug_mode',
 			'type' 			=> 'checkbox',
 	
-			'label' 		=> __tooltipy( 'Activate the debug mode' ),
-			'helper'        => __( 'Shows debug in the footer of each page if you are administrator and add the Tooltipy log in the ../wp-content/debug.log file' ),
-			'description'   => __( 'Note : You should set the WP_DEBUG_LOG & WP_DEBUG constants to true in the wp-config.php file to see the error_log messages.' ),
+			'label' 		=> __( 'Activate the debug mode', 'tooltipy' ),
+			'helper'        => __( 'Shows debug in the footer of each page if you are administrator and add the Tooltipy log in the ../wp-content/debug.log file', 'tooltipy' ),
+			'description'   => __( 'Note : You should set the WP_DEBUG_LOG & WP_DEBUG constants to true in the wp-config.php file to see the error_log messages.', 'tooltipy' ),
 
 			'options' 		=> array(
-				'yes' 		=> __tooltipy( 'Debug mode' ),
+				'yes' 		=> __( 'Debug mode', 'tooltipy' ),
 			),
 		),
 
@@ -265,12 +265,12 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'add_to_popup',
 			'type' 			=> 'checkbox',
 	
-			'label' 		=> __tooltipy( 'Add to tooltip popup' ),
+			'label' 		=> __( 'Add to tooltip popup', 'tooltipy' ),
 
 			'options' 		=> array(
-				'title' 		=> __tooltipy( 'Title' ),
-				'synonyms' 		=> __tooltipy( 'Synonyms section' ),
-				'glossary' 		=> __tooltipy( 'Add glossary link page in the tooltips footer' ),
+				'title' 		=> __( 'Title', 'tooltipy' ),
+				'synonyms' 		=> __( 'Synonyms section', 'tooltipy' ),
+				'glossary' 		=> __( 'Add glossary link page in the tooltips footer', 'tooltipy' ),
 			),
 
 			'default'       => array( 'title' )
@@ -282,10 +282,10 @@ function tltpy_get_general_serttings( $fields ){
 			'uid' 			=> 'glossary_link_label',
 			'type' 			=> 'text',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox
 
-			'label' 		=> __tooltipy( 'Glossary link label' ),
-			'placeholder' 	=> __tooltipy( 'View glossary' ),
+			'label' 		=> __( 'Glossary link label', 'tooltipy' ),
+			'placeholder' 	=> __( 'View glossary', 'tooltipy' ),
 
-			'default' 	=> __tooltipy( 'View glossary' ),
+			'default' 	=> __( 'View glossary', 'tooltipy' ),
 		),
 	);
 

@@ -13,12 +13,12 @@ function tltpy_get_wikipedia_settings( $fields ){
 			'uid' 			=> 'wikipedia_lang',
 			'type' 			=> 'select',
 	
-			'label' 		=> __tooltipy( 'Wikipedia language' ),
+			'label' 		=> __( 'Wikipedia language', 'tooltipy' ),
 	
 			'options' 		=> array(
-				'en'			=> __tooltipy( 'English' ),
-				'fr'			=> __tooltipy( 'French' ),
-				'ar'			=> __tooltipy( 'Arabic' ),
+				'en'			=> __( 'English', 'tooltipy' ),
+				'fr'			=> __( 'French', 'tooltipy' ),
+				'ar'			=> __( 'Arabic', 'tooltipy' ),
 			),
 
 			'default' 	=> array( 'en' ),

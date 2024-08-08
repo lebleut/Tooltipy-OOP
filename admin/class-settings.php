@@ -26,8 +26,8 @@ class Settings {
 
     public function create_plugin_settings_page() {
 		// Add the menu item and page
-		$page_title = __tooltipy( 'Tooltipy settings' );
-		$menu_title = __tooltipy( 'Settings' );
+		$page_title = __( 'Tooltipy settings', 'tooltipy' );
+		$menu_title = __( 'Settings', 'tooltipy' );
 		$capability = 'manage_options';
 		$slug = 'tooltipy_settings';
 		$callback = array( $this, 'plugin_settings_page_content' );
@@ -38,10 +38,10 @@ class Settings {
 	
     public function plugin_settings_page_content() {?>
     	<div class="wrap">
-    		<h2><?php echo __tooltipy( 'Tooltipy settings' ); ?></h2>
+    		<h2><?php echo __( 'Tooltipy settings', 'tooltipy' ); ?></h2>
 			<?php
             if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == 'true' ){
-                  $this->admin_notice( __tooltipy( 'Your settings have been successfully updated') );
+                  $this->admin_notice( __( 'Your settings have been successfully updated', 'tooltipy' ) );
 			}
 
 			$tabs = $this->get_tabs();
@@ -153,13 +153,13 @@ class Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __tooltipy( 'Tooltips options' ),
-						'description' 	=> __tooltipy( 'General tooltips settings' ),
+						'title' 		=> __( 'Tooltips options', 'tooltipy' ),
+						'description' 	=> __( 'General tooltips settings', 'tooltipy' ),
 					),
 					array(
 						'id' 			=> 'advanced',
-						'title' 		=> __tooltipy( 'Advanced' ),
-						'description' 	=> __tooltipy( 'Advanced options' ),
+						'title' 		=> __( 'Advanced', 'tooltipy' ),
+						'description' 	=> __( 'Advanced options', 'tooltipy' ),
 					),
 				)
 			),
@@ -168,8 +168,8 @@ class Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __tooltipy( 'Wikipedia' ),
-						'description' 	=> __tooltipy( 'Wikipedia API settings' ),
+						'title' 		=> __( 'Wikipedia', 'tooltipy' ),
+						'description' 	=> __( 'Wikipedia API settings', 'tooltipy' ),
 					),
 				)
 			),
@@ -178,43 +178,43 @@ class Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __( 'Customise the tooltip style :' ),
-						'description' 	=> __( 'Make your own style.' ),
+						'title' 		=> __( 'Customise the tooltip style :', 'tooltipy' ),
+						'description' 	=> __( 'Make your own style.', 'tooltipy' ),
 					),
 					array(
 						'id' 			=> 'advanced',
-						'title' 		=> __tooltipy( 'Advanced style' ),
-						'description' 	=> __tooltipy( 'Advanced style settings' ),
+						'title' 		=> __( 'Advanced style', 'tooltipy' ),
+						'description' 	=> __( 'Advanced style settings', 'tooltipy' ),
 					),
 					array(
 						'id' 			=> 'standard_mode',
 						'name' 			=> 'standard mode',
-						'title' 		=> __tooltipy( 'Standard mode' ),
-						'description' 	=> __tooltipy( 'Tooltip standard mode settings' ),
+						'title' 		=> __( 'Standard mode', 'tooltipy' ),
+						'description' 	=> __( 'Tooltip standard mode settings', 'tooltipy' ),
 					),
 					array(
 						'id' 			=> 'icon_mode',
 						'name' 			=> 'icon mode',
-						'title' 		=> __tooltipy( 'Icon mode' ),
-						'description' 	=> __tooltipy( 'Tooltip icon mode settings' ),
+						'title' 		=> __( 'Icon mode', 'tooltipy' ),
+						'description' 	=> __( 'Tooltip icon mode settings', 'tooltipy' ),
 					),
 					array(
 						'id' 			=> 'title_mode',
 						'name' 			=> 'title mode',
-						'title' 		=> __tooltipy( 'Title mode' ),
-						'description' 	=> __tooltipy( 'Tooltip title mode settings' ),
+						'title' 		=> __( 'Title mode', 'tooltipy' ),
+						'description' 	=> __( 'Tooltip title mode settings', 'tooltipy' ),
 					),
 					array(
 						'id' 			=> 'link_mode',
 						'name' 			=> 'link mode',
-						'title' 		=> __tooltipy( 'Link mode' ),
-						'description' 	=> __tooltipy( 'Tooltip link mode settings' ),
+						'title' 		=> __( 'Link mode', 'tooltipy' ),
+						'description' 	=> __( 'Tooltip link mode settings', 'tooltipy' ),
 					),
 					array(
 						'id' 			=> 'footnote_mode',
 						'name' 			=> 'Footnote mode',
-						'title' 		=> __tooltipy( 'Footnote mode' ),
-						'description' 	=> __tooltipy( 'Tooltip footnote mode settings' ),
+						'title' 		=> __( 'Footnote mode', 'tooltipy' ),
+						'description' 	=> __( 'Tooltip footnote mode settings', 'tooltipy' ),
 					),
 				)
 			),
@@ -223,13 +223,13 @@ class Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __( 'Glossary settings :' ),
-						'description' 	=> __( 'Choose settings for your glossary.' ),
+						'title' 		=> __( 'Glossary settings :', 'tooltipy' ),
+						'description' 	=> __( 'Choose settings for your glossary.', 'tooltipy' ),
 					),
 					array(
 						'id' 			=> 'labels',
-						'title' 		=> __tooltipy( 'Glossary page labels' ),
-						'description' 	=> __tooltipy( '' ),
+						'title' 		=> __( 'Glossary page labels', 'tooltipy' ),
+						'description' 	=> '',
 					),
 				)
 			),
@@ -238,14 +238,14 @@ class Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __tooltipy( 'Exclude' ),
-						'description' 	=> __tooltipy( 'Sections to exclude' ),
+						'title' 		=> __( 'Exclude', 'tooltipy' ),
+						'description' 	=> __( 'Sections to exclude', 'tooltipy' ),
 					),
 					array(
 						'id' 			=> 'excluded_posts',
 						'name' 			=> 'excluded posts',
-						'title' 		=> __tooltipy( 'Excluded posts' ),
-						'description' 	=> __tooltipy( 'Manage the list of excluded posts' ),
+						'title' 		=> __( 'Excluded posts', 'tooltipy' ),
+						'description' 	=> __( 'Manage the list of excluded posts', 'tooltipy' ),
 					),
 				)
 			),
@@ -254,9 +254,9 @@ class Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __tooltipy( 'SEO' ),
-						'description' 	=> __( 'Advanced SEO options' )
-										.'<p style="color:red;">' . __( 'Be careful before changing these options, keep in mind that it may affect your links and your site SEO as a result' ) . '</p>',
+						'title' 		=> __( 'SEO', 'tooltipy' ),
+						'description' 	=> __( 'Advanced SEO options', 'tooltipy' )
+										.'<p style="color:red;">' . __( 'Be careful before changing these options, keep in mind that it may affect your links and your site SEO as a result', 'tooltipy' ) . '</p>',
 					),
 				)
 			),
@@ -265,8 +265,8 @@ class Settings {
 				'sections' => array(
 					array(
 						'id' 			=> 'general',
-						'title' 		=> __tooltipy( 'Log' ),
-						'description' 	=> __( 'Shows the log Tooltipy sections from the debug.log file' ),
+						'title' 		=> __( 'Log', 'tooltipy' ),
+						'description' 	=> __( 'Shows the log Tooltipy sections from the debug.log file', 'tooltipy' ),
 					),
 				)
 			),
@@ -360,13 +360,13 @@ class Settings {
 				'uid' 			=> '',
         		'type' 			=> '',									// could be : text, password, number, textarea, select, multiselect, radio, checkbox or even 'custom'
 
-				'label' 		=> __tooltipy( '______' ),
-        		'placeholder' 	=> __tooltipy( '______' ),
-        		'helper' 		=> __tooltipy( '______' ),		// Text helper beside the field
-        		'description' 	=> __tooltipy( '______' ),		// Text description below the field
+				'label' 		=> __( '______' ),
+        		'placeholder' 	=> __( '______' ),
+        		'helper' 		=> __( '______' ),		// Text helper beside the field
+        		'description' 	=> __( '______' ),		// Text description below the field
 
 				'options' 		=> array(
-        			'option1' 		=> __tooltipy( '______' ),
+        			'option1' 		=> __( '______' ),
         		),
 				'default' 		=> array( '' ), 	// String or array
 				'callback'		=> array( '' ),		// String or array : the function that will render the custom field

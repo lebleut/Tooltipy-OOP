@@ -10,4 +10,4 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 ?>
-<div><?php _e_tooltipy( 'No tooltips found' ); ?></div>
+<div><?php _e( 'No tooltips found', 'tooltipy' ); ?></div>

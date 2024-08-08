@@ -7,20 +7,20 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://www.linkedin.com/in/jamel-eddine-zarga-56336485
+ * @link              https://wpjam.co
  * @since             6.0.0
  * @package           Tooltipy
  *
  * @wordpress-plugin
  * Plugin Name:       Tooltipy OOP
- * Plugin URI:        www.tooltipy.com
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Plugin URI:        http://wpjam.co/tooltipy
+ * Description:       This plugin allows you automatically create tooltip boxes for your technical keywords in order to explain them for your site visitors making surfing more comfortable.
  * version:           6.0.1
  * Author:            Jamel Eddine Zarga
- * Author URI:        https://www.linkedin.com/in/jamel-eddine-zarga-56336485
+ * Author URI:        https://wpjam.co
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       tooltipy-lang
+ * Text Domain:       tooltipy
  * Domain Path:       /languages
  */
 

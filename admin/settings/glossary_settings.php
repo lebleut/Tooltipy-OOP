@@ -13,7 +13,7 @@ function tltpy_get_glossary_settings( $fields ){
 	$pages = get_pages( $args );
 
 	$all_pages = array(
-		'' => __tooltipy( 'Select a page' )
+		'' => __( 'Select a page', 'tooltipy' )
 	);
 	foreach ($pages as $page) {
 		$all_pages[$page->ID] = $page->post_title;
@@ -26,8 +26,8 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_page',
 			'type' 			=> 'select',
 
-			'label' 		=> __tooltipy( 'Glossary page' ),
-			'helper' 		=> __tooltipy( 'Select the page on which the glossary will show up' ),
+			'label' 		=> __( 'Glossary page', 'tooltipy' ),
+			'helper' 		=> __( 'Select the page on which the glossary will show up', 'tooltipy' ),
 
 			'options' 		=> $all_pages,
 			'default' 		=> array( '' ),
@@ -38,10 +38,10 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_tooltips_per_page',
 			'type' 			=> 'number',
 
-			'label' 		=> __tooltipy( 'Tooltips per page' ),
+			'label' 		=> __( 'Tooltips per page', 'tooltipy' ),
 
-			'placeholder' 	=> __tooltipy( 'Default' ),
-			'helper' 		=> __tooltipy( 'Keywords per glossary page' ),
+			'placeholder' 	=> __( 'Default', 'tooltipy' ),
+			'helper' 		=> __( 'Keywords per glossary page', 'tooltipy' ),
 			'default'		=> '',
 		),
 		array(
@@ -50,8 +50,8 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_label_all',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'ALL label' ),
-			'placeholder' 	=> __tooltipy( 'ALL' ),
+			'label' 		=> __( 'ALL label', 'tooltipy' ),
+			'placeholder' 	=> __( 'ALL', 'tooltipy' ),
 		),
 		array(
 			'section' 		=> 'labels',
@@ -59,8 +59,8 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_label_previous',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'Previous label' ),
-			'placeholder' 	=> __tooltipy( 'Previous' ),
+			'label' 		=> __( 'Previous label', 'tooltipy' ),
+			'placeholder' 	=> __( 'Previous', 'tooltipy' ),
 		),
 		array(
 			'section' 		=> 'labels',
@@ -68,8 +68,8 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_label_next',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'Next label' ),
-			'placeholder' 	=> __tooltipy( 'Next' ),
+			'label' 		=> __( 'Next label', 'tooltipy' ),
+			'placeholder' 	=> __( 'Next', 'tooltipy' ),
 		),
 		array(
 			'section' 		=> 'labels',
@@ -77,9 +77,9 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_label_select_category',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'Select a category label' )
+			'label' 		=> __( 'Select a category label', 'tooltipy' )
 								.'<div style="color:red;">Not yet implemented</div>',
-			'placeholder' 	=> __tooltipy( 'Select a category' ),
+			'placeholder' 	=> __( 'Select a category', 'tooltipy' ),
 		),
 		array(
 			'section' 		=> 'labels',
@@ -87,9 +87,9 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_label_all_categories',
 			'type' 			=> 'text',
 
-			'label' 		=> __tooltipy( 'All categories label' )
+			'label' 		=> __( 'All categories label', 'tooltipy' )
 								.'<div style="color:red;">Not yet implemented</div>',
-			'placeholder' 	=> __tooltipy( 'All categories' ),
+			'placeholder' 	=> __( 'All categories', 'tooltipy' ),
 		),
 
 		array(
@@ -98,10 +98,10 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_show_thumbnails',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __tooltipy( 'Glossary thumbnails' ),
+			'label' 		=> __( 'Glossary thumbnails', 'tooltipy' ),
 
 			'options' 		=> array(
-				'yes' 		=> __tooltipy( 'Show thumbnails on the glossary page' ),
+				'yes' 		=> __( 'Show thumbnails on the glossary page', 'tooltipy' ),
 			),
 		),
 		array(
@@ -110,10 +110,10 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_link_titles',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __tooltipy( 'Titles' ),
+			'label' 		=> __( 'Titles', 'tooltipy' ),
 
 			'options' 		=> array(
-				'yes' 		=> __tooltipy( 'Add links to titles' ),
+				'yes' 		=> __( 'Add links to titles', 'tooltipy' ),
 			),
 			'default'		=> array( 'yes' ),
 		),
@@ -123,10 +123,10 @@ function tltpy_get_glossary_settings( $fields ){
 			'uid' 			=> 'glossary_ajax',
 			'type' 			=> 'checkbox',
 
-			'label' 		=> __tooltipy( 'Ajax' ),
+			'label' 		=> __( 'Ajax', 'tooltipy' ),
 
 			'options' 		=> array(
-				'yes' 		=> __tooltipy( 'Load glossary with Ajax' ),
+				'yes' 		=> __( 'Load glossary with Ajax', 'tooltipy' ),
 			),
 			'default'		=> array( 'yes' ),
 		),

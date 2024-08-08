@@ -25,6 +25,6 @@ if( !empty( $terms ) ): ?>
 	</ul>
 <?php else: ?>
 	<div>
-		<i><?php _e_tooltipy( 'No categories for this tooltip.' ); ?></i>
+		<i><?php _e( 'No categories for this tooltip.', 'tooltipy' ); ?></i>
 	</div>
 <?php endif;?>

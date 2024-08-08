@@ -1,0 +1,839 @@
+# Copyright (C) 2015 BleuT KeyWords ToolTip Generator
+# This file is distributed under the same license as the BleuT KeyWords ToolTip Generator package.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tooltipy\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bluet-keywords-"
+"tooltip-generator\n"
+"POT-Creation-Date: 2024-08-08 15:31+0100\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: lebleut\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;gettext;gettext_noop\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/class-admin.php:167 admin/settings/general_settings.php:271
+msgid "Title"
+msgstr ""
+
+#: admin/class-admin.php:168 admin/class-admin.php:370
+#: admin/class-tooltip-metaboxes.php:127
+msgid "Synonyms"
+msgstr ""
+
+#: admin/class-admin.php:169
+msgid "Related posts"
+msgstr ""
+
+#: admin/class-admin.php:170 admin/class-settings.php:171
+msgid "Wikipedia"
+msgstr ""
+
+#: admin/class-admin.php:171 admin/class-admin.php:380
+#: admin/class-admin.php:450
+msgid "Case sensitive"
+msgstr ""
+
+#: admin/class-admin.php:172 admin/class-admin.php:389
+#: admin/class-admin.php:467
+msgid "Prefix"
+msgstr ""
+
+#: admin/class-admin.php:173
+msgid "Youtube ID"
+msgstr ""
+
+#: admin/class-admin.php:174 public/class-tooltipy-public.php:755
+msgid "Categories"
+msgstr ""
+
+#: admin/class-admin.php:175
+msgid "Image"
+msgstr ""
+
+#: admin/class-admin.php:176
+msgid "Author"
+msgstr ""
+
+#: admin/class-admin.php:177
+msgid "Date"
+msgstr ""
+
+#: admin/class-admin.php:182
+msgid "Tooltips"
+msgstr ""
+
+#: admin/class-admin.php:266
+msgid "is case sensitive"
+msgstr ""
+
+#: admin/class-admin.php:273
+msgid "NOT case sensitive"
+msgstr ""
+
+#: admin/class-admin.php:287
+msgid "is a prefix"
+msgstr ""
+
+#: admin/class-admin.php:294
+msgid "NOT prefix"
+msgstr ""
+
+#: admin/class-admin.php:452 admin/class-admin.php:469
+msgid "No Change"
+msgstr ""
+
+#: admin/class-admin.php:453 admin/class-admin.php:470
+#: admin/settings/scope_settings.php:27
+msgid "Yes"
+msgstr ""
+
+#: admin/class-admin.php:454 admin/class-admin.php:471
+msgid "No"
+msgstr ""
+
+#: admin/class-admin.php:534
+msgid "The debug file is empty"
+msgstr ""
+
+#: admin/class-admin.php:552
+msgid "Debug file doesn't contain Tooltipy logs"
+msgstr ""
+
+#: admin/class-admin.php:559
+msgid "Debug file not found"
+msgstr ""
+
+#: admin/class-posts-metaboxes.php:184
+msgid "Tooltipy"
+msgstr ""
+
+#: admin/class-posts-metaboxes.php:243
+msgid "Exclude this post from being matched"
+msgstr ""
+
+#: admin/class-posts-metaboxes.php:244
+msgid "Exclude this "
+msgstr ""
+
+#: admin/class-posts-metaboxes.php:262
+msgid "Tooltips in this post"
+msgstr ""
+
+#: admin/class-posts-metaboxes.php:266
+msgid "No tooltips matched yet"
+msgstr ""
+
+#: admin/class-posts-metaboxes.php:287
+msgid "Tooltips to exclude"
+msgstr ""
+
+#: admin/class-posts-metaboxes.php:301
+msgid "Categories to exclude"
+msgstr ""
+
+#: admin/class-settings.php:29 admin/class-settings.php:41
+msgid "Tooltipy settings"
+msgstr ""
+
+#: admin/class-settings.php:30
+msgid "Settings"
+msgstr ""
+
+#: admin/class-settings.php:44
+msgid "Your settings have been successfully updated"
+msgstr ""
+
+#: admin/class-settings.php:156
+msgid "Tooltips options"
+msgstr ""
+
+#: admin/class-settings.php:157
+msgid "General tooltips settings"
+msgstr ""
+
+#: admin/class-settings.php:161
+msgid "Advanced"
+msgstr ""
+
+#: admin/class-settings.php:162
+msgid "Advanced options"
+msgstr ""
+
+#: admin/class-settings.php:172
+msgid "Wikipedia API settings"
+msgstr ""
+
+#: admin/class-settings.php:181
+msgid "Customise the tooltip style :"
+msgstr ""
+
+#: admin/class-settings.php:182
+msgid "Make your own style."
+msgstr ""
+
+#: admin/class-settings.php:186
+msgid "Advanced style"
+msgstr ""
+
+#: admin/class-settings.php:187
+msgid "Advanced style settings"
+msgstr ""
+
+#: admin/class-settings.php:192 admin/settings/general_settings.php:95
+msgid "Standard mode"
+msgstr ""
+
+#: admin/class-settings.php:193
+msgid "Tooltip standard mode settings"
+msgstr ""
+
+#: admin/class-settings.php:198 admin/settings/general_settings.php:96
+msgid "Icon mode"
+msgstr ""
+
+#: admin/class-settings.php:199
+msgid "Tooltip icon mode settings"
+msgstr ""
+
+#: admin/class-settings.php:204
+msgid "Title mode"
+msgstr ""
+
+#: admin/class-settings.php:205
+msgid "Tooltip title mode settings"
+msgstr ""
+
+#: admin/class-settings.php:210 admin/settings/general_settings.php:98
+msgid "Link mode"
+msgstr ""
+
+#: admin/class-settings.php:211
+msgid "Tooltip link mode settings"
+msgstr ""
+
+#: admin/class-settings.php:216 admin/settings/general_settings.php:99
+msgid "Footnote mode"
+msgstr ""
+
+#: admin/class-settings.php:217
+msgid "Tooltip footnote mode settings"
+msgstr ""
+
+#: admin/class-settings.php:226
+msgid "Glossary settings :"
+msgstr ""
+
+#: admin/class-settings.php:227
+msgid "Choose settings for your glossary."
+msgstr ""
+
+#: admin/class-settings.php:231
+msgid "Glossary page labels"
+msgstr ""
+
+#: admin/class-settings.php:241
+msgid "Exclude"
+msgstr ""
+
+#: admin/class-settings.php:242
+msgid "Sections to exclude"
+msgstr ""
+
+#: admin/class-settings.php:247
+msgid "Excluded posts"
+msgstr ""
+
+#: admin/class-settings.php:248
+msgid "Manage the list of excluded posts"
+msgstr ""
+
+#: admin/class-settings.php:257
+msgid "SEO"
+msgstr ""
+
+#: admin/class-settings.php:258
+msgid "Advanced SEO options"
+msgstr ""
+
+#: admin/class-settings.php:259
+msgid ""
+"Be careful before changing these options, keep in mind that it may affect "
+"your links and your site SEO as a result"
+msgstr ""
+
+#: admin/class-settings.php:268
+msgid "Log"
+msgstr ""
+
+#: admin/class-settings.php:269
+msgid "Shows the log Tooltipy sections from the debug.log file"
+msgstr ""
+
+#: admin/class-tooltip-metaboxes.php:39
+msgid "Tooltip settings"
+msgstr ""
+
+#: admin/class-tooltip-metaboxes.php:131
+msgid "Synonyms separated with '|'"
+msgstr ""
+
+#: admin/class-tooltip-metaboxes.php:143
+msgid "Make this keyword <b>Case Sensitive</b>"
+msgstr ""
+
+#: admin/class-tooltip-metaboxes.php:157
+msgid "This Keyword is a <b>Prefix</b>"
+msgstr ""
+
+#: admin/class-tooltip-metaboxes.php:173
+msgid "Youtube video ID"
+msgstr ""
+
+#: admin/class-tooltip-metaboxes.php:204
+msgid "This is a <b>Wikipedia term</b>"
+msgstr ""
+
+#: admin/class-tooltip-metaboxes.php:232
+msgid "Wikipedia term"
+msgstr ""
+
+#: admin/settings/general_settings.php:13
+msgid "None"
+msgstr ""
+
+#: admin/settings/general_settings.php:80
+#: admin/settings/general_settings.php:81
+#: admin/settings/general_settings.php:82
+#: admin/settings/general_settings.php:83
+#: admin/settings/general_settings.php:84
+msgid "Style"
+msgstr ""
+
+#: admin/settings/general_settings.php:93
+msgid "Tooltip mode"
+msgstr ""
+
+#: admin/settings/general_settings.php:97
+msgid "Title attrib mode"
+msgstr ""
+
+#: admin/settings/general_settings.php:109
+msgid "Tooltip theme"
+msgstr ""
+
+#: admin/settings/general_settings.php:112
+msgid "Light"
+msgstr ""
+
+#: admin/settings/general_settings.php:113
+msgid "Light border"
+msgstr ""
+
+#: admin/settings/general_settings.php:114
+msgid "Material"
+msgstr ""
+
+#: admin/settings/general_settings.php:115
+msgid "Translucent"
+msgstr ""
+
+#: admin/settings/general_settings.php:125
+msgid "Trigger on"
+msgstr ""
+
+#: admin/settings/general_settings.php:127
+msgid "On hover"
+msgstr ""
+
+#: admin/settings/general_settings.php:128
+msgid "On click"
+msgstr ""
+
+#: admin/settings/general_settings.php:138
+msgid "Mouse cursor"
+msgstr ""
+
+#: admin/settings/general_settings.php:140
+#: admin/settings/general_settings.php:170
+msgid "Auto"
+msgstr ""
+
+#: admin/settings/general_settings.php:141
+msgid "Pointer"
+msgstr ""
+
+#: admin/settings/general_settings.php:142
+msgid "Zoom In"
+msgstr ""
+
+#: admin/settings/general_settings.php:143
+msgid "Help"
+msgstr ""
+
+#: admin/settings/general_settings.php:144
+msgid "Context Menu"
+msgstr ""
+
+#: admin/settings/general_settings.php:155
+msgid "Match all occurrences"
+msgstr ""
+
+#: admin/settings/general_settings.php:158 includes/functions.php:32
+msgid "All"
+msgstr ""
+
+#: admin/settings/general_settings.php:167
+msgid "Tooltip position"
+msgstr ""
+
+#: admin/settings/general_settings.php:171
+msgid "Top"
+msgstr ""
+
+#: admin/settings/general_settings.php:172
+msgid "Bottom"
+msgstr ""
+
+#: admin/settings/general_settings.php:173
+msgid "Right"
+msgstr ""
+
+#: admin/settings/general_settings.php:174
+msgid "Left"
+msgstr ""
+
+#: admin/settings/general_settings.php:184
+msgid "Animation"
+msgstr ""
+
+#: admin/settings/general_settings.php:195
+msgid "Animation speed"
+msgstr ""
+
+#: admin/settings/general_settings.php:198
+msgid "Fast"
+msgstr ""
+
+#: admin/settings/general_settings.php:199
+msgid "Faster"
+msgstr ""
+
+#: admin/settings/general_settings.php:200
+msgid "Normal"
+msgstr ""
+
+#: admin/settings/general_settings.php:201
+msgid "Slow"
+msgstr ""
+
+#: admin/settings/general_settings.php:202
+msgid "Slower"
+msgstr ""
+
+#: admin/settings/general_settings.php:213
+msgid "Generate relationships"
+msgstr ""
+
+#: admin/settings/general_settings.php:214
+msgid ""
+"Allows to regenerate the relationships between keywords and all the posts"
+msgstr ""
+
+#: admin/settings/general_settings.php:215
+msgid "Useful when a lot of keywords are added/modified/deleted"
+msgstr ""
+
+#: admin/settings/general_settings.php:229
+msgid "Migrate old options"
+msgstr ""
+
+#: admin/settings/general_settings.php:230
+msgid ""
+"This tool allows old users of Tooltipy (KTTG) to migrate from the old "
+"version to this new one"
+msgstr ""
+
+#: admin/settings/general_settings.php:231
+msgid "Migrates the Keywords"
+msgstr ""
+
+#: admin/settings/general_settings.php:232
+msgid "Updates related post meta data"
+msgstr ""
+
+#: admin/settings/general_settings.php:240
+msgid "Get tooltips from"
+msgstr ""
+
+#: admin/settings/general_settings.php:241
+msgid "Select post types from which you want to get tooltips"
+msgstr ""
+
+#: admin/settings/general_settings.php:252
+msgid "Activate the debug mode"
+msgstr ""
+
+#: admin/settings/general_settings.php:253
+msgid ""
+"Shows debug in the footer of each page if you are administrator and add the "
+"Tooltipy log in the ../wp-content/debug.log file"
+msgstr ""
+
+#: admin/settings/general_settings.php:254
+msgid ""
+"Note : You should set the WP_DEBUG_LOG & WP_DEBUG constants to true in the "
+"wp-config.php file to see the error_log messages."
+msgstr ""
+
+#: admin/settings/general_settings.php:257
+msgid "Debug mode"
+msgstr ""
+
+#: admin/settings/general_settings.php:268
+msgid "Add to tooltip popup"
+msgstr ""
+
+#: admin/settings/general_settings.php:272
+msgid "Synonyms section"
+msgstr ""
+
+#: admin/settings/general_settings.php:273
+msgid "Add glossary link page in the tooltips footer"
+msgstr ""
+
+#: admin/settings/general_settings.php:285
+msgid "Glossary link label"
+msgstr ""
+
+#: admin/settings/general_settings.php:286
+#: admin/settings/general_settings.php:288
+msgid "View glossary"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:16
+msgid "Select a page"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:29
+msgid "Glossary page"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:30
+msgid "Select the page on which the glossary will show up"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:41
+msgid "Tooltips per page"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:43
+msgid "Default"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:44
+msgid "Keywords per glossary page"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:53
+msgid "ALL label"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:54
+msgid "ALL"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:62
+msgid "Previous label"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:63
+msgid "Previous"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:71
+msgid "Next label"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:72
+msgid "Next"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:80
+msgid "Select a category label"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:82
+msgid "Select a category"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:90
+msgid "All categories label"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:92
+msgid "All categories"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:101
+msgid "Glossary thumbnails"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:104
+msgid "Show thumbnails on the glossary page"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:113
+msgid "Titles"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:116
+msgid "Add links to titles"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:126
+msgid "Ajax"
+msgstr ""
+
+#: admin/settings/glossary_settings.php:129
+msgid "Load glossary with Ajax"
+msgstr ""
+
+#: admin/settings/scope_settings.php:14
+msgid "Exclude CSS classes"
+msgstr ""
+
+#: admin/settings/scope_settings.php:15
+msgid "Class ..."
+msgstr ""
+
+#: admin/settings/scope_settings.php:16
+msgid ""
+"Choose CSS classes to exclude that should be nested only in the post content"
+msgstr ""
+
+#: admin/settings/scope_settings.php:24
+msgid "Exclude links ?"
+msgstr ""
+
+#: admin/settings/scope_settings.php:36
+msgid "Exclude Headings ?"
+msgstr ""
+
+#: admin/settings/scope_settings.php:53
+msgid "Exclude Common Tags ?"
+msgstr ""
+
+#: admin/settings/scope_settings.php:73
+msgid "Excluded post list"
+msgstr ""
+
+#: admin/settings/scope_settings.php:135
+msgid "No posts excluded"
+msgstr ""
+
+#: admin/settings/seo_settings.php:15
+msgid "Tooltip slug"
+msgstr ""
+
+#: admin/settings/seo_settings.php:19
+msgid "The slug that will show up in a single tooltip URL"
+msgstr ""
+
+#: admin/settings/seo_settings.php:27
+msgid "Category slug"
+msgstr ""
+
+#: admin/settings/seo_settings.php:31
+msgid "The slug that will show up in the tooltip category URL"
+msgstr ""
+
+#: admin/settings/style_settings.php:14
+msgid "Tooltip max width"
+msgstr ""
+
+#: admin/settings/style_settings.php:23
+msgid "Description tooltip Font size"
+msgstr ""
+
+#: admin/settings/style_settings.php:33
+msgid "Activate tooltips for images ?"
+msgstr ""
+
+#: admin/settings/style_settings.php:37
+msgid "alt property of the images will be displayed as a tooltip"
+msgstr ""
+
+#: admin/settings/style_settings.php:46
+msgid "Custom CSS classes for inline keywords"
+msgstr ""
+
+#: admin/settings/style_settings.php:48 admin/settings/style_settings.php:58
+msgid "Separated with spaces"
+msgstr ""
+
+#: admin/settings/style_settings.php:56
+msgid "Custom CSS classes for tooltips"
+msgstr ""
+
+#: admin/settings/style_settings.php:82
+msgid "Icon"
+msgstr ""
+
+#: admin/settings/style_settings.php:90
+msgid "Icon text color"
+msgstr ""
+
+#: admin/settings/style_settings.php:98
+msgid "Icon background"
+msgstr ""
+
+#: admin/settings/wikipedia_settings.php:16
+msgid "Wikipedia language"
+msgstr ""
+
+#: admin/settings/wikipedia_settings.php:19
+msgid "English"
+msgstr ""
+
+#: admin/settings/wikipedia_settings.php:20
+msgid "French"
+msgstr ""
+
+#: admin/settings/wikipedia_settings.php:21
+msgid "Arabic"
+msgstr ""
+
+#: public/class-tooltipy-public.php:685
+msgid "Tooltipy OOP"
+msgstr ""
+
+#: public/class-tooltipy-public.php:686 public/class-tooltipy-public.php:721
+msgid "Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:687
+msgid "Tooltips archive"
+msgstr ""
+
+#: public/class-tooltipy-public.php:688
+msgid "Parent tooltip:"
+msgstr ""
+
+#: public/class-tooltipy-public.php:689
+msgid "All Tooltips"
+msgstr ""
+
+#: public/class-tooltipy-public.php:690
+msgid "Add New Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:691
+msgid "Add New"
+msgstr ""
+
+#: public/class-tooltipy-public.php:692
+msgid "New Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:693
+msgid "Edit Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:694
+msgid "Update Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:695
+msgid "View Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:696
+msgid "Search Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:697
+msgid "No Tooltips found"
+msgstr ""
+
+#: public/class-tooltipy-public.php:698
+msgid "No Tooltips found in Trash"
+msgstr ""
+
+#: public/class-tooltipy-public.php:699
+msgid "Featured Image"
+msgstr ""
+
+#: public/class-tooltipy-public.php:700
+msgid "Set featured image"
+msgstr ""
+
+#: public/class-tooltipy-public.php:701
+msgid "Remove featured image"
+msgstr ""
+
+#: public/class-tooltipy-public.php:702
+msgid "Use as featured image"
+msgstr ""
+
+#: public/class-tooltipy-public.php:703
+msgid "Insert into Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:704
+msgid "Uploaded to this Tooltip"
+msgstr ""
+
+#: public/class-tooltipy-public.php:705
+msgid "Tooltips list"
+msgstr ""
+
+#: public/class-tooltipy-public.php:706
+msgid "Tooltips list navigation"
+msgstr ""
+
+#: public/class-tooltipy-public.php:707
+msgid "Filter Tooltips list"
+msgstr ""
+
+#: public/class-tooltipy-public.php:722
+msgid "Post type to create keywords to generate tooltips in the frontend."
+msgstr ""
+
+#: templates/glossary.php:38
+msgid "Previous page"
+msgstr ""
+
+#: templates/glossary.php:39
+msgid "Next page"
+msgstr ""
+
+#: templates/glossary.php:47
+msgid "Page"
+msgstr ""
+
+#: templates/glossary/glossary-none.php:13
+msgid "No tooltips found"
+msgstr ""
+
+#: templates/tooltip-content.php:80
+msgid "Loading image..."
+msgstr ""
+
+#: templates/tooltip-content.php:95
+msgid "Loading..."
+msgstr ""
+
+#: templates/tooltip/tooltip-categories.php:28
+msgid "No categories for this tooltip."
+msgstr ""
+
+#: templates/tooltip/tooltip-related.php:27
+msgid "No related posts for this tooltip."
+msgstr ""

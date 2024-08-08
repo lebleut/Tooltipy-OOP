@@ -24,6 +24,6 @@ if( !empty( $related_posts ) ): ?>
 	</ul>
 <?php else: ?>
 	<div>
-		<i><?php _e_tooltipy( 'No related posts for this tooltip.' ); ?></i>
+		<i><?php _e( 'No related posts for this tooltip.', 'tooltipy' ); ?></i>
 	</div>
 <?php endif;?>

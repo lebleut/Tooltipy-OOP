@@ -164,22 +164,22 @@ class Admin {
 		$tax = Tooltipy::get_taxonomy();
 		$columns = array(
 			'cb' 						=> $columns['cb'],
-			'title' 					=> __( 'Title' ),
-			'tltpy_synonyms'			=> __tooltipy( 'Synonyms' ),
-			'tltpy_related'				=> __tooltipy( 'Related posts' ),
-			'tltpy_wikipedia'			=> __tooltipy( 'Wikipedia' ),
-			'tltpy_case_sensitive'		=> __tooltipy( 'Case sensitive' ),
-			'tltpy_is_prefix'			=> __tooltipy( 'Prefix' ),
-			'tltpy_youtube_id'			=> __tooltipy( 'Youtube ID' ),
-			'taxonomy-' . $tax			=> __tooltipy( 'Categories' ),
-			'image' 					=> __( 'Image' ),
-			'author' 					=> __( 'Author' ),
-			'date' 						=> __( 'Date' ),
+			'title' 					=> __( 'Title', 'tooltipy' ),
+			'tltpy_synonyms'			=> __( 'Synonyms', 'tooltipy' ),
+			'tltpy_related'				=> __( 'Related posts', 'tooltipy' ),
+			'tltpy_wikipedia'			=> __( 'Wikipedia', 'tooltipy' ),
+			'tltpy_case_sensitive'		=> __( 'Case sensitive', 'tooltipy' ),
+			'tltpy_is_prefix'			=> __( 'Prefix', 'tooltipy' ),
+			'tltpy_youtube_id'			=> __( 'Youtube ID', 'tooltipy' ),
+			'taxonomy-' . $tax			=> __( 'Categories', 'tooltipy' ),
+			'image' 					=> __( 'Image', 'tooltipy' ),
+			'author' 					=> __( 'Author', 'tooltipy' ),
+			'date' 						=> __( 'Date', 'tooltipy' ),
 		  );
 		return $columns;
 	}
 	public function manage_post_columns( $columns ){
-		$columns['tltpy_tooltips_nbr'] = __( 'Tooltips' );
+		$columns['tltpy_tooltips_nbr'] = __( 'Tooltips', 'tooltipy' );
 		return $columns;
 	}
 
@@ -263,14 +263,14 @@ class Admin {
 			$class = 'tltpy-cell tltpy-cell-yes';
 			?>
 			<span class="<?php echo $class; ?>" >
-				<?php _e_tooltipy( 'is case sensitive' ); ?>
+				<?php _e( 'is case sensitive', 'tooltipy' ); ?>
 			</span>
 			<?php
 		}else{
 			$class = 'tltpy-cell tltpy-cell-no';
 			?>
 			<span class="<?php echo $class; ?>" >
-				<?php _e_tooltipy( 'NOT case sensitive' ); ?>
+				<?php _e( 'NOT case sensitive', 'tooltipy' ); ?>
 			</span>
 			<?php
 		}
@@ -284,14 +284,14 @@ class Admin {
 			$class = 'tltpy-cell tltpy-cell-yes';
 			?>
 			<span class="<?php echo $class; ?>" >
-				<?php _e_tooltipy( 'is a prefix' ); ?>
+				<?php _e( 'is a prefix', 'tooltipy' ); ?>
 			</span>
 			<?php
 		}else{
 			$class = 'tltpy-cell tltpy-cell-no';
 			?>
 			<span class="<?php echo $class; ?>" >
-				<?php _e_tooltipy( 'NOT prefix' ); ?>
+				<?php _e( 'NOT prefix', 'tooltipy' ); ?>
 			</span>
 			<?php
 		}
@@ -367,7 +367,7 @@ class Admin {
 							<div class="inline-edit-group wp-clearfix">';
 				?>
 							<label class="alignleft">
-								<span class="title"><?php _e_tooltipy( 'Synonyms' ); ?></span>
+								<span class="title"><?php _e( 'Synonyms', 'tooltipy' ); ?></span>
 								<span class="input-text-wrap">
 									<input type="text" name="tltpy_synonyms" value="">
 								</span>
@@ -377,7 +377,7 @@ class Admin {
 			case 'tltpy_case_sensitive':
 				?>
 						<label class="alignleft">
-							<span class="title"><?php _e_tooltipy( 'Case sensitive' ); ?></span>
+							<span class="title"><?php _e( 'Case sensitive', 'tooltipy' ); ?></span>
 							<input type="checkbox" name="tltpy_case_sensitive" value="">
 						</label>
 				<?php
@@ -386,7 +386,7 @@ class Admin {
 			case 'tltpy_is_prefix':
 				?>
 					<label class="alignleft">
-						<span class="title"><?php _e_tooltipy( 'Prefix' ); ?></span>
+						<span class="title"><?php _e( 'Prefix', 'tooltipy' ); ?></span>
 						<input type="checkbox" name="tltpy_is_prefix" value="">
 					</label>
 				<?php
@@ -447,11 +447,11 @@ class Admin {
 								<div class="inline-edit-group wp-clearfix">';
 				?>
 						<label class="alignleft">
-							<span class="title"><?php _e_tooltipy( 'Case sensitive' ); ?></span>
+							<span class="title"><?php _e( 'Case sensitive', 'tooltipy' ); ?></span>
 							<select name="tltpy_case_sensitive">
-								<option value="-1">— <?php _e( 'No Change' ); ?> —</option>
-								<option value="yes"><?php _e( 'Yes' ); ?></option>
-								<option value="no"><?php _e( 'No' ); ?></option>
+								<option value="-1">— <?php _e( 'No Change', 'tooltipy' ); ?> —</option>
+								<option value="yes"><?php _e( 'Yes', 'tooltipy' ); ?></option>
+								<option value="no"><?php _e( 'No', 'tooltipy' ); ?></option>
 							</select>
 						</label>
 				<?php
@@ -464,11 +464,11 @@ class Admin {
 								<div class="inline-edit-group wp-clearfix">';
 				?>
 							<label class="alignleft">
-								<span class="title"><?php _e_tooltipy( 'Prefix' ); ?></span>
+								<span class="title"><?php _e( 'Prefix', 'tooltipy' ); ?></span>
 								<select name="tltpy_is_prefix">
-									<option value="-1">— <?php _e( 'No Change' ); ?> —</option>
-									<option value="yes"><?php _e( 'Yes' ); ?></option>
-									<option value="no"><?php _e( 'No' ); ?></option>
+									<option value="-1">— <?php _e( 'No Change', 'tooltipy' ); ?> —</option>
+									<option value="yes"><?php _e( 'Yes', 'tooltipy' ); ?></option>
+									<option value="no"><?php _e( 'No', 'tooltipy' ); ?></option>
 								</select>
 							</label>
 				<?php
@@ -531,7 +531,7 @@ class Admin {
 
 			if( file_exists($debug_file_path) && ($debug_file = fopen($debug_file_path, "r"))!==false ){
 				if( filesize( $debug_file_path ) == 0 ){
-					echo '<div class="tooltipy-log--notice">' . __tooltipy( 'The debug file is empty' ) . '</div>';
+					echo '<div class="tooltipy-log--notice">' . __( 'The debug file is empty', 'tooltipy' ) . '</div>';
 				}else{
 					$degug_file_content = fread( $debug_file, filesize( $debug_file_path ) );
 					fclose($debug_file);
@@ -549,14 +549,14 @@ class Admin {
 						}
 																		
 						if( !$count ){
-							echo '<div class="tooltipy-log--notice">' . __tooltipy( 'Debug file doesn\'t contain Tooltipy logs' ) . '</div>';
+							echo '<div class="tooltipy-log--notice">' . __( 'Debug file doesn\'t contain Tooltipy logs', 'tooltipy' ) . '</div>';
 						}
 						?>
 					</div>
 					<?php
 				}
 			}else{
-				echo '<div class="tooltipy-log--error">' . __tooltipy( 'Debug file not found' ) . '</div>';
+				echo '<div class="tooltipy-log--error">' . __( 'Debug file not found', 'tooltipy' ) . '</div>';
 			}
 		}
 	}

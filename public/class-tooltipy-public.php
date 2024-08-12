@@ -906,7 +906,7 @@ class Tooltipy_Public {
 	public function glossary_template( $page_template ){
 		global $wp_query, $post;
 
-		$tooltipy_glossary_page_id = tooltipy_get_option( 'glossary_page' );
+		$tooltipy_glossary_page_id = tooltipy_get_option( 'glossary_page_id' );
 		if( is_array($tooltipy_glossary_page_id) ){
 			$tooltipy_glossary_page_id = $tooltipy_glossary_page_id[0];
 		}
@@ -951,19 +951,21 @@ class Tooltipy_Public {
 	}
 
 	public function rewrite_rules() {
-		$glossary_page_id = tooltipy_get_option( 'glossary_page' );
+		$glossary_page_id = tooltipy_get_option( 'glossary_page_id' );
 
-		if( !empty($glossary_page_id) ){
-			$glossary_page = get_post( $glossary_page_id );
-			$slug = $glossary_page->post_name;
-			
-			// Consider the letter query var for glossary pages
-			add_rewrite_rule(
-				'^'.$slug.'/letter/([^/]+)$',
-				'index.php?page_id='.$glossary_page_id.'&letter=$matches[1]',
-				'top'
-			);
-		}
+		// if( !empty($glossary_page_id) ){
+		// 	$glossary_page = get_post( $glossary_page_id );
+		// 	if( $glossary_page ){
+		// 		$slug = $glossary_page->post_name;
+				
+		// 		// Consider the letter query var for glossary pages
+		// 		add_rewrite_rule(
+		// 			'^'.$slug.'/letter/([^/]+)$',
+		// 			'index.php?page_id='.$glossary_page_id.'&letter=$matches[1]',
+		// 			'top'
+		// 		);
+		// 	}
+		// }
 
 	}
 	function add_query_vars( $vars )

@@ -127,7 +127,7 @@ class Settings {
 
 						do_settings_sections( 'tooltipy_' . $section_id );
 
-						// Too add settings or content after settings
+						// To add settings or content after settings
 						do_action( 'tltpy_tab_after_settings', $section_id );
 
 						submit_button();
@@ -310,7 +310,6 @@ class Settings {
 			}
 		}
 	}
-
 
 	/**
 	 * Returns the list of plugin option fields

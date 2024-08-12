@@ -23,7 +23,7 @@ function tltpy_get_glossary_settings( $fields ){
 		array(
 			'section' 		=> 'general',
 			
-			'uid' 			=> 'glossary_page',
+			'uid' 			=> 'glossary_page_id',
 			'type' 			=> 'select',
 
 			'label' 		=> __( 'Glossary page', 'tooltipy' ),
@@ -147,7 +147,7 @@ add_action( 'updated_option', 'tltpy_updated_glossary_serttings', 10, 3 );
 function tltpy_updated_glossary_serttings( $option, $old_value, $value ){
 	// Need to flush the rewrite rules if glossary page changed
     if(
-		$option == 'tltpy_' . 'glossary_page'
+		$option == 'tltpy_' . 'glossary_page_id'
 		&& serialize($value) != serialize($old_value)
 	){
         add_option( 'tltpy_' . 'flush_rewrite_rules',true);

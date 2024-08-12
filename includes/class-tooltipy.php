@@ -287,7 +287,7 @@ class Tooltipy {
 	}
 
 	public static function get_glossary_page_id(){
-		$glossary_id = tooltipy_get_option( 'glossary_page' );
+		$glossary_id = tooltipy_get_option( 'glossary_page_id' );
 		if( is_array( $glossary_id ) ){
 			$glossary_id = $glossary_id[0];
 		}

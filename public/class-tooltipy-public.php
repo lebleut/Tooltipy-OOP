@@ -42,6 +42,11 @@ class Tooltipy_Public {
 	 */
 	private $version;
 
+	private $exclude_class_name;
+	private $exclude_links;
+	private $exclude_heading_tags;
+	private $exclude_common_tags;
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -53,6 +58,12 @@ class Tooltipy_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		
+		$this->exclude_class_name	= tooltipy_get_option( 'exclude_classes', false );
+		$this->exclude_links 		= tooltipy_get_option( 'exclude_links', false, true );
+		$this->exclude_heading_tags = tooltipy_get_option( 'exclude_heading_tags', false, false );
+		$this->exclude_common_tags 	= tooltipy_get_option( 'exclude_common_tags', false, false );
+
 		add_filter( 'the_content', array($this, 'filter_content') );
 		add_action( 'wp_ajax_tltpy_load_glossary', array( $this, 'ajax_load_glossary' ) );
 		add_action( 'wp_ajax_nopriv_tltpy_load_glossary', array( $this, 'ajax_load_glossary' ) );
@@ -393,31 +404,21 @@ class Tooltipy_Public {
 
 			foreach($text_nodes as $line) {
 				// Exclude classes
-				if( self::is_node_excluded( $line ) ){
+				if( $this->is_node_excluded( $line ) ){
 					continue;
 				}
 
-				$sub_html_obj = str_get_html( $line->innertext );
-
-				if( is_bool( $sub_html_obj ) || !method_exists( $sub_html_obj, 'find' ) ){
-					$line->innertext = preg_replace( $patterns[$key], $replacements[$key], $line->innertext, $limit, $count);
-					
-					if( $limit == 1 && $count > 0){
-						break;
-					}
-				}else{
-					$sub_text_nodes = $sub_html_obj->find('text');
-					foreach($sub_text_nodes as $sub_line) {
-						$sub_line->innertext = preg_replace( [$patterns[$key]], [$replacements[$key]], $sub_line->innertext, $limit, $sub_count);
-						
-						if( $limit == 1 && $sub_count > 0){
-							break;
-						}
-					}
-					
-					$line->innertext = $sub_html_obj;
+				$line->innertext = preg_replace(
+					$patterns[ $key ],
+					$replacements[ $key ],
+					$line->innertext,
+					$limit,
+					$count
+				);
+				
+				if( $limit == 1 && $count > 0){
+					break;
 				}
-
 			}
 			$content = $html_obj;
 		}				
@@ -431,32 +432,26 @@ class Tooltipy_Public {
 	 *
 	 * @return void
 	 */
-	public static function is_node_excluded( $html_node ){
+	public function is_node_excluded( $html_node ){
 		// classes
-		$exclude_class_name = tooltipy_get_option( 'exclude_classes', false );
-		if( $exclude_class_name ){
-			if( '' != $exclude_class_name && self::parents_has_class( $html_node, $exclude_class_name ) ){
+		if( $this->exclude_class_name ){
+			if( '' != $this->exclude_class_name && self::parents_has_class( $html_node, $this->exclude_class_name ) ){
 				return true;
 			}
 		}
 
-		// tag names ( a, h1 ... h6 , strong, b, abr, ...)
-		$exclude_links 			= tooltipy_get_option( 'exclude_links', false, true );
-		$exclude_heading_tags 	= tooltipy_get_option( 'exclude_heading_tags', false, false );
-		$exclude_common_tags 	= tooltipy_get_option( 'exclude_common_tags', false, false );
-
 		$exclude_tags = array();
 
-		if( $exclude_links && 'yes' == $exclude_links ){
+		if( $this->exclude_links && 'yes' == $this->exclude_links ){
 			array_push( $exclude_tags, 'a' );
 		}
 
-		if( $exclude_heading_tags && is_array( $exclude_heading_tags ) ){
-			$exclude_tags = array_merge( $exclude_tags, $exclude_heading_tags );
+		if( $this->exclude_heading_tags && is_array( $this->exclude_heading_tags ) ){
+			$exclude_tags = array_merge( $exclude_tags, $this->exclude_heading_tags );
 		}
 
-		if( $exclude_common_tags && is_array( $exclude_common_tags ) ){
-			$exclude_tags = array_merge( $exclude_tags, $exclude_common_tags );
+		if( $this->exclude_common_tags && is_array( $this->exclude_common_tags ) ){
+			$exclude_tags = array_merge( $exclude_tags, $this->exclude_common_tags );
 		}
 
 		if( count($exclude_tags) ){

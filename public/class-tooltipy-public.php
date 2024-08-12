@@ -310,12 +310,12 @@ class Tooltipy_Public {
 
 							$bg_color = tooltipy_get_option( 'icon_background_color', false );
 							if( empty( $bg_color ) ){
-								$bg_color = "auto";
+								$bg_color = "inherit";
 							}
 							
 							$txt_color = tooltipy_get_option( 'icon_text_color', false );
 							if( empty( $txt_color ) ){
-								$txt_color = "auto";
+								$txt_color = "inherit";	
 							}
 
 							$icon = '<span class="dashicons '.$icon_img.'" style="color: '.$txt_color.'; background-color: '.$bg_color.';"></span>';

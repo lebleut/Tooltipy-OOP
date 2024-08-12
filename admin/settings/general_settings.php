@@ -314,9 +314,9 @@ function tltpy_ajx_generate_relationships(){
 	] );
 
 	foreach( $posts as $post ){
-		$new_value = Posts_Metaboxes::filter_matched_tooltips( $post->post_content );
+		$new_matched_tooltips = Posts_Metaboxes::filter_matched_tooltips( $post->post_content );
 
-		if( update_post_meta( $post->ID, 'tltpy_matched_tooltips', $new_value) ){
+		if( update_post_meta( $post->ID, 'tltpy_matched_tooltips', $new_matched_tooltips) ){
 			$ret['updated_posts'] += 1;
 		}
 	}

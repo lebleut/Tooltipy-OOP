@@ -185,9 +185,18 @@ function tooltipy_get_related_posts(){
 		'post_type'			=> Tooltipy::get_related_post_types(),
 		'posts_per_page'	=> -1,
 		'post_status'		=> 'publish',
-		'meta_key' 			=> 'tltpy_exclude_me',
-		'meta_value' 		=> 'on',
-		'meta_compare'		=> '!=',
+		'meta_query' => [
+			'relation' => 'OR',
+			[
+				'key' => 'tltpy_exclude_me',
+				'compare' => 'NOT EXISTS',
+			],
+			[
+				'key' => 'tltpy_exclude_me',
+				'compare' => '!=',
+				'value' => 'on',
+			],
+		],
 	);
 	$all_posts = get_posts( $args );
 

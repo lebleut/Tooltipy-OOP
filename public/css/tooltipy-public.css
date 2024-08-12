@@ -7,9 +7,8 @@
  .tltpy_mode_standard.tooltipy-kw,
  .tltpy_mode_title.tooltipy-kw
  {
-	color: #2196F3;
-	font-weight: bold;
-	border-bottom: #FF5722 1px dashed;
+	font-weight: 500;
+	border-bottom: currentcolor 1px dashed;
  }
 
  /* icon mode */

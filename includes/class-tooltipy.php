@@ -74,7 +74,7 @@ class Tooltipy {
 		}
 
 		// Get the plugin data
-		$plugin_data = get_plugin_data( TOOLTIPY_BASE_FILE );
+		$plugin_data = get_plugin_data( TOOLTIPY_BASE_FILE, true, false );
 
 		$this->version = $plugin_data['Version'];
 
